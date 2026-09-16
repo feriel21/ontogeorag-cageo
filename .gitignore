@@ -1,0 +1,10 @@
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+output/
+logs/
+*.pdf
+*.pkl
+*.xlsx
+*chunks.jsonl
+*_key.csv
