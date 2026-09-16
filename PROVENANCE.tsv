@@ -84,3 +84,7 @@ scripts/tools/48e_preflight_41.py	file:~/ontogeorag/48e_preflight_41.py	62390099
 scripts/tools/50_extract_lb26_reference.py	file:~/ontogeorag/50_extract_lb26_reference.py	28d356697f416662749b7b3d7f727e79a2355195ebfeb40c0a330a4052c3f559	sha = inventaire 148
 slurm/run16_full.sh	git:9c03730:slurm/run16_full.sh	db12a9fc265eb7fb6798a3b36abb67e9f4b5233bb974a417f80824e804037e1a	hors manifeste
 scripts/paper/154_table5_ablation.py	file:~/ontogeorag/154_table5_ablation.py	bccc3b64dc98059665ca839f3f8acc8b343a79285da67389c40ca2513541d3a3	Table 5 identique au manuscrit et a 67
+scripts/paper/table5_ablation.py	new (repository tooling, English)	09876e76133e91fad0933cbe9282bbe0f6da71f1c2adbf30d5b8f7b1b6c2a469	validated on cluster
+tools/check_code_unchanged.py	new (repository tooling, English)	a5fb37fbcded50cfd01127842f3cf9a199efa6c11fa88647a6318fd3ed1d194c	validated on cluster
+tools/replay_cpu_steps.py	new (repository tooling, English)	0b2ffc85507b419c2ed9f8fc6cd86265e989a0d73e71cfc649f4514eb0e5945f	validated on cluster
+tools/verify_provenance.py	new (repository tooling, English)	a1ec67a78153ebabc4674548fb1f683eeb395fe78252d93c4bfbccb0670e9b6e	validated on cluster
