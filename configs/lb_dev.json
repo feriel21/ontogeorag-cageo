@@ -1,0 +1,111 @@
+{
+  "description": "run13 frozen dev split of the 34-edge benchmark (seed 20260727, stratified by source x relation-family). Query set frozen as of run11; split drawn before run13 launch.",
+  "seed": 20260727,
+  "n_edges": 17,
+  "edges": [
+    {
+      "subject": "submarine landslides",
+      "relation": "occursIn",
+      "object": "continental slope",
+      "source": "LB2019_extended",
+      "criterion": "explicit_single_passage",
+      "evidence": "identified 83 gravity flows, slides and slumps on the continental slopes"
+    },
+    {
+      "subject": "slide",
+      "relation": "hasDescriptor",
+      "object": "hummocky",
+      "source": "LB2019_extended",
+      "criterion": "explicit_single_passage",
+      "evidence": "The slide blocks show a characteristic hummocky geometry"
+    },
+    {
+      "subject": "megaslide",
+      "relation": "hasDescriptor",
+      "object": "transparent",
+      "source": "LB2019_extended",
+      "criterion": "explicit_single_passage",
+      "evidence": "internal seismic character is dominated by transparent facies"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasDescriptor",
+      "object": "high-amplitude",
+      "source": "LB2019_extended",
+      "criterion": "explicit_single_passage",
+      "evidence": "mass transport deposit upper surface is commonly a high amplitude, positive reflection"
+    },
+    {
+      "subject": "pore pressure",
+      "relation": "controls",
+      "object": "slope failure"
+    },
+    {
+      "subject": "turbidity current",
+      "relation": "formedBy",
+      "object": "debris flow"
+    },
+    {
+      "subject": "debris flow",
+      "relation": "occursIn",
+      "object": "continental slope"
+    },
+    {
+      "subject": "turbidite",
+      "relation": "occursIn",
+      "object": "basin floor"
+    },
+    {
+      "subject": "slide",
+      "relation": "overlies",
+      "object": "hemipelagite"
+    },
+    {
+      "subject": "turbidite",
+      "relation": "hasDescriptor",
+      "object": "high-amplitude"
+    },
+    {
+      "subject": "turbidite",
+      "relation": "hasDescriptor",
+      "object": "parallel"
+    },
+    {
+      "subject": "debris flow",
+      "relation": "hasDescriptor",
+      "object": "hummocky"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasDescriptor",
+      "object": "massive"
+    },
+    {
+      "subject": "debris flow",
+      "relation": "hasDescriptor",
+      "object": "chaotic"
+    },
+    {
+      "subject": "slide",
+      "relation": "hasDescriptor",
+      "object": "blocky"
+    },
+    {
+      "subject": "turbidite",
+      "relation": "hasDescriptor",
+      "object": "layered"
+    },
+    {
+      "subject": "hemipelagite",
+      "relation": "hasDescriptor",
+      "object": "parallel"
+    }
+  ],
+  "strata": [
+    "extended|context",
+    "extended|descriptor",
+    "original|causal",
+    "original|context",
+    "original|descriptor"
+  ]
+}

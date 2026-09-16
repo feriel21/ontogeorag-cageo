@@ -1,0 +1,149 @@
+{
+  "node_types": [
+    "Geological_Object",
+    "Descriptor",
+    "Process",
+    "Environmental_Control",
+    "Evidence"
+  ],
+  "relation_types": [
+    "AFFECTS",
+    "CAUSES",
+    "TRIGGERS",
+    "CONTROLS",
+    "CONDITIONS",
+    "INDICATES",
+    "SUGGESTS",
+    "EVIDENCES",
+    "PART_OF",
+    "HAS_DESCRIPTOR",
+    "HAS_PROPERTY",
+    "HAS_PHASE",
+    "LOCATED_IN",
+    "RELATED_TO"
+  ],
+  "allowed_node_attributes": {
+    "Geological_Object": [
+      "name",
+      "canonical_id",
+      "object_class",
+      "description",
+      "dataset_id",
+      "geometry_ref",
+      "aliases"
+    ],
+    "Descriptor": [
+      "name",
+      "canonical_id",
+      "descriptor_subtype",
+      "value_type",
+      "units",
+      "description",
+      "aliases"
+    ],
+    "Process": [
+      "name",
+      "canonical_id",
+      "process_subtype",
+      "phase",
+      "description",
+      "aliases"
+    ],
+    "Environmental_Control": [
+      "name",
+      "canonical_id",
+      "control_type",
+      "value_type",
+      "units",
+      "description",
+      "aliases"
+    ],
+    "Evidence": [
+      "source_id",
+      "source_type",
+      "citation",
+      "span",
+      "page",
+      "figure",
+      "confidence"
+    ]
+  },
+  "allowed_edge_attributes": {
+    "AFFECTS": [
+      "polarity",
+      "strength",
+      "confidence",
+      "source_id",
+      "span"
+    ],
+    "CAUSES": [
+      "confidence",
+      "source_id",
+      "span"
+    ],
+    "TRIGGERS": [
+      "confidence",
+      "source_id",
+      "span"
+    ],
+    "CONTROLS": [
+      "confidence",
+      "source_id",
+      "span"
+    ],
+    "CONDITIONS": [
+      "confidence",
+      "source_id",
+      "span"
+    ],
+    "INDICATES": [
+      "confidence",
+      "source_id",
+      "span"
+    ],
+    "SUGGESTS": [
+      "confidence",
+      "source_id",
+      "span"
+    ],
+    "EVIDENCES": [
+      "confidence",
+      "source_id",
+      "span"
+    ],
+    "PART_OF": [
+      "confidence",
+      "source_id",
+      "span"
+    ],
+    "HAS_DESCRIPTOR": [
+      "confidence",
+      "source_id",
+      "span"
+    ],
+    "HAS_PROPERTY": [
+      "confidence",
+      "source_id",
+      "span"
+    ],
+    "HAS_PHASE": [
+      "confidence",
+      "source_id",
+      "span"
+    ],
+    "LOCATED_IN": [
+      "confidence",
+      "source_id",
+      "span"
+    ],
+    "RELATED_TO": [
+      "confidence",
+      "source_id",
+      "span"
+    ]
+  },
+  "lexicon": {
+    "concepts_file": "concepts_cleaned_template.csv",
+    "notes": "Fill node_type in concepts_cleaned_template.csv, then export lexicon.json from it."
+  }
+}

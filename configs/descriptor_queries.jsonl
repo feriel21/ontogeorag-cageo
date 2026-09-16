@@ -1,0 +1,249 @@
+{"query": "What are the seismic facies and descriptors of mass transport deposit?", "strategy": "descriptor", "focus": "mass transport deposit"}
+{"query": "Describe the seismic character of mass transport deposit including amplitude, continuity, and internal reflections.", "strategy": "descriptor", "focus": "mass transport deposit"}
+{"query": "What are the seismic facies and descriptors of mass transport complex?", "strategy": "descriptor", "focus": "mass transport complex"}
+{"query": "Describe the seismic character of mass transport complex including amplitude, continuity, and internal reflections.", "strategy": "descriptor", "focus": "mass transport complex"}
+{"query": "What are the seismic facies and descriptors of debris flow?", "strategy": "descriptor", "focus": "debris flow"}
+{"query": "Describe the seismic character of debris flow including amplitude, continuity, and internal reflections.", "strategy": "descriptor", "focus": "debris flow"}
+{"query": "What are the seismic facies and descriptors of debris flow deposit?", "strategy": "descriptor", "focus": "debris flow deposit"}
+{"query": "Describe the seismic character of debris flow deposit including amplitude, continuity, and internal reflections.", "strategy": "descriptor", "focus": "debris flow deposit"}
+{"query": "What are the seismic facies and descriptors of turbidite?", "strategy": "descriptor", "focus": "turbidite"}
+{"query": "Describe the seismic character of turbidite including amplitude, continuity, and internal reflections.", "strategy": "descriptor", "focus": "turbidite"}
+{"query": "What are the seismic facies and descriptors of turbidity current?", "strategy": "descriptor", "focus": "turbidity current"}
+{"query": "Describe the seismic character of turbidity current including amplitude, continuity, and internal reflections.", "strategy": "descriptor", "focus": "turbidity current"}
+{"query": "What are the seismic facies and descriptors of submarine landslide?", "strategy": "descriptor", "focus": "submarine landslide"}
+{"query": "Describe the seismic character of submarine landslide including amplitude, continuity, and internal reflections.", "strategy": "descriptor", "focus": "submarine landslide"}
+{"query": "What are the seismic facies and descriptors of slide?", "strategy": "descriptor", "focus": "slide"}
+{"query": "Describe the seismic character of slide including amplitude, continuity, and internal reflections.", "strategy": "descriptor", "focus": "slide"}
+{"query": "What are the seismic facies and descriptors of slump?", "strategy": "descriptor", "focus": "slump"}
+{"query": "Describe the seismic character of slump including amplitude, continuity, and internal reflections.", "strategy": "descriptor", "focus": "slump"}
+{"query": "What are the seismic facies and descriptors of channel levee?", "strategy": "descriptor", "focus": "channel levee"}
+{"query": "Describe the seismic character of channel levee including amplitude, continuity, and internal reflections.", "strategy": "descriptor", "focus": "channel levee"}
+{"query": "What are the seismic facies and descriptors of submarine fan?", "strategy": "descriptor", "focus": "submarine fan"}
+{"query": "Describe the seismic character of submarine fan including amplitude, continuity, and internal reflections.", "strategy": "descriptor", "focus": "submarine fan"}
+{"query": "What are the seismic facies and descriptors of hemipelagite?", "strategy": "descriptor", "focus": "hemipelagite"}
+{"query": "Describe the seismic character of hemipelagite including amplitude, continuity, and internal reflections.", "strategy": "descriptor", "focus": "hemipelagite"}
+{"query": "What are the seismic facies and descriptors of pelagite?", "strategy": "descriptor", "focus": "pelagite"}
+{"query": "Describe the seismic character of pelagite including amplitude, continuity, and internal reflections.", "strategy": "descriptor", "focus": "pelagite"}
+{"query": "What are the seismic facies and descriptors of headscarp?", "strategy": "descriptor", "focus": "headscarp"}
+{"query": "Describe the seismic character of headscarp including amplitude, continuity, and internal reflections.", "strategy": "descriptor", "focus": "headscarp"}
+{"query": "What are the seismic facies and descriptors of toe?", "strategy": "descriptor", "focus": "toe"}
+{"query": "Describe the seismic character of toe including amplitude, continuity, and internal reflections.", "strategy": "descriptor", "focus": "toe"}
+{"query": "What are the seismic facies and descriptors of basal surface?", "strategy": "descriptor", "focus": "basal surface"}
+{"query": "Describe the seismic character of basal surface including amplitude, continuity, and internal reflections.", "strategy": "descriptor", "focus": "basal surface"}
+{"query": "What are the seismic facies and descriptors of upper surface?", "strategy": "descriptor", "focus": "upper surface"}
+{"query": "Describe the seismic character of upper surface including amplitude, continuity, and internal reflections.", "strategy": "descriptor", "focus": "upper surface"}
+{"query": "Which geological objects or seismic units are described as chaotic?", "strategy": "descriptor", "focus": "reverse:chaotic"}
+{"query": "What deposits or features show chaotic seismic facies?", "strategy": "descriptor", "focus": "reverse:chaotic"}
+{"query": "Which geological objects or seismic units are described as transparent?", "strategy": "descriptor", "focus": "reverse:transparent"}
+{"query": "What deposits or features show transparent seismic facies?", "strategy": "descriptor", "focus": "reverse:transparent"}
+{"query": "Which geological objects or seismic units are described as blocky?", "strategy": "descriptor", "focus": "reverse:blocky"}
+{"query": "What deposits or features show blocky seismic facies?", "strategy": "descriptor", "focus": "reverse:blocky"}
+{"query": "Which geological objects or seismic units are described as massive?", "strategy": "descriptor", "focus": "reverse:massive"}
+{"query": "What deposits or features show massive seismic facies?", "strategy": "descriptor", "focus": "reverse:massive"}
+{"query": "Which geological objects or seismic units are described as hummocky?", "strategy": "descriptor", "focus": "reverse:hummocky"}
+{"query": "What deposits or features show hummocky seismic facies?", "strategy": "descriptor", "focus": "reverse:hummocky"}
+{"query": "Which geological objects or seismic units are described as discontinuous?", "strategy": "descriptor", "focus": "reverse:discontinuous"}
+{"query": "What deposits or features show discontinuous seismic facies?", "strategy": "descriptor", "focus": "reverse:discontinuous"}
+{"query": "Which geological objects or seismic units are described as high-amplitude?", "strategy": "descriptor", "focus": "reverse:high-amplitude"}
+{"query": "What deposits or features show high-amplitude seismic facies?", "strategy": "descriptor", "focus": "reverse:high-amplitude"}
+{"query": "Which geological objects or seismic units are described as low-amplitude?", "strategy": "descriptor", "focus": "reverse:low-amplitude"}
+{"query": "What deposits or features show low-amplitude seismic facies?", "strategy": "descriptor", "focus": "reverse:low-amplitude"}
+{"query": "Which geological objects or seismic units are described as undeformed?", "strategy": "descriptor", "focus": "reverse:undeformed"}
+{"query": "What deposits or features show undeformed seismic facies?", "strategy": "descriptor", "focus": "reverse:undeformed"}
+{"query": "Which geological objects or seismic units are described as layered?", "strategy": "descriptor", "focus": "reverse:layered"}
+{"query": "What deposits or features show layered seismic facies?", "strategy": "descriptor", "focus": "reverse:layered"}
+{"query": "Which geological objects or seismic units are described as stratified?", "strategy": "descriptor", "focus": "reverse:stratified"}
+{"query": "What deposits or features show stratified seismic facies?", "strategy": "descriptor", "focus": "reverse:stratified"}
+{"query": "Which geological objects or seismic units are described as continuous?", "strategy": "descriptor", "focus": "reverse:continuous"}
+{"query": "What deposits or features show continuous seismic facies?", "strategy": "descriptor", "focus": "reverse:continuous"}
+{"query": "Which geological objects or seismic units are described as parallel?", "strategy": "descriptor", "focus": "reverse:parallel"}
+{"query": "What deposits or features show parallel seismic facies?", "strategy": "descriptor", "focus": "reverse:parallel"}
+{"query": "Are mass transport deposits characterized by chaotic seismic facies?", "strategy": "descriptor", "focus": "mtd:chaotic"}
+{"query": "Are mass transport deposits characterized by transparent seismic facies?", "strategy": "descriptor", "focus": "mtd:transparent"}
+{"query": "Are mass transport deposits characterized by blocky seismic facies?", "strategy": "descriptor", "focus": "mtd:blocky"}
+{"query": "Are mass transport deposits characterized by massive seismic facies?", "strategy": "descriptor", "focus": "mtd:massive"}
+{"query": "Are mass transport deposits characterized by hummocky seismic facies?", "strategy": "descriptor", "focus": "mtd:hummocky"}
+{"query": "Are mass transport deposits characterized by discontinuous seismic facies?", "strategy": "descriptor", "focus": "mtd:discontinuous"}
+{"query": "Are mass transport deposits characterized by high-amplitude seismic facies?", "strategy": "descriptor", "focus": "mtd:high-amplitude"}
+{"query": "Are mass transport deposits characterized by low-amplitude seismic facies?", "strategy": "descriptor", "focus": "mtd:low-amplitude"}
+{"query": "Are mass transport deposits characterized by undeformed seismic facies?", "strategy": "descriptor", "focus": "mtd:undeformed"}
+{"query": "Are mass transport deposits characterized by layered seismic facies?", "strategy": "descriptor", "focus": "mtd:layered"}
+{"query": "Are mass transport deposits characterized by stratified seismic facies?", "strategy": "descriptor", "focus": "mtd:stratified"}
+{"query": "Are mass transport deposits characterized by continuous seismic facies?", "strategy": "descriptor", "focus": "mtd:continuous"}
+{"query": "Are mass transport deposits characterized by parallel seismic facies?", "strategy": "descriptor", "focus": "mtd:parallel"}
+{"query": "What objects show undisturbed seismic character?", "strategy": "descriptor", "focus": "synonym:undeformed"}
+{"query": "What objects show intact seismic character?", "strategy": "descriptor", "focus": "synonym:undeformed"}
+{"query": "What objects show preserved structure seismic character?", "strategy": "descriptor", "focus": "synonym:undeformed"}
+{"query": "What objects show well-stratified seismic character?", "strategy": "descriptor", "focus": "synonym:stratified"}
+{"query": "What objects show well stratified seismic character?", "strategy": "descriptor", "focus": "synonym:stratified"}
+{"query": "What objects show well-layered seismic character?", "strategy": "descriptor", "focus": "synonym:layered"}
+{"query": "What objects show interbedded seismic character?", "strategy": "descriptor", "focus": "synonym:layered"}
+{"query": "What objects show laterally continuous seismic character?", "strategy": "descriptor", "focus": "synonym:continuous"}
+{"query": "What objects show high amplitude seismic character?", "strategy": "descriptor", "focus": "synonym:high-amplitude"}
+{"query": "What objects show strong amplitude seismic character?", "strategy": "descriptor", "focus": "synonym:high-amplitude"}
+{"query": "What objects show strong reflections seismic character?", "strategy": "descriptor", "focus": "synonym:high-amplitude"}
+{"query": "What objects show low amplitude seismic character?", "strategy": "descriptor", "focus": "synonym:low-amplitude"}
+{"query": "What objects show weak amplitude seismic character?", "strategy": "descriptor", "focus": "synonym:low-amplitude"}
+{"query": "What objects show weak reflections seismic character?", "strategy": "descriptor", "focus": "synonym:low-amplitude"}
+{"query": "What objects show acoustically massive seismic character?", "strategy": "descriptor", "focus": "synonym:massive"}
+{"query": "What objects show massive unit seismic character?", "strategy": "descriptor", "focus": "synonym:massive"}
+{"query": "What objects show block-like seismic character?", "strategy": "descriptor", "focus": "synonym:blocky"}
+{"query": "What objects show blocky unit seismic character?", "strategy": "descriptor", "focus": "synonym:blocky"}
+{"query": "What objects show hummocky topography seismic character?", "strategy": "descriptor", "focus": "synonym:hummocky"}
+{"query": "What objects show hummocky surface seismic character?", "strategy": "descriptor", "focus": "synonym:hummocky"}
+{"query": "What seismic objects show both chaotic and transparent character?", "strategy": "descriptor", "focus": "combo:chaotic+transparent"}
+{"query": "What seismic objects show both blocky and discontinuous character?", "strategy": "descriptor", "focus": "combo:blocky+discontinuous"}
+{"query": "What seismic objects show both massive and hummocky character?", "strategy": "descriptor", "focus": "combo:massive+hummocky"}
+{"query": "What seismic objects show both layered and stratified character?", "strategy": "descriptor", "focus": "combo:layered+stratified"}
+{"query": "What seismic objects show both parallel and continuous character?", "strategy": "descriptor", "focus": "combo:parallel+continuous"}
+{"query": "What seismic objects show both high-amplitude and chaotic character?", "strategy": "descriptor", "focus": "combo:high-amplitude+chaotic"}
+{"query": "How does fluid overpressure trigger slope failure?", "strategy": "causal", "focus": "LB:fluid overpressure->slope failure"}
+{"query": "What is the relationship between fluid overpressure and slope failure in submarine environments?", "strategy": "causal", "focus": "LB:fluid overpressure->slope failure"}
+{"query": "How does seismic loading trigger slope failure?", "strategy": "causal", "focus": "LB:seismic loading->slope failure"}
+{"query": "What is the relationship between seismic loading and slope failure in submarine environments?", "strategy": "causal", "focus": "LB:seismic loading->slope failure"}
+{"query": "How does gas hydrate dissociation trigger slope failure?", "strategy": "causal", "focus": "LB:gas hydrate dissociation->slope failure"}
+{"query": "What is the relationship between gas hydrate dissociation and slope failure in submarine environments?", "strategy": "causal", "focus": "LB:gas hydrate dissociation->slope failure"}
+{"query": "How does wave loading trigger slope failure?", "strategy": "causal", "focus": "LB:wave loading->slope failure"}
+{"query": "What is the relationship between wave loading and slope failure in submarine environments?", "strategy": "causal", "focus": "LB:wave loading->slope failure"}
+{"query": "How does rapid sedimentation cause fluid overpressure?", "strategy": "causal", "focus": "LB:rapid sedimentation->fluid overpressure"}
+{"query": "What is the relationship between rapid sedimentation and fluid overpressure in submarine environments?", "strategy": "causal", "focus": "LB:rapid sedimentation->fluid overpressure"}
+{"query": "How does slope failure cause mass transport deposit?", "strategy": "causal", "focus": "LB:slope failure->mass transport deposit"}
+{"query": "What is the relationship between slope failure and mass transport deposit in submarine environments?", "strategy": "causal", "focus": "LB:slope failure->mass transport deposit"}
+{"query": "How does debris flow cause turbidity current?", "strategy": "causal", "focus": "LB:debris flow->turbidity current"}
+{"query": "What is the relationship between debris flow and turbidity current in submarine environments?", "strategy": "causal", "focus": "LB:debris flow->turbidity current"}
+{"query": "How does burial compaction control thickness?", "strategy": "causal", "focus": "LB:burial compaction->thickness"}
+{"query": "What is the relationship between burial compaction and thickness in submarine environments?", "strategy": "causal", "focus": "LB:burial compaction->thickness"}
+{"query": "How does sedimentation rate control thickness?", "strategy": "causal", "focus": "LB:sedimentation rate->thickness"}
+{"query": "What is the relationship between sedimentation rate and thickness in submarine environments?", "strategy": "causal", "focus": "LB:sedimentation rate->thickness"}
+{"query": "How does flow behavior affect internal facies?", "strategy": "causal", "focus": "LB:flow behavior->internal facies"}
+{"query": "What is the relationship between flow behavior and internal facies in submarine environments?", "strategy": "causal", "focus": "LB:flow behavior->internal facies"}
+{"query": "How does material heterogeneity affect flow behavior?", "strategy": "causal", "focus": "LB:material heterogeneity->flow behavior"}
+{"query": "What is the relationship between material heterogeneity and flow behavior in submarine environments?", "strategy": "causal", "focus": "LB:material heterogeneity->flow behavior"}
+{"query": "How does grain heterogeneity affect flow behavior?", "strategy": "causal", "focus": "LB:grain heterogeneity->flow behavior"}
+{"query": "What is the relationship between grain heterogeneity and flow behavior in submarine environments?", "strategy": "causal", "focus": "LB:grain heterogeneity->flow behavior"}
+{"query": "How does erosion affect basal surface?", "strategy": "causal", "focus": "LB:erosion->basal surface"}
+{"query": "What is the relationship between erosion and basal surface in submarine environments?", "strategy": "causal", "focus": "LB:erosion->basal surface"}
+{"query": "How does remobilization affect transparent?", "strategy": "causal", "focus": "LB:remobilization->transparent"}
+{"query": "What is the relationship between remobilization and transparent in submarine environments?", "strategy": "causal", "focus": "LB:remobilization->transparent"}
+{"query": "How does frontal compression affect upper surface?", "strategy": "causal", "focus": "LB:frontal compression->upper surface"}
+{"query": "What is the relationship between frontal compression and upper surface in submarine environments?", "strategy": "causal", "focus": "LB:frontal compression->upper surface"}
+{"query": "How does retrogressive failure cause headscarp?", "strategy": "causal", "focus": "LB:retrogressive failure->headscarp"}
+{"query": "What is the relationship between retrogressive failure and headscarp in submarine environments?", "strategy": "causal", "focus": "LB:retrogressive failure->headscarp"}
+{"query": "What triggers submarine slope failure?", "strategy": "causal", "focus": "general"}
+{"query": "What causes mass transport deposits to form?", "strategy": "causal", "focus": "general"}
+{"query": "How do debris flows transition into turbidity currents?", "strategy": "causal", "focus": "general"}
+{"query": "What controls the thickness of mass transport deposits?", "strategy": "causal", "focus": "general"}
+{"query": "How does fluid overpressure affect slope stability?", "strategy": "causal", "focus": "general"}
+{"query": "What role does gas hydrate dissociation play in submarine landslides?", "strategy": "causal", "focus": "general"}
+{"query": "How does sedimentation rate control deposit characteristics?", "strategy": "causal", "focus": "general"}
+{"query": "What processes affect the internal facies of mass transport deposits?", "strategy": "causal", "focus": "general"}
+{"query": "How does material heterogeneity influence flow behavior?", "strategy": "causal", "focus": "general"}
+{"query": "What controls the basal surface morphology of MTDs?", "strategy": "causal", "focus": "general"}
+{"query": "How does frontal compression affect the upper surface of MTDs?", "strategy": "causal", "focus": "general"}
+{"query": "What causes retrogressive failure and headscarp formation?", "strategy": "causal", "focus": "general"}
+{"query": "What is the role of seismic loading in triggering mass movements?", "strategy": "causal", "focus": "general"}
+{"query": "How does rapid sedimentation lead to fluid overpressure?", "strategy": "causal", "focus": "general"}
+{"query": "What processes cause remobilization of sediment?", "strategy": "causal", "focus": "general"}
+{"query": "How does burial compaction affect deposit thickness?", "strategy": "causal", "focus": "general"}
+{"query": "What is the relationship between erosion and basal surfaces?", "strategy": "causal", "focus": "general"}
+{"query": "In what geological setting does mass transport deposit occur?", "strategy": "context", "focus": "occurs:mass transport deposit"}
+{"query": "In what geological setting does mass transport complex occur?", "strategy": "context", "focus": "occurs:mass transport complex"}
+{"query": "In what geological setting does debris flow occur?", "strategy": "context", "focus": "occurs:debris flow"}
+{"query": "In what geological setting does debris flow deposit occur?", "strategy": "context", "focus": "occurs:debris flow deposit"}
+{"query": "In what geological setting does turbidite occur?", "strategy": "context", "focus": "occurs:turbidite"}
+{"query": "In what geological setting does turbidity current occur?", "strategy": "context", "focus": "occurs:turbidity current"}
+{"query": "In what geological setting does submarine landslide occur?", "strategy": "context", "focus": "occurs:submarine landslide"}
+{"query": "In what geological setting does slide occur?", "strategy": "context", "focus": "occurs:slide"}
+{"query": "Does mass transport deposit occur in continental slope?", "strategy": "context", "focus": "mass transport deposit->continental slope"}
+{"query": "Does mass transport deposit occur in continental margin?", "strategy": "context", "focus": "mass transport deposit->continental margin"}
+{"query": "Does mass transport deposit occur in passive margin?", "strategy": "context", "focus": "mass transport deposit->passive margin"}
+{"query": "Does mass transport deposit occur in deep-water environment?", "strategy": "context", "focus": "mass transport deposit->deep-water environment"}
+{"query": "Does turbidite occur in continental slope?", "strategy": "context", "focus": "turbidite->continental slope"}
+{"query": "Does turbidite occur in continental margin?", "strategy": "context", "focus": "turbidite->continental margin"}
+{"query": "Does turbidite occur in passive margin?", "strategy": "context", "focus": "turbidite->passive margin"}
+{"query": "Does turbidite occur in deep-water environment?", "strategy": "context", "focus": "turbidite->deep-water environment"}
+{"query": "Does debris flow occur in continental slope?", "strategy": "context", "focus": "debris flow->continental slope"}
+{"query": "Does debris flow occur in continental margin?", "strategy": "context", "focus": "debris flow->continental margin"}
+{"query": "Does debris flow occur in passive margin?", "strategy": "context", "focus": "debris flow->passive margin"}
+{"query": "Does debris flow occur in deep-water environment?", "strategy": "context", "focus": "debris flow->deep-water environment"}
+{"query": "Does submarine landslide occur in continental slope?", "strategy": "context", "focus": "submarine landslide->continental slope"}
+{"query": "Does submarine landslide occur in continental margin?", "strategy": "context", "focus": "submarine landslide->continental margin"}
+{"query": "Does submarine landslide occur in passive margin?", "strategy": "context", "focus": "submarine landslide->passive margin"}
+{"query": "Does submarine landslide occur in deep-water environment?", "strategy": "context", "focus": "submarine landslide->deep-water environment"}
+{"query": "Is headscarp a structural component of mass transport deposit?", "strategy": "context", "focus": "partOf:headscarp->mass transport deposit"}
+{"query": "Is toe a structural component of mass transport deposit?", "strategy": "context", "focus": "partOf:toe->mass transport deposit"}
+{"query": "Is basal surface a structural component of mass transport deposit?", "strategy": "context", "focus": "partOf:basal surface->mass transport deposit"}
+{"query": "Is upper surface a structural component of mass transport deposit?", "strategy": "context", "focus": "partOf:upper surface->mass transport deposit"}
+{"query": "Is preserved block a structural component of mass transport deposit?", "strategy": "context", "focus": "partOf:preserved block->mass transport deposit"}
+{"query": "Is rafted block a structural component of mass transport deposit?", "strategy": "context", "focus": "partOf:rafted block->mass transport deposit"}
+{"query": "What overlies mass transport deposits in seismic sections?", "strategy": "context", "focus": "stratigraphy"}
+{"query": "What underlies mass transport deposits?", "strategy": "context", "focus": "stratigraphy"}
+{"query": "How are turbidites positioned relative to MTDs?", "strategy": "context", "focus": "stratigraphy"}
+{"query": "What is the vertical sequence around mass transport deposits?", "strategy": "context", "focus": "stratigraphy"}
+{"query": "How are hemipelagites related to mass transport deposits stratigraphically?", "strategy": "context", "focus": "stratigraphy"}
+{"query": "What are all the seismic descriptors that characterize mass transport deposit?", "strategy": "profile", "focus": "mass transport deposit"}
+{"query": "What are all the seismic descriptors that characterize debris flow?", "strategy": "profile", "focus": "debris flow"}
+{"query": "What are all the seismic descriptors that characterize turbidite?", "strategy": "profile", "focus": "turbidite"}
+{"query": "What are all the seismic descriptors that characterize submarine landslide?", "strategy": "profile", "focus": "submarine landslide"}
+{"query": "What are all the seismic descriptors that characterize slide?", "strategy": "profile", "focus": "slide"}
+{"query": "What are all the seismic descriptors that characterize slump?", "strategy": "profile", "focus": "slump"}
+{"query": "What are all the seismic descriptors that characterize hemipelagite?", "strategy": "profile", "focus": "hemipelagite"}
+{"query": "What are all the seismic descriptors that characterize channel levee?", "strategy": "profile", "focus": "channel levee"}
+{"query": "What are all the seismic descriptors that characterize basal surface?", "strategy": "profile", "focus": "basal surface"}
+{"query": "What are all the seismic descriptors that characterize upper surface?", "strategy": "profile", "focus": "upper surface"}
+{"query": "What are all the seismic descriptors that characterize headscarp?", "strategy": "profile", "focus": "headscarp"}
+{"query": "Describe the relationship between fluid overpressure and slope failure in mass transport deposits.", "strategy": "causal", "focus": "gapfill:fluid overpressure triggers slope failure"}
+{"query": "Describe the relationship between seismic loading and slope failure in mass transport deposits.", "strategy": "causal", "focus": "gapfill:seismic loading triggers slope failure"}
+{"query": "Describe the relationship between gas hydrate dissociation and slope failure in mass transport deposits.", "strategy": "causal", "focus": "gapfill:gas hydrate dissociation triggers slope failure"}
+{"query": "Describe the relationship between wave loading and slope failure in mass transport deposits.", "strategy": "causal", "focus": "gapfill:wave loading triggers slope failure"}
+{"query": "Describe the relationship between rapid sedimentation and fluid overpressure in mass transport deposits.", "strategy": "causal", "focus": "gapfill:rapid sedimentation causes fluid overpressure"}
+{"query": "Describe the relationship between slope failure and mass transport deposit in mass transport deposits.", "strategy": "causal", "focus": "gapfill:slope failure causes mass transport deposit"}
+{"query": "Describe the relationship between debris flow and turbidity current in mass transport deposits.", "strategy": "causal", "focus": "gapfill:debris flow causes turbidity current"}
+{"query": "Describe the relationship between burial compaction and thickness in mass transport deposits.", "strategy": "causal", "focus": "gapfill:burial compaction controls thickness"}
+{"query": "Describe the relationship between sedimentation rate and thickness in mass transport deposits.", "strategy": "causal", "focus": "gapfill:sedimentation rate controls thickness"}
+{"query": "Describe the relationship between flow behavior and internal facies in mass transport deposits.", "strategy": "causal", "focus": "gapfill:flow behavior affects internal facies"}
+{"query": "Describe the relationship between material heterogeneity and flow behavior in mass transport deposits.", "strategy": "causal", "focus": "gapfill:material heterogeneity affects flow behavior"}
+{"query": "Describe the relationship between grain heterogeneity and flow behavior in mass transport deposits.", "strategy": "causal", "focus": "gapfill:grain heterogeneity affects flow behavior"}
+{"query": "Describe the relationship between erosion and basal surface in mass transport deposits.", "strategy": "causal", "focus": "gapfill:erosion affects basal surface"}
+{"query": "Describe the relationship between remobilization and transparent in mass transport deposits.", "strategy": "causal", "focus": "gapfill:remobilization affects transparent"}
+{"query": "Describe the relationship between frontal compression and upper surface in mass transport deposits.", "strategy": "causal", "focus": "gapfill:frontal compression affects upper surface"}
+{"query": "Describe the relationship between retrogressive failure and headscarp in mass transport deposits.", "strategy": "causal", "focus": "gapfill:retrogressive failure causes headscarp"}
+{"query": "Describe the relationship between mass transport deposit and chaotic in mass transport deposits.", "strategy": "descriptor", "focus": "gapfill:mass transport deposit hasDescriptor chaotic"}
+{"query": "Describe the relationship between mass transport deposit and transparent in mass transport deposits.", "strategy": "descriptor", "focus": "gapfill:mass transport deposit hasDescriptor transparent"}
+{"query": "Describe the relationship between mass transport deposit and blocky in mass transport deposits.", "strategy": "descriptor", "focus": "gapfill:mass transport deposit hasDescriptor blocky"}
+{"query": "Describe the relationship between mass transport deposit and discontinuous in mass transport deposits.", "strategy": "descriptor", "focus": "gapfill:mass transport deposit hasDescriptor discontinuous"}
+{"query": "Describe the relationship between mass transport deposit and hummocky in mass transport deposits.", "strategy": "descriptor", "focus": "gapfill:mass transport deposit hasDescriptor hummocky"}
+{"query": "Describe the relationship between mass transport deposit and massive in mass transport deposits.", "strategy": "descriptor", "focus": "gapfill:mass transport deposit hasDescriptor massive"}
+{"query": "Describe the relationship between mass transport deposit and continental slope in mass transport deposits.", "strategy": "context", "focus": "gapfill:mass transport deposit occursIn continental slope"}
+{"query": "Describe the relationship between turbidite and deep-water environment in mass transport deposits.", "strategy": "context", "focus": "gapfill:turbidite occursIn deep-water environment"}
+{"query": "Describe the relationship between headscarp and mass transport deposit in mass transport deposits.", "strategy": "context", "focus": "gapfill:headscarp partOf mass transport deposit"}
+{"query": "Describe the relationship between toe and mass transport deposit in mass transport deposits.", "strategy": "context", "focus": "gapfill:toe partOf mass transport deposit"}
+{"strategy": "descriptor", "query": "What deposits or sedimentary bodies are described as massive in seismic sections? Consider debris flows, MTDs, and thick homogeneous units.", "target_descriptors": ["massive"]}
+{"strategy": "descriptor", "query": "Which mass-transport deposits show massive seismic character without internal layering?", "target_descriptors": ["massive"]}
+{"strategy": "descriptor", "query": "What geological objects contain parallel or sub-horizontal reflectors? Consider preserved blocks, slides, and undeformed sediments.", "target_descriptors": ["parallel"]}
+{"strategy": "descriptor", "query": "Which seismic units show strong amplitude parallel sub-horizontal reflectors?", "target_descriptors": ["parallel"]}
+{"strategy": "descriptor", "query": "What slide blocks or translated masses are described as undeformed or essentially undeformed?", "target_descriptors": ["undeformed"]}
+{"strategy": "descriptor", "query": "What deposits or background sediments are described as stratified in seismic data?", "target_descriptors": ["stratified"]}
+{"query": "What are the seismic characteristics of debris flow deposits including chaotic and hummocky facies?", "strategy": "descriptor", "focus": "debris flow"}
+{"query": "How are slide deposits characterized in seismic data — blocky and undeformed reflections?", "strategy": "descriptor", "focus": "slide"}
+{"query": "What seismic facies describe hemipelagite deposits — parallel continuous low amplitude?", "strategy": "descriptor", "focus": "hemipelagite"}
+{"query": "Does turbidite show parallel continuous layered high-amplitude seismic character?", "strategy": "descriptor", "focus": "turbidite"}
+{"query": "What triggers slope failure — earthquake seismicity pore pressure?", "strategy": "causal", "focus": "slope failure trigger"}
+{"query": "What is the relationship between pore pressure and slope instability?", "strategy": "causal", "focus": "pore pressure"}
+{"query": "Does debris flow transform into turbidity current?", "strategy": "causal", "focus": "debris flow transformation"}
+{"query": "In what geological settings do mass transport deposits occur — continental slope abyssal plain?", "strategy": "setting", "focus": "MTD setting"}
+{"query": "What seismic facies characterize turbidites? parallel continuous layered reflectors?", "strategy": "descriptor", "focus": "subject:turbidite"}
+{"query": "Are turbidites described as parallel or continuous reflectors in seismic data?", "strategy": "descriptor", "focus": "turbidite:parallel"}
+{"query": "What seismic character do turbidites show — high amplitude layered?", "strategy": "descriptor", "focus": "turbidite:layered"}
+{"query": "How are debris flows characterized seismically — chaotic hummocky facies?", "strategy": "descriptor", "focus": "subject:debris_flow"}
+{"query": "What seismic facies describe slide deposits — blocky undeformed reflectors?", "strategy": "descriptor", "focus": "subject:slide"}
+{"query": "Are slides characterized by undeformed or blocky seismic facies?", "strategy": "descriptor", "focus": "slide:undeformed"}
+{"query": "What seismic character do hemipelagites show — parallel continuous low amplitude?", "strategy": "descriptor", "focus": "subject:hemipelagite"}
+{"query": "How does slope failure generate or produce mass transport deposits?", "strategy": "causal", "focus": "slope_failure:causes:MTD"}
+{"query": "What triggers slope failure — earthquake seismic loading?", "strategy": "causal", "focus": "earthquake:triggers:slope_failure"}
+{"query": "How does pore pressure control slope stability and failure?", "strategy": "causal", "focus": "pore_pressure:controls:slope_failure"}
+{"query": "Can debris flows transform into turbidity currents?", "strategy": "causal", "focus": "turbidity_current:formedBy:debris_flow"}
+{"query": "Where do mass transport deposits occur — continental slope abyssal plain?", "strategy": "spatial", "focus": "MTD:occursIn:continental_slope"}
+{"query": "Where do debris flows occur — continental slope setting?", "strategy": "spatial", "focus": "debris_flow:occursIn:continental_slope"}
+{"query": "Where do turbidites deposit — basin floor abyssal plain?", "strategy": "spatial", "focus": "turbidite:occursIn:basin_floor"}
+{"query": "Do slides overlie hemipelagic sediments stratigraphically?", "strategy": "spatial", "focus": "slide:overlies:hemipelagite"}

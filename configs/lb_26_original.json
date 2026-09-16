@@ -1,0 +1,134 @@
+{
+  "edges": [
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasdescriptor",
+      "object": "chaotic"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasdescriptor",
+      "object": "transparent"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasdescriptor",
+      "object": "hummocky"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasdescriptor",
+      "object": "blocky"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasdescriptor",
+      "object": "discontinuous"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasdescriptor",
+      "object": "massive"
+    },
+    {
+      "subject": "turbidite",
+      "relation": "hasdescriptor",
+      "object": "parallel"
+    },
+    {
+      "subject": "turbidite",
+      "relation": "hasdescriptor",
+      "object": "continuous"
+    },
+    {
+      "subject": "turbidite",
+      "relation": "hasdescriptor",
+      "object": "layered"
+    },
+    {
+      "subject": "turbidite",
+      "relation": "hasdescriptor",
+      "object": "high-amplitude"
+    },
+    {
+      "subject": "debris flow",
+      "relation": "hasdescriptor",
+      "object": "chaotic"
+    },
+    {
+      "subject": "debris flow",
+      "relation": "hasdescriptor",
+      "object": "hummocky"
+    },
+    {
+      "subject": "slide",
+      "relation": "hasdescriptor",
+      "object": "blocky"
+    },
+    {
+      "subject": "slide",
+      "relation": "hasdescriptor",
+      "object": "undeformed"
+    },
+    {
+      "subject": "hemipelagite",
+      "relation": "hasdescriptor",
+      "object": "parallel"
+    },
+    {
+      "subject": "hemipelagite",
+      "relation": "hasdescriptor",
+      "object": "continuous"
+    },
+    {
+      "subject": "hemipelagite",
+      "relation": "hasdescriptor",
+      "object": "low-amplitude"
+    },
+    {
+      "subject": "slope failure",
+      "relation": "causes",
+      "object": "mass transport deposit"
+    },
+    {
+      "subject": "earthquake",
+      "relation": "triggers",
+      "object": "slope failure"
+    },
+    {
+      "subject": "pore pressure",
+      "relation": "controls",
+      "object": "slope failure"
+    },
+    {
+      "subject": "turbidity current",
+      "relation": "formedby",
+      "object": "debris flow"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "occursin",
+      "object": "continental slope"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "occursin",
+      "object": "abyssal plain"
+    },
+    {
+      "subject": "debris flow",
+      "relation": "occursin",
+      "object": "continental slope"
+    },
+    {
+      "subject": "turbidite",
+      "relation": "occursin",
+      "object": "basin floor"
+    },
+    {
+      "subject": "slide",
+      "relation": "overlies",
+      "object": "hemipelagite"
+    }
+  ]
+}

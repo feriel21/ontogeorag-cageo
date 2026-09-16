@@ -1,0 +1,436 @@
+{
+  "run": "run16E",
+  "git_commit": "9c03730a722c88954dff0fb753d7a1f23fcfa717",
+  "git_describe": "run15-frozen-14-g9c03730",
+  "git_status_clean": true,
+  "benchmark": "configs/benchmark/benchmark_v3.json",
+  "provenance": "COMPLET depuis les PDF — n'est PAS une reproduction de run15",
+  "steps": [
+    {
+      "step": "index",
+      "script": "49_build_index_v2.py",
+      "sha256": "fe35d2a60642182a163ea09f36b9f7f34a9d34c502349e7813bb33e106192c87",
+      "started": "2026-08-17T11:50:34+02:00",
+      "ended": "2026-08-17T11:51:50+02:00",
+      "argv": [
+        "--pdf-dir",
+        "/home/talbi/ontogeorag/data/full_corpus",
+        "--outdir",
+        "/home/talbi/ontogeorag_D/output/run16E/index",
+        "--chunk-size",
+        "2000",
+        "--overlap",
+        "200",
+        "--expect-docs",
+        "41"
+      ]
+    },
+    {
+      "step": "extract_pass_a",
+      "script": "pipeline/02_extract_triples.py",
+      "sha256": "f2555decd4de68a7cc8c5630c944990a256d8f14cf5ad4809ef0dd03dd7a5eb6",
+      "started": "2026-08-17T11:51:50+02:00",
+      "ended": "2026-08-17T12:06:13+02:00",
+      "argv": [
+        "--index-dir",
+        "/home/talbi/ontogeorag_D/output/run16E/index",
+        "--schema",
+        "configs/ontology_schema.json",
+        "--queries",
+        "/home/talbi/ontogeorag/configs/descriptor_queries_v2.jsonl",
+        "--output",
+        "/home/talbi/ontogeorag_D/output/run16E/pass_a/raw_triples.jsonl",
+        "--model",
+        "/home/talbi/.cache/huggingface/hub/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a09a35458c702b33eeacc393d103063234e8bc28",
+        "--backend",
+        "hf",
+        "--top-k",
+        "5",
+        "--bm25-topn",
+        "20",
+        "--min-bm25",
+        "2.0",
+        "--max-chars",
+        "2800",
+        "--temperature",
+        "0.0",
+        "--reranker",
+        "cross-encoder/ms-marco-MiniLM-L-6-v2"
+      ]
+    },
+    {
+      "step": "extract_pass_b",
+      "script": "pipeline/02_extract_triples.py",
+      "sha256": "f2555decd4de68a7cc8c5630c944990a256d8f14cf5ad4809ef0dd03dd7a5eb6",
+      "started": "2026-08-17T12:06:13+02:00",
+      "ended": "2026-08-17T12:21:12+02:00",
+      "argv": [
+        "--index-dir",
+        "/home/talbi/ontogeorag_D/output/run16E/index",
+        "--schema",
+        "configs/ontology_schema.json",
+        "--queries",
+        "/home/talbi/ontogeorag/configs/descriptor_queries_v2.jsonl",
+        "--output",
+        "/home/talbi/ontogeorag_D/output/run16E/pass_b/raw_triples.jsonl",
+        "--model",
+        "/home/talbi/.cache/huggingface/hub/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a09a35458c702b33eeacc393d103063234e8bc28",
+        "--backend",
+        "hf",
+        "--top-k",
+        "5",
+        "--bm25-topn",
+        "20",
+        "--min-bm25",
+        "2.0",
+        "--max-chars",
+        "2800",
+        "--temperature",
+        "0.3",
+        "--reranker",
+        "cross-encoder/ms-marco-MiniLM-L-6-v2"
+      ]
+    },
+    {
+      "step": "repair_provenance",
+      "script": "52_repair_provenance.py",
+      "sha256": "19e0101d3d0df548fa4425069c2f04ace0a806779b3b7cfc72444e25b07a5fca",
+      "started": "2026-08-17T12:21:12+02:00",
+      "ended": "2026-08-17T12:21:12+02:00",
+      "argv": [
+        "--chunks",
+        "/home/talbi/ontogeorag_D/output/run16E/index/chunks.jsonl",
+        "--triples",
+        "/home/talbi/ontogeorag_D/output/run16E/pass_a/raw_triples.jsonl",
+        "/home/talbi/ontogeorag_D/output/run16E/pass_b/raw_triples.jsonl",
+        "--outdir",
+        "/home/talbi/ontogeorag_D/output/run16E",
+        "--expect-chunks",
+        "5"
+      ]
+    },
+    {
+      "step": "verify_pass_a",
+      "script": "53_verify_repaired.py",
+      "sha256": "e1fcedb7452ccb8381d23de34c9e1e76b7e358d136c07d1e1c9618cd86f3ce25",
+      "started": "2026-08-17T12:21:12+02:00",
+      "ended": "2026-08-17T13:54:43+02:00",
+      "argv": [
+        "--input",
+        "/home/talbi/ontogeorag_D/output/run16E/pass_a/triples_repaired.jsonl",
+        "--output",
+        "/home/talbi/ontogeorag_D/output/run16E/pass_a/verified_triples.jsonl",
+        "--model",
+        "/home/talbi/.cache/huggingface/hub/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a09a35458c702b33eeacc393d103063234e8bc28",
+        "--backend",
+        "hf",
+        "--max-chunks",
+        "5",
+        "--chunk-chars",
+        "2000"
+      ]
+    },
+    {
+      "step": "verify_pass_b",
+      "script": "53_verify_repaired.py",
+      "sha256": "e1fcedb7452ccb8381d23de34c9e1e76b7e358d136c07d1e1c9618cd86f3ce25",
+      "started": "2026-08-17T13:54:43+02:00",
+      "ended": "2026-08-17T15:23:02+02:00",
+      "argv": [
+        "--input",
+        "/home/talbi/ontogeorag_D/output/run16E/pass_b/triples_repaired.jsonl",
+        "--output",
+        "/home/talbi/ontogeorag_D/output/run16E/pass_b/verified_triples.jsonl",
+        "--model",
+        "/home/talbi/.cache/huggingface/hub/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a09a35458c702b33eeacc393d103063234e8bc28",
+        "--backend",
+        "hf",
+        "--max-chunks",
+        "5",
+        "--chunk-chars",
+        "2000"
+      ]
+    },
+    {
+      "step": "clean_pass_a",
+      "script": "pipeline/04_clean_validate.py",
+      "sha256": "21383881fdf0ce953ceb63cdc7e404f5a34c4ec5917e373b31d74ba20645b276",
+      "started": "2026-08-17T15:23:02+02:00",
+      "ended": "2026-08-17T15:23:25+02:00",
+      "argv": [
+        "--input",
+        "/home/talbi/ontogeorag_D/output/run16E/pass_a/verified_triples.jsonl",
+        "--outdir",
+        "/home/talbi/ontogeorag_D/output/run16E/pass_a",
+        "--verif-policy",
+        "normal",
+        "--cluster-threshold",
+        "0.06"
+      ]
+    },
+    {
+      "step": "rulecanon_pass_a",
+      "script": "analysis_suite/05a_rule_canonicalize.py",
+      "sha256": "8f5823443a7153e47adcf3583ee10dfb3f2b1a9eaae532cb7fee12a1e6b6200d",
+      "started": "2026-08-17T15:23:25+02:00",
+      "ended": "2026-08-17T15:23:25+02:00",
+      "argv": [
+        "--input",
+        "/home/talbi/ontogeorag_D/output/run16E/pass_a/canonical_triples_v5.jsonl"
+      ]
+    },
+    {
+      "step": "lexicon_pass_a",
+      "script": "analysis_suite/04c_lexicon_enforce.py",
+      "sha256": "7c311aaf90f7f457354b2b646e395b8a41c873edc9ff380d2202b7af795332ed",
+      "started": "2026-08-17T15:23:25+02:00",
+      "ended": "2026-08-17T15:23:25+02:00",
+      "argv": [
+        "--input",
+        "/home/talbi/ontogeorag_D/output/run16E/pass_a/canonical_triples_v5.rulecanon.jsonl",
+        "--enforce"
+      ]
+    },
+    {
+      "step": "clean_pass_b",
+      "script": "pipeline/04_clean_validate.py",
+      "sha256": "21383881fdf0ce953ceb63cdc7e404f5a34c4ec5917e373b31d74ba20645b276",
+      "started": "2026-08-17T15:23:26+02:00",
+      "ended": "2026-08-17T15:23:34+02:00",
+      "argv": [
+        "--input",
+        "/home/talbi/ontogeorag_D/output/run16E/pass_b/verified_triples.jsonl",
+        "--outdir",
+        "/home/talbi/ontogeorag_D/output/run16E/pass_b",
+        "--verif-policy",
+        "normal",
+        "--cluster-threshold",
+        "0.06"
+      ]
+    },
+    {
+      "step": "rulecanon_pass_b",
+      "script": "analysis_suite/05a_rule_canonicalize.py",
+      "sha256": "8f5823443a7153e47adcf3583ee10dfb3f2b1a9eaae532cb7fee12a1e6b6200d",
+      "started": "2026-08-17T15:23:34+02:00",
+      "ended": "2026-08-17T15:23:34+02:00",
+      "argv": [
+        "--input",
+        "/home/talbi/ontogeorag_D/output/run16E/pass_b/canonical_triples_v5.jsonl"
+      ]
+    },
+    {
+      "step": "lexicon_pass_b",
+      "script": "analysis_suite/04c_lexicon_enforce.py",
+      "sha256": "7c311aaf90f7f457354b2b646e395b8a41c873edc9ff380d2202b7af795332ed",
+      "started": "2026-08-17T15:23:34+02:00",
+      "ended": "2026-08-17T15:23:34+02:00",
+      "argv": [
+        "--input",
+        "/home/talbi/ontogeorag_D/output/run16E/pass_b/canonical_triples_v5.rulecanon.jsonl",
+        "--enforce"
+      ]
+    },
+    {
+      "step": "fusion",
+      "script": "pipeline/06_tiered_fusion.py",
+      "sha256": "f0c45d490de8d756d56e7e5d078e5cfa93082511d4b2de1a26bcac2a8c9839a9",
+      "started": "2026-08-17T15:23:34+02:00",
+      "ended": "2026-08-17T15:23:34+02:00",
+      "argv": [
+        "--iter-a",
+        "/home/talbi/ontogeorag_D/output/run16E/pass_a/canonical_triples_v5.rulecanon.lexicon_enforced.jsonl",
+        "--iter-b",
+        "/home/talbi/ontogeorag_D/output/run16E/pass_b/canonical_triples_v5.rulecanon.lexicon_enforced.jsonl",
+        "--output",
+        "/home/talbi/ontogeorag_D/output/run16E/kg/tiered_kg_run16E.json"
+      ]
+    },
+    {
+      "step": "m4_verify_llama",
+      "script": "m4/m4_verify.py",
+      "sha256": "7350d11274a4a9e39232d5fbf7f898b97d59e7c86d285b20ae1420f06b1a788f",
+      "started": "2026-08-17T15:23:34+02:00",
+      "ended": "2026-08-17T15:46:03+02:00",
+      "argv": [
+        "--kg",
+        "/home/talbi/ontogeorag_D/output/run16E/kg/tiered_kg_run16E.json",
+        "--index",
+        "/home/talbi/ontogeorag_D/output/run16E/index",
+        "--output",
+        "/home/talbi/ontogeorag_D/output/run16E/m4/llama",
+        "--model",
+        "/home/talbi/.cache/huggingface/hub/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659"
+      ]
+    },
+    {
+      "step": "m4_aggregate_llama",
+      "script": "m4/m4_aggregate.py",
+      "sha256": "148d44c135026e510a6a5eae5cfc69c994e825c2afb12937fd66d1345793af71",
+      "started": "2026-08-17T15:46:03+02:00",
+      "ended": "2026-08-17T15:46:03+02:00",
+      "argv": [
+        "--verdicts",
+        "/home/talbi/ontogeorag_D/output/run16E/m4/llama/m4_verdicts.jsonl",
+        "--output",
+        "/home/talbi/ontogeorag_D/output/run16E/m4/llama"
+      ]
+    },
+    {
+      "step": "m4_verify_mistral",
+      "script": "m4/m4_verify.py",
+      "sha256": "7350d11274a4a9e39232d5fbf7f898b97d59e7c86d285b20ae1420f06b1a788f",
+      "started": "2026-08-17T15:46:03+02:00",
+      "ended": "2026-08-17T16:17:22+02:00",
+      "argv": [
+        "--kg",
+        "/home/talbi/ontogeorag_D/output/run16E/kg/tiered_kg_run16E.json",
+        "--index",
+        "/home/talbi/ontogeorag_D/output/run16E/index",
+        "--output",
+        "/home/talbi/ontogeorag_D/output/run16E/m4/mistral",
+        "--model",
+        "/home/talbi/.cache/huggingface/hub/models--mistralai--Mistral-7B-Instruct-v0.2/snapshots/63a8b081895390a26e140280378bc85ec8bce07a"
+      ]
+    },
+    {
+      "step": "m4_aggregate_mistral",
+      "script": "m4/m4_aggregate.py",
+      "sha256": "148d44c135026e510a6a5eae5cfc69c994e825c2afb12937fd66d1345793af71",
+      "started": "2026-08-17T16:17:22+02:00",
+      "ended": "2026-08-17T16:17:22+02:00",
+      "argv": [
+        "--verdicts",
+        "/home/talbi/ontogeorag_D/output/run16E/m4/mistral/m4_verdicts.jsonl",
+        "--output",
+        "/home/talbi/ontogeorag_D/output/run16E/m4/mistral"
+      ]
+    },
+    {
+      "step": "m4_panel",
+      "script": "m4/m4_panel.py",
+      "sha256": "e659b652e99977ffdf5cf4d263a00bbb0b5d9448b0704b3f3744cf034b11c94e",
+      "started": "2026-08-17T16:17:22+02:00",
+      "ended": "2026-08-17T16:17:22+02:00",
+      "argv": [
+        "--judges",
+        "llama=/home/talbi/ontogeorag_D/output/run16E/m4/llama/m4_verdicts.jsonl",
+        "mistral=/home/talbi/ontogeorag_D/output/run16E/m4/mistral/m4_verdicts.jsonl",
+        "--output",
+        "/home/talbi/ontogeorag_D/output/run16E/m4_panel"
+      ]
+    },
+    {
+      "step": "m4_integrate",
+      "script": "m4/m4_integrate_tiers.py",
+      "sha256": "7bc55b09b2addb6e51c2c49d615aacce13607d751d1a9dca9c17ffad8369ae3b",
+      "started": "2026-08-17T16:17:23+02:00",
+      "ended": "2026-08-17T16:17:23+02:00",
+      "argv": [
+        "--kg",
+        "/home/talbi/ontogeorag_D/output/run16E/kg/tiered_kg_run16E.json",
+        "--decisions",
+        "/home/talbi/ontogeorag_D/output/run16E/m4_panel/m4_panel_decisions.jsonl",
+        "--output",
+        "/home/talbi/ontogeorag_D/output/run16E/m4_panel"
+      ]
+    },
+    {
+      "step": "schema_enforce",
+      "script": "analysis_suite/04b_schema_enforce.py",
+      "sha256": "63f294bb4a88a3fb6394b894aa3a68ec265c6dd44be7a73a4ee2a1c812c347f9",
+      "started": "2026-08-17T16:17:23+02:00",
+      "ended": "2026-08-17T16:17:23+02:00",
+      "argv": [
+        "--kg",
+        "/home/talbi/ontogeorag_D/output/run16E/m4_panel/tiered_kg_m4.json",
+        "--outdir",
+        "/home/talbi/ontogeorag_D/output/run16E/kg_enforced",
+        "--default-type",
+        "Geological_Object",
+        "--descriptor-fallback",
+        "Environmental_Control"
+      ]
+    },
+    {
+      "step": "flatten",
+      "script": "analysis_suite/24_kg_to_flat.py",
+      "sha256": "26f70b35f60c9b53238dea963d6764f04e6db563916a8774c73426eeb0d92d1f",
+      "started": "2026-08-17T16:17:23+02:00",
+      "ended": "2026-08-17T16:17:23+02:00",
+      "argv": [
+        "--kg",
+        "/home/talbi/ontogeorag_D/output/run16E/kg_enforced/tiered_kg_enforced.json",
+        "--include",
+        "tier1,tier2",
+        "--dedup",
+        "--out",
+        "/home/talbi/ontogeorag_D/output/run16E/kg_final/flat_run16E_enforced_dedup.json"
+      ]
+    },
+    {
+      "step": "metrics",
+      "script": "pipeline/07_final_metrics.py",
+      "sha256": "de92306533c7c710be8e854235bf8b576baa91585f863936fa6ff6d915651b49",
+      "started": "2026-08-17T16:17:23+02:00",
+      "ended": "2026-08-17T16:17:23+02:00",
+      "argv": [
+        "--kg",
+        "/home/talbi/ontogeorag_D/output/run16E/kg_final/flat_run16E_enforced_dedup.json",
+        "--output",
+        "/home/talbi/ontogeorag_D/output/run16E/kg_final/article_metrics.json"
+      ]
+    }
+  ],
+  "artifact_sha256": {
+    "index/chunks.jsonl": "03db65349faad54b",
+    "index/index_meta.json": "cc04fc1085f0638e",
+    "index/ingestion_report.json": "887e50ccad79ede6",
+    "kg/tiered_kg_run16E.json": "5aacf974990d5d3e",
+    "kg_enforced/enforced_triples.jsonl": "02c7f6cbc4839287",
+    "kg_enforced/enforcement_report.json": "adf12143eca5d8c5",
+    "kg_enforced/rejected_triples.jsonl": "e3b0c44298fc1c14",
+    "kg_enforced/tiered_kg_enforced.json": "232a327dcc291725",
+    "kg_final/article_metrics.json": "7a48162af83e8fb4",
+    "kg_final/flat_run16E_enforced_dedup.json": "bd729d03dfbd42bd",
+    "m4/llama/m4_decision_summary.json": "04f3f6fff57084f4",
+    "m4/llama/m4_decisions.jsonl": "1f81b3148d785e11",
+    "m4/llama/m4_run_meta.json": "85d5ac05165cf2f0",
+    "m4/llama/m4_verdicts.jsonl": "ed7cfdfef2d3f5d2",
+    "m4/mistral/m4_decision_summary.json": "0492cdcf88d51ba5",
+    "m4/mistral/m4_decisions.jsonl": "6b92912232ee76df",
+    "m4/mistral/m4_run_meta.json": "ed3a2b038cfd90d0",
+    "m4/mistral/m4_verdicts.jsonl": "23d28d203b29089b",
+    "m4_panel/m4_panel_decisions.jsonl": "f0010d63722bcbae",
+    "m4_panel/m4_panel_report.json": "a2b96ccfd5922a54",
+    "m4_panel/m4_quarantine.jsonl": "f399dd0ec27b8d65",
+    "m4_panel/tiered_kg_m4.json": "59c0f4368552d4a0",
+    "pass_a/canonical_map_v5.json": "5ec21650c0c597e7",
+    "pass_a/canonical_triples_v5.jsonl": "df31b4ce7ecc205f",
+    "pass_a/canonical_triples_v5.rulecanon.jsonl": "df31b4ce7ecc205f",
+    "pass_a/canonical_triples_v5.rulecanon.lexicon_enforced.jsonl": "df31b4ce7ecc205f",
+    "pass_a/canonical_triples_v5.rulecanon.lexicon_rejected.jsonl": "e3b0c44298fc1c14",
+    "pass_a/cleaning_stats_v5.json": "c6fd1f5e1fb5bf3c",
+    "pass_a/raw_triples.jsonl": "ae178b00399d80e2",
+    "pass_a/raw_triples_stats.json": "02dd85a1ef380b87",
+    "pass_a/rejected_triples_v5.jsonl": "96a1a6bc48239af3",
+    "pass_a/triples_repaired.jsonl": "7e9eb519c2b0b25f",
+    "pass_a/verification_audit.jsonl": "4e003e702b042849",
+    "pass_a/verification_stats.json": "04f1850528c60be1",
+    "pass_a/verified_triples.jsonl": "45e76fa67ab35b14",
+    "pass_b/canonical_map_v5.json": "b251446040af9104",
+    "pass_b/canonical_triples_v5.jsonl": "166fef63bcd4689e",
+    "pass_b/canonical_triples_v5.rulecanon.jsonl": "166fef63bcd4689e",
+    "pass_b/canonical_triples_v5.rulecanon.lexicon_enforced.jsonl": "166fef63bcd4689e",
+    "pass_b/canonical_triples_v5.rulecanon.lexicon_rejected.jsonl": "e3b0c44298fc1c14",
+    "pass_b/cleaning_stats_v5.json": "82c47114ef24988f",
+    "pass_b/raw_triples.jsonl": "21699c466b74e503",
+    "pass_b/raw_triples_stats.json": "3a786b46904dba02",
+    "pass_b/rejected_triples_v5.jsonl": "1b8365fea1e4b2cb",
+    "pass_b/triples_repaired.jsonl": "40ae141ac6a72db0",
+    "pass_b/verification_audit.jsonl": "0c7e14fd19b92105",
+    "pass_b/verification_stats.json": "96d01f66969ffc41",
+    "pass_b/verified_triples.jsonl": "76447fe465fbfae1",
+    "provenance_audit.json": "b97730ce1cdd3a4c"
+  }
+}

@@ -1,0 +1,431 @@
+{
+  "_meta": {
+    "produced_by": "56c_extract_ontology.py (v3)",
+    "complements": "configs/ontology_v1.json (descriptif, 2026-08-14T09:35:55Z)",
+    "constant_origins": {
+      "ALLOWED_RELATIONS@constants": "LOCAL_AST:/tmp/constants_9e1f16b.py",
+      "RELATION_MAP@constants": "LOCAL_AST:/tmp/constants_9e1f16b.py",
+      "KNOWN_DESCRIPTORS@constants": "LOCAL_IMPORT:/tmp/constants_9e1f16b.py",
+      "VALID_RELATIONS@04": "LOCAL_AST:/tmp/04_9e1f16b.py",
+      "RELATION_MAP@04": "LOCAL_AST:/tmp/04_9e1f16b.py",
+      "ALLOWED_RELATIONS@04": "ABSENT",
+      "LB_REFERENCE_EDGES@04": "LOCAL_AST:/tmp/04_9e1f16b.py",
+      "TYPE_CONSTRAINTS@04": "LOCAL_AST:/tmp/04_9e1f16b.py",
+      "KNOWN_SETTINGS@04": "LOCAL_AST:/tmp/04_9e1f16b.py"
+    },
+    "kg_triple_keys": [
+      "evidence",
+      "m4",
+      "model",
+      "object",
+      "object_type",
+      "origin",
+      "query",
+      "reasoning",
+      "relation",
+      "strategy",
+      "subject",
+      "subject_type",
+      "support_count",
+      "supporting_papers",
+      "tier",
+      "tier_label",
+      "tier_original",
+      "verdict"
+    ],
+    "type_fields_present": true,
+    "finding": "VALID_RELATIONS et RELATION_MAP sont ABSENTS de 04 sur le disque actuel : 04 les importe de constants.py. La divergence 13/15 rapportee ne decrit pas cet etat.",
+    "sha256_without_meta": "d58c031b8a1a2e61d4416f8e5e704e61a44f9968862ed7f9bb677303d8fd3b84"
+  },
+  "relations": [
+    {
+      "name": "AFFECTS",
+      "in_schema_declared": true,
+      "in_allowed_relations": false,
+      "in_valid_relations_04": false,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "CAUSES",
+      "in_schema_declared": true,
+      "in_allowed_relations": false,
+      "in_valid_relations_04": false,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "CONDITIONS",
+      "in_schema_declared": true,
+      "in_allowed_relations": false,
+      "in_valid_relations_04": false,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "CONTROLS",
+      "in_schema_declared": true,
+      "in_allowed_relations": false,
+      "in_valid_relations_04": false,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "EVIDENCES",
+      "in_schema_declared": true,
+      "in_allowed_relations": false,
+      "in_valid_relations_04": false,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "HAS_DESCRIPTOR",
+      "in_schema_declared": true,
+      "in_allowed_relations": false,
+      "in_valid_relations_04": false,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "HAS_PHASE",
+      "in_schema_declared": true,
+      "in_allowed_relations": false,
+      "in_valid_relations_04": false,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "HAS_PROPERTY",
+      "in_schema_declared": true,
+      "in_allowed_relations": false,
+      "in_valid_relations_04": false,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "INDICATES",
+      "in_schema_declared": true,
+      "in_allowed_relations": false,
+      "in_valid_relations_04": false,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "LOCATED_IN",
+      "in_schema_declared": true,
+      "in_allowed_relations": false,
+      "in_valid_relations_04": false,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "PART_OF",
+      "in_schema_declared": true,
+      "in_allowed_relations": false,
+      "in_valid_relations_04": false,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "RELATED_TO",
+      "in_schema_declared": true,
+      "in_allowed_relations": false,
+      "in_valid_relations_04": false,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "SUGGESTS",
+      "in_schema_declared": true,
+      "in_allowed_relations": false,
+      "in_valid_relations_04": false,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "TRIGGERS",
+      "in_schema_declared": true,
+      "in_allowed_relations": false,
+      "in_valid_relations_04": false,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "affects",
+      "in_schema_declared": false,
+      "in_allowed_relations": true,
+      "in_valid_relations_04": true,
+      "count_in_delivered_kg": 12,
+      "type_signatures_observed": [
+        "Environmental_Control-affects->Environmental_Control",
+        "Geological_Object-affects->Environmental_Control",
+        "Geological_Object-affects->Geological_Object",
+        "Geological_Object-affects->Process",
+        "Process-affects->Environmental_Control",
+        "Process-affects->Process"
+      ],
+      "status": "OPERATIONAL"
+    },
+    {
+      "name": "associatedWith",
+      "in_schema_declared": false,
+      "in_allowed_relations": false,
+      "in_valid_relations_04": true,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "causes",
+      "in_schema_declared": false,
+      "in_allowed_relations": true,
+      "in_valid_relations_04": true,
+      "count_in_delivered_kg": 29,
+      "type_signatures_observed": [
+        "Environmental_Control-causes->Process",
+        "Geological_Object-causes->Process",
+        "Process-causes->Geological_Object",
+        "Process-causes->Process"
+      ],
+      "status": "OPERATIONAL"
+    },
+    {
+      "name": "contains",
+      "in_schema_declared": false,
+      "in_allowed_relations": false,
+      "in_valid_relations_04": true,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "controls",
+      "in_schema_declared": false,
+      "in_allowed_relations": true,
+      "in_valid_relations_04": true,
+      "count_in_delivered_kg": 14,
+      "type_signatures_observed": [
+        "Environmental_Control-controls->Environmental_Control",
+        "Environmental_Control-controls->Geological_Object",
+        "Environmental_Control-controls->Process",
+        "Geological_Object-controls->Environmental_Control",
+        "Geological_Object-controls->Geological_Object",
+        "Process-controls->Environmental_Control",
+        "Process-controls->Process"
+      ],
+      "status": "OPERATIONAL"
+    },
+    {
+      "name": "deposits",
+      "in_schema_declared": false,
+      "in_allowed_relations": false,
+      "in_valid_relations_04": true,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "erodes",
+      "in_schema_declared": false,
+      "in_allowed_relations": false,
+      "in_valid_relations_04": true,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "evidences",
+      "in_schema_declared": false,
+      "in_allowed_relations": true,
+      "in_valid_relations_04": false,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "formedBy",
+      "in_schema_declared": false,
+      "in_allowed_relations": true,
+      "in_valid_relations_04": true,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "hasDescriptor",
+      "in_schema_declared": false,
+      "in_allowed_relations": true,
+      "in_valid_relations_04": true,
+      "count_in_delivered_kg": 69,
+      "type_signatures_observed": [
+        "Geological_Object-hasDescriptor->Descriptor"
+      ],
+      "status": "OPERATIONAL"
+    },
+    {
+      "name": "indicates",
+      "in_schema_declared": false,
+      "in_allowed_relations": true,
+      "in_valid_relations_04": false,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "occursIn",
+      "in_schema_declared": false,
+      "in_allowed_relations": true,
+      "in_valid_relations_04": true,
+      "count_in_delivered_kg": 27,
+      "type_signatures_observed": [
+        "Geological_Object-occursIn->Environmental_Control",
+        "Geological_Object-occursIn->Geological_Object"
+      ],
+      "status": "OPERATIONAL"
+    },
+    {
+      "name": "overlies",
+      "in_schema_declared": false,
+      "in_allowed_relations": true,
+      "in_valid_relations_04": true,
+      "count_in_delivered_kg": 11,
+      "type_signatures_observed": [
+        "Geological_Object-overlies->Geological_Object",
+        "Process-overlies->Geological_Object"
+      ],
+      "status": "OPERATIONAL"
+    },
+    {
+      "name": "partOf",
+      "in_schema_declared": false,
+      "in_allowed_relations": true,
+      "in_valid_relations_04": true,
+      "count_in_delivered_kg": 15,
+      "type_signatures_observed": [
+        "Geological_Object-partOf->Environmental_Control",
+        "Geological_Object-partOf->Geological_Object"
+      ],
+      "status": "OPERATIONAL"
+    },
+    {
+      "name": "relatedTo",
+      "in_schema_declared": false,
+      "in_allowed_relations": true,
+      "in_valid_relations_04": false,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "transports",
+      "in_schema_declared": false,
+      "in_allowed_relations": false,
+      "in_valid_relations_04": true,
+      "count_in_delivered_kg": 0,
+      "type_signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "triggers",
+      "in_schema_declared": false,
+      "in_allowed_relations": true,
+      "in_valid_relations_04": true,
+      "count_in_delivered_kg": 23,
+      "type_signatures_observed": [
+        "Environmental_Control-triggers->Process",
+        "Geological_Object-triggers->Process",
+        "Process-triggers->Process"
+      ],
+      "status": "OPERATIONAL"
+    },
+    {
+      "name": "underlies",
+      "in_schema_declared": false,
+      "in_allowed_relations": true,
+      "in_valid_relations_04": true,
+      "count_in_delivered_kg": 3,
+      "type_signatures_observed": [
+        "Geological_Object-underlies->Geological_Object"
+      ],
+      "status": "OPERATIONAL"
+    }
+  ],
+  "entities_needing_geological_arbitration": [
+    {
+      "entity": "reduced sediment shear strength",
+      "current_type": "Environmental_Control",
+      "proposed_type": "PhysicalParameter",
+      "needs_geological_arbitration": true,
+      "occurrences": 1
+    },
+    {
+      "entity": "excess pore-water pressures",
+      "current_type": "Process",
+      "proposed_type": "PhysicalParameter",
+      "needs_geological_arbitration": true,
+      "occurrences": 8
+    },
+    {
+      "entity": "sedimentation rate",
+      "current_type": "Environmental_Control",
+      "proposed_type": "PhysicalParameter",
+      "needs_geological_arbitration": true,
+      "occurrences": 5
+    },
+    {
+      "entity": "porosity variations",
+      "current_type": "Environmental_Control",
+      "proposed_type": "PhysicalParameter",
+      "needs_geological_arbitration": true,
+      "occurrences": 1
+    },
+    {
+      "entity": "slope gradient",
+      "current_type": "Environmental_Control",
+      "proposed_type": "PhysicalParameter",
+      "needs_geological_arbitration": true,
+      "occurrences": 2
+    },
+    {
+      "entity": "low permeability",
+      "current_type": "Environmental_Control",
+      "proposed_type": "PhysicalParameter",
+      "needs_geological_arbitration": true,
+      "occurrences": 1
+    },
+    {
+      "entity": "organic carbon content",
+      "current_type": "Environmental_Control",
+      "proposed_type": "PhysicalParameter",
+      "needs_geological_arbitration": true,
+      "occurrences": 1
+    },
+    {
+      "entity": "pore pressure",
+      "current_type": "Process",
+      "proposed_type": "PhysicalParameter",
+      "needs_geological_arbitration": true,
+      "occurrences": 1
+    }
+  ],
+  "counts_summary": {
+    "schema_declared": 14,
+    "allowed_relations": 13,
+    "valid_relations_04": 15,
+    "delivered_kg": 9
+  }
+}

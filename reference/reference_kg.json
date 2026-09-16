@@ -1,0 +1,2086 @@
+{
+    "project": "MTD Ontology – Expert Reference (Le Bouteiller compliant, phase-aware)",
+    "hierarchy": {
+        "MTD Descriptor (Blue)": [
+            "Morphology",
+            "Basal surface",
+            "Upper surface",
+            "Internal facies distributions",
+            "Headscarp",
+            "Position",
+            "Global environment"
+        ],
+        "Mass Movement Property (Orange)": [
+            "Trigger phase",
+            "Transport phase",
+            "Post-deposition phase"
+        ],
+        "Environmental Control (Green)": [
+            "Environmental controls"
+        ]
+    },
+    "nodes": {
+        "runout distance": {
+            "label": "runout distance",
+            "sub_category": "Position",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "maximum horizontal length": {
+            "label": "maximum horizontal length",
+            "sub_category": "Morphology",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "topography confinement downwards": {
+            "label": "topography confinement downwards",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "principal direction": {
+            "label": "principal direction",
+            "sub_category": "Morphology",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "scours": {
+            "label": "scours",
+            "sub_category": "Basal surface",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "detached MTD": {
+            "label": "detached MTD",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "surface area": {
+            "label": "surface area",
+            "sub_category": "Morphology",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "horizontal aspect ratio": {
+            "label": "horizontal aspect ratio",
+            "sub_category": "Morphology",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "lithology distribution in MTD": {
+            "label": "lithology distribution in MTD",
+            "sub_category": "Internal facies distributions",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "transparent facies distribution": {
+            "label": "transparent facies distribution",
+            "sub_category": "Internal facies distributions",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "faulty facies distribution": {
+            "label": "faulty facies distribution",
+            "sub_category": "Internal facies distributions",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "seafloor shapes and dip variations": {
+            "label": "seafloor shapes and dip variations",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "thickness variation": {
+            "label": "thickness variation",
+            "sub_category": "Morphology",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "subsidence/uplift": {
+            "label": "subsidence/uplift",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "volume": {
+            "label": "volume",
+            "sub_category": "Morphology",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "terminal dispersion": {
+            "label": "terminal dispersion",
+            "sub_category": "Post-deposition phase",
+            "main_category": "Mass Movement Property (Orange)",
+            "description": "Late-stage process related to final spreading / distal evolution."
+        },
+        "ridged facies distribution": {
+            "label": "ridged facies distribution",
+            "sub_category": "Internal facies distributions",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "width variation": {
+            "label": "width variation",
+            "sub_category": "Morphology",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "flow direction": {
+            "label": "flow direction",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "lateral erosive walls": {
+            "label": "lateral erosive walls",
+            "sub_category": "Basal surface",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "existing geomorphology": {
+            "label": "existing geomorphology",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "flow velocity and energy": {
+            "label": "flow velocity and energy",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "plowing effect on underlying material": {
+            "label": "plowing effect on underlying material",
+            "sub_category": "Transport phase",
+            "main_category": "Mass Movement Property (Orange)"
+        },
+        "BS flat sub-horizontal zone": {
+            "label": "BS flat sub-horizontal zone",
+            "sub_category": "Basal surface",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "flow behavior: elastic": {
+            "label": "flow behavior: elastic",
+            "sub_category": "Transport phase",
+            "main_category": "Mass Movement Property (Orange)",
+            "description": "Transversal causal control impacting multiple MTD surfaces and facies."
+        },
+        "volume of transported material": {
+            "label": "volume of transported material",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "loss of mass": {
+            "label": "loss of mass",
+            "sub_category": "Transport phase",
+            "main_category": "Mass Movement Property (Orange)"
+        },
+        "erosion of underlying material": {
+            "label": "erosion of underlying material",
+            "sub_category": "Transport phase",
+            "main_category": "Mass Movement Property (Orange)"
+        },
+        "remobilization": {
+            "label": "remobilization",
+            "sub_category": "Transport phase",
+            "main_category": "Mass Movement Property (Orange)"
+        },
+        "compaction during burial": {
+            "label": "compaction during burial",
+            "sub_category": "Post-deposition phase",
+            "main_category": "Mass Movement Property (Orange)",
+            "description": "Post-depositional process affecting seismic expression and thickness evolution."
+        },
+        "triggering turbidity current": {
+            "label": "triggering turbidity current",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "trigger turbidity current at stop": {
+            "label": "trigger turbidity current at stop",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "BS median slope": {
+            "label": "BS median slope",
+            "sub_category": "Basal surface",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "plunging pool effect": {
+            "label": "plunging pool effect",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "plunging pool indicator": {
+            "label": "plunging pool indicator",
+            "sub_category": "Basal surface",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "source domain in basin": {
+            "label": "source domain in basin",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "initial aspect ratio and top of mass slope angle": {
+            "label": "initial aspect ratio and top of mass slope angle",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "multiple terracing downslope": {
+            "label": "multiple terracing downslope",
+            "sub_category": "Basal surface",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "triggering cascading mass movements": {
+            "label": "triggering cascading mass movements",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "upward connection to other MTDs": {
+            "label": "upward connection to other MTDs",
+            "sub_category": "Position",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "initial potential energy of mass": {
+            "label": "initial potential energy of mass",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "BS ramps": {
+            "label": "BS ramps",
+            "sub_category": "Basal surface",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "post deposition regional deformation": {
+            "label": "post deposition regional deformation",
+            "sub_category": "Post-deposition phase",
+            "main_category": "Mass Movement Property (Orange)"
+        },
+        "seafloor effective friction angle": {
+            "label": "seafloor effective friction angle",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "lithology of underlying material downslope": {
+            "label": "lithology of underlying material downslope",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "BS strong amplitude": {
+            "label": "BS strong amplitude",
+            "sub_category": "Basal surface",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "fluid overpressure on basal surface": {
+            "label": "fluid overpressure on basal surface",
+            "sub_category": "Trigger phase",
+            "main_category": "Mass Movement Property (Orange)"
+        },
+        "post deposition of turbidites": {
+            "label": "post deposition of turbidites",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "US with turbidites on top": {
+            "label": "US with turbidites on top",
+            "sub_category": "Upper surface",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "triggering turbidity current at stop": {
+            "label": "triggering turbidity current at stop",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "lateral connection to other MTDs": {
+            "label": "lateral connection to other MTDs",
+            "sub_category": "Position",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "HS downslope evolution": {
+            "label": "HS downslope evolution",
+            "sub_category": "Headscarp",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "basin depocenter position": {
+            "label": "basin depocenter position",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "HS morphology": {
+            "label": "HS morphology",
+            "sub_category": "Headscarp",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "presence of preserved blocks": {
+            "label": "presence of preserved blocks",
+            "sub_category": "Internal facies distributions",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "lithology in transported mass": {
+            "label": "lithology in transported mass",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "preserved blocks size": {
+            "label": "preserved blocks size",
+            "sub_category": "Internal facies distributions",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "grains heterogeneity in flowing mass": {
+            "label": "grains heterogeneity in flowing mass",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "chaotic facies distribution": {
+            "label": "chaotic facies distribution",
+            "sub_category": "Internal facies distributions",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "posterior fluid migrations": {
+            "label": "posterior fluid migrations",
+            "sub_category": "Post-deposition phase",
+            "main_category": "Mass Movement Property (Orange)",
+            "description": "Post-depositional process potentially modifying seismic attributes and facies expression."
+        },
+        "evaporite deformation & mud volcanism": {
+            "label": "evaporite deformation & mud volcanism",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "frontal compression": {
+            "label": "frontal compression",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "thrust fault angle increase to toe": {
+            "label": "thrust fault angle increase to toe",
+            "sub_category": "Internal facies distributions",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "lithology of underlying material in source zone": {
+            "label": "lithology of underlying material in source zone",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "sedimentation rate and type": {
+            "label": "sedimentation rate and type",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "presence of 'tongues' at toe": {
+            "label": "presence of 'tongues' at toe",
+            "sub_category": "Morphology",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "pore pressure increase by fluid migration": {
+            "label": "pore pressure increase by fluid migration",
+            "sub_category": "Trigger phase",
+            "main_category": "Mass Movement Property (Orange)"
+        },
+        "pore pressure increase by compression": {
+            "label": "pore pressure increase by compression",
+            "sub_category": "Trigger phase",
+            "main_category": "Mass Movement Property (Orange)"
+        },
+        "fluid overpressure": {
+            "label": "fluid overpressure",
+            "sub_category": "Trigger phase",
+            "main_category": "Mass Movement Property (Orange)"
+        },
+        "permeability increase": {
+            "label": "permeability increase",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "triggering cascading MTDs": {
+            "label": "triggering cascading MTDs",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "modifying basin geomorphology": {
+            "label": "modifying basin geomorphology",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "near structural elements laterally": {
+            "label": "near structural elements laterally",
+            "sub_category": "Position",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "US ramps or ridges": {
+            "label": "US ramps or ridges",
+            "sub_category": "Upper surface",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "sea level evolution": {
+            "label": "sea level evolution",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "vertical distribution of MTDs": {
+            "label": "vertical distribution of MTDs",
+            "sub_category": "Global environment",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "local fluidization": {
+            "label": "local fluidization",
+            "sub_category": "Transport phase",
+            "main_category": "Mass Movement Property (Orange)"
+        },
+        "seismicity or waves": {
+            "label": "seismicity or waves",
+            "sub_category": "Trigger phase",
+            "main_category": "Mass Movement Property (Orange)"
+        },
+        "seismicity": {
+            "label": "seismicity",
+            "sub_category": "Trigger phase",
+            "main_category": "Mass Movement Property (Orange)"
+        },
+        "chemical effects": {
+            "label": "chemical effects",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "gravity": {
+            "label": "gravity",
+            "sub_category": "Trigger phase",
+            "main_category": "Mass Movement Property (Orange)"
+        },
+        "offshore events and waves": {
+            "label": "offshore events and waves",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "local thickening of flowing material": {
+            "label": "local thickening of flowing material",
+            "sub_category": "Environmental controls",
+            "main_category": "Environmental Control (Green)"
+        },
+        "fluid overpressure in moving mass": {
+            "label": "fluid overpressure in moving mass",
+            "sub_category": "Trigger phase",
+            "main_category": "Mass Movement Property (Orange)"
+        },
+        "inducing seismicity": {
+            "label": "inducing seismicity",
+            "sub_category": "Trigger phase",
+            "main_category": "Mass Movement Property (Orange)"
+        },
+        "deformed facies distribution": {
+            "label": "deformed facies distribution",
+            "sub_category": "Internal facies distributions",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "US median slope": {
+            "label": "US median slope",
+            "sub_category": "Upper surface",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "average thickness": {
+            "label": "average thickness",
+            "sub_category": "Morphology",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "lateral distribution of MTDs": {
+            "label": "lateral distribution of MTDs",
+            "sub_category": "Global environment",
+            "main_category": "MTD Descriptor (Blue)"
+        },
+        "MTD proportion in sedimentary pile": {
+            "label": "MTD proportion in sedimentary pile",
+            "sub_category": "Global environment",
+            "main_category": "MTD Descriptor (Blue)"
+        }
+    },
+    "edges": [
+        {
+            "source": "runout distance",
+            "target": "maximum horizontal length",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [
+                "Moscardelli, L. & Wood, L. (2008) New classification system for mass transport complexes in offshore Trinidad. Basin Research, 20 (1), 73–98. doi:10.1111/j.1365-2117.2007.00340.x"
+            ],
+            "raw_label": "runout distance - max. horizontal length, if attached"
+        },
+        {
+            "source": "topography confinement downwards",
+            "target": "principal direction",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [],
+            "raw_label": "topography confinement downwards - MTD principal direction"
+        },
+        {
+            "source": "principal direction",
+            "target": "scours",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [
+                "Bull, S., Cartwright, J. & Huuse, M. (2009) A review of kinematic indicators from mass-transport complexes using 3D seismic data. Marine and Petroleum Geology, 26 (7), 1132–1151. doi:10.1016/j.marpetgeo.2008.09.011"
+            ],
+            "raw_label": "principal direction - scours, grooves, striations"
+        },
+        {
+            "source": "detached MTD",
+            "target": "runout distance",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Moscardelli, L. & Wood, L. (2008) New classification system for mass transport complexes in offshore Trinidad. Basin Research, 20 (1), 73–98. doi:10.1111/j.1365-2117.2007.00340.x"
+            ],
+            "raw_label": "detached MTD - runout distance"
+        },
+        {
+            "source": "detached MTD",
+            "target": "maximum horizontal length",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Moscardelli, L. & Wood, L. (2008) New classification system for mass transport complexes in offshore Trinidad. Basin Research, 20 (1), 73–98. doi:10.1111/j.1365-2117.2007.00340.x"
+            ],
+            "raw_label": "detached MTD - max. horizontal length"
+        },
+        {
+            "source": "detached MTD",
+            "target": "surface area",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Moscardelli, L. & Wood, L. (2008) New classification system for mass transport complexes in offshore Trinidad. Basin Research, 20 (1), 73–98. doi:10.1111/j.1365-2117.2007.00340.x"
+            ],
+            "raw_label": "detached MTD - surface area"
+        },
+        {
+            "source": "detached MTD",
+            "target": "horizontal aspect ratio",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Moscardelli, L. & Wood, L. (2008) New classification system for mass transport complexes in offshore Trinidad. Basin Research, 20 (1), 73–98. doi:10.1111/j.1365-2117.2007.00340.x",
+                "Omosanya, K.O. & Alves, T.M. (2013) Ramps and flat of mass-transport deposits (MTDs) as markers of seafloor strain on the flanks of rising diapirs (Espirito Santo Basin, SE Brazil). Marine Geology, 340, 82-97."
+            ],
+            "raw_label": "detached MTD - horizontal aspect ratio"
+        },
+        {
+            "source": "lithology distribution in MTD",
+            "target": "transparent facies distribution",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "lithology distribution in MTD - transparent facies distribution"
+        },
+        {
+            "source": "lithology distribution in MTD",
+            "target": "faulty facies distribution",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [
+                "Posamentier, H.W. & Martinsen, O.J. (2011) The Character and Genesis of Submarine Mass-Transport Deposits: Insights from Outcrop and 3D Seismic Data. In: Mass-transport deposits in deepwater settings (Ed. by R.C. Shipp, P. Weimer & H.W. Posamentier), pp. 7–38. SEPM (Society for Sedimentary Geology), Tulsa (Okla.)."
+            ],
+            "raw_label": "lithology distribution in MTD - faulty facies distribution"
+        },
+        {
+            "source": "seafloor shapes and dip variations",
+            "target": "thickness variation",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Mulder, T. & Alexander, J. (2001a) Abrupt change in slope causes variation in the deposit thickness of concentrated particle-driven density currents. Marine Geology, 175 (1-4), 221–235. doi:10.1016/S0025-3227(01)00114-1",
+                "Sawyer, D.E., Flemings, P.B., Buttles, J. & Mohrig, D. (2012) Mudflow transport behavior and deposit morphology: Role of shear stress to yield strength ratio in subaqueous experiments. Marine Geology, 307-310, 28–39. doi:10.1016/j.margeo.2012.01.009"
+            ],
+            "raw_label": "seafloor shapes and dip variations - thickness variation"
+        },
+        {
+            "source": "subsidence/uplift",
+            "target": "volume",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Ortiz-Karpf, A., Hodgson, D.M., Jackson, C.A.-L. & McCaffrey, W.D. (2016) Mass-transport complexes as markers of deep-water fold-and-thrust belt evolution: Insights from the southern Magdalena fan, offshore Colombia. Basin Res, 57 (4), 294. doi:10.1111/bre.12208"
+            ],
+            "raw_label": "subsidence/uplift, extension/compression - MTD volume"
+        },
+        {
+            "source": "topography confinement downwards",
+            "target": "terminal dispersion",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Moscardelli, L. & Wood, L. (2008) New classification system for mass transport complexes in offshore Trinidad. Basin Research, 20 (1), 73–98. doi:10.1111/j.1365-2117.2007.00340.x"
+            ],
+            "raw_label": "topography confinement downwards - terminal dispersion"
+        },
+        {
+            "source": "terminal dispersion",
+            "target": "thickness variation",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Moscardelli, L. & Wood, L. (2008) New classification system for mass transport complexes in offshore Trinidad. Basin Research, 20 (1), 73–98. doi:10.1111/j.1365-2117.2007.00340.x"
+            ],
+            "raw_label": "terminal dispersion - thickness variation"
+        },
+        {
+            "source": "ridged facies distribution",
+            "target": "thickness variation",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [
+                "Moscardelli, L. & Wood, L. (2008) New classification system for mass transport complexes in offshore Trinidad. Basin Research, 20 (1), 73–98. doi:10.1111/j.1365-2117.2007.00340.x"
+            ],
+            "raw_label": "ridged facies distribution - thickness variation"
+        },
+        {
+            "source": "terminal dispersion",
+            "target": "width variation",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Richardson, S.E.J., Davies, R.J., Allen, M.B. & Grant, S.F. (2011) Structure and evolution of mass transport deposits in the South Caspian Basin, Azerbaijan. Basin Research, 23 (6), 702–719. doi:10.1111/j.1365-2117.2011.00508.x"
+            ],
+            "raw_label": "terminal dispersion - width variation"
+        },
+        {
+            "source": "flow direction",
+            "target": "lateral erosive walls",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Bull, S., Cartwright, J. & Huuse, M. (2009) A review of kinematic indicators from mass-transport complexes using 3D seismic data. Marine and Petroleum Geology, 26 (7), 1132–1151. doi:10.1016/j.marpetgeo.2008.09.011"
+            ],
+            "raw_label": "flow direction - lateral erosive walls"
+        },
+        {
+            "source": "flow direction",
+            "target": "scours",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Bull, S., Cartwright, J. & Huuse, M. (2009) A review of kinematic indicators from mass-transport complexes using 3D seismic data. Marine and Petroleum Geology, 26 (7), 1132–1151. doi:10.1016/j.marpetgeo.2008.09.011"
+            ],
+            "raw_label": "flow direction - scours, grooves, striations"
+        },
+        {
+            "source": "existing geomorphology",
+            "target": "width variation",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [
+                "Bull, S., Cartwright, J. & Huuse, M. (2009) A review of kinematic indicators from mass-transport complexes using 3D seismic data. Marine and Petroleum Geology, 26 (7), 1132–1151. doi:10.1016/j.marpetgeo.2008.09.011"
+            ],
+            "raw_label": "existing geomorphology, objects and pathways - width variation"
+        },
+        {
+            "source": "existing geomorphology",
+            "target": "flow velocity and energy",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Moscardelli, L. & Wood, L. (2008) New classification system for mass transport complexes in offshore Trinidad. Basin Research, 20 (1), 73–98. doi:10.1111/j.1365-2117.2007.00340.x"
+            ],
+            "raw_label": "existing geomorphology, objects and pathways - flow velocity and energy"
+        },
+        {
+            "source": "flow velocity and energy",
+            "target": "scours",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Moscardelli, L. & Wood, L. (2008) New classification system for mass transport complexes in offshore Trinidad. Basin Research, 20 (1), 73–98. doi:10.1111/j.1365-2117.2007.00340.x"
+            ],
+            "raw_label": "flow velocity and energy - scours, grooves, striations"
+        },
+        {
+            "source": "plowing effect on underlying material",
+            "target": "BS flat sub-horizontal zone",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Posamentier, H.W. & Martinsen, O.J. (2011) The Character and Genesis of Submarine Mass-Transport Deposits: Insights from Outcrop and 3D Seismic Data. In: Mass-transport deposits in deepwater settings (Ed. by R.C. Shipp, P. Weimer & H.W. Posamentier), pp. 7–38. SEPM (Society for Sedimentary Geology), Tulsa (Okla.)."
+            ],
+            "raw_label": "plowing effect on underlying material - BS flat sub-horizontal zone"
+        },
+        {
+            "source": "existing geomorphology",
+            "target": "horizontal aspect ratio",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Moscardelli, L. & Wood, L. (2008) New classification system for mass transport complexes in offshore Trinidad. Basin Research, 20 (1), 73–98. doi:10.1111/j.1365-2117.2007.00340.x"
+            ],
+            "raw_label": "existing geomorphology, objects and pathways - horizontal aspect ratio"
+        },
+        {
+            "source": "flow behavior: elastic",
+            "target": "horizontal aspect ratio",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "flow behavior: elastic, plastic, fluid - horizontal aspect ratio"
+        },
+        {
+            "source": "volume of transported material",
+            "target": "volume",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "volume of transported material - MTD volume"
+        },
+        {
+            "source": "loss of mass",
+            "target": "volume",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "loss of mass - MTD volume"
+        },
+        {
+            "source": "erosion of underlying material",
+            "target": "volume",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "erosion of underlying material - MTD volume"
+        },
+        {
+            "source": "remobilization",
+            "target": "volume",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "remobilization - MTD volume"
+        },
+        {
+            "source": "compaction during burial",
+            "target": "volume",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "compaction during burial - MTD volume"
+        },
+        {
+            "source": "triggering turbidity current",
+            "target": "loss of mass",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "triggering turbidity current - loss of mass"
+        },
+        {
+            "source": "trigger turbidity current at stop",
+            "target": "loss of mass",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "trigger turbidity current at stop - loss of mass"
+        },
+        {
+            "source": "flow direction",
+            "target": "principal direction",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "flow direction - MTD principal direction"
+        },
+        {
+            "source": "topography confinement downwards",
+            "target": "BS median slope",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "topography confinement downwards - BS median slope"
+        },
+        {
+            "source": "flow behavior: elastic",
+            "target": "BS median slope",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "flow behavior: elastic, plastic, fluid - BS median slope"
+        },
+        {
+            "source": "seafloor shapes and dip variations",
+            "target": "plunging pool effect",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Bourget, J., Zaragosi, S., Ellouz-Zimermann, N., Mouchot, N., Garlan, T., Schneider, J.-L., Lanfumey, V. & Lallemant, S. (2011) Turbidite system architecture and sedimentary processes along topographically complex slopes: The Makran convergent margin. Sedimentology, 58 (2), 376–406. doi:10.1111/j.1365-3091.2010.01168.x",
+                "Lee, S.E., Talling, P.J., Ernst, G.G. & Hogg, A.J. (2002) Occurrence and origin of submarine plunge pools at the base of the US continental slope. Marine Geology, 185 (3-4), 363–377. doi:10.1016/S0025-3227(01)00298-5",
+                "Mulder, T. & Alexander, J. (2001a) Abrupt change in slope causes variation in the deposit thickness of concentrated particle-driven density currents. Marine Geology, 175 (1-4), 221–235. doi:10.1016/S0025-3227(01)00114-1"
+            ],
+            "raw_label": "seafloor shapes and dip variations - plunging pool effect"
+        },
+        {
+            "source": "plunging pool effect",
+            "target": "plunging pool indicator",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Bourget, J., Zaragosi, S., Ellouz-Zimermann, N., Mouchot, N., Garlan, T., Schneider, J.-L., Lanfumey, V. & Lallemant, S. (2011) Turbidite system architecture and sedimentary processes along topographically complex slopes: The Makran convergent margin. Sedimentology, 58 (2), 376–406. doi:10.1111/j.1365-3091.2010.01168.x",
+                "Lee, S.E., Talling, P.J., Ernst, G.G. & Hogg, A.J. (2002) Occurrence and origin of submarine plunge pools at the base of the US continental slope. Marine Geology, 185 (3-4), 363–377. doi:10.1016/S0025-3227(01)00298-5",
+                "Mulder, T. & Alexander, J. (2001a) Abrupt change in slope causes variation in the deposit thickness of concentrated particle-driven density currents. Marine Geology, 175 (1-4), 221–235. doi:10.1016/S0025-3227(01)00114-1"
+            ],
+            "raw_label": "plunging pool effect - plunging pool indicator"
+        },
+        {
+            "source": "plunging pool effect",
+            "target": "erosion of underlying material",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "plunging pool effect - erosion of underlying material"
+        },
+        {
+            "source": "existing geomorphology",
+            "target": "plunging pool effect",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Lee, S.E., Talling, P.J., Ernst, G.G. & Hogg, A.J. (2002) Occurrence and origin of submarine plunge pools at the base of the US continental slope. Marine Geology, 185 (3-4), 363–377. doi:10.1016/S0025-3227(01)00298-5"
+            ],
+            "raw_label": "existing geomorphology, objects and pathways - plunging pool effect"
+        },
+        {
+            "source": "flow velocity and energy",
+            "target": "plunging pool effect",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "flow velocity and energy - plunging pool effect"
+        },
+        {
+            "source": "source domain in basin",
+            "target": "initial aspect ratio and top of mass slope angle",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "source domain in basin - initial aspect ratio and top of mass slope angle"
+        },
+        {
+            "source": "remobilization",
+            "target": "multiple terracing downslope",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Moscardelli, L. & Wood, L. (2008) New classification system for mass transport complexes in offshore Trinidad. Basin Research, 20 (1), 73–98. doi:10.1111/j.1365-2117.2007.00340.x"
+            ],
+            "raw_label": "remobilization - multiple terracing downslope"
+        },
+        {
+            "source": "triggering cascading mass movements",
+            "target": "multiple terracing downslope",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [],
+            "raw_label": "triggering cascading mass movements - multiple terracing downslope"
+        },
+        {
+            "source": "upward connection to other MTDs",
+            "target": "multiple terracing downslope",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [],
+            "raw_label": "upward connection to other MTDs - multiple terracing downslope"
+        },
+        {
+            "source": "initial potential energy of mass",
+            "target": "erosion of underlying material",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Moscardelli, L. & Wood, L. (2008) New classification system for mass transport complexes in offshore Trinidad. Basin Research, 20 (1), 73–98. doi:10.1111/j.1365-2117.2007.00340.x"
+            ],
+            "raw_label": "initial potential energy of mass - erosion of underlying material"
+        },
+        {
+            "source": "erosion of underlying material",
+            "target": "lateral erosive walls",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Moscardelli, L. & Wood, L. (2008) New classification system for mass transport complexes in offshore Trinidad. Basin Research, 20 (1), 73–98. doi:10.1111/j.1365-2117.2007.00340.x"
+            ],
+            "raw_label": "erosion of underlying material - lateral erosive walls"
+        },
+        {
+            "source": "triggering cascading mass movements",
+            "target": "BS ramps",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Mienert, J. (2009) Methane Hydrate and Submarine Slides. In: Encyclopedia of Ocean Sciences, pp. 790–798. Elsevier.",
+                "Richardson, S.E.J., Davies, R.J., Allen, M.B. & Grant, S.F. (2011) Structure and evolution of mass transport deposits in the South Caspian Basin, Azerbaijan. Basin Research, 23 (6), 702–719. doi:10.1111/j.1365-2117.2011.00508.x"
+            ],
+            "raw_label": "triggering cascading mass movements - BS ramps"
+        },
+        {
+            "source": "post deposition regional deformation",
+            "target": "BS ramps",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Richardson, S.E.J., Davies, R.J., Allen, M.B. & Grant, S.F. (2011) Structure and evolution of mass transport deposits in the South Caspian Basin, Azerbaijan. Basin Research, 23 (6), 702–719. doi:10.1111/j.1365-2117.2011.00508.x"
+            ],
+            "raw_label": "post deposition regional deformation - BS ramps"
+        },
+        {
+            "source": "flow behavior: elastic",
+            "target": "scours",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Bull, S., Cartwright, J. & Huuse, M. (2009) A review of kinematic indicators from mass-transport complexes using 3D seismic data. Marine and Petroleum Geology, 26 (7), 1132–1151. doi:10.1016/j.marpetgeo.2008.09.011",
+                "Richardson, S.E.J., Davies, R.J., Allen, M.B. & Grant, S.F. (2011) Structure and evolution of mass transport deposits in the South Caspian Basin, Azerbaijan. Basin Research, 23 (6), 702–719. doi:10.1111/j.1365-2117.2011.00508.x"
+            ],
+            "raw_label": "flow behavior: elastic, plastic, fluid - scours, grooves, striations"
+        },
+        {
+            "source": "seafloor effective friction angle",
+            "target": "scours",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Frey-Martínez, J. (2010) 3D Seismic Interpretation of Mass Transport Deposits: Implications for Basin Analysis and Geohazard Evaluation. In: Submarine Mass Movements and Their Consequences (Ed. by D.C. Mosher, R.C. Shipp, L. Moscardelli, J.D. Chaytor, C.D.P. Baxter, H.J. Lee & R. Urgeles), pp. 553–568. Springer Netherlands, Dordrecht.",
+                "Reis, A.T., Araujo, E., Silva, C.G., Cruz, A.M., Gorini, C., Droz, L., Migeon, S., Perovano, R., King, I. & Bache, F. (2016) Effects of a regional décollement level for gravity tectonics on late Neogene-Quaternary large-scale slope instabilities in the Foz do Amazonas Basin, Brazil. Marine and Petroleum Geology, 75, 29–52."
+            ],
+            "raw_label": "seafloor effective friction angle - scours, grooves, striations"
+        },
+        {
+            "source": "lithology of underlying material downslope",
+            "target": "BS strong amplitude",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "lithology of underlying material downslope - BS strong amplitude"
+        },
+        {
+            "source": "fluid overpressure on basal surface",
+            "target": "BS strong amplitude",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Reis, A.T., Perovano, R., Silva, C.G., Vendeville, B.C., Araujo, E., Gorini, C. & Oliveira, V. (2010) Two-scale gravitational collapse in the Amazon Fan: A coupled system of gravity tectonics and mass-transport processes. Journal of the Geological Society, 167 (3), 593–604. doi:10.1144/0016-76492009-035",
+                "Silva, C.G., Araújo, E., Reis, A.T., Perovano, R., Gorini, C., Vendeville, B.C. & Albuquerque, N. (2010) Megaslides in the Foz do Amazonas Basin, Brazilian Equatorial Margin. In: Submarine Mass Movements and Their Consequences (Ed. by D.C. Mosher, R.C. Shipp, L. Moscardelli, J.D. Chaytor, C.D.P. Baxter, H.J. Lee & R. Urgeles), pp. 581–591. Springer Netherlands, Dordrecht.",
+                "Sun, Q., Alves, T., Xie, X., He, J., Li, W. & Ni, X. (2017) Free gas accumulations in basal shear zones of mass-transport deposits (Pearl River Mouth Basin, South China Sea): An important geohazard on continental slope basins. Marine and Petroleum Geology, 81, 17-32."
+            ],
+            "raw_label": "fluid overpressure on basal surface - BS strong amplitude"
+        },
+        {
+            "source": "post deposition of turbidites",
+            "target": "US with turbidites on top",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "post deposition of turbidites - US with turbidites on top"
+        },
+        {
+            "source": "triggering turbidity current",
+            "target": "post deposition of turbidites",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "triggering turbidity current - post deposition of turbidites"
+        },
+        {
+            "source": "triggering turbidity current at stop",
+            "target": "post deposition of turbidites",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "triggering turbidity current at stop - post deposition of turbidites"
+        },
+        {
+            "source": "triggering cascading mass movements",
+            "target": "upward connection to other MTDs",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "triggering cascading mass movements - upward connection to other MTDs"
+        },
+        {
+            "source": "existing geomorphology",
+            "target": "lateral connection to other MTDs",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "existing geomorphology, objects and pathways - lateral connection to other MTDs"
+        },
+        {
+            "source": "triggering cascading mass movements",
+            "target": "runout distance",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Ortiz-Karpf, A., Hodgson, D.M., Jackson, C.A.-L. & McCaffrey, W.D. (2016) Mass-transport complexes as markers of deep-water fold-and-thrust belt evolution: Insights from the southern Magdalena fan, offshore Colombia. Basin Res, 57 (4), 294. doi:10.1111/bre.12208"
+            ],
+            "raw_label": "triggering cascading mass movements - runout distance"
+        },
+        {
+            "source": "initial aspect ratio and top of mass slope angle",
+            "target": "initial potential energy of mass",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "initial aspect ratio and top of mass slope angle - initial potential energy of mass"
+        },
+        {
+            "source": "initial potential energy of mass",
+            "target": "runout distance",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Mangeney-Castelnau, A., Bouchut, F., Vilotte, J.P., Lajeunesse, E., Aubertin, A. & Pirulli, M. (2005) On the use of Saint Venant equations to simulate the spreading of a granular mass. J. Geophys. Res., 110 (B9). doi:10.1029/2004JB003161"
+            ],
+            "raw_label": "initial potential energy of mass - runout distance"
+        },
+        {
+            "source": "topography confinement downwards",
+            "target": "triggering turbidity current at stop",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "topography confinement downwards - triggering turbidity current at stop"
+        },
+        {
+            "source": "topography confinement downwards",
+            "target": "seafloor shapes and dip variations",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [],
+            "raw_label": "topography confinement downwards - seafloor shapes and dip variations"
+        },
+        {
+            "source": "flow behavior: elastic",
+            "target": "detached MTD",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Moscardelli, L. & Wood, L. (2008) New classification system for mass transport complexes in offshore Trinidad. Basin Research, 20 (1), 73–98. doi:10.1111/j.1365-2117.2007.00340.x"
+            ],
+            "raw_label": "flow behavior: elastic, plastic, fluid - detached MTD"
+        },
+        {
+            "source": "detached MTD",
+            "target": "volume",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [
+                "Moscardelli, L. & Wood, L. (2008) New classification system for mass transport complexes in offshore Trinidad. Basin Research, 20 (1), 73–98. doi:10.1111/j.1365-2117.2007.00340.x"
+            ],
+            "raw_label": "detached MTD - MTD volume"
+        },
+        {
+            "source": "subsidence/uplift",
+            "target": "HS downslope evolution",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Clark, I.R. & Cartwright, J.A. (2009) Interactions between submarine channel systems and deformation in deepwater fold belts: Examples from the Levant Basin, Eastern Mediterranean sea. Marine and Petroleum Geology, 26 (8), 1465–1482. doi:10.1016/j.marpetgeo.2009.05.004",
+                "Ortiz-Karpf, A., Hodgson, D.M., Jackson, C.A.-L. & McCaffrey, W.D. (2016) Mass-transport complexes as markers of deep-water fold-and-thrust belt evolution: Insights from the southern Magdalena fan, offshore Colombia. Basin Res, 57 (4), 294. doi:10.1111/bre.12208",
+                "Richardson, S.E.J., Davies, R.J., Allen, M.B. & Grant, S.F. (2011) Structure and evolution of mass transport deposits in the South Caspian Basin, Azerbaijan. Basin Research, 23 (6), 702–719. doi:10.1111/j.1365-2117.2011.00508.x"
+            ],
+            "raw_label": "subsidence/uplift, extension/compression - HS downslope evolution"
+        },
+        {
+            "source": "subsidence/uplift",
+            "target": "basin depocenter position",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Nelson, C.H., Escutia, C., Damuth, J.E. & Twichell, D.C. (2011) Interplay of Mass-Transport and Turbidite-System Deposits in Different Active Tectonic and Passive Continental Margin Settings: External and Local Controlling Factors. In: Mass-transport deposits in deepwater settings (Ed. by R.C. Shipp, P. Weimer & H.W. Posamentier), pp. 39–66. SEPM (Society for Sedimentary Geology), Tulsa (Okla.)."
+            ],
+            "raw_label": "subsidence/uplift, extension/compression - basin depocenter position"
+        },
+        {
+            "source": "source domain in basin",
+            "target": "HS morphology",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Richardson, S.E.J., Davies, R.J., Allen, M.B. & Grant, S.F. (2011) Structure and evolution of mass transport deposits in the South Caspian Basin, Azerbaijan. Basin Research, 23 (6), 702–719. doi:10.1111/j.1365-2117.2011.00508.x"
+            ],
+            "raw_label": "source domain in basin - HS morphology"
+        },
+        {
+            "source": "flow behavior: elastic",
+            "target": "presence of preserved blocks",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Lee, H.J., Locat, J., Desgagns, P., Parsons, J.D., McAdoo, B.G., Orange, D.L., Puig, P., Wong, F.L., Dartnell, P. & Boulanger, E. (2007) Submarine Mass Movements on Continental Margins. In: Continental Margin Sedimentation (Ed. by C.A. Nittrouer, J.A. Austin, M.E. Field, J.H. Kravitz, J.P.M. Syvitski & P.L. Wiberg), pp. 213–274. Blackwell Publishing Ltd, Oxford, UK.",
+                "Nelson, C.H., Escutia, C., Damuth, J.E. & Twichell, D.C. (2011) Interplay of Mass-Transport and Turbidite-System Deposits in Different Active Tectonic and Passive Continental Margin Settings: External and Local Controlling Factors. In: Mass-transport deposits in deepwater settings (Ed. by R.C. Shipp, P. Weimer & H.W. Posamentier), pp. 39–66. SEPM (Society for Sedimentary Geology), Tulsa (Okla.).",
+                "Posamentier, H.W. & Martinsen, O.J. (2011) The Character and Genesis of Submarine Mass-Transport Deposits: Insights from Outcrop and 3D Seismic Data. In: Mass-transport deposits in deepwater settings (Ed. by R.C. Shipp, P. Weimer & H.W. Posamentier), pp. 7–38. SEPM (Society for Sedimentary Geology), Tulsa (Okla.).",
+                "Alves, T.M., Kurtev, K., Moore, G.F. & Strasser, M. (2014) Assessing the internal character, reservoir potential, and seal competence of mass-transport deposits using seismic texture: A geophysical and petrophysical approach. AAPG Bulletin, 98 (4), 793-824."
+            ],
+            "raw_label": "flow behavior: elastic, plastic, fluid - presence of preserved blocks"
+        },
+        {
+            "source": "flow behavior: elastic",
+            "target": "triggering turbidity current",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Sawyer, D.E., Flemings, P.B., Buttles, J. & Mohrig, D. (2012) Mudflow transport behavior and deposit morphology: Role of shear stress to yield strength ratio in subaqueous experiments. Marine Geology, 307-310, 28–39. doi:10.1016/j.margeo.2012.01.009"
+            ],
+            "raw_label": "flow behavior: elastic, plastic, fluid - triggering turbidity current"
+        },
+        {
+            "source": "lithology in transported mass",
+            "target": "triggering turbidity current",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Leynaud, D., Mienert, J. & Vanneste, M. (2009) Submarine mass movements on glaciated and non-glaciated European continental margins: A review of triggering mechanisms and preconditions to failure. Marine and Petroleum Geology, 26 (5), 618–632. doi:10.1016/j.marpetgeo.2008.02.008",
+                "Nelson, C.H., Escutia, C., Damuth, J.E. & Twichell, D.C. (2011) Interplay of Mass-Transport and Turbidite-System Deposits in Different Active Tectonic and Passive Continental Margin Settings: External and Local Controlling Factors. In: Mass-transport deposits in deepwater settings (Ed. by R.C. Shipp, P. Weimer & H.W. Posamentier), pp. 39–66. SEPM (Society for Sedimentary Geology), Tulsa (Okla.)."
+            ],
+            "raw_label": "lithology in transported mass - triggering turbidity current"
+        },
+        {
+            "source": "flow direction",
+            "target": "presence of preserved blocks",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Bull, S., Cartwright, J. & Huuse, M. (2009) A review of kinematic indicators from mass-transport complexes using 3D seismic data. Marine and Petroleum Geology, 26 (7), 1132–1151. doi:10.1016/j.marpetgeo.2008.09.011"
+            ],
+            "raw_label": "flow direction - presence of preserved blocks"
+        },
+        {
+            "source": "flow velocity and energy",
+            "target": "preserved blocks size",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Li, W., Alves, T.M., Urlaub, M., Georgiopoulou, A., Klaucke, I., Wynn, R.B., Gross, F., Meyer, M., Repschläger, J., Berndt, C. & Krastel, S. (2017) Morphology, age and sediment dynamics of the upper headwall of the Sahara Slide Complex, Northwest Africa: Evidence for a large Late Holocene failure. Marine Geology, 393, 109-123."
+            ],
+            "raw_label": "flow velocity and energy - preserved blocks size"
+        },
+        {
+            "source": "initial potential energy of mass",
+            "target": "flow velocity and energy",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "initial potential energy of mass - flow velocity and energy"
+        },
+        {
+            "source": "grains heterogeneity in flowing mass",
+            "target": "preserved blocks size",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [
+                "Posamentier, H.W. & Martinsen, O.J. (2011) The Character and Genesis of Submarine Mass-Transport Deposits: Insights from Outcrop and 3D Seismic Data. In: Mass-transport deposits in deepwater settings (Ed. by R.C. Shipp, P. Weimer & H.W. Posamentier), pp. 7–38. SEPM (Society for Sedimentary Geology), Tulsa (Okla.)."
+            ],
+            "raw_label": "grains heterogeneity in flowing mass - preserved blocks size"
+        },
+        {
+            "source": "flow behavior: elastic",
+            "target": "chaotic facies distribution",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "flow behavior: elastic, plastic, fluid - chaotic facies distribution"
+        },
+        {
+            "source": "grains heterogeneity in flowing mass",
+            "target": "chaotic facies distribution",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "grains heterogeneity in flowing mass - chaotic facies distribution"
+        },
+        {
+            "source": "grains heterogeneity in flowing mass",
+            "target": "transparent facies distribution",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "grains heterogeneity in flowing mass - transparent facies distribution"
+        },
+        {
+            "source": "compaction during burial",
+            "target": "transparent facies distribution",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "compaction during burial - transparent facies distribution"
+        },
+        {
+            "source": "posterior fluid migrations",
+            "target": "transparent facies distribution",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "posterior fluid migrations - transparent facies distribution"
+        },
+        {
+            "source": "posterior fluid migrations",
+            "target": "chaotic facies distribution",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Sun, Q., Alves, T., Xie, X., He, J., Li, W. & Ni, X. (2017) Free gas accumulations in basal shear zones of mass-transport deposits (Pearl River Mouth Basin, South China Sea): An important geohazard on continental slope basins. Marine and Petroleum Geology, 81, 17-32."
+            ],
+            "raw_label": "posterior fluid migrations - chaotic facies distribution"
+        },
+        {
+            "source": "evaporite deformation & mud volcanism",
+            "target": "faulty facies distribution",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "evaporite deformation & mud volcanism - faulty facies distribution"
+        },
+        {
+            "source": "post deposition regional deformation",
+            "target": "faulty facies distribution",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "post deposition regional deformation - faulty facies distribution"
+        },
+        {
+            "source": "frontal compression",
+            "target": "ridged facies distribution",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Dalla Valle, G., Gamberi, F., Rocchini, P., Minisini, D., Errera, A., Baglioni, L. & Trincardi, F. (2013) 3D seismic geomorphology of mass transport complexes in a foredeep basin: Examples from the Pleistocene of the Central Adriatic Basin (Mediterranean Sea). Sedimentary Geology, 294, 127–141. doi:10.1016/j.sedgeo.2013.05.012",
+                "Frey-Martínez, J. (2010) 3D Seismic Interpretation of Mass Transport Deposits: Implications for Basin Analysis and Geohazard Evaluation. In: Submarine Mass Movements and Their Consequences (Ed. by D.C. Mosher, R.C. Shipp, L. Moscardelli, J.D. Chaytor, C.D.P. Baxter, H.J. Lee & R. Urgeles), pp. 553–568. Springer Netherlands, Dordrecht."
+            ],
+            "raw_label": "frontal compression - ridged facies distribution"
+        },
+        {
+            "source": "topography confinement downwards",
+            "target": "frontal compression",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Unknown"
+            ],
+            "raw_label": "topography confinement downwards - frontal compression"
+        },
+        {
+            "source": "flow direction",
+            "target": "ridged facies distribution",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Bull, S., Cartwright, J. & Huuse, M. (2009) A review of kinematic indicators from mass-transport complexes using 3D seismic data. Marine and Petroleum Geology, 26 (7), 1132–1151. doi:10.1016/j.marpetgeo.2008.09.011"
+            ],
+            "raw_label": "flow direction - ridged facies distribution"
+        },
+        {
+            "source": "flow behavior: elastic",
+            "target": "ridged facies distribution",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Bull, S., Cartwright, J. & Huuse, M. (2009) A review of kinematic indicators from mass-transport complexes using 3D seismic data. Marine and Petroleum Geology, 26 (7), 1132–1151. doi:10.1016/j.marpetgeo.2008.09.011",
+                "Nelson, C.H., Escutia, C., Damuth, J.E. & Twichell, D.C. (2011) Interplay of Mass-Transport and Turbidite-System Deposits in Different Active Tectonic and Passive Continental Margin Settings: External and Local Controlling Factors. In: Mass-transport deposits in deepwater settings (Ed. by R.C. Shipp, P. Weimer & H.W. Posamentier), pp. 39–66. SEPM (Society for Sedimentary Geology), Tulsa (Okla.)."
+            ],
+            "raw_label": "flow behavior: elastic, plastic, fluid - ridged facies distribution"
+        },
+        {
+            "source": "seafloor shapes and dip variations",
+            "target": "thrust fault angle increase to toe",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Richardson, S.E.J., Davies, R.J., Allen, M.B. & Grant, S.F. (2011) Structure and evolution of mass transport deposits in the South Caspian Basin, Azerbaijan. Basin Research, 23 (6), 702–719. doi:10.1111/j.1365-2117.2011.00508.x"
+            ],
+            "raw_label": "seafloor shapes and dip variations - thrust fault angle increase to toe"
+        },
+        {
+            "source": "post deposition regional deformation",
+            "target": "thrust fault angle increase to toe",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Richardson, S.E.J., Davies, R.J., Allen, M.B. & Grant, S.F. (2011) Structure and evolution of mass transport deposits in the South Caspian Basin, Azerbaijan. Basin Research, 23 (6), 702–719. doi:10.1111/j.1365-2117.2011.00508.x"
+            ],
+            "raw_label": "post deposition regional deformation - thrust fault angle increase to toe"
+        },
+        {
+            "source": "lithology of underlying material in source zone",
+            "target": "thrust fault angle increase to toe",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Richardson, S.E.J., Davies, R.J., Allen, M.B. & Grant, S.F. (2011) Structure and evolution of mass transport deposits in the South Caspian Basin, Azerbaijan. Basin Research, 23 (6), 702–719. doi:10.1111/j.1365-2117.2011.00508.x"
+            ],
+            "raw_label": "lithology of underlying material in source zone - thrust fault angle increase to toe"
+        },
+        {
+            "source": "remobilization",
+            "target": "upward connection to other MTDs",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "remobilization - upward connection to other MTDs"
+        },
+        {
+            "source": "remobilization",
+            "target": "lateral connection to other MTDs",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "remobilization - lateral connection to other MTDs"
+        },
+        {
+            "source": "flow behavior: elastic",
+            "target": "surface area",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Sawyer, D.E., Flemings, P.B., Buttles, J. & Mohrig, D. (2012) Mudflow transport behavior and deposit morphology: Role of shear stress to yield strength ratio in subaqueous experiments. Marine Geology, 307-310, 28–39. doi:10.1016/j.margeo.2012.01.009"
+            ],
+            "raw_label": "flow behavior: elastic, plastic, fluid - surface area"
+        },
+        {
+            "source": "initial aspect ratio and top of mass slope angle",
+            "target": "seafloor effective friction angle",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Mangeney-Castelnau, A., Bouchut, F., Vilotte, J.P., Lajeunesse, E., Aubertin, A. & Pirulli, M. (2005) On the use of Saint Venant equations to simulate the spreading of a granular mass. J. Geophys. Res., 110 (B9). doi:10.1029/2004JB003161"
+            ],
+            "raw_label": "initial aspect ratio and top of mass slope angle - seafloor effective friction angle"
+        },
+        {
+            "source": "grains heterogeneity in flowing mass",
+            "target": "seafloor effective friction angle",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Goujon, C., Dalloz-Dubrujeaud, B. & Thomas, N. (2007) Bidisperse Granular Flow on Inclined Rough Planes. In: Traffic and Granular Flow’05 (Ed. by A. Schadschneider, T. Pöschel, R. Kühne, M. Schreckenberg & D.E. Wolf), pp. 147–156. Springer Berlin Heidelberg, Berlin, Heidelberg."
+            ],
+            "raw_label": "grains heterogeneity in flowing mass - seafloor effective friction angle"
+        },
+        {
+            "source": "sedimentation rate and type",
+            "target": "lithology of underlying material in source zone",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "sedimentation rate and type - lithology of underlying material in source zone"
+        },
+        {
+            "source": "sedimentation rate and type",
+            "target": "lithology in transported mass",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "sedimentation rate and type - lithology in transported mass"
+        },
+        {
+            "source": "lithology of underlying material in source zone",
+            "target": "lithology in transported mass",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Alves, T.M., Kurtev, K., Moore, G.F. & Strasser, M. (2014) Assessing the internal character, reservoir potential, and seal competence of mass-transport deposits using seismic texture: A geophysical and petrophysical approach. AAPG Bulletin, 98 (4), 793-824."
+            ],
+            "raw_label": "lithology of underlying material in source zone - lithology in transported mass"
+        },
+        {
+            "source": "lithology of underlying material in source zone",
+            "target": "lithology of underlying material downslope",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [],
+            "raw_label": "lithology of underlying material in source zone - lithology of underlying material downslope"
+        },
+        {
+            "source": "lithology in transported mass",
+            "target": "lithology distribution in MTD",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "lithology in transported mass - lithology distribution in MTD"
+        },
+        {
+            "source": "erosion of underlying material",
+            "target": "lithology distribution in MTD",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "erosion of underlying material - lithology distribution in MTD"
+        },
+        {
+            "source": "topography confinement downwards",
+            "target": "presence of 'tongues' at toe",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Moscardelli, L. & Wood, L. (2008) New classification system for mass transport complexes in offshore Trinidad. Basin Research, 20 (1), 73–98. doi:10.1111/j.1365-2117.2007.00340.x"
+            ],
+            "raw_label": "topography confinement downwards - presence of 'tongues' at toe"
+        },
+        {
+            "source": "terminal dispersion",
+            "target": "presence of 'tongues' at toe",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [],
+            "raw_label": "terminal dispersion - presence of 'tongues' at toe"
+        },
+        {
+            "source": "grains heterogeneity in flowing mass",
+            "target": "presence of 'tongues' at toe",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Pouliquen, O., Delour, J. & Savage, S.B. (1997) Fingering in granular flows. Nature, 386 (6627), 816–817. doi:10.1038/386816a0",
+                "Woodhouse, M.J., Thornton, A.R., Johnson, C.G., KOKELAAR, B.P. & GRAY, J. M. N. T. (2012) Segregation-induced fingering instabilities in granular free-surface flows. J. Fluid Mech., 709, 543–580. doi:10.1017/jfm.2012.348"
+            ],
+            "raw_label": "grains heterogeneity in flowing mass - presence of 'tongues' at toe"
+        },
+        {
+            "source": "grains heterogeneity in flowing mass",
+            "target": "lithology distribution in MTD",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "grains heterogeneity in flowing mass - lithology distribution in MTD"
+        },
+        {
+            "source": "existing geomorphology",
+            "target": "posterior fluid migrations",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Frey-Martínez, J., Bertoni, C., Gérard, J. & Matías, H. (2011) Processes of Submarine Slope Failure and Fluid Migration on the Ebro Continental Margin: Implications for Offshore Exploration and Development. In: Mass-Transport Deposits in Deepwater Settings (Ed. by R.C. Shipp, P. Weimer & H.W. Posamentier), pp. 181–198. SEPM (Society for Sedimentary Geology)."
+            ],
+            "raw_label": "existing geomorphology, objects and pathways - posterior fluid migrations"
+        },
+        {
+            "source": "existing geomorphology",
+            "target": "pore pressure increase by fluid migration",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Frey-Martínez, J., Bertoni, C., Gérard, J. & Matías, H. (2011) Processes of Submarine Slope Failure and Fluid Migration on the Ebro Continental Margin: Implications for Offshore Exploration and Development. In: Mass-Transport Deposits in Deepwater Settings (Ed. by R.C. Shipp, P. Weimer & H.W. Posamentier), pp. 181–198. SEPM (Society for Sedimentary Geology).",
+                "Lacoste, A., Vendeville, B.C., Mourgues, R., Loncke, L. & Lebacq, M. (2012) Gravitational instabilities triggered by fluid overpressure and downslope incision – Insights from analytical and analogue modelling. Journal of Structural Geology, 42, 151–162. doi:10.1016/j.jsg.2012.05.011"
+            ],
+            "raw_label": "existing geomorphology, objects and pathways - pore pressure increase by fluid migration"
+        },
+        {
+            "source": "existing geomorphology",
+            "target": "pore pressure increase by compression",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Lacoste, A., Vendeville, B.C., Mourgues, R., Loncke, L. & Lebacq, M. (2012) Gravitational instabilities triggered by fluid overpressure and downslope incision – Insights from analytical and analogue modelling. Journal of Structural Geology, 42, 151–162. doi:10.1016/j.jsg.2012.05.011"
+            ],
+            "raw_label": "existing geomorphology, objects and pathways - pore pressure increase by compression"
+        },
+        {
+            "source": "pore pressure increase by compression",
+            "target": "fluid overpressure",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [],
+            "raw_label": "pore pressure increase by compression - fluid overpressure, short term"
+        },
+        {
+            "source": "pore pressure increase by fluid migration",
+            "target": "fluid overpressure",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [
+                "Mourgues, R. & Cobbold, P.R. (2006) Sandbox experiments on gravitational spreading and gliding in the presence of fluid overpressures. Journal of Structural Geology, 28 (5), 887–901. doi:10.1016/j.jsg.2005.12.013"
+            ],
+            "raw_label": "pore pressure increase by fluid migration - fluid overpressure, short term"
+        },
+        {
+            "source": "permeability increase",
+            "target": "pore pressure increase by fluid migration",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [
+                "Lafuerza, S., Sultan, N., Canals, M., Frigola, J., Berné, S., Jouet, G., Galavazi, M. & Sierro, F.J. (2009) Overpressure within upper continental slope sediments from CPTU data, Gulf of Lion, NW Mediterranean Sea. Int J Earth Sci (Geol Rundsch), 98 (4), 751–768. doi:10.1007/s00531-008-0376-2",
+                "Mienert, J. (2009) Methane Hydrate and Submarine Slides. In: Encyclopedia of Ocean Sciences, pp. 790–798. Elsevier."
+            ],
+            "raw_label": "permeability increase - pore pressure increase by fluid migration"
+        },
+        {
+            "source": "existing geomorphology",
+            "target": "initial aspect ratio and top of mass slope angle",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "existing geomorphology, objects and pathways - initial aspect ratio and top of mass slope angle"
+        },
+        {
+            "source": "existing geomorphology",
+            "target": "topography confinement downwards",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [],
+            "raw_label": "existing geomorphology, objects and pathways - topography confinement downwards"
+        },
+        {
+            "source": "grains heterogeneity in flowing mass",
+            "target": "flow behavior: elastic",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "grains heterogeneity in flowing mass - flow behavior: elastic, plastic, fluid"
+        },
+        {
+            "source": "grains heterogeneity in flowing mass",
+            "target": "triggering turbidity current",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "grains heterogeneity in flowing mass - triggering turbidity current"
+        },
+        {
+            "source": "triggering cascading MTDs",
+            "target": "modifying basin geomorphology",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "triggering cascading MTDs - modifying basin geomorphology"
+        },
+        {
+            "source": "sedimentation rate and type",
+            "target": "compaction during burial",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "sedimentation rate and type - compaction during burial"
+        },
+        {
+            "source": "compaction during burial",
+            "target": "posterior fluid migrations",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [],
+            "raw_label": "compaction during burial - posterior fluid migrations"
+        },
+        {
+            "source": "post deposition regional deformation",
+            "target": "subsidence/uplift",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [],
+            "raw_label": "post deposition regional deformation - subsidence/uplift, extension/compression"
+        },
+        {
+            "source": "source domain in basin",
+            "target": "near structural elements laterally",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "source domain in basin - near structural elements laterally"
+        },
+        {
+            "source": "post deposition regional deformation",
+            "target": "US ramps or ridges",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "post deposition regional deformation - US ramps or ridges"
+        },
+        {
+            "source": "sea level evolution",
+            "target": "vertical distribution of MTDs",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Sutton, J.P. & Mitchum, R.M. (2011) Upper Quaternary Seafloor Mass-Transport Deposits at the Base of Slope, Offshore Niger Delta, Deepwater Nigeria. In: Mass-Transport Deposits in Deepwater Settings (Ed. by R.C. Shipp, P. Weimer & H.W. Posamentier), pp. 85–110. SEPM (Society for Sedimentary Geology)."
+            ],
+            "raw_label": "sea level evolution - vertical distribution of MTDs"
+        },
+        {
+            "source": "source domain in basin",
+            "target": "pore pressure increase by compression",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Lee, H.J., Locat, J., Desgagns, P., Parsons, J.D., McAdoo, B.G., Orange, D.L., Puig, P., Wong, F.L., Dartnell, P. & Boulanger, E. (2007) Submarine Mass Movements on Continental Margins. In: Continental Margin Sedimentation (Ed. by C.A. Nittrouer, J.A. Austin, M.E. Field, J.H. Kravitz, J.P.M. Syvitski & P.L. Wiberg), pp. 213–274. Blackwell Publishing Ltd, Oxford, UK."
+            ],
+            "raw_label": "source domain in basin - pore pressure increase by compression"
+        },
+        {
+            "source": "permeability increase",
+            "target": "local fluidization",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Lee, H.J., Locat, J., Desgagns, P., Parsons, J.D., McAdoo, B.G., Orange, D.L., Puig, P., Wong, F.L., Dartnell, P. & Boulanger, E. (2007) Submarine Mass Movements on Continental Margins. In: Continental Margin Sedimentation (Ed. by C.A. Nittrouer, J.A. Austin, M.E. Field, J.H. Kravitz, J.P.M. Syvitski & P.L. Wiberg), pp. 213–274. Blackwell Publishing Ltd, Oxford, UK.",
+                "Leynaud, D., Mienert, J. & Vanneste, M. (2009) Submarine mass movements on glaciated and non-glaciated European continental margins: A review of triggering mechanisms and preconditions to failure. Marine and Petroleum Geology, 26 (5), 618–632. doi:10.1016/j.marpetgeo.2008.02.008",
+                "Mourgues, R., Lecomte, E., Vendeville, B. & Raillard, S. (2009) An experimental investigation of gravity-driven shale tectonics in progradational delta. Tectonophysics, 474 (3-4), 643–656. doi:10.1016/j.tecto.2009.05.003"
+            ],
+            "raw_label": "permeability increase - local fluidization"
+        },
+        {
+            "source": "seismicity or waves",
+            "target": "permeability increase",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Chemenda, A., Bois, T., Bouissou, S. & Tric, E. (2009) Numerical modelling of the gravity-induced destabilization of a slope: The example of the La Clapière landslide, southern France. Geomorphology, 109, 86–93. doi:10.1016/j.geomorph.2009.02.025",
+                "Lee, H.J., Locat, J., Desgagns, P., Parsons, J.D., McAdoo, B.G., Orange, D.L., Puig, P., Wong, F.L., Dartnell, P. & Boulanger, E. (2007) Submarine Mass Movements on Continental Margins. In: Continental Margin Sedimentation (Ed. by C.A. Nittrouer, J.A. Austin, M.E. Field, J.H. Kravitz, J.P.M. Syvitski & P.L. Wiberg), pp. 213–274. Blackwell Publishing Ltd, Oxford, UK.",
+                "Urgeles, R. & Camerlenghi, A. (2013) Submarine landslides of the Mediterranean Sea: Trigger mechanisms, dynamics, and frequency-magnitude distribution. J. Geophys. Res. Earth Surf., 118 (4), 2600–2618. doi:10.1002/2013JF002720"
+            ],
+            "raw_label": "seismicity or waves, long term - permeability increase"
+        },
+        {
+            "source": "existing geomorphology",
+            "target": "lateral erosive walls",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "existing geomorphology, objects and pathways - lateral erosive walls"
+        },
+        {
+            "source": "sea level evolution",
+            "target": "seismicity or waves",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Lee, H.J., Locat, J., Desgagns, P., Parsons, J.D., McAdoo, B.G., Orange, D.L., Puig, P., Wong, F.L., Dartnell, P. & Boulanger, E. (2007) Submarine Mass Movements on Continental Margins. In: Continental Margin Sedimentation (Ed. by C.A. Nittrouer, J.A. Austin, M.E. Field, J.H. Kravitz, J.P.M. Syvitski & P.L. Wiberg), pp. 213–274. Blackwell Publishing Ltd, Oxford, UK.",
+                "Nelson, C.H., Escutia, C., Damuth, J.E. & Twichell, D.C. (2011) Interplay of Mass-Transport and Turbidite-System Deposits in Different Active Tectonic and Passive Continental Margin Settings: External and Local Controlling Factors. In: Mass-transport deposits in deepwater settings (Ed. by R.C. Shipp, P. Weimer & H.W. Posamentier), pp. 39–66. SEPM (Society for Sedimentary Geology), Tulsa (Okla.).",
+                "Posamentier, H.W. & Martinsen, O.J. (2011) The Character and Genesis of Submarine Mass-Transport Deposits: Insights from Outcrop and 3D Seismic Data. In: Mass-transport deposits in deepwater settings (Ed. by R.C. Shipp, P. Weimer & H.W. Posamentier), pp. 7–38. SEPM (Society for Sedimentary Geology), Tulsa (Okla.)."
+            ],
+            "raw_label": "sea level evolution - seismicity or waves, long term"
+        },
+        {
+            "source": "seismicity",
+            "target": "initial potential energy of mass",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "seismicity, short term - initial potential energy of mass"
+        },
+        {
+            "source": "flow velocity and energy",
+            "target": "flow behavior: elastic",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [],
+            "raw_label": "flow velocity and energy - flow behavior: elastic, plastic, fluid"
+        },
+        {
+            "source": "source domain in basin",
+            "target": "sedimentation rate and type",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "source domain in basin - sedimentation rate and type"
+        },
+        {
+            "source": "local fluidization",
+            "target": "flow behavior: elastic",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [
+                "Mulder, T. & Alexander, J. (2001b) The physical character of subaqueous sedimentary density flows and their deposits. Sedimentology, 48 (2), 269–299. doi:10.1046/j.1365-3091.2001.00360.x"
+            ],
+            "raw_label": "local fluidization - flow behavior: elastic, plastic, fluid"
+        },
+        {
+            "source": "chemical effects",
+            "target": "local fluidization",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Lee, H.J., Locat, J., Desgagns, P., Parsons, J.D., McAdoo, B.G., Orange, D.L., Puig, P., Wong, F.L., Dartnell, P. & Boulanger, E. (2007) Submarine Mass Movements on Continental Margins. In: Continental Margin Sedimentation (Ed. by C.A. Nittrouer, J.A. Austin, M.E. Field, J.H. Kravitz, J.P.M. Syvitski & P.L. Wiberg), pp. 213–274. Blackwell Publishing Ltd, Oxford, UK.",
+                "Mienert, J. (2009) Methane Hydrate and Submarine Slides. In: Encyclopedia of Ocean Sciences, pp. 790–798. Elsevier.",
+                "Geological Survey of Norway website: https://www.ngu.no - last access: Jan.2018"
+            ],
+            "raw_label": "chemical effects - local fluidization"
+        },
+        {
+            "source": "initial aspect ratio and top of mass slope angle",
+            "target": "gravity",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [],
+            "raw_label": "initial aspect ratio and top of mass slope angle - gravity, short term"
+        },
+        {
+            "source": "offshore events and waves",
+            "target": "initial potential energy of mass",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "offshore events and waves - initial potential energy of mass"
+        },
+        {
+            "source": "sedimentation rate and type",
+            "target": "basin depocenter position",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "sedimentation rate and type - basin depocenter position"
+        },
+        {
+            "source": "sedimentation rate and type",
+            "target": "subsidence/uplift",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [],
+            "raw_label": "sedimentation rate and type - subsidence/uplift, extension/compression"
+        },
+        {
+            "source": "sea level evolution",
+            "target": "sedimentation rate and type",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "sea level evolution - sedimentation rate and type"
+        },
+        {
+            "source": "local thickening of flowing material",
+            "target": "thickness variation",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Mourgues, R., Lecomte, E., Vendeville, B. & Raillard, S. (2009) An experimental investigation of gravity-driven shale tectonics in progradational delta. Tectonophysics, 474 (3-4), 643–656. doi:10.1016/j.tecto.2009.05.003"
+            ],
+            "raw_label": "local thickening of flowing material - thickness variation"
+        },
+        {
+            "source": "flow behavior: elastic",
+            "target": "runout distance",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [
+                "Sawyer, D.E., Flemings, P.B., Buttles, J. & Mohrig, D. (2012) Mudflow transport behavior and deposit morphology: Role of shear stress to yield strength ratio in subaqueous experiments. Marine Geology, 307-310, 28–39. doi:10.1016/j.margeo.2012.01.009",
+                "Elverhoi, A., Breien, H., De Blasio, F.V., Harbitz, C.B. & Pagliardi, M. (2010) Submarine landslides and the importance of the initial sediment composition for run-out length and final deposit. Ocean Dynamics, 60, 1027-1046.",
+                "Alves, T.M., Kurtev, K., Moore, G.F. & Strasser, M. (2014) Assessing the internal character, reservoir potential, and seal competence of mass-transport deposits using seismic texture: A geophysical and petrophysical approach. AAPG Bulletin, 98 (4), 793-824."
+            ],
+            "raw_label": "flow behavior: elastic, plastic, fluid - runout distance"
+        },
+        {
+            "source": "fluid overpressure",
+            "target": "fluid overpressure on basal surface",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Mourgues, R., Lacoste, A. & Garibaldi, C. (2014) The Coulomb critical taper theory applied to gravitational instabilities. J. Geophys. Res. Solid Earth, 119 (1), 754–765. doi:10.1002/2013JB010359"
+            ],
+            "raw_label": "fluid overpressure, short term - fluid overpressure on basal surface"
+        },
+        {
+            "source": "seismicity or waves",
+            "target": "seismicity",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "seismicity or waves, long term - seismicity, short term"
+        },
+        {
+            "source": "seismicity or waves",
+            "target": "offshore events and waves",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "seismicity or waves, long term - offshore events and waves"
+        },
+        {
+            "source": "seafloor effective friction angle",
+            "target": "flow behavior: elastic",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Laberg, J.S., Strasser, M., Alves, T.M., Gao, S., Kawamura, K., Kopf, A. & Moore, G.F. (2017) Internal deformation of a muddy gravity flow and its interaction with the seafloor (site C0018 of IODP Expedition 333, Nankai Trough, SE Japan). Landslides, 14, 849-860."
+            ],
+            "raw_label": "seafloor effective friction angle - flow behavior: elastic, plastic, fluid"
+        },
+        {
+            "source": "source domain in basin",
+            "target": "seafloor shapes and dip variations",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "source domain in basin - seafloor shapes and dip variations"
+        },
+        {
+            "source": "existing geomorphology",
+            "target": "seafloor shapes and dip variations",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "existing geomorphology, objects and pathways - seafloor shapes and dip variations"
+        },
+        {
+            "source": "pore pressure increase by compression",
+            "target": "fluid overpressure in moving mass",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "pore pressure increase by compression - fluid overpressure in moving mass"
+        },
+        {
+            "source": "pore pressure increase by fluid migration",
+            "target": "fluid overpressure in moving mass",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "pore pressure increase by fluid migration - fluid overpressure in moving mass"
+        },
+        {
+            "source": "fluid overpressure in moving mass",
+            "target": "posterior fluid migrations",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "fluid overpressure in moving mass - posterior fluid migrations"
+        },
+        {
+            "source": "inducing seismicity",
+            "target": "local fluidization",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "inducing seismicity - local fluidization"
+        },
+        {
+            "source": "flow behavior: elastic",
+            "target": "terminal dispersion",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "flow behavior: elastic, plastic, fluid - terminal dispersion"
+        },
+        {
+            "source": "lithology in transported mass",
+            "target": "flow behavior: elastic",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Laberg, J.S., Strasser, M., Alves, T.M., Gao, S., Kawamura, K., Kopf, A. & Moore, G.F. (2017) Internal deformation of a muddy gravity flow and its interaction with the seafloor (site C0018 of IODP Expedition 333, Nankai Trough, SE Japan). Landslides, 14, 849-860.",
+                "Alves, T.M., Kurtev, K., Moore, G.F. & Strasser, M. (2014) Assessing the internal character, reservoir potential, and seal competence of mass-transport deposits using seismic texture: A geophysical and petrophysical approach. AAPG Bulletin, 98 (4), 793-824."
+            ],
+            "raw_label": "lithology in transported mass - flow behavior: elastic, plastic, fluid"
+        },
+        {
+            "source": "seafloor shapes and dip variations",
+            "target": "plowing effect on underlying material",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Posamentier, H.W. & Martinsen, O.J. (2011) The Character and Genesis of Submarine Mass-Transport Deposits: Insights from Outcrop and 3D Seismic Data. In: Mass-transport deposits in deepwater settings (Ed. by R.C. Shipp, P. Weimer & H.W. Posamentier), pp. 7–38. SEPM (Society for Sedimentary Geology), Tulsa (Okla.)."
+            ],
+            "raw_label": "seafloor shapes and dip variations - plowing effect on underlying material"
+        },
+        {
+            "source": "evaporite deformation & mud volcanism",
+            "target": "deformed facies distribution",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Omosanya, K.O. & Alves, T.M. (2013) Ramps and flat of mass-transport deposits (MTDs) as markers of seafloor strain on the flanks of rising diapirs (Espirito Santo Basin, SE Brazil). Marine Geology, 340, 82-97."
+            ],
+            "raw_label": "evaporite deformation & mud volcanism - deformed facies distribution"
+        },
+        {
+            "source": "flow behavior: elastic",
+            "target": "deformed facies distribution",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "flow behavior: elastic, plastic, fluid - deformed facies distribution"
+        },
+        {
+            "source": "lithology in transported mass",
+            "target": "seafloor effective friction angle",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "lithology in transported mass - seafloor effective friction angle"
+        },
+        {
+            "source": "lithology of underlying material downslope",
+            "target": "seafloor effective friction angle",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "lithology of underlying material downslope - seafloor effective friction angle"
+        },
+        {
+            "source": "sea level evolution",
+            "target": "pore pressure increase by fluid migration",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Lafuerza, S., Sultan, N., Canals, M., Frigola, J., Berné, S., Jouet, G., Galavazi, M. & Sierro, F.J. (2009) Overpressure within upper continental slope sediments from CPTU data, Gulf of Lion, NW Mediterranean Sea. Int J Earth Sci (Geol Rundsch), 98 (4), 751–768. doi:10.1007/s00531-008-0376-2"
+            ],
+            "raw_label": "sea level evolution - pore pressure increase by fluid migration"
+        },
+        {
+            "source": "flow behavior: elastic",
+            "target": "US median slope",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Sawyer, D.E., Flemings, P.B., Buttles, J. & Mohrig, D. (2012) Mudflow transport behavior and deposit morphology: Role of shear stress to yield strength ratio in subaqueous experiments. Marine Geology, 307-310, 28–39. doi:10.1016/j.margeo.2012.01.009"
+            ],
+            "raw_label": "flow behavior: elastic, plastic, fluid - US median slope"
+        },
+        {
+            "source": "topography confinement downwards",
+            "target": "US median slope",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "topography confinement downwards - US median slope"
+        },
+        {
+            "source": "frontal compression",
+            "target": "US ramps or ridges",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "frontal compression - US ramps or ridges"
+        },
+        {
+            "source": "flow direction",
+            "target": "US median slope",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "flow direction - US median slope"
+        },
+        {
+            "source": "flow direction",
+            "target": "US ramps or ridges",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "flow direction - US ramps or ridges"
+        },
+        {
+            "source": "erosion of underlying material",
+            "target": "BS ramps",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Bull, S., Cartwright, J. & Huuse, M. (2009) A review of kinematic indicators from mass-transport complexes using 3D seismic data. Marine and Petroleum Geology, 26 (7), 1132–1151. doi:10.1016/j.marpetgeo.2008.09.011"
+            ],
+            "raw_label": "erosion of underlying material - BS ramps"
+        },
+        {
+            "source": "volume",
+            "target": "average thickness",
+            "directed": false,
+            "relation": "related_to",
+            "citations": [],
+            "raw_label": "MTD volume - average thickness"
+        },
+        {
+            "source": "basin depocenter position",
+            "target": "lateral distribution of MTDs",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Ortiz-Karpf, A., Hodgson, D.M., Jackson, C.A.-L. & McCaffrey, W.D. (2016) Mass-transport complexes as markers of deep-water fold-and-thrust belt evolution: Insights from the southern Magdalena fan, offshore Colombia. Basin Res, 57 (4), 294. doi:10.1111/bre.12208",
+                "Wu, S.-G., Qin, Z.-L., Wang, D.-W., Peng, X.-C., Wang, Z.-J. & Yao, G.-S. (2011) Analysis on Seismic Characteristics and Triggering Mechanisms of Mass Transport Deposits on the Northern Slope of the South China Sea. Chinese J. Geophys., 54 (6), 1056–1068. doi:10.1002/cjg2.1684"
+            ],
+            "raw_label": "basin depocenter position - lateral distribution of MTDs"
+        },
+        {
+            "source": "existing geomorphology",
+            "target": "lateral distribution of MTDs",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Ortiz-Karpf, A., Hodgson, D.M., Jackson, C.A.-L. & McCaffrey, W.D. (2016) Mass-transport complexes as markers of deep-water fold-and-thrust belt evolution: Insights from the southern Magdalena fan, offshore Colombia. Basin Res, 57 (4), 294. doi:10.1111/bre.12208",
+                "Wu, S.-G., Qin, Z.-L., Wang, D.-W., Peng, X.-C., Wang, Z.-J. & Yao, G.-S. (2011) Analysis on Seismic Characteristics and Triggering Mechanisms of Mass Transport Deposits on the Northern Slope of the South China Sea. Chinese J. Geophys., 54 (6), 1056–1068. doi:10.1002/cjg2.1684"
+            ],
+            "raw_label": "existing geomorphology, objects and pathways - lateral distribution of MTDs"
+        },
+        {
+            "source": "plowing effect on underlying material",
+            "target": "BS strong amplitude",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "plowing effect on underlying material - BS strong amplitude"
+        },
+        {
+            "source": "remobilization",
+            "target": "thickness variation",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "remobilization - thickness variation"
+        },
+        {
+            "source": "presence of preserved blocks",
+            "target": "transparent facies distribution",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "presence of preserved blocks - transparent facies distribution"
+        },
+        {
+            "source": "post deposition regional deformation",
+            "target": "deformed facies distribution",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "post deposition regional deformation - deformed facies distribution"
+        },
+        {
+            "source": "sedimentation rate and type",
+            "target": "HS downslope evolution",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Richardson, S.E.J., Davies, R.J., Allen, M.B. & Grant, S.F. (2011) Structure and evolution of mass transport deposits in the South Caspian Basin, Azerbaijan. Basin Research, 23 (6), 702–719. doi:10.1111/j.1365-2117.2011.00508.x"
+            ],
+            "raw_label": "sedimentation rate and type - HS downslope evolution"
+        },
+        {
+            "source": "sedimentation rate and type",
+            "target": "MTD proportion in sedimentary pile",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [],
+            "raw_label": "sedimentation rate and type - MTD proportion in sedimentary pile"
+        },
+        {
+            "source": "subsidence/uplift",
+            "target": "vertical distribution of MTDs",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Ogiesoba, O. & Hammes, U. (2012) Seismic interpretation of mass-transport deposits within the upper Oligocene Frio Formation, south Texas Gulf Coast. AAPG Bulletin, 96 (5), 845-868."
+            ],
+            "raw_label": "subsidence/uplift, extension/compression - vertical distribution of MTDs"
+        },
+        {
+            "source": "evaporite deformation & mud volcanism",
+            "target": "BS median slope",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Omosanya, K.O. & Alves, T.M. (2013) Ramps and flat of mass-transport deposits (MTDs) as markers of seafloor strain on the flanks of rising diapirs (Espirito Santo Basin, SE Brazil). Marine Geology, 340, 82-97."
+            ],
+            "raw_label": "evaporite deformation & mud volcanism - BS median slope"
+        },
+        {
+            "source": "evaporite deformation & mud volcanism",
+            "target": "US median slope",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Omosanya, K.O. & Alves, T.M. (2013) Ramps and flat of mass-transport deposits (MTDs) as markers of seafloor strain on the flanks of rising diapirs (Espirito Santo Basin, SE Brazil). Marine Geology, 340, 82-97."
+            ],
+            "raw_label": "evaporite deformation & mud volcanism - US median slope"
+        },
+        {
+            "source": "existing geomorphology",
+            "target": "BS ramps",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Omosanya, K.O. & Alves, T.M. (2013) Ramps and flat of mass-transport deposits (MTDs) as markers of seafloor strain on the flanks of rising diapirs (Espirito Santo Basin, SE Brazil). Marine Geology, 340, 82-97."
+            ],
+            "raw_label": "existing geomorphology, objects and pathways - BS ramps"
+        },
+        {
+            "source": "flow direction",
+            "target": "BS ramps",
+            "directed": true,
+            "relation": "impacts",
+            "citations": [
+                "Bull, S., Cartwright, J. & Huuse, M. (2009) A review of kinematic indicators from mass-transport complexes using 3D seismic data. Marine and Petroleum Geology, 26 (7), 1132–1151. doi:10.1016/j.marpetgeo.2008.09.011",
+                "Richardson, S.E.J., Davies, R.J., Allen, M.B. & Grant, S.F. (2011) Structure and evolution of mass transport deposits in the South Caspian Basin, Azerbaijan. Basin Research, 23 (6), 702–719. doi:10.1111/j.1365-2117.2011.00508.x",
+                "Laberg, J.S., Strasser, M., Alves, T.M., Gao, S., Kawamura, K., Kopf, A. & Moore, G.F. (2017) Internal deformation of a muddy gravity flow and its interaction with the seafloor (site C0018 of IODP Expedition 333, Nankai Trough, SE Japan). Landslides, 14, 849-860.",
+                "Omosanya, K.O. & Alves, T.M. (2013) Ramps and flat of mass-transport deposits (MTDs) as markers of seafloor strain on the flanks of rising diapirs (Espirito Santo Basin, SE Brazil). Marine Geology, 340, 82-97."
+            ],
+            "raw_label": "flow direction - BS ramps"
+        }
+    ]
+}

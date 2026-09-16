@@ -1,0 +1,26 @@
+{
+  "protocol": "run13 evaluation protocol — FROZEN",
+  "declared_at_utc": "2026-07-27T16:24:32.640564+00:00",
+  "statement": "The 249-query set is frozen as of run11 and will not be modified for run13. The 34-edge benchmark is split into dev and test before run13 execution. Headline recall will be reported on the test split; dev recall and the dev-test gap will be reported alongside as a measure of residual query-design adaptation. Original-26 vs extended-8 recall will also be reported separately.",
+  "seed": 20260727,
+  "benchmark_sha256": "d172467ab0b4df7b302050249b4ba6c43f8f191575aecb5b2a19340249f97b60",
+  "dev_file": "configs/lb_dev.json",
+  "dev_sha256": "f253a7762fb4ca1fd412ea3f3bdf8b144a7f016d569949bbbe3dfb5c0c66dda1",
+  "dev_n": 17,
+  "test_file": "configs/lb_test.json",
+  "test_sha256": "2583139441b21dd12a4879f2b122498947b464d2e37dbdc3ca26d432add717be",
+  "test_n": 17,
+  "dev_strata": [
+    "extended|context",
+    "extended|descriptor",
+    "original|causal",
+    "original|context",
+    "original|descriptor"
+  ],
+  "test_strata": [
+    "extended|descriptor",
+    "original|causal",
+    "original|context",
+    "original|descriptor"
+  ]
+}

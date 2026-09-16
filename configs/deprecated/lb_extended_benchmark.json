@@ -1,0 +1,201 @@
+{
+  "description": "Extended benchmark: 26 original LB2019 edges + 8 additional edges from corpus passages explicitly supported by single-paper evidence. Extension criteria: same as original (both entities in vocabulary, relation in 11-type schema, explicitly stated in single passage).",
+  "original_count": 26,
+  "extended_count": 34,
+  "edges": [
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasDescriptor",
+      "object": "chaotic"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasDescriptor",
+      "object": "transparent"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasDescriptor",
+      "object": "hummocky"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasDescriptor",
+      "object": "blocky"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasDescriptor",
+      "object": "discontinuous"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasDescriptor",
+      "object": "massive"
+    },
+    {
+      "subject": "turbidite",
+      "relation": "hasDescriptor",
+      "object": "parallel"
+    },
+    {
+      "subject": "turbidite",
+      "relation": "hasDescriptor",
+      "object": "continuous"
+    },
+    {
+      "subject": "turbidite",
+      "relation": "hasDescriptor",
+      "object": "layered"
+    },
+    {
+      "subject": "turbidite",
+      "relation": "hasDescriptor",
+      "object": "high-amplitude"
+    },
+    {
+      "subject": "debris flow",
+      "relation": "hasDescriptor",
+      "object": "chaotic"
+    },
+    {
+      "subject": "debris flow",
+      "relation": "hasDescriptor",
+      "object": "hummocky"
+    },
+    {
+      "subject": "slide",
+      "relation": "hasDescriptor",
+      "object": "blocky"
+    },
+    {
+      "subject": "slide",
+      "relation": "hasDescriptor",
+      "object": "undeformed"
+    },
+    {
+      "subject": "hemipelagite",
+      "relation": "hasDescriptor",
+      "object": "parallel"
+    },
+    {
+      "subject": "hemipelagite",
+      "relation": "hasDescriptor",
+      "object": "continuous"
+    },
+    {
+      "subject": "hemipelagite",
+      "relation": "hasDescriptor",
+      "object": "low-amplitude"
+    },
+    {
+      "subject": "slope failure",
+      "relation": "causes",
+      "object": "mass transport deposit"
+    },
+    {
+      "subject": "earthquake",
+      "relation": "triggers",
+      "object": "slope failure"
+    },
+    {
+      "subject": "pore pressure",
+      "relation": "controls",
+      "object": "slope failure"
+    },
+    {
+      "subject": "turbidity current",
+      "relation": "formedBy",
+      "object": "debris flow"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "occursIn",
+      "object": "continental slope"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "occursIn",
+      "object": "abyssal plain"
+    },
+    {
+      "subject": "debris flow",
+      "relation": "occursIn",
+      "object": "continental slope"
+    },
+    {
+      "subject": "turbidite",
+      "relation": "occursIn",
+      "object": "basin floor"
+    },
+    {
+      "subject": "slide",
+      "relation": "overlies",
+      "object": "hemipelagite"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasDescriptor",
+      "object": "low-amplitude",
+      "source": "LB2019_extended",
+      "criterion": "explicit_single_passage",
+      "evidence": "rugose upper bounding surface located above discontinuous and low amplitude reflections"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasDescriptor",
+      "object": "high-amplitude",
+      "source": "LB2019_extended",
+      "criterion": "explicit_single_passage",
+      "evidence": "mass transport deposit upper surface is commonly a high amplitude, positive reflection"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasDescriptor",
+      "object": "continuous",
+      "source": "LB2019_extended",
+      "criterion": "explicit_single_passage",
+      "evidence": "Continuous, high amplitude basal surface with hummocky upper surface"
+    },
+    {
+      "subject": "slide",
+      "relation": "hasDescriptor",
+      "object": "hummocky",
+      "source": "LB2019_extended",
+      "criterion": "explicit_single_passage",
+      "evidence": "The slide blocks show a characteristic hummocky geometry"
+    },
+    {
+      "subject": "submarine landslides",
+      "relation": "occursIn",
+      "object": "continental slope",
+      "source": "LB2019_extended",
+      "criterion": "explicit_single_passage",
+      "evidence": "identified 83 gravity flows, slides and slumps on the continental slopes"
+    },
+    {
+      "subject": "megaslide",
+      "relation": "hasDescriptor",
+      "object": "chaotic",
+      "source": "LB2019_extended",
+      "criterion": "explicit_single_passage",
+      "evidence": "AM3 is dominated by chaotic facies"
+    },
+    {
+      "subject": "megaslide",
+      "relation": "hasDescriptor",
+      "object": "transparent",
+      "source": "LB2019_extended",
+      "criterion": "explicit_single_passage",
+      "evidence": "internal seismic character is dominated by transparent facies"
+    },
+    {
+      "subject": "megaslide",
+      "relation": "hasDescriptor",
+      "object": "layered",
+      "source": "LB2019_extended",
+      "criterion": "explicit_single_passage",
+      "evidence": "composed of a stack of five closely-layered megaslides"
+    }
+  ]
+}

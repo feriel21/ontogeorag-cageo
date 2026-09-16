@@ -1,0 +1,14 @@
+{
+  "produced_by": "61_extend_queries.py",
+  "base_queries": 249,
+  "added": 38,
+  "total": 287,
+  "template": "Which seismic objects or deposits are described as {d}?",
+  "skipped_zero_occurrence": [
+    "lenticular",
+    "variable-amplitude"
+  ],
+  "skipped_duplicate": [],
+  "sha256_short": "f4269b33fc47",
+  "note": "Extension structurelle du generateur (asymetrie entite->descripteur). Distincte du gapfill. Filtrer origin != 'ext_v2' restitue le jeu d'origine."
+}

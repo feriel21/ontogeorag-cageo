@@ -1,0 +1,110 @@
+{
+  "description": "run13 frozen test split of the 34-edge benchmark (seed 20260727, stratified by source x relation-family). Query set frozen as of run11; split drawn before run13 launch.",
+  "seed": 20260727,
+  "n_edges": 17,
+  "edges": [
+    {
+      "subject": "megaslide",
+      "relation": "hasDescriptor",
+      "object": "chaotic",
+      "source": "LB2019_extended",
+      "criterion": "explicit_single_passage",
+      "evidence": "AM3 is dominated by chaotic facies"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasDescriptor",
+      "object": "low-amplitude",
+      "source": "LB2019_extended",
+      "criterion": "explicit_single_passage",
+      "evidence": "rugose upper bounding surface located above discontinuous and low amplitude reflections"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasDescriptor",
+      "object": "continuous",
+      "source": "LB2019_extended",
+      "criterion": "explicit_single_passage",
+      "evidence": "Continuous, high amplitude basal surface with hummocky upper surface"
+    },
+    {
+      "subject": "megaslide",
+      "relation": "hasDescriptor",
+      "object": "layered",
+      "source": "LB2019_extended",
+      "criterion": "explicit_single_passage",
+      "evidence": "composed of a stack of five closely-layered megaslides"
+    },
+    {
+      "subject": "earthquake",
+      "relation": "triggers",
+      "object": "slope failure"
+    },
+    {
+      "subject": "slope failure",
+      "relation": "causes",
+      "object": "mass transport deposit"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "occursIn",
+      "object": "abyssal plain"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "occursIn",
+      "object": "continental slope"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasDescriptor",
+      "object": "transparent"
+    },
+    {
+      "subject": "slide",
+      "relation": "hasDescriptor",
+      "object": "undeformed"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasDescriptor",
+      "object": "discontinuous"
+    },
+    {
+      "subject": "turbidite",
+      "relation": "hasDescriptor",
+      "object": "continuous"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasDescriptor",
+      "object": "chaotic"
+    },
+    {
+      "subject": "hemipelagite",
+      "relation": "hasDescriptor",
+      "object": "continuous"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasDescriptor",
+      "object": "blocky"
+    },
+    {
+      "subject": "hemipelagite",
+      "relation": "hasDescriptor",
+      "object": "low-amplitude"
+    },
+    {
+      "subject": "mass transport deposit",
+      "relation": "hasDescriptor",
+      "object": "hummocky"
+    }
+  ],
+  "strata": [
+    "extended|descriptor",
+    "original|causal",
+    "original|context",
+    "original|descriptor"
+  ]
+}

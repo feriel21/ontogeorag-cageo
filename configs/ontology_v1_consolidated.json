@@ -1,0 +1,917 @@
+{
+  "_meta": {
+    "produced_by": "57_build_ontology_v1.py",
+    "code_tag": "run15-frozen",
+    "kg": "output/run15/kg_final/flat_run15_enforced_dedup.json",
+    "status": "DESCRIPTIF — aucun script de pipeline ne lit ce fichier. Le brancher est une decision separee, posterieure a run15.",
+    "sha256_without_meta": "e81b5ded54eda8b35b186d64ab238da06bcd42e8f83a8a7bf34648e5149fd772"
+  },
+  "types": {
+    "declared_in_schema": [
+      "Geological_Object",
+      "Descriptor",
+      "Process",
+      "Environmental_Control",
+      "Evidence"
+    ],
+    "observed_in_kg": {
+      "Geological_Object": 183,
+      "Process": 100,
+      "Descriptor": 69,
+      "Environmental_Control": 54
+    }
+  },
+  "relations": [
+    {
+      "name": "affects",
+      "declared_in_schema": false,
+      "allowed_03": true,
+      "valid_04": true,
+      "n_in_kg": 12,
+      "type_constraint": null,
+      "signatures_observed": [
+        "Environmental_Control-affects->Environmental_Control",
+        "Geological_Object-affects->Environmental_Control",
+        "Geological_Object-affects->Geological_Object",
+        "Geological_Object-affects->Process",
+        "Process-affects->Environmental_Control",
+        "Process-affects->Process"
+      ],
+      "status": "OPERATIONAL"
+    },
+    {
+      "name": "associatedWith",
+      "declared_in_schema": false,
+      "allowed_03": false,
+      "valid_04": true,
+      "n_in_kg": 0,
+      "type_constraint": null,
+      "signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "causes",
+      "declared_in_schema": false,
+      "allowed_03": true,
+      "valid_04": true,
+      "n_in_kg": 29,
+      "type_constraint": null,
+      "signatures_observed": [
+        "Environmental_Control-causes->Process",
+        "Geological_Object-causes->Process",
+        "Process-causes->Geological_Object",
+        "Process-causes->Process"
+      ],
+      "status": "OPERATIONAL"
+    },
+    {
+      "name": "contains",
+      "declared_in_schema": false,
+      "allowed_03": false,
+      "valid_04": true,
+      "n_in_kg": 0,
+      "type_constraint": null,
+      "signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "controls",
+      "declared_in_schema": false,
+      "allowed_03": true,
+      "valid_04": true,
+      "n_in_kg": 14,
+      "type_constraint": null,
+      "signatures_observed": [
+        "Environmental_Control-controls->Environmental_Control",
+        "Environmental_Control-controls->Geological_Object",
+        "Environmental_Control-controls->Process",
+        "Geological_Object-controls->Environmental_Control",
+        "Geological_Object-controls->Geological_Object",
+        "Process-controls->Environmental_Control",
+        "Process-controls->Process"
+      ],
+      "status": "OPERATIONAL"
+    },
+    {
+      "name": "deposits",
+      "declared_in_schema": false,
+      "allowed_03": false,
+      "valid_04": true,
+      "n_in_kg": 0,
+      "type_constraint": null,
+      "signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "erodes",
+      "declared_in_schema": false,
+      "allowed_03": false,
+      "valid_04": true,
+      "n_in_kg": 0,
+      "type_constraint": null,
+      "signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "evidences",
+      "declared_in_schema": false,
+      "allowed_03": true,
+      "valid_04": false,
+      "n_in_kg": 0,
+      "type_constraint": null,
+      "signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "formedBy",
+      "declared_in_schema": false,
+      "allowed_03": true,
+      "valid_04": true,
+      "n_in_kg": 0,
+      "type_constraint": null,
+      "signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "hasDescriptor",
+      "declared_in_schema": false,
+      "allowed_03": true,
+      "valid_04": true,
+      "n_in_kg": 69,
+      "type_constraint": {
+        "object_type": "Descriptor"
+      },
+      "signatures_observed": [
+        "Geological_Object-hasDescriptor->Descriptor"
+      ],
+      "status": "OPERATIONAL"
+    },
+    {
+      "name": "indicates",
+      "declared_in_schema": false,
+      "allowed_03": true,
+      "valid_04": false,
+      "n_in_kg": 0,
+      "type_constraint": null,
+      "signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "occursIn",
+      "declared_in_schema": false,
+      "allowed_03": true,
+      "valid_04": true,
+      "n_in_kg": 27,
+      "type_constraint": {
+        "object_type": "Setting"
+      },
+      "signatures_observed": [
+        "Geological_Object-occursIn->Environmental_Control",
+        "Geological_Object-occursIn->Geological_Object"
+      ],
+      "status": "OPERATIONAL"
+    },
+    {
+      "name": "overlies",
+      "declared_in_schema": false,
+      "allowed_03": true,
+      "valid_04": true,
+      "n_in_kg": 11,
+      "type_constraint": {
+        "subject_type": "Geological_Object",
+        "object_type": "Geological_Object"
+      },
+      "signatures_observed": [
+        "Geological_Object-overlies->Geological_Object",
+        "Process-overlies->Geological_Object"
+      ],
+      "status": "OPERATIONAL"
+    },
+    {
+      "name": "partOf",
+      "declared_in_schema": false,
+      "allowed_03": true,
+      "valid_04": true,
+      "n_in_kg": 15,
+      "type_constraint": null,
+      "signatures_observed": [
+        "Geological_Object-partOf->Environmental_Control",
+        "Geological_Object-partOf->Geological_Object"
+      ],
+      "status": "OPERATIONAL"
+    },
+    {
+      "name": "relatedTo",
+      "declared_in_schema": false,
+      "allowed_03": true,
+      "valid_04": false,
+      "n_in_kg": 0,
+      "type_constraint": null,
+      "signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "transports",
+      "declared_in_schema": false,
+      "allowed_03": false,
+      "valid_04": true,
+      "n_in_kg": 0,
+      "type_constraint": null,
+      "signatures_observed": [],
+      "status": "DECLARED_BUT_UNUSED"
+    },
+    {
+      "name": "triggers",
+      "declared_in_schema": false,
+      "allowed_03": true,
+      "valid_04": true,
+      "n_in_kg": 23,
+      "type_constraint": null,
+      "signatures_observed": [
+        "Environmental_Control-triggers->Process",
+        "Geological_Object-triggers->Process",
+        "Process-triggers->Process"
+      ],
+      "status": "OPERATIONAL"
+    },
+    {
+      "name": "underlies",
+      "declared_in_schema": false,
+      "allowed_03": true,
+      "valid_04": true,
+      "n_in_kg": 3,
+      "type_constraint": {
+        "subject_type": "Geological_Object",
+        "object_type": "Geological_Object"
+      },
+      "signatures_observed": [
+        "Geological_Object-underlies->Geological_Object"
+      ],
+      "status": "OPERATIONAL"
+    }
+  ],
+  "lexicon": {
+    "descriptors_known": [
+      "aggradational",
+      "blocky",
+      "channelised",
+      "chaotic",
+      "continuous",
+      "contorted",
+      "convergent",
+      "deformed",
+      "discontinuous",
+      "disrupted",
+      "divergent",
+      "draping",
+      "erosional",
+      "faulted",
+      "folded",
+      "high-amplitude",
+      "hummocky",
+      "irregular",
+      "layered",
+      "lenticular",
+      "low-amplitude",
+      "massive",
+      "moderate-amplitude",
+      "mounded",
+      "onlapping",
+      "parallel",
+      "progradational",
+      "retrogradational",
+      "rough",
+      "sheet-like",
+      "smooth",
+      "stratified",
+      "tabular",
+      "thick",
+      "thin",
+      "transparent",
+      "undeformed",
+      "variable-amplitude",
+      "wavy",
+      "wedge-shaped"
+    ],
+    "descriptors_lb2019": [
+      "blocky",
+      "chaotic",
+      "continuous",
+      "discontinuous",
+      "high-amplitude",
+      "hummocky",
+      "layered",
+      "low-amplitude",
+      "massive",
+      "parallel",
+      "stratified",
+      "transparent",
+      "undeformed"
+    ],
+    "descriptors_never_used": [
+      "aggradational",
+      "channelised",
+      "contorted",
+      "convergent",
+      "deformed",
+      "divergent",
+      "draping",
+      "erosional",
+      "faulted",
+      "folded",
+      "lenticular",
+      "moderate-amplitude",
+      "mounded",
+      "onlapping",
+      "progradational",
+      "retrogradational",
+      "rough",
+      "sheet-like",
+      "smooth",
+      "thin",
+      "variable-amplitude",
+      "wavy"
+    ],
+    "settings_known": [
+      "abyssal plain",
+      "accretionary prism",
+      "active margin",
+      "basin floor",
+      "channel",
+      "continental margin",
+      "continental shelf",
+      "continental slope",
+      "deep water",
+      "deep-water environment",
+      "deep-water environments",
+      "delta",
+      "fan",
+      "levee",
+      "mid-ocean ridge",
+      "overbank",
+      "passive margin",
+      "seamount",
+      "submarine canyon",
+      "submarine fan",
+      "trench"
+    ]
+  },
+  "synonyms": {
+    "descriptor_synonyms": {
+      "stratified": "layered",
+      "sub-parallel": "parallel",
+      "sub parallel": "parallel",
+      "essentially undeformed": "undeformed",
+      "low amplitude": "low-amplitude",
+      "high amplitude": "high-amplitude",
+      "low-amplitude reflection": "low-amplitude",
+      "high-amplitude reflection": "high-amplitude"
+    },
+    "descriptor_fuzzy_map": {
+      "chaotic seismic facies": "chaotic",
+      "chaotic facies": "chaotic",
+      "chaotic reflection": "chaotic",
+      "slightly chaotic facies": "chaotic",
+      "chaotic and discontinuous": "chaotic",
+      "transparent seismic facies": "transparent",
+      "transparent facies": "transparent",
+      "acoustically transparent": "transparent",
+      "hummocky and irregular": "hummocky",
+      "hummocky seismic facies": "hummocky",
+      "hummocky surface": "hummocky",
+      "high-amplitude seismic facies": "high-amplitude",
+      "high amplitude seismic facies": "high-amplitude",
+      "high amplitude reflections": "high-amplitude",
+      "high-amplitude reflections": "high-amplitude",
+      "high amplitude reflection": "high-amplitude",
+      "low-amplitude seismic facies": "low-amplitude",
+      "low amplitude reflections": "low-amplitude",
+      "low to medium amplitude, discontinuous reflectors": "low-amplitude",
+      "high-frequency, low-amplitude reflectors": "low-amplitude",
+      "low amplitude seismic facies": "low-amplitude",
+      "discontinuous seismic facies": "discontinuous",
+      "discontinuous reflections": "discontinuous",
+      "discontinuous and low-amplitude reflections": "discontinuous",
+      "discontinuous wavy seismic events": "discontinuous",
+      "layered seismic facies": "layered",
+      "layered reflections": "layered",
+      "parallel seismic facies": "parallel",
+      "parallel to subparallel and continuous seismic events": "parallel",
+      "parallel reflections": "parallel",
+      "continuous seismic facies": "continuous",
+      "continuous reflections": "continuous",
+      "stratified seismic facies": "stratified",
+      "blocky seismic facies": "blocky",
+      "blocky material": "blocky",
+      "high amplitude, blocky material": "blocky",
+      "massive seismic facies": "massive",
+      "undeformed seismic facies": "undeformed",
+      "undeformed reflections": "undeformed"
+    },
+    "entity_norms": {
+      "mass-transport complex": "mass transport deposit",
+      "mass transport deposit 1": "mass transport deposit",
+      "mtd": "mass transport deposit",
+      "mtd 2": "mass transport deposit",
+      "mass transport complex": "mass transport deposit",
+      "mass-transport deposits": "mass transport deposit",
+      "mass-transport deposits (mtd)": "mass transport deposit",
+      "mtd 1": "mass transport deposit",
+      "mass transport deposit 2": "mass transport deposit",
+      "mass transport deposits": "mass transport deposit",
+      "mass-transport deposit": "mass transport deposit",
+      "debris flows": "debris flow",
+      "debrites": "debris flow",
+      "turbidity currents": "turbidity current",
+      "turbidites": "turbidite",
+      "slides": "slide",
+      "slumps": "slump",
+      "low amplitude": "low-amplitude",
+      "high amplitude": "high-amplitude",
+      "low amplitude reflections": "low-amplitude",
+      "high amplitude reflections": "high-amplitude"
+    },
+    "mtd_variants": [
+      "mass transport complex",
+      "mass transport deposit 1",
+      "mass transport deposit 2",
+      "mass transport deposits",
+      "mass-transport complex",
+      "mass-transport deposit",
+      "mass-transport deposits",
+      "mass-transport deposits (mtd)",
+      "mtd",
+      "mtd 1",
+      "mtd 2"
+    ]
+  },
+  "benchmark": {
+    "note": "Source de verite = configs/benchmark/benchmark_v1.json (voir 58).",
+    "lb26_in_code_at_tag": [
+      [
+        "mass transport deposit",
+        "hasDescriptor",
+        "chaotic"
+      ],
+      [
+        "mass transport deposit",
+        "hasDescriptor",
+        "transparent"
+      ],
+      [
+        "mass transport deposit",
+        "hasDescriptor",
+        "hummocky"
+      ],
+      [
+        "mass transport deposit",
+        "hasDescriptor",
+        "blocky"
+      ],
+      [
+        "mass transport deposit",
+        "hasDescriptor",
+        "discontinuous"
+      ],
+      [
+        "mass transport deposit",
+        "hasDescriptor",
+        "massive"
+      ],
+      [
+        "turbidite",
+        "hasDescriptor",
+        "parallel"
+      ],
+      [
+        "turbidite",
+        "hasDescriptor",
+        "continuous"
+      ],
+      [
+        "turbidite",
+        "hasDescriptor",
+        "layered"
+      ],
+      [
+        "turbidite",
+        "hasDescriptor",
+        "high-amplitude"
+      ],
+      [
+        "debris flow",
+        "hasDescriptor",
+        "chaotic"
+      ],
+      [
+        "debris flow",
+        "hasDescriptor",
+        "hummocky"
+      ],
+      [
+        "slide",
+        "hasDescriptor",
+        "blocky"
+      ],
+      [
+        "slide",
+        "hasDescriptor",
+        "undeformed"
+      ],
+      [
+        "hemipelagite",
+        "hasDescriptor",
+        "parallel"
+      ],
+      [
+        "hemipelagite",
+        "hasDescriptor",
+        "continuous"
+      ],
+      [
+        "hemipelagite",
+        "hasDescriptor",
+        "low-amplitude"
+      ],
+      [
+        "slope failure",
+        "causes",
+        "mass transport deposit"
+      ],
+      [
+        "earthquake",
+        "triggers",
+        "slope failure"
+      ],
+      [
+        "pore pressure",
+        "controls",
+        "slope failure"
+      ],
+      [
+        "turbidity current",
+        "formedBy",
+        "debris flow"
+      ],
+      [
+        "mass transport deposit",
+        "occursIn",
+        "continental slope"
+      ],
+      [
+        "mass transport deposit",
+        "occursIn",
+        "abyssal plain"
+      ],
+      [
+        "debris flow",
+        "occursIn",
+        "continental slope"
+      ],
+      [
+        "turbidite",
+        "occursIn",
+        "basin floor"
+      ],
+      [
+        "slide",
+        "overlies",
+        "hemipelagite"
+      ]
+    ]
+  },
+  "arbitration": [
+    {
+      "id": "A1",
+      "title": "Typage des parametres physiques",
+      "status": "PENDING_GEOLOGICAL_ARBITRATION",
+      "question": "Faut-il un type PhysicalParameter distinct, ou Environmental_Control suffit-il ? Et 'excess pore-water pressures' / 'pore pressure' sont typees Process : une variable d'etat n'est pas un processus.",
+      "entities": [
+        {
+          "entity": "excess pore-water pressures",
+          "type": "Process",
+          "n": 6
+        },
+        {
+          "entity": "sedimentation rate",
+          "type": "Environmental_Control",
+          "n": 5
+        },
+        {
+          "entity": "sedimentation rate",
+          "type": "Process",
+          "n": 5
+        },
+        {
+          "entity": "slope gradient",
+          "type": "Environmental_Control",
+          "n": 2
+        },
+        {
+          "entity": "excess pore-water pressures",
+          "type": "Process",
+          "n": 2
+        },
+        {
+          "entity": "porosity variations",
+          "type": "Environmental_Control",
+          "n": 1
+        },
+        {
+          "entity": "low permeability",
+          "type": "Environmental_Control",
+          "n": 1
+        },
+        {
+          "entity": "pore pressure",
+          "type": "Process",
+          "n": 1
+        },
+        {
+          "entity": "reduced sediment shear strength",
+          "type": "Environmental_Control",
+          "n": 1
+        },
+        {
+          "entity": "organic carbon content",
+          "type": "Environmental_Control",
+          "n": 1
+        }
+      ]
+    },
+    {
+      "id": "A2",
+      "title": "Descripteurs de deformation hors lexique",
+      "status": "PENDING_GEOLOGICAL_ARBITRATION",
+      "question": "LB2019 decrit des facies sismiques ; ces termes decrivent de la structure (inclined, tilted, extensional, imbricated...). Etendre les 40 descripteurs, creer un type StructuralDescriptor, ou assumer l'exclusion ?",
+      "n_rejected": 94,
+      "items": [
+        {
+          "target": "inclined",
+          "n": 9,
+          "nearest_known": "channelised",
+          "ratio": 0.526
+        },
+        {
+          "target": "undisturbed",
+          "n": 8,
+          "nearest_known": "disrupted",
+          "ratio": 0.6
+        },
+        {
+          "target": "tilted",
+          "n": 7,
+          "nearest_known": "faulted",
+          "ratio": 0.615
+        },
+        {
+          "target": "extensional",
+          "n": 6,
+          "nearest_known": "erosional",
+          "ratio": 0.7
+        },
+        {
+          "target": "imbricates",
+          "n": 5,
+          "nearest_known": "disrupted",
+          "ratio": 0.421
+        },
+        {
+          "target": "internal",
+          "n": 4,
+          "nearest_known": "erosional",
+          "ratio": 0.588
+        },
+        {
+          "target": "steeply dipping",
+          "n": 3,
+          "nearest_known": "onlapping",
+          "ratio": 0.5
+        },
+        {
+          "target": "hyperbolic",
+          "n": 3,
+          "nearest_known": "chaotic",
+          "ratio": 0.471
+        },
+        {
+          "target": "landwards",
+          "n": 3,
+          "nearest_known": "undeformed",
+          "ratio": 0.421
+        },
+        {
+          "target": "shear",
+          "n": 2,
+          "nearest_known": "irregular",
+          "ratio": 0.429
+        },
+        {
+          "target": "sinusoidal",
+          "n": 2,
+          "nearest_known": "erosional",
+          "ratio": 0.526
+        },
+        {
+          "target": "low-to-medium amplitude",
+          "n": 2,
+          "nearest_known": "low-amplitude",
+          "ratio": 0.722
+        },
+        {
+          "target": "low to medium amplitude",
+          "n": 2,
+          "nearest_known": "low-amplitude",
+          "ratio": 0.667
+        },
+        {
+          "target": "larger",
+          "n": 2,
+          "nearest_known": "layered",
+          "ratio": 0.615
+        },
+        {
+          "target": "more apparent",
+          "n": 2,
+          "nearest_known": "transparent",
+          "ratio": 0.667
+        },
+        {
+          "target": "smaller glide blocks",
+          "n": 2,
+          "nearest_known": "blocky",
+          "ratio": 0.385
+        },
+        {
+          "target": "debrites",
+          "n": 2,
+          "nearest_known": "deformed",
+          "ratio": 0.5
+        },
+        {
+          "target": "compressional",
+          "n": 2,
+          "nearest_known": "erosional",
+          "ratio": 0.636
+        },
+        {
+          "target": "composedof",
+          "n": 2,
+          "nearest_known": "contorted",
+          "ratio": 0.526
+        },
+        {
+          "target": "km-scale",
+          "n": 2,
+          "nearest_known": "faulted",
+          "ratio": 0.4
+        },
+        {
+          "target": "local interbedded facies",
+          "n": 2,
+          "nearest_known": "low-amplitude",
+          "ratio": 0.432
+        },
+        {
+          "target": "landward-dipping",
+          "n": 2,
+          "nearest_known": "onlapping",
+          "ratio": 0.56
+        },
+        {
+          "target": "positive-topographic-feature",
+          "n": 2,
+          "nearest_known": "transparent",
+          "ratio": 0.359
+        },
+        {
+          "target": "rotated",
+          "n": 1,
+          "nearest_known": "stratified",
+          "ratio": 0.588
+        },
+        {
+          "target": "large angular glide",
+          "n": 1,
+          "nearest_known": "irregular",
+          "ratio": 0.5
+        }
+      ]
+    },
+    {
+      "id": "A3",
+      "title": "Variantes morphologiques a valider",
+      "status": "PENDING_GEOLOGICAL_ARBITRATION",
+      "question": "Chaque paire est-elle un synonyme geologique acceptable ? ex. undisturbed ~ undeformed, transparency ~ transparent. Si oui -> DESCRIPTOR_SYNONYMS ; sinon -> rejet assume.",
+      "n_rejected": 3,
+      "items": [
+        {
+          "target": "transparency",
+          "n": 3,
+          "nearest_known": "transparent",
+          "ratio": 0.87
+        }
+      ]
+    },
+    {
+      "id": "A4",
+      "title": "Depot en position de Setting",
+      "status": "PENDING_GEOLOGICAL_ARBITRATION",
+      "question": "'X occursIn mass transport deposit' : un MTD est-il jamais un environnement de depot valide (ex. blocs dans une matrice), ou toujours une erreur de type ?",
+      "n_rejected": 20,
+      "items": [
+        {
+          "target": "mass transport deposit",
+          "n": 6
+        },
+        {
+          "target": "amapá megaslide complex",
+          "n": 6
+        },
+        {
+          "target": "mtc-1",
+          "n": 3
+        },
+        {
+          "target": "mass-transport deposit",
+          "n": 3
+        },
+        {
+          "target": "lubina mass transport deposit",
+          "n": 2
+        }
+      ]
+    },
+    {
+      "id": "A5",
+      "title": "Settings geographiques vs geomorphologiques",
+      "status": "PENDING_GEOLOGICAL_ARBITRATION",
+      "question": "KNOWN_SETTINGS = 21 environnements geomorphologiques. Les toponymes (Nankai Trough, Mediterranean Sea) doivent-ils entrer comme Setting, ou comme un type Location distinct ?",
+      "n_rejected": 17,
+      "items": [
+        {
+          "target": "study area",
+          "n": 4
+        },
+        {
+          "target": "nankai trough",
+          "n": 3
+        },
+        {
+          "target": "mediterranean sea",
+          "n": 2
+        },
+        {
+          "target": "headscarps",
+          "n": 2
+        },
+        {
+          "target": "zone a",
+          "n": 2
+        },
+        {
+          "target": "toe region",
+          "n": 2
+        },
+        {
+          "target": "neogene-quaternary strata",
+          "n": 1
+        },
+        {
+          "target": "seafloor",
+          "n": 1
+        }
+      ]
+    },
+    {
+      "id": "A6",
+      "title": "Descripteurs transitionnels",
+      "status": "PENDING_GEOLOGICAL_ARBITRATION",
+      "question": "'chaotic to transparent' decrit une transition laterale, pas un descripteur unique. Emettre deux triples, un triple qualifie, ou rejeter ? (3 triples STRONG_SUPPORT concernes, sujet = MTD)"
+    },
+    {
+      "id": "A7",
+      "title": "formedBy jamais instanciee",
+      "status": "MEASURED_ZERO",
+      "question": "Relation autorisee par 03 et 04, 0 occurrence dans le KG livre. L'arete benchmark 'turbidity current formedBy debris flow' est donc structurellement inatteignable. Relation mal choisie, ou lacune reelle ?"
+    }
+  ],
+  "rejection_buckets_summary": {
+    "absent_from_lexicon": {
+      "n_triples": 94,
+      "n_distinct": 41
+    },
+    "morphological_variant": {
+      "n_triples": 3,
+      "n_distinct": 1
+    },
+    "absent_from_known_settings": {
+      "n_triples": 17,
+      "n_distinct": 8
+    },
+    "type_error_object_is_deposit": {
+      "n_triples": 20,
+      "n_distinct": 5
+    }
+  }
+}

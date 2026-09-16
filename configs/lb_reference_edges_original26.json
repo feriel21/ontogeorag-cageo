@@ -1,0 +1,37 @@
+{
+  "description": "26 reference edges from Le Bouteiller (2019) for recall evaluation",
+  "source": "Le Bouteiller, P. (2019). Mass Transport Deposits characterization.",
+  "edges": [
+    {"subject": "mass transport deposit", "relation": "hasDescriptor", "object": "chaotic"},
+    {"subject": "mass transport deposit", "relation": "hasDescriptor", "object": "transparent"},
+    {"subject": "mass transport deposit", "relation": "hasDescriptor", "object": "hummocky"},
+    {"subject": "mass transport deposit", "relation": "hasDescriptor", "object": "blocky"},
+    {"subject": "mass transport deposit", "relation": "hasDescriptor", "object": "discontinuous"},
+    {"subject": "mass transport deposit", "relation": "hasDescriptor", "object": "massive"},
+    {"subject": "turbidite", "relation": "hasDescriptor", "object": "parallel"},
+    {"subject": "turbidite", "relation": "hasDescriptor", "object": "continuous"},
+    {"subject": "turbidite", "relation": "hasDescriptor", "object": "layered"},
+    {"subject": "turbidite", "relation": "hasDescriptor", "object": "high-amplitude"},
+    {"subject": "debris flow", "relation": "hasDescriptor", "object": "chaotic"},
+    {"subject": "debris flow", "relation": "hasDescriptor", "object": "hummocky"},
+    {"subject": "slide", "relation": "hasDescriptor", "object": "blocky"},
+    {"subject": "slide", "relation": "hasDescriptor", "object": "undeformed"},
+    {"subject": "hemipelagite", "relation": "hasDescriptor", "object": "parallel"},
+    {"subject": "hemipelagite", "relation": "hasDescriptor", "object": "continuous"},
+    {"subject": "hemipelagite", "relation": "hasDescriptor", "object": "low-amplitude"},
+    {"subject": "slope failure", "relation": "causes", "object": "mass transport deposit"},
+    {"subject": "earthquake", "relation": "triggers", "object": "slope failure"},
+    {"subject": "pore pressure", "relation": "controls", "object": "slope failure"},
+    {"subject": "turbidity current", "relation": "formedBy", "object": "debris flow"},
+    {"subject": "mass transport deposit", "relation": "occursIn", "object": "continental slope"},
+    {"subject": "mass transport deposit", "relation": "occursIn", "object": "abyssal plain"},
+    {"subject": "debris flow", "relation": "occursIn", "object": "continental slope"},
+    {"subject": "turbidite", "relation": "occursIn", "object": "basin floor"},
+    {"subject": "slide", "relation": "overlies", "object": "hemipelagite"}
+  ],
+  "descriptors_13": [
+    "blocky", "chaotic", "continuous", "discontinuous",
+    "high-amplitude", "hummocky", "layered", "low-amplitude",
+    "massive", "parallel", "stratified", "transparent", "undeformed"
+  ]
+}
