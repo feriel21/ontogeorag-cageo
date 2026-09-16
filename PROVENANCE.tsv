@@ -83,3 +83,4 @@ scripts/paper/68_classify_vocabulary.py	file:~/ontogeorag/68_classify_vocabulary
 scripts/tools/48e_preflight_41.py	file:~/ontogeorag/48e_preflight_41.py	623900990a0873c40134fb02bd85a45dab358bd4e27c08e9c2e2603e1e351adf	sha = inventaire 148
 scripts/tools/50_extract_lb26_reference.py	file:~/ontogeorag/50_extract_lb26_reference.py	28d356697f416662749b7b3d7f727e79a2355195ebfeb40c0a330a4052c3f559	sha = inventaire 148
 slurm/run16_full.sh	git:9c03730:slurm/run16_full.sh	db12a9fc265eb7fb6798a3b36abb67e9f4b5233bb974a417f80824e804037e1a	hors manifeste
+scripts/paper/154_table5_ablation.py	file:~/ontogeorag/154_table5_ablation.py	bccc3b64dc98059665ca839f3f8acc8b343a79285da67389c40ca2513541d3a3	Table 5 identique au manuscrit et a 67
