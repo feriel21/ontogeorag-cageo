@@ -1,45 +1,45 @@
 #!/usr/bin/env python3
-"""
-143_benchmark_leakage_and_retrieval_recall.py
+"""Retrieval replay for the benchmark edges the delivered graph does not recover (Section 3.3).
 
-Two questions, no language model involved.
+Replays retrieval of the delivered run for its 287 queries, with the parameters of the
+run16E manifest (BM25 top 20, minimum score 2.0, cross-encoder
+ms-marco-MiniLM-L-6-v2, top 5), and assigns every unrecovered benchmark edge to the
+first retrieval stage at which its evidence is lost.
 
-Q1 (leakage). Which queries were written against benchmark edges, and are
-    they in the base set of 249 queries (configuration A) or only in the
-    extended set of 287?
+Published results
+    26-edge benchmark: 13 recovered, 11 retrieved but not extracted, 2 without evidence
+    34-edge benchmark: 18 recovered, 14 retrieved but not extracted, 2 without evidence
+    replayed retrieval: 852 distinct chunks in the top-20 union, 432 in the top-5 union
 
-Q2 (retrieval recall). For each benchmark edge the delivered graph does not
-    recover, did the replayed retrieval (BM25 top-20, min score 2.0,
-    cross-encoder top-5, parameters of the run16E manifest argv) ever pass
-    a chunk containing both arguments to the extractor?
+Rules (fixed before running)
+    R1  An argument occurs in a chunk: case-insensitive, word-bounded, hyphen, space and
+        hyphen followed by whitespace treated as one separator, optional plural s|es.
+    R2  An edge co-occurs in a chunk iff subject and object both occur (R1).
+    R3  A query targets an edge iff its focus and query text contain both arguments (R1).
+    R4  Recovery: normalised exact (subject, relation, object) match with the delivered
+        graph; must reproduce 13/26 and 18/34 (substring match is tried otherwise).
+    R5  Stage of an unrecovered edge, for all 287 queries, the base 249, and all queries
+        minus those targeting the edge: NO_EVIDENCE, NOT_IN_BM25_TOP20, LOST_AT_RERANK,
+        RETRIEVED_NOT_EXTRACTED (a co-occurring chunk was passed to the extractor).
+    R6  Replay fidelity through a stored passage field.
 
-Rules fixed BEFORE running. Do not change them after seeing the results.
-R1  Argument occurrence in a chunk: case-insensitive, word-bounded,
-    hyphen / space / hyphen+whitespace treated as one separator,
-    optional plural suffix (s|es). Nothing else.
-R2  An edge co-occurs in a chunk iff subject and object both occur (R1).
-R3  A query targets an edge iff its `focus` + `query` text contains both
-    the subject and the object of the edge under R1.
-    Validity: R3 must reproduce 95m (17 of 26 edges, 17 of 34, 24 queries).
-    Otherwise the leakage verdict is WITHHELD.
-R4  Recovery: normalised exact (subject, relation, object) match against
-    the delivered graph; must reproduce 13/26 and 18/34. If exact fails,
-    the substring variant is tried; if both fail, the script stops.
-R5  Stage of an unrecovered edge, for three query subsets
-    (all 287 / base 249 / all minus the queries targeting that edge):
-      NO_EVIDENCE              no chunk of the index co-occurs
-      NOT_IN_BM25_TOP20        co-occurring chunks exist, none in a BM25 top-20
-      LOST_AT_RERANK           in some BM25 top-20, never in a top-5
-      RETRIEVED_NOT_EXTRACTED  in some top-5 passed to the extractor
-R6  Replay fidelity: share of delivered relations whose stored passage is
-    found in a replayed top-5 chunk. Reported, never used to filter.
+Two parts of the output are not used in the article, and why
+    Targeting. R3 is broader than the whole-term rule used for the published count
+    (17 of 26 edges, manifest_parameters_and_benchmark_targeting.py), does not reproduce
+    it, and its verdict is therefore reported as WITHHELD.
+    R6. The delivered graph stores an evidence sentence, not a passage, so R6 reports
+    NOT CHECKED; fidelity is measured by replay_fidelity_and_sentence_cooccurrence.py.
 
-Joins between files use content keys only, never positions.
-Refuses to overwrite an existing output directory.
+Joins use content keys only. Inputs are located under ~/ontogeorag_D and ~/ontogeorag
+(original layout); the extended query file is identified by its checksum prefix.
+Output: output/audit/143_leakage_only or output/audit/143_full; an existing output
+directory is never overwritten.
+
+Historical name: 143_benchmark_leakage_and_retrieval_recall.py
 
 Usage
-  python -u 143_benchmark_leakage_and_retrieval_recall.py --leakage-only
-  python -u 143_benchmark_leakage_and_retrieval_recall.py
+    python -u scripts/evaluation/retrieval_replay_and_benchmark_targeting.py --leakage-only
+    python -u scripts/evaluation/retrieval_replay_and_benchmark_targeting.py
 """
 
 import argparse

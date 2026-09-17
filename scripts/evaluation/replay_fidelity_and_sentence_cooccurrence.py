@@ -1,43 +1,47 @@
 #!/usr/bin/env python3
-"""
-144_replay_fidelity_and_sentence_cooccurrence.py
+"""Replay fidelity, provenance of the delivered relations, and sentence-level co-occurrence (Sections 3.1 and 3.3).
 
-Follows 143. No language model is called for extraction or judgement; the
-cross-encoder is used only to replay retrieval.
+No language model is used for extraction or judgement; the cross-encoder only replays
+retrieval, with the parameters of the delivered run.
 
-Q1 (provenance). What does each of the 232 delivered relations actually
-    carry: evidence sentence, query, supporting papers? Can the paper be
-    recovered by locating the evidence sentence in the index?
-Q2 (replay fidelity). Is each relation's evidence sentence found in the
-    replayed top-5 of the very query recorded on that relation?
-Q3 (sentence co-occurrence). For each benchmark edge, how many sentences of
-    the chunks passed to the extractor contain both arguments?
+Q1  Provenance. What each delivered relation stores (evidence sentence, query,
+    supporting papers), and whether its paper can be recovered by locating the
+    evidence sentence in the index.
+Q2  Fidelity. Whether the evidence sentence of each relation is found in the replayed
+    top 5 of the query recorded on that relation.
+Q3  Sentence co-occurrence. For each benchmark edge, the sentences of the chunks passed
+    to the extractor that contain both arguments.
 
-Rules fixed BEFORE running. Do not change them after seeing the results.
-F1  Text comparison for evidence: lowercase, keep [a-z0-9] only, on both the
-    evidence sentence and the chunk (neutralises quotes, hyphenation,
-    line breaks).
-F2  FOUND_EXACT if the whole normalised evidence is a substring of a chunk;
-    FOUND_PARTIAL if not, but at least one of three 40-character windows
-    (start, middle, end) is; NOT_FOUND otherwise. Evidence of 40 characters
-    or fewer is tested whole only.
-F3  Fidelity levels per relation, first that applies:
-      IN_OWN_QUERY_TOP5, IN_OTHER_QUERY_TOP5, IN_INDEX_NOT_TOP5,
-      NOT_IN_INDEX, NO_EVIDENCE, QUERY_NOT_IN_SET.
-F4  Paper of a relation: document field of the chunks where its evidence is
-    found (F2), if a document field exists in the index.
-S1  Argument occurrence: rule R1 of 143 (word-bounded, separator-normalised,
-    optional plural).
-S2  Sentences: whitespace collapsed, split after . ! or ? followed by space.
-    Abbreviations such as "fig." split sentences; this can only lower counts.
-S3  Sentence co-occurrence is counted over the union of replayed top-5 chunks
-    (all 287 queries), each distinct sentence once.
-S4  Chance level: probability that at least one of the n co-occurring chunks
-    of an edge falls in a uniformly random set of K chunks, K = size of the
-    top-5 union. Reported, never used to classify.
-Consistency: replay must reproduce 143 (852 chunks in top-20 union, 432 in
-top-5 union) and recovery 13/26, 18/34, or the script stops.
-Joins use content keys only. Refuses to overwrite its output directory.
+Published results
+    every relation stores an evidence sentence and its query; none stores papers
+    evidence sentence found in the replayed top 5 of its own query: 228 of 232; not
+    found in the index in recognisable form: 4
+    unrecovered edges of the 34-edge benchmark with evidence passed to the extractor: 14;
+    in 11 of them both arguments occur in one sentence, in 3 only in different sentences
+
+Rules (fixed before running)
+    F1  Evidence comparison on lower-case alphanumeric characters, for evidence and chunk.
+    F2  FOUND_EXACT if the whole normalised evidence occurs in a chunk; FOUND_PARTIAL if
+        one of three 40-character windows (start, middle, end) does; NOT_FOUND otherwise.
+    F3  Fidelity level, first that applies: IN_OWN_QUERY_TOP5, IN_OTHER_QUERY_TOP5,
+        IN_INDEX_NOT_TOP5, NOT_IN_INDEX, NO_EVIDENCE, QUERY_NOT_IN_SET.
+    F4  Paper of a relation: document field of the chunks in which its evidence is found.
+    S1  Argument occurrence: rule R1 of the retrieval replay script.
+    S2  Sentences: whitespace collapsed, split after . ! or ? followed by a space;
+        abbreviations such as "fig." also split, which can only lower counts.
+    S3  Co-occurrence counted over the union of replayed top-5 chunks, each distinct
+        sentence once.
+    S4  Chance level: probability that one of the n co-occurring chunks of an edge falls
+        in a random set of the size of the top-5 union. Reported, never used to classify.
+
+Consistency guard: the replay must reproduce 852 and 432 chunks and recovery 13/26 and
+18/34, or the script stops. Joins use content keys only. Output:
+output/audit/144_fidelity_and_sentences, never overwritten.
+
+Historical name: 144_replay_fidelity_and_sentence_cooccurrence.py
+
+Usage
+    python -u scripts/evaluation/replay_fidelity_and_sentence_cooccurrence.py
 """
 
 import csv

@@ -108,3 +108,6 @@ scripts/figures/fig_tradeoff.py	renamed from scripts/figures/95y_fig_tradeoff.py
 scripts/tools/benchmark26_from_pipeline_constant.py	renamed from scripts/tools/50_extract_lb26_reference.py (English; checked by 157)	93750d8e4748f3c4d8eeed1b1db4bbf9ffc17bfb8e9cd09358b2e670c509b131	157
 scripts/tools/corpus_preflight.py	renamed from scripts/tools/48e_preflight_41.py (English; checked by 157)	b80fe21da5b331253e22a645a717f8d76eb3439a26b20d67c876685e920b92a2	157
 scripts/figures/fig_pipeline.py	renamed from scripts/figures/95q_fig_pipeline.py (English; checked by 157)	14d248ebe243c5a0e69e3b9ccb104a1f07fae5461942c4d1e7411954797c4346	157
+scripts/evaluation/retrieval_replay_and_benchmark_targeting.py	renamed from scripts/evaluation/143_benchmark_leakage_and_retrieval_recall.py (English docstring; checked by 158)	60d15810652df1a404289e8e90b9788cb7c386aa93f83f5c2108e813798de5a0	158
+scripts/evaluation/replay_fidelity_and_sentence_cooccurrence.py	renamed from scripts/evaluation/144_replay_fidelity_and_sentence_cooccurrence.py (English docstring; checked by 158)	9f61a0c4ff760ce646d59fd22dc3223fc01b8263e0ae880e133d5ddaf95afd82	158
+scripts/evaluation/verifier_decision_rules.py	renamed from scripts/evaluation/106d_metrics_stratified.py (English docstring; checked by 158)	87f7462bae4f8bf6b6df5ab06f05ce95ecd280116c27ad6f38105b059a1ab153	158

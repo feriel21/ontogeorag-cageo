@@ -1,27 +1,38 @@
 #!/usr/bin/env python3
-"""
-106d_metrics_stratified.py — the measurement, on the join verified by 106c.
+"""Verifier decision rules scored on the 464 adversarial controls (Section 3.7).
 
-Join: index alignment. NOT assumed — 106c established it empirically
-(m4_index == row index on 464/464; mean aligned quote-similarity 0.894 vs 0.553
-for the best competing row). Re-asserted here as a hard assert.
+Scores four decision rules on the verifier verdicts of the adversarial controls of the
+delivered run, overall and by corruption class:
+    blind_pass_alone   rejects when the passage-blind verdict is not PLAUSIBLE
+    evidence_alone     rejects when the evidence verdict is not SUPPORTED
+    shipped_matrix     rejects only when both of the above reject: the admission rule
+                       of the pipeline
+    evidence_dominant  the evidence verdict decides; the blind verdict may only demote
 
-Decision rules, established from label counts rather than guessed:
-  blind_pass_alone : flags when blind.verdict != PLAUSIBLE
-                     -> 31 flags total; documented 0.086/0.953 implies 20+11=31 OK
-  evidence_alone   : flags when evidence.verdict != SUPPORTED
-                     -> 382 flags total; documented 0.974/0.328 implies 226+156=382 OK
-  evidence_dominant: evidence decides; the blind pass may only demote, never rescue
-  shipped_matrix   : reconstructed below and CHECKED against documented 0.086/0.974
+Published results (shipped_matrix): 20 of the 232 corrupted records rejected
+(sensitivity 0.086), specificity 0.974, balanced accuracy 0.530. The single-verdict
+figures of the article (142 rejected, specificity 0.871, balanced accuracy 0.742, a
+record being rejected when its evidence verdict is NOT_SUPPORTED) come from
+negatives_report.json of m4/m4_negatives.py, not from this script.
 
-CAVEAT recorded in the output: every verdict in m4_verdicts.jsonl carries
-model = Llama-3.1-8B. There are no Mistral-7B verdicts in this file, so these
-figures characterise ONE verifier, not the two-model panel.
+All verdicts in the file come from one verifier, Llama-3.1-8B-Instruct; the script
+says so in its output.
 
-Outputs:
-  output/run16E/m4/negatives/metrics_overall.csv    — per rule, with bootstrap CI
-  output/run16E/m4/negatives/metrics_stratified.csv — per rule x corruption_class
-  output/run16E/m4/negatives/evidence_alone_fp.csv  — corrupted controls wrongly kept
+Join. Verdict row i is asserted to belong to control row i (m4_index equals the row
+index for every row); control_verdict_alignment.py tests that alignment on content.
+Confidence intervals are bootstrap percentiles (2,000 resamples overall, 1,000 per
+class, fixed seeds). The Wilson intervals of Figure 6 are not computed here.
+REFERENCE holds earlier values used as a self-check column only.
+
+Input   output/run16E/m4/negatives/{controls.jsonl, m4_verdicts.jsonl}, relative to the
+        working directory (run it from the directory that holds output/run16E).
+Output  metrics_overall.csv, metrics_stratified.csv, evidence_alone_fp.csv in that
+        directory.
+
+Historical name: 106d_metrics_stratified.py
+
+Usage
+    cd /path/to/run_root && python /path/to/repo/scripts/evaluation/verifier_decision_rules.py
 """
 import json, csv, random
 from pathlib import Path
