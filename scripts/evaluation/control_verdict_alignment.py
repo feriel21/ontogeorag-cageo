@@ -1,20 +1,23 @@
 #!/usr/bin/env python3
-"""
-106c_join_verify.py — settle the join with the correct content key, and test the
-row-alignment hypothesis rather than assuming it.
+"""Check that verifier verdicts are aligned with the adversarial controls before any metric is computed.
 
-Two corrections over 106b:
-  1. evidence is a dict {verdict, quote, reasoning}. The passage text lives in
-     evidence["quote"]. 106b compared against the whole serialised dict, which
-     diluted every similarity score and manufactured false ambiguities.
-  2. The 12 ambiguous cases all pointed at m4_index == control row index. That is
-     a positional join, which this project does not accept on faith. This script
-     tests it: for all 464 rows, it measures quote-similarity at the aligned index
-     and compares against the best similarity found anywhere else.
+The verdict file and the control file of the delivered run have one row per control.
+This script tests, rather than assumes, that verdict row i belongs to control row i:
+for every control it compares the evidence text of the control with the quote of the
+verdict at the same index, and with the best match among about 60 other verdicts.
 
-Outputs:
-  output/run16E/m4/negatives/join_verify.csv  — per-control alignment evidence
-Writes no join map and computes no metric. Read the summary, then decide.
+It also prints the label space of the verdicts (evidence verdict, blind verdict,
+model, tier), which the decision rules of the stratified metrics depend on.
+
+Input   output/run16E/m4/negatives/{controls.jsonl, m4_verdicts.jsonl}, relative to the
+        working directory (run it from the directory that holds output/run16E).
+Output  output/run16E/m4/negatives/join_verify.csv, one row per control.
+Computes no metric.
+
+Historical name: 106c_join_verify.py
+
+Usage
+    cd /path/to/run_root && python /path/to/repo/scripts/evaluation/control_verdict_alignment.py
 """
 import json, csv, random
 from pathlib import Path

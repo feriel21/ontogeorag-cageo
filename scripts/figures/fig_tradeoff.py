@@ -1,33 +1,23 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-95y_fig_tradeoff.py — La contrainte, en une figure
+"""Figure 3: the five ablation configurations in the plane of coverage against benchmark recovery.
 
-CE QUE LA FIGURE MONTRE
-    Les cinq configurations d'ablation dans le plan (descripteurs
-    distincts recuperes, aretes de benchmark retrouvees). La chaine
-    A -> B -> C -> E est reliee par une fleche : elle varie un facteur a
-    la fois. La configuration D varie deux facteurs et est dessinee
-    detachee, avec un marqueur different, comme instrument de mesure et
-    non comme terme de la comparaison.
+x axis: distinct descriptors recovered; y axis: benchmark edges recovered (of 34).
+The chain A -> B -> C -> E, in which each step changes one factor, is drawn with
+arrows; configuration D, which changes two factors, is drawn apart with another marker.
 
-    Le message est la pente : ouvrir le vocabulaire gagne des
-    descripteurs et perd des aretes, et le benchmark ne peut pas
-    arbitrer puisqu'il est construit sur le vocabulaire ferme qu'il sert
-    a noter.
+Data. The five pairs are those of Table 5 and are written in CONFIGS below; this
+script reads no file. If Table 5 changes, change CONFIGS and nothing else
+(scripts/paper/table5_ablation.py produces the table).
 
-DONNEES
-    Les cinq couples sont ceux du tableau d'ablation du manuscrit
-    (Table 5). Aucune donnee nouvelle n'est lue : si le tableau change,
-    changer CONFIGS ci-dessous et rien d'autre.
+Size. 6.3 inches wide, the text width of the manuscript class; include with
+width equal to the line width, without further scaling.
 
-USAGE
-    python3 95y_fig_tradeoff.py --out ~/ontogeorag/output/figures/fig_tradeoff
-    Ajouter --greyscale pour le controle d'impression.
+Historical name: 95y_fig_tradeoff.py
 
-TAILLE
-    6.3 pouces de large = \\linewidth en a4paper 12pt. Inclure avec
-    width=\\linewidth et ne pas agrandir.
+Usage
+    python scripts/figures/fig_tradeoff.py --out output/figures/fig_tradeoff
+    python scripts/figures/fig_tradeoff.py --out output/figures/fig_tradeoff --greyscale
 """
 
 import argparse
@@ -38,7 +28,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 
-# (etiquette, vocabulaire, requetes, descripteurs distincts, aretes / 34)
+# (label, prompt vocabulary, queries, distinct descriptors, benchmark edges of 34)
 CONFIGS = [
     ("A", "13 imposed",   249, 21, 25),
     ("B", "13 imposed",   287, 23, 25),
@@ -52,7 +42,7 @@ CHAIN = ["A", "B", "C", "E"]
 
 def main():
     ap = argparse.ArgumentParser(
-        description="Figure du compromis couverture / benchmark")
+        description="Coverage / benchmark trade-off figure (Figure 3)")
     ap.add_argument("--out", default="fig_tradeoff")
     ap.add_argument("--width", type=float, default=6.3)
     ap.add_argument("--height", type=float, default=4.2)
@@ -67,7 +57,7 @@ def main():
 
     fig, ax = plt.subplots(figsize=(args.width, args.height))
 
-    # chaine A -> B -> C -> E, un facteur a la fois
+    # chain A -> B -> C -> E, one factor at a time
     xs = [by[k][3] for k in CHAIN]
     ys = [by[k][4] for k in CHAIN]
     for i in range(len(CHAIN) - 1):
@@ -79,12 +69,12 @@ def main():
     ax.scatter(xs, ys, s=70, color=col_chain, marker="o",
                zorder=3, edgecolors="white", linewidths=0.8)
 
-    # configuration D, detachee
+    # configuration D, drawn apart
     d = by["D"]
     ax.scatter([d[3]], [d[4]], s=70, color=col_d, marker="s",
                zorder=3, edgecolors="white", linewidths=0.8)
 
-    # etiquettes : lettre + ce que la configuration fait
+    # labels: letter and what the configuration does
     offsets = {"A": (0.35, 0.30), "B": (0.35, -0.55), "C": (0.35, 0.30),
                "D": (0.35, 0.30), "E": (-0.45, 0.45)}
     for key, vocab, nq, ndesc, nedges in CONFIGS:
@@ -123,7 +113,7 @@ def main():
     for ext in ("pdf", "png"):
         fig.savefig(str(out) + "." + ext, dpi=400, bbox_inches="tight")
     plt.close(fig)
-    print("ecrit : {0}.pdf et {0}.png".format(out))
+    print("written: {0}.pdf and {0}.png".format(out))
     return 0
 
 

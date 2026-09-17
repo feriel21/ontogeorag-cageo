@@ -1,18 +1,31 @@
 #!/usr/bin/env python3
-"""
-145_graph_with_located_provenance.py
+"""Delivered graph with the location of each evidence sentence in the index (Section 3.1).
 
 Writes a copy of the delivered graph in which each relation gains a
-`located_provenance` field: the chunk(s) and document(s) of the index in
-which its evidence sentence is found. The delivered file is never modified.
+located_provenance field: match status, document(s) and chunk(s) of the index in which
+its evidence sentence is found. The delivered graph file is never modified.
 
-Rules: F1 and F2 of script 144, unchanged.
-  F1  compare lowercase [a-z0-9] only, on evidence and chunk text.
-  F2  exact if the whole normalised evidence is in a chunk; partial if one of
-      three 40-character windows (start, middle, end) is; not_found otherwise.
-Consistency: must reproduce 144 exactly (exact 164, partial 64, not_found 4;
-single document 226, two 1, three 1, none 4) or the script stops.
-No GPU, no model. Refuses to overwrite its output directory.
+Rules
+    F1  Comparison on lower-case alphanumeric characters only, for both the evidence
+        sentence and the chunk text.
+    F2  exact     : the whole normalised sentence occurs in a chunk;
+        partial   : one of three 40-character windows (start, middle, end) occurs;
+        not_found : otherwise.
+
+Consistency guard. The script stops unless it reproduces the published counts:
+exact 164, partial 64, not_found 4; one document 226, two 1, three 1, none 4.
+
+Inputs are located under ~/ontogeorag_D and ~/ontogeorag (original layout); a pattern
+that matches two different files stops the script. No GPU, no model. Refuses to
+overwrite its output directory (output/audit/145_provenance).
+
+The output contains the evidence sentences, which are short quotations of the source
+papers: check the licence decision before redistributing it.
+
+Historical name: 145_graph_with_located_provenance.py
+
+Usage
+    python scripts/evaluation/graph_with_located_provenance.py
 """
 
 import glob

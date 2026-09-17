@@ -1,31 +1,39 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-48e_preflight_41.py  --  controle pre-vol avant relance du pipeline
-================================================================
-A executer APRES avoir copie les 3 chapitres manquants dans
-data/full_corpus, et AVANT toute reindexation.
+"""Preflight check of a reconstituted corpus before indexing.
 
-Repond a trois questions, dans l'ordre :
+For a directory of PDFs obtained by the reader (the corpus cannot be redistributed):
+  A  presence: 41 PDFs expected;
+  B  text extraction with every available extractor (pymupdf, pypdf, pdfplumber),
+     keeping the longest text;
+  C  watermark and download-stamp lines, duplicated lines, estimated number of chunks;
+  D  optional matching of file names against the list of the 41 references
+     (data/lb2019_41_refs.txt).
+Each document receives a verdict: GO, ATTENTION (warning) or NO-GO.
 
-  A. Les 41 references LB2019 sont-elles toutes presentes ?
-  B. Chaque PDF rend-il du texte exploitable, et avec quel extracteur ?
-  C. Le texte contient-il des filigranes ou artefacts a nettoyer ?
+The delivered index used chunks of 2,000 characters with a 200-character overlap: pass
+--chunk-size 2000 to estimate the same volume (the default 1888 is kept from the
+original script). The index itself is built by 49_build_index_v2.py, which selects the
+extractor per document and records it in ingestion_report.json.
 
-Puis simule le decoupage en chunks pour predire le volume attendu,
-et delivre un verdict GO / NO-GO par document.
+Output: <out>/preflight_41.csv. Column names and verdict details are in French, as
+produced by the original script:
+    fichier = file, taille_ko = size (kB), <extractor> = characters extracted,
+    <extractor>_err = extraction error, meilleur_extracteur = best extractor,
+    chars_bruts = raw characters, lignes_filigrane = watermark lines,
+    chars_nettoyes = characters after cleaning, taux_lignes_dupliquees = share of
+    duplicated lines, chunks_estimes = estimated chunks, ecart_extracteurs = ratio of
+    the longest to the shortest extraction;
+    "aucun texte (OCR requis)" = no text, OCR required; "texte trop pauvre" = too little
+    text; "extracteurs divergent" = extractors disagree; "de lignes dupliquees" =
+    duplicated lines; "lignes de filigrane a retirer" = watermark lines to remove.
 
-Ne modifie rien. N'ecrit que dans --out.
+Read-only; writes only under --out.
 
-Usage :
-    python 48e_preflight_41.py \
-        --corpus-dir ~/ontogeorag/data/full_corpus \
-        --refs ~/ontogeorag/data/lb2019_41_refs.txt \
-        --out ~/ontogeorag/output/preflight \
-        --chunk-size 1888 --overlap 200
+Historical name: 48e_preflight_41.py
 
-Extracteurs : pymupdf est prefere (le plus robuste sur ce corpus).
-    pip install pymupdf
+Usage
+    python scripts/tools/corpus_preflight.py --corpus-dir /path/to/corpus --refs data/lb2019_41_refs.txt --out output/preflight --chunk-size 2000 --overlap 200
 """
 
 import argparse
@@ -48,7 +56,7 @@ for name, mod in (("pypdf", "pypdf"), ("pymupdf", "fitz"),
 DOI_RE = re.compile(r"10\.\d{4,9}/[-._;()/:A-Za-z0-9]+", re.I)
 YEAR_RE = re.compile(r"\((\d{4})[a-z]?\)")
 
-# Filigranes et lignes parasites a retirer avant chunking
+# Watermark and stamp lines removed before chunking
 WATERMARK_PAT = [
     re.compile(r"Downloaded from .*geoscienceworld\.org.*", re.I),
     re.compile(r"by .{0,40}Universite? user on \d{1,2} \w+ \d{4}", re.I),
@@ -82,7 +90,7 @@ def surnames(ref):
 
 # ---------------- extraction ----------------
 def extract(path, backend, max_pages=None):
-    """Retourne (texte, n_pages, erreur)."""
+    """Return (text, n_pages, error)."""
     try:
         if backend == "pymupdf":
             import fitz  # type: ignore
@@ -124,7 +132,7 @@ def extract(path, backend, max_pages=None):
 
 
 def clean_text(t):
-    """Retire filigranes ; retourne (texte_nettoye, n_lignes_retirees)."""
+    """Remove watermark lines; return (cleaned_text, n_removed_lines)."""
     removed = 0
     out = []
     for line in t.splitlines():
@@ -146,7 +154,7 @@ def simulate_chunks(t, size, overlap):
 
 
 def dup_ratio(t):
-    """Fraction de lignes strictement dupliquees : detecte le texte double."""
+    """Share of exactly duplicated lines; detects doubled text."""
     lines = [l.strip() for l in t.splitlines() if len(l.strip()) > 40]
     if not lines:
         return 0.0
@@ -163,9 +171,9 @@ def main():
     ap.add_argument("--chunk-size", type=int, default=1888)
     ap.add_argument("--overlap", type=int, default=200)
     ap.add_argument("--min-chars", type=int, default=5000,
-                    help="seuil sous lequel un article est juge trop pauvre")
+                    help="minimum number of characters after cleaning")
     ap.add_argument("--dump-text", action="store_true",
-                    help="ecrit le texte nettoye en .txt dans <out>/text/")
+                    help="write the cleaned text of each document under <out>/text/")
     args = ap.parse_args()
 
     corpus = Path(os.path.expanduser(args.corpus_dir))
@@ -173,15 +181,15 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
 
     print("=" * 74)
-    print("48e  CONTROLE PRE-VOL  --  corpus 41 documents")
+    print("CORPUS PREFLIGHT  --  41 documents")
     print("=" * 74)
     print("corpus      : {}".format(corpus))
-    print("extracteurs : " + ", ".join(
-        "{}={}".format(k, "OUI" if v else "non") for k, v in AVAIL.items()))
+    print("extractors  : " + ", ".join(
+        "{}={}".format(k, "yes" if v else "no") for k, v in AVAIL.items()))
     if not AVAIL.get("pymupdf"):
-        print("  [!] pymupdf ABSENT : c'est l'extracteur le plus robuste ici.")
+        print("  [!] pymupdf not installed: it is the most robust extractor on this corpus.")
         print("      pip install pymupdf")
-    print("chunk       : taille {} / recouvrement {}".format(
+    print("chunk       : size {} / overlap {}".format(
         args.chunk_size, args.overlap))
     print()
 
@@ -193,19 +201,19 @@ def main():
 
     # ---------- A. presence ----------
     print("--- A. PRESENCE ------------------------------------------------")
-    print("  PDF trouves : {}".format(len(pdfs)))
+    print("  PDFs found: {}".format(len(pdfs)))
     if len(pdfs) != 41:
-        print("  [!] ATTENDU 41. Ecart de {}.".format(len(pdfs) - 41))
+        print("  [!] EXPECTED 41. Difference: {}.".format(len(pdfs) - 41))
     else:
-        print("  OK : 41 documents.")
+        print("  OK: 41 documents.")
     print()
 
     # ---------- B + C. extraction ----------
-    print("--- B/C. EXTRACTION ET NETTOYAGE -------------------------------")
+    print("--- B/C. EXTRACTION AND CLEANING ------------------------------")
     rows = []
     order = [b for b in ("pymupdf", "pypdf", "pdfplumber") if AVAIL.get(b)]
     if not order:
-        print("  [!] aucun extracteur disponible. Arret.")
+        print("  [!] no extractor available. Stopping.")
         return
 
     txtdir = out / "text"
@@ -235,7 +243,7 @@ def main():
         res["chunks_estimes"] = simulate_chunks(
             cleaned, args.chunk_size, args.overlap)
 
-        # ecart entre extracteurs : signale une extraction douteuse
+        # ratio between extractors: a large ratio flags a doubtful extraction
         vals = [res[b] for b in order if res.get(b, -1) > 0]
         res["ecart_extracteurs"] = (round(max(vals) / float(min(vals)), 2)
                                     if len(vals) > 1 and min(vals) > 0 else 1.0)
@@ -263,14 +271,14 @@ def main():
             (txtdir / (safe + ".txt")).write_text(cleaned, encoding="utf-8")
 
         flag = "" if verdict.startswith("GO") else "  <<<"
-        print("  {:<52} {:>7} car. {:>4} chunks  {}{}".format(
+        print("  {:<52} {:>7} chars {:>4} chunks  {}{}".format(
             p.name[:52], res["chars_nettoyes"], res["chunks_estimes"],
             verdict, flag))
     print()
 
     # ---------- D. appariement ----------
     if args.refs and Path(os.path.expanduser(args.refs)).is_file():
-        print("--- D. APPARIEMENT LB2019 --------------------------------------")
+        print("--- D. MATCHING AGAINST THE LB2019 REFERENCE LIST ------------")
         refs = []
         with open(os.path.expanduser(args.refs), encoding="utf-8",
                   errors="replace") as f:
@@ -311,39 +319,37 @@ def main():
             if i in ra or j in pa:
                 continue
             ra[i], pa[j] = j, i
-        print("  references {} | apparies {} | non apparies {}".format(
+        print("  references {} | matched {} | unmatched {}".format(
             len(refs), len(ra), len(refs) - len(ra)))
         for i, r in enumerate(refs):
             if i not in ra:
-                print("    MANQUE : {}".format(r["raw"][:95]))
+                print("    MISSING: {}".format(r["raw"][:95]))
         for j, p in enumerate(pdfs):
             if j not in pa:
-                print("    PDF sans reference : {}".format(p.name))
-        print("  (appariement sur noms de fichiers ; les titres/DOI de 48c")
-        print("   restent la reference)")
+                print("    PDF without reference: {}".format(p.name))
+        print("  (matching uses file names only)")
         print()
 
     # ---------- synthese ----------
     print("=" * 74)
-    print("SYNTHESE")
+    print("SUMMARY")
     print("=" * 74)
     tot = sum(r["chunks_estimes"] for r in rows)
     wm = sum(r["lignes_filigrane"] for r in rows)
     nogo = [r for r in rows if r["verdict"].startswith("NO-GO")]
     warn = [r for r in rows if r["verdict"].startswith("ATTENTION")]
     print("  documents          : {}".format(len(rows)))
-    print("  chunks estimes     : {}".format(tot))
-    print("  lignes filigrane   : {}  (a retirer a la normalisation)".format(wm))
+    print("  estimated chunks   : {}".format(tot))
+    print("  watermark lines    : {}  (removed before chunking)".format(wm))
     print("  NO-GO              : {}".format(len(nogo)))
     print("  ATTENTION          : {}".format(len(warn)))
     for r in nogo + warn:
         print("    - {:<50} {}".format(r["fichier"][:50], r["verdict"]))
     print()
     if not nogo:
-        print("  Aucun bloquant. Le pipeline peut etre relance apres")
-        print("  application du correctif d'extracteur et de filigrane.")
+        print("  No blocking document.")
     else:
-        print("  NE PAS RELANCER avant traitement des NO-GO ci-dessus.")
+        print("  Resolve the NO-GO documents above before indexing.")
 
     f = out / "preflight_41.csv"
     keys = []
@@ -357,9 +363,9 @@ def main():
         for r in rows:
             w.writerow(r)
     print()
-    print("Ecrit : {}".format(f))
+    print("Written: {}".format(f))
     if args.dump_text:
-        print("Textes nettoyes : {}".format(txtdir))
+        print("Cleaned texts: {}".format(txtdir))
 
 
 if __name__ == "__main__":

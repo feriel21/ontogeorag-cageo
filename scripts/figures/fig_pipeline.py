@@ -1,42 +1,38 @@
 #!/usr/bin/env python3
-"""
-95q_fig_pipeline.py
+"""Figure 1: pipeline overview.
 
-Generates fig_pipeline for the manuscript.
+Construction chain from the corpus to the delivered graph, and, in a dashed frame, the
+evaluation procedures that take the delivered graph as input.
 
-Two print constraints drive the design.
+Print constraints
+    Size: the figure is authored narrower than the text block, so that including it at
+    the line width enlarges it rather than shrinking it.
+    Fit: every label is measured against its box before saving; a label that does not fit
+    is wrapped onto two or three lines, then shrunk, and any remaining overflow is
+    reported and makes the script exit with code 1.
+Colour is decorative only (one accent for the delivered graph), so the figure survives
+greyscale printing.
 
-  Size. The figure is authored narrower than the text block it is
-  inserted into, so that \\includegraphics[width=\\linewidth] enlarges it
-  rather than shrinking it. Authoring it wider than the text block is
-  what makes labels come out too fine on the page.
+Numbers drawn, with their source
+    41 papers              --expect-docs 41 (index stage)
+    1758 chunks            line count of the delivered index
+    287, seven strategies  configs/descriptor_queries_v2.jsonl
+    BM25 top 20, top 5     --bm25-topn 20, --top-k 5
+    T = 0 and 0.3          --temperature, extraction passes a and b
+    0.06                   --cluster-threshold 0.06
+    160 / 72               tiers counted on the delivered graph
+    189 / 43 / 3           m4_panel_report.json, 235 relations examined
+    232 / 216              delivered graph
+    26 / 34, 464           frozen benchmarks, controls file
+    95                     panel-accepted relations with a directional predicate
+    232, one assessor      expert review of the delivered graph
 
-  Fit. Every label is measured against its own box before the figure is
-  saved. A label that does not fit is wrapped onto two or three lines,
-  then shrunk, and any remaining overflow is reported on stdout rather
-  than left to be noticed on the proof.
+Historical name: 95q_fig_pipeline.py (corrected: expert-review box, directional-check
+box, and two labels in which a line break was drawn as a literal backslash-n).
 
-Colour is decorative, never semantic: one accent marks the delivered
-graph, and the evaluation band is set apart by a dashed rule, so the
-figure survives greyscale printing.
-
-Numbers drawn here, with their source:
-    41 papers          --expect-docs 41
-    1758 chunks        line count of the delivered index
-    2000 / 200         --chunk-size 2000 --overlap 200
-    BM25 top-20        --bm25-topn 20 ; cut-off --min-bm25 2.0
-    top-5              --top-k 5
-    0.0 and 0.3        --temperature, passes a and b
-    160 / 72           tiers counted on the delivered graph
-    189 / 43 / 3       m4_panel_report.json, 235 examined
-    232 / 216          delivered graph
-    0.06               --cluster-threshold 0.06
-    26 / 34, 464, 60   frozen benchmarks, controls file, expert sample
-
-Usage:
-    python3 95q_fig_pipeline.py
-    python3 95q_fig_pipeline.py --width 5.8 --scale 1.0
-    python3 95q_fig_pipeline.py --greyscale
+Usage
+    python scripts/figures/fig_pipeline.py --outdir output/figures
+    python scripts/figures/fig_pipeline.py --outdir output/figures --greyscale
 """
 
 import argparse
@@ -164,10 +160,9 @@ def box(fig, ax, x, y, w, h, title, sub=None, accent=False, dashed=False,
         linestyle=(0, (3, 2)) if dashed else "-"))
     max_w, cx = w - 2 * PAD_X, x + w / 2
     if sub:
-        # un sous-titre sur plusieurs lignes occupe plus de hauteur :
-        # on remonte le titre et on descend le sous-titre pour eviter
-        # le chevauchement.
-        n_lines = sub.count("\\n") + 1
+        # a multi-line subtitle is taller: raise the title and lower the
+        # subtitle so that the two do not overlap.
+        n_lines = sub.count("\n") + 1
         y_title = y + h * (0.74 if n_lines > 1 else 0.66)
         y_sub = y + h * (0.32 if n_lines > 1 else 0.29)
         t1 = ax.text(cx, y_title, title, ha="center", va="center",
@@ -260,7 +255,7 @@ def build(fig, ax):
 
     y3, h3 = 0.275, 0.125
     b_fuse = box(fig, ax, 0.020, y3, 0.235, h3, "Fusion and tiers",
-                 "Tier 1: 160   Tier 2: 72\\nboth retained")
+                 "Tier 1: 160   Tier 2: 72\nboth retained")
     b_panel = box(fig, ax, 0.295, y3, 0.265, h3, "Cross-family panel",
                   "Llama + Mistral, 189 / 43 / 3")
     b_schema = box(fig, ax, 0.600, y3, 0.175, h3, "Schema",
@@ -284,15 +279,17 @@ def build(fig, ax):
             fontsize=SUB_SIZE * 0.86, color=BAND, fontweight="bold")
 
     ye, he = 0.045, 0.110
-    b_bench = box(fig, ax, 0.045, ye, 0.280, he, "Benchmark",
+    b_bench = box(fig, ax, 0.040, ye, 0.215, he, "Benchmark",
                   "26 primary, 34 extended", muted=True)
-    b_ctrl = box(fig, ax, 0.360, ye, 0.290, he, "Adversarial controls",
+    b_ctrl = box(fig, ax, 0.275, ye, 0.215, he, "Adversarial controls",
                  "464, verified by Llama", muted=True)
-    b_exp = box(fig, ax, 0.685, ye, 0.270, he, "Expert sample",
-                "60 relations, blind", muted=True)
+    b_dir = box(fig, ax, 0.510, ye, 0.215, he, "Directional check",
+                "95 panel-accepted relations", muted=True)
+    b_exp = box(fig, ax, 0.745, ye, 0.215, he, "Expert review",
+                "232 relations, one assessor", muted=True)
 
     bus3 = 0.172
-    for b in (b_bench, b_ctrl, b_exp):
+    for b in (b_bench, b_ctrl, b_dir, b_exp):
         line(ax, [top(b)[0]] * 2, [top(b)[1], bus3], color=BAND, lw=0.9,
              ls=(0, (2, 2)))
     line(ax, [top(b_bench)[0], 0.898], [bus3, bus3], color=BAND, lw=0.9,

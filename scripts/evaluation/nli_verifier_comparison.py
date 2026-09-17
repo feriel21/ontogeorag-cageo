@@ -1,77 +1,41 @@
 #!/usr/bin/env python3
-"""
-95_nli_verifier_substitution.py - Replace the blind pass with an NLI model
+"""Task-specific entailment model on the adversarial controls (Sections 2.3.3 and 3.8).
 
-ADDITIVE. Reads the adversarial controls, runs an NLI model, writes a CSV.
-MODIFIES NOTHING in the pipeline or the graph.
+Scores the 464 adversarial controls of the delivered run with an off-the-shelf natural
+language inference model (default roberta-large-mnli) and reports its ROC-AUC, to be
+compared with the ROC-AUC of the LLM verifier on the same controls (0.794,
+negatives_report.json). The published value is 0.813.
 
-WHY
----
-Script 94 established, on 464 controls with constructed ground truth, that
-the blind plausibility pass carries almost no signal (PLAUSIBLE on 91.4% of
-corrupted controls vs 95.3% of clean ones; balanced accuracy 0.519) and that
-the shipped aggregation matrix inherits its sensitivity (0.086), collapsing
-the evidence pass from 0.974.
+Inputs (--dir, default the run16E m4/negatives directory)
+    controls.jsonl     the 464 controls; the text scored is the field
+                       supporting_passage, which holds the evidence sentence of the
+                       relation (at most 400 characters), not a retrieved passage
+    m4_verdicts.jsonl  verifier verdicts on the same controls
 
-The blind pass answers "is this plausible in general?" - a question about
-world knowledge. The question the pipeline actually needs answered is "does
-THIS passage support THIS triple?" - textual entailment. Those are different
-tasks, and NLI is the instrument built for the second one.
+Method
+    1. Verbalise each relation into a hypothesis sentence (one template per relation type).
+    2. Split the evidence text into sentences (it is usually a single sentence).
+    3. Score entailment for every (sentence, hypothesis) pair; keep the maximum per
+       control, and the maximum contradiction.
+    4. ROC-AUC with average ranks for ties, entailment low = corrupted.
+    5. The same controls are also scored under the verifier decision rules and under
+       NLI thresholds, for comparison. Rule names describe acceptance:
+       NLI_OR_EVIDENCE accepts when either accepts, NLI_AND_EVIDENCE only when both do.
 
-METHOD
-------
-1. VERBALIZE  the triple into a natural-language hypothesis
-      (mass transport deposit, hasDescriptor, chaotic)
-      -> "The mass transport deposit is described as chaotic."
+Join. Verdict rows are matched to controls by m4_index; the content key
+(subject, relation, object) of both is compared and mismatches are reported.
 
-2. SPLIT      the passage into sentences. NLI degrades badly on long
-              premises, and these passages run to thousands of characters.
+Scope. Entailment measures whether the text states the claim, not whether the claim
+is geologically true. The model revision is not fixed by this script: record the
+revision of the local snapshot when reporting.
 
-3. SCORE      entailment for every (sentence, hypothesis) pair and take the
-              MAXIMUM entailment probability over sentences. This is the
-              standard sentence-level aggregation used by faithfulness
-              metrics: a claim is supported if ANY sentence supports it.
-              Also records max contradiction, which flags direction errors
-              that a plain entailment score would miss.
+The cluster runs offline (HF_HUB_OFFLINE=1): the model must be in the local cache.
 
-4. COMPARE    the resulting decision rule against the rules scored in 94,
-              on exactly the same controls, so the numbers are commensurable.
+Historical name: 95_nli_verifier_substitution.py
 
-WHY THIS IS AN INDEPENDENT METRIC
-----------------------------------
-An off-the-shelf NLI model carries published accuracy on SNLI/MNLI. That
-calibration was not produced here, does not depend on any domain expert,
-and is reproducible by anyone. It is external evidence about the
-instrument, which is exactly what a self-built LLM judge cannot provide.
-
-WHAT IT STILL DOES NOT MEASURE
--------------------------------
-Textual entailment answers "is this claim in this text". It does NOT answer
-"is this claim true of the world". A wrong geological relation stated
-plainly in a paper will be entailed. Model scale, prompt design, and NLI
-alike are silent on that; only domain judgement or an external reference
-graph can settle it. Do not present NLI results as geological validation.
-
-DOMAIN CAVEAT
--------------
-General-domain NLI models are trained on SNLI/MNLI, not on geoscience prose.
-Expect degradation on domain terminology. That degradation is itself a
-measurable result: report it rather than hiding it. A SciNLI- or
-SciTail-trained checkpoint would be the natural next comparison.
-
-OFFLINE USE
------------
-The cluster runs with HF_HUB_OFFLINE=1. The model must already be in the
-local cache. If it is not, this script says so and stops rather than
-hanging on a network call. To fetch it once from a machine with network:
-    python -c "from huggingface_hub import snapshot_download; \\
-               snapshot_download('roberta-large-mnli')"
-
-USAGE
------
-    python 95_nli_verifier_substitution.py
-    python 95_nli_verifier_substitution.py --model microsoft/deberta-large-mnli
-    python 95_nli_verifier_substitution.py --limit 40      # quick smoke test
+Usage
+    python scripts/evaluation/nli_verifier_comparison.py --dir /path/to/run16E/m4/negatives
+    python scripts/evaluation/nli_verifier_comparison.py --limit 40
 """
 
 from __future__ import annotations
@@ -293,7 +257,7 @@ def main():
         return 1
     print(f"  labels: {id2label}")
 
-    # ---- join controls and verdicts (positional, as in 94) ---------------
+    # ---- join controls and verdicts by m4_index; content keys are compared ----
     controls = read_jsonl(f_controls)
     verdicts = read_jsonl(f_verdicts)
     rows = []
@@ -321,7 +285,7 @@ def main():
         })
 
     if mismatch:
-        print(f"  WARNING: {mismatch} positional triple mismatches - do not cite.")
+        print(f"  WARNING: {mismatch} controls whose content key differs from the verdict at the same index.")
     if args.limit:
         rows = rows[:args.limit]
 
@@ -397,9 +361,8 @@ def main():
 
     auc = roc_auc(rows, "nli_entailment", higher_means_corrupt=False)
     print(f"\n  NLI entailment ROC-AUC (threshold-free): {fmt(auc)}")
-    print("  AUC is the honest headline: it does not depend on where the")
-    print("  threshold is placed. Compare it to the 0.794 reported for the")
-    print("  LLM verifier on these same controls.")
+    print("  ROC-AUC does not depend on the threshold. The LLM verifier reaches 0.794")
+    print("  on the same controls (negatives_report.json).")
 
     print("\n  THRESHOLD SWEEP (NLI_ONLY)")
     print(f"    {'thr':>6}{'sens':>9}{'spec':>9}{'bal.acc':>10}")
@@ -422,9 +385,8 @@ def main():
         mc = sum(r["nli_contradiction"] for r in subset) / len(subset)
         det = sum(1 for r in subset if r["nli_entailment"] < thr) / len(subset)
         print(f"  {cls:<22}{len(subset):>5}{me:>11.3f}{mc:>13.3f}{det:>11.3f}")
-    print("\n  A large gap in mean entailment between CLEAN and the corrupted")
-    print("  classes is the signal the blind pass lacked. PASSAGE_PERM should")
-    print("  show the largest gap: that class corrupts the anchoring itself.")
+    print("\n  A large gap in mean entailment between CLEAN and a corrupted class")
+    print("  means the model separates that class from the originals.")
 
     with open(args.out, "w", newline="", encoding="utf-8") as f:
         cols = ["subject", "relation", "object", "corruption", "corrupt",
@@ -436,7 +398,7 @@ def main():
             w.writerow({k: r[k] for k in cols})
 
     print(f"\nWritten: {args.out}")
-    print("Entailment measures whether the passage states the claim.")
+    print("Entailment measures whether the text states the claim.")
     print("It does not measure whether the claim is geologically true.")
     return 0
 

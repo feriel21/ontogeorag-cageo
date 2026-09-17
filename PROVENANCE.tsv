@@ -101,3 +101,10 @@ scripts/analysis/model_comparison_commands.sh	renamed from scripts/analysis/95p_
 tools/check_code_unchanged.py	new version (--allow-messages, --allow-renames)	61918155a7c9d8a75dad0a1f2046a6dbc172a0cebf66db94d320a9836e3b9cb9	equivalence of eb205c4 verified
 scripts/analysis/family_corroboration.py	renamed from scripts/analysis/100_family_corroboration.py (English text; code equivalent)	80bedbf14f62e6f6a482056538bbcf1d41d5927d3b0d3867683e06cd95324765	check_code_unchanged --allow-messages
 configs/entity_families.csv	file:~/ontogeorag_D/families_v2.csv	3e6d1f192ace52702541e69d92ff37fa48370e68e79f29d1657591760d4167bc	reproduces 26 families, 17/42, 135, tier means 9.4/10.1 (156)
+scripts/evaluation/nli_verifier_comparison.py	renamed from scripts/evaluation/95_nli_verifier_substitution.py (English; checked by 157)	feae469d58c4ed341ab9cab4c1d11f5e8ce1346a2e121fcc8503826c0e2c0d25	157
+scripts/evaluation/control_verdict_alignment.py	renamed from scripts/evaluation/106c_join_verify.py (English; checked by 157)	f7e093b11166edbf2f71e77f14b675eb910b924df65166a2ee67d022b0f4cf7b	157
+scripts/evaluation/graph_with_located_provenance.py	renamed from scripts/evaluation/145_graph_with_located_provenance.py (English; checked by 157)	5ae843ca371cc6a5cfd7a17a5f89ca16d1fc66bbb29206606f62e4bb763ee3a2	157
+scripts/figures/fig_tradeoff.py	renamed from scripts/figures/95y_fig_tradeoff.py (English; checked by 157)	c56fc22b90cbcaebadcc8242706754b289fe00f111cafc93d33f1476df26e779	157
+scripts/tools/benchmark26_from_pipeline_constant.py	renamed from scripts/tools/50_extract_lb26_reference.py (English; checked by 157)	93750d8e4748f3c4d8eeed1b1db4bbf9ffc17bfb8e9cd09358b2e670c509b131	157
+scripts/tools/corpus_preflight.py	renamed from scripts/tools/48e_preflight_41.py (English; checked by 157)	b80fe21da5b331253e22a645a717f8d76eb3439a26b20d67c876685e920b92a2	157
+scripts/figures/fig_pipeline.py	renamed from scripts/figures/95q_fig_pipeline.py (English; checked by 157)	14d248ebe243c5a0e69e3b9ccb104a1f07fae5461942c4d1e7411954797c4346	157
