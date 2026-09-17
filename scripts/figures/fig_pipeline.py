@@ -280,13 +280,13 @@ def build(fig, ax):
 
     ye, he = 0.045, 0.110
     b_bench = box(fig, ax, 0.040, ye, 0.215, he, "Benchmark",
-                  "26 primary, 34 extended", muted=True)
+                  "26 and 34 edges", muted=True)
     b_ctrl = box(fig, ax, 0.275, ye, 0.215, he, "Adversarial controls",
-                 "464, verified by Llama", muted=True)
+                 "464 records", muted=True)
     b_dir = box(fig, ax, 0.510, ye, 0.215, he, "Directional check",
-                "95 panel-accepted relations", muted=True)
+                "95 relations", muted=True)
     b_exp = box(fig, ax, 0.745, ye, 0.215, he, "Expert review",
-                "232 relations, one assessor", muted=True)
+                "232 relations", muted=True)
 
     bus3 = 0.172
     for b in (b_bench, b_ctrl, b_dir, b_exp):

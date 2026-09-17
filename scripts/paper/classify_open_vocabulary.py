@@ -1,32 +1,42 @@
 #!/usr/bin/env python3
-"""
-68_classify_vocabulary.py — Vocabulaire observe hors ontologie : classement
+"""Classification of the descriptor values extracted outside the extraction vocabulary (Section 3.6).
 
-Les 118 termes extraits sans contrainte lexicale (run D) ne sont pas
-homogenes. Trois categories ne relevent PAS du vocabulaire geologique et
-doivent etre separees avant toute conclusion :
+Reads the descriptor values that schema enforcement rejected as outside the vocabulary
+(hasDescriptor triples with reject reason type_constraint, in
+pass_a/rejected_triples_v5.jsonl and pass_b/rejected_triples_v5.jsonl of a run) and
+assigns each term to one family.
 
-    pdf_artifact     ligature non decodee ("well stratiﬁed"), cesure non
-                     recollee ("hyper-bolic") — defaut d'extraction PDF
-    extraction_noise adjectifs nus, quantifieurs, syntagmes verbaux
-                     ("numerous", "move downslope beyond it") — rejet correct
-    morphometric     valeurs chiffrees ("run-out distance of 80 km") — ce
-                     sont des MESURES, que l'ontologie ne peut pas
-                     representer faute d'attribut numerique. Constat reel,
-                     mais distinct d'une lacune de vocabulaire.
+Families
+    not vocabulary     pdf_artifact (undecoded ligature, unjoined hyphenation),
+                       extraction_noise (bare adjectives, quantifiers, verb phrases),
+                       morphometric (numeric measurements, which the ontology has no
+                       numeric attribute to record)
+    geological signal  deformation_structure, basal_surface_marking,
+                       stratigraphic_termination, seismic_attribute, amplitude_variant,
+                       section_geometry, lithology_texture
 
-Le reste constitue le SIGNAL GEOLOGIQUE : des termes descriptifs que la
-litterature emploie et que le vocabulaire de reference n'encode pas.
+Assignment. A table of terms classified by name (EXPLICIT) takes precedence; otherwise
+ordered regular-expression rules are applied and the first match wins. Artefacts and
+noise are tested first, so that a noisy term containing a geological keyword is not
+counted as signal. The table and the rules were written by the authors: the grouping is
+a judgement, released here so that it can be inspected and changed.
 
-CLASSEMENT ORDONNE : les regles sont evaluees dans l'ordre, premiere
-correspondance retenue. Artefacts et bruit d'abord, pour qu'un terme
-bruite contenant un mot-cle geologique ne soit pas compte comme signal.
+Published results
+    configuration D (no vocabulary in the prompt): 118 terms, 287 occurrences;
+    84 geological terms, 225 occurrences, in seven families; 34 not vocabulary
+    (7 morphometric, 24 extraction noise, 3 PDF artefacts)
+    configuration E (vocabulary suggested): 42 terms, 39 geological (126 occurrences)
+    and 3 extraction noise
 
-Usage :
-    cd ~/ontogeorag && export PYTHONPATH=$PWD
-    python 68_classify_vocabulary.py \
-        --run ~/ontogeorag_D/output/run16D \
-        --out output/paper_results/vocabulary
+Outputs (--out): vocabulary_classification.json, vocabulary_classification.csv (with an
+empty family_expert column for review), fig_observed_vocabulary.png and .pdf. That
+figure is a working view, not a figure of the article.
+
+Historical name: 68_classify_vocabulary.py
+
+Usage
+    python scripts/paper/classify_open_vocabulary.py --run /path/to/run16D --out output/vocabulary_D
+    python scripts/paper/classify_open_vocabulary.py --run /path/to/run16E --out output/vocabulary_E
 """
 import argparse, collections, csv, json, re, unicodedata
 from pathlib import Path
@@ -36,9 +46,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 matplotlib.rcParams["font.family"] = "DejaVu Sans"
 
-# --- termes traites nommement (priorite absolue) -----------------------
+# --- terms classified by name (take precedence over the rules) ---------
 EXPLICIT = {
-    # bruit : adjectifs nus, quantifieurs, syntagmes verbaux
+    # noise: bare adjectives, quantifiers, verb phrases
     "numerous": "extraction_noise", "large": "extraction_noise",
     "rare": "extraction_noise", "positive": "extraction_noise",
     "coarse": "extraction_noise", "bounded": "extraction_noise",
@@ -55,20 +65,20 @@ EXPLICIT = {
     "large reflection events": "extraction_noise",
     "heterogeneous": "extraction_noise",
     "dominantly turbidite channel–levee": "extraction_noise",
-    # signal : attribut sismique
+    # signal: seismic attribute
     "high-frequency": "seismic_attribute",
     "highly reflective": "seismic_attribute",
     "high reflection strength": "seismic_attribute",
     "translucent": "seismic_attribute",
     "coherent": "seismic_attribute",
-    # signal : terminaison stratigraphique
+    # signal: stratigraphic termination
     "onlaps": "stratigraphic_termination",
     "downlap": "stratigraphic_termination",
     "unconformity": "stratigraphic_termination",
     "incisional": "stratigraphic_termination",
     "incised systems": "stratigraphic_termination",
     "lap out against high-relief areas": "stratigraphic_termination",
-    # signal : geometrie de section
+    # signal: section geometry
     "bulges up": "section_geometry",
     "flat-laying": "section_geometry",
     "abrupt vertical surfaces": "section_geometry",
@@ -90,33 +100,33 @@ EXPLICIT = {
     "ramps up and down stratigraphy": "extraction_noise",
 }
 
-# --- regles ordonnees : (famille, motif regex) -------------------------
+# --- ordered rules: (family, regular expression); first match wins -----
 RULES = [
-    # 1. artefacts d'extraction PDF
+    # 1. PDF extraction artefacts
     ("pdf_artifact", r"hyper-\s*bolic|\uFB01|\uFB02|\u00AD"),
-    # 2. mesures chiffrees
+    # 2. numeric measurements
     ("morphometric", r"\d|\brun-?out\b|\bup to\b|\bthickness of\b|\bkm\b|\bm across\b"),
-    # 3. blocs et structures de deformation
+    # 3. blocks and deformation structures
     ("deformation_structure",
      r"\bblock|\bglide\b|\brafted\b|\boutrunner\b|listric|thrust|\bramp\b|duplex|"
      r"compressi|extensional|imbricat|\bfold|pressure ridge|\bshear\b|\bfault|"
      r"tilted|inclined|slump|rotated|fractured|broken|disrupt"),
-    # 4. marques de la surface basale
+    # 4. basal-surface markings
     ("basal_surface_marking",
      r"groov|striation|longitudinal linear|flow line|lineation|scour|gouge"),
-    # 5. terminaisons stratigraphiques
+    # 5. stratigraphic terminations
     ("stratigraphic_termination",
      r"onlap|downlap|toplap|truncat|unconform|incis|lap out"),
-    # 6. attributs sismiques hors amplitude/continuite
+    # 6. seismic attributes other than amplitude and continuity
     ("seismic_attribute",
      r"frequen|reflectiv|reflection strength|translucen|coheren|acoustic"),
-    # 7. variantes d'amplitude
+    # 7. amplitude variants
     ("amplitude_variant", r"amplitude|reflector|bright|\bdim\b|weak|strong"),
-    # 8. geometrie de section
+    # 8. section geometry
     ("section_geometry",
      r"tapering|dipping flank|cross-section|topograph|vertical surface|"
      r"lens|wedge|sheet|lobate|arcuate|planar|bulge|flat-lay"),
-    # 9. lithologie et texture
+    # 9. lithology and texture
     ("lithology_texture",
      r"debrit|\bsand\b|clast|lamination|interbed|matrix|graded|homogeneous|"
      r"structureless|stratified|featureless|undisturbed"),
@@ -158,7 +168,7 @@ def main():
     for ps in ("pass_a", "pass_b"):
         f = root / ps / "rejected_triples_v5.jsonl"
         if not f.exists():
-            raise SystemExit(f"introuvable : {f}")
+            raise SystemExit(f"not found: {f}")
         for line in f.open(encoding="utf-8"):
             t = json.loads(line)
             if t.get("_reject_reason") == "type_constraint" and \
@@ -179,25 +189,25 @@ def main():
     n_terms, n_occ = tot(NON_VOCABULARY)
     u_terms, u_occ = tot({"unclassified"})
 
-    print(f"termes observes hors lexique : {len(obs)}  "
+    print(f"terms observed outside the vocabulary: {len(obs)}  "
           f"({sum(obs.values())} occurrences)\n")
-    print("--- SIGNAL GEOLOGIQUE ---")
+    print("--- GEOLOGICAL SIGNAL ---")
     for f in sorted(GEOLOGICAL, key=lambda k: -sum(n for _, n in fam.get(k, []))):
         if f in fam:
-            print(f"  {f:28s} {len(fam[f]):3d} termes / {sum(n for _, n in fam[f]):3d} occ."
+            print(f"  {f:28s} {len(fam[f]):3d} terms / {sum(n for _, n in fam[f]):3d} occ."
                   f"   ex: {', '.join(t for t, _ in fam[f][:3])[:60]}")
-    print(f"  {'TOTAL':28s} {g_terms:3d} termes / {g_occ:3d} occ.\n")
-    print("--- HORS VOCABULAIRE (a exclure du resultat geologique) ---")
+    print(f"  {'TOTAL':28s} {g_terms:3d} terms / {g_occ:3d} occ.\n")
+    print("--- NOT VOCABULARY (excluded from the geological result) ---")
     for f in sorted(NON_VOCABULARY, key=lambda k: -sum(n for _, n in fam.get(k, []))):
         if f in fam:
-            print(f"  {f:28s} {len(fam[f]):3d} termes / {sum(n for _, n in fam[f]):3d} occ."
+            print(f"  {f:28s} {len(fam[f]):3d} terms / {sum(n for _, n in fam[f]):3d} occ."
                   f"   ex: {', '.join(t for t, _ in fam[f][:3])[:60]}")
-    print(f"  {'TOTAL':28s} {n_terms:3d} termes / {n_occ:3d} occ.\n")
-    print(f"--- NON CLASSES : {u_terms} termes / {u_occ} occ.")
+    print(f"  {'TOTAL':28s} {n_terms:3d} terms / {n_occ:3d} occ.\n")
+    print(f"--- UNCLASSIFIED: {u_terms} terms / {u_occ} occ.")
     for t, n in fam.get("unclassified", [])[:20]:
         print(f"      {n:3d}  {t}")
 
-    # --- CSV de relecture -------------------------------------------
+    # --- review CSV --------------------------------------------------
     with (out / "vocabulary_classification.csv").open("w", newline="",
                                                       encoding="utf-8") as f:
         w = csv.writer(f)
@@ -254,9 +264,9 @@ def main():
                           "terms": dict(v)} for f, v in fam.items()},
     }, indent=2, ensure_ascii=False), encoding="utf-8")
 
-    print(f"\nEcrit : {out}/vocabulary_classification.json")
-    print(f"Ecrit : {out}/vocabulary_classification.csv  (colonne family_expert a relire)")
-    print(f"Ecrit : {out}/fig_observed_vocabulary.png|.pdf")
+    print(f"\nwritten: {out}/vocabulary_classification.json")
+    print(f"written: {out}/vocabulary_classification.csv  (family_expert column left empty for review)")
+    print(f"written: {out}/fig_observed_vocabulary.png|.pdf")
 
 
 if __name__ == "__main__":
