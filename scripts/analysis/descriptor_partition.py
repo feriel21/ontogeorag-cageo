@@ -1,47 +1,41 @@
 #!/usr/bin/env python3
-"""
-95d_fermer_partition_descripteurs.py
+"""Partition of the extraction vocabulary against the corpus and the delivered graph.
 
-Three checks in one pass, for the OntoGeoRAG manuscript audit.
+Supports Section 3.5 and Figure 4 (1 absent, 8 attested but not extracted,
+31 extracted, out of 40) and the coverage of the 13 reference descriptors
+(12 recovered).
 
-  (1) run16F status: deliverable candidate, or exploratory branch?
-  (2) descriptor frequencies over the run16E index, counted with
-      hyphen/whitespace normalisation, closing the descriptor partition.
-  (3) LB2019 coverage measured directly against the delivered graph,
-      to reconcile the `stratified` discrepancy.
+Three checks in one pass:
+  (1) status of run16F, an exploratory branch, recorded so that it is not
+      mistaken for the delivered configuration;
+  (2) frequency of each descriptor over the run16E index, with hyphen and
+      whitespace treated as equivalent;
+  (3) coverage of the reference descriptors measured on the delivered graph.
 
-DECISION RULES, FIXED HERE, BEFORE ANY OUTPUT IS READ
------------------------------------------------------
-  R1  run16F is a DELIVERABLE CANDIDATE only if it carries BOTH an
-      enforced/dedup graph under kg_final/ AND a manifest.json whose
-      git_status_clean is true. Anything else is an EXPLORATORY BRANCH.
+Decision rules (fixed before the counts were read)
+  R1  run16F is a deliverable candidate only if it has BOTH an enforced,
+      deduplicated graph under kg_final/ AND a manifest.json with
+      git_status_clean true. Otherwise it is an exploratory branch.
+  R2  A descriptor is ATTESTED iff it matches at least once in the indexed
+      corpus: case-insensitive, whole-word, each internal hyphen matching a
+      hyphen OR whitespace. No stemming, no plural. Zero matches = ABSENT.
+  R3  A descriptor is EXTRACTED iff it is, lower-cased and stripped, the
+      object of at least one hasDescriptor triple of the delivered graph.
+      Matching by content only, never by position.
+  R4  Input paths come from explicit candidate lists and are reported.
+  R5  A descriptor is STRUCTURALLY UNREACHABLE iff it is a key of
+      DESCRIPTOR_SYNONYMS or DESCRIPTOR_FUZZY_MAP mapped to a different
+      descriptor: normalisation replaces it before the graph is written.
 
-  R2  A descriptor is ATTESTED iff it matches at least once in the
-      indexed corpus: case-insensitive, on whole-word boundaries, with
-      every internal hyphen allowed to be a hyphen OR whitespace.
-      No stemming, no inflection, no plural. Zero matches = ABSENT.
+Read-only with respect to the pipeline. Writes output/audit/95d_partition_report.json.
+Default paths follow the original layout (~/ontogeorag, ~/ontogeorag_D).
 
-  R3  A descriptor is EXTRACTED iff it appears, lowercased and stripped,
-      as the `object` of at least one `hasDescriptor` triple of the
-      delivered graph. Matching is by content key only, never by position.
-
-  R4  Paths are taken from an explicit candidate list and reported as
-      found. No path is ever built by analogy between run series.
-
-  R5  A descriptor is STRUCTURALLY UNREACHABLE iff it appears as a KEY of
-      DESCRIPTOR_SYNONYMS or DESCRIPTOR_FUZZY_MAP whose value is a
-      DIFFERENT descriptor: the normalisation collapses it onto another
-      canonical, so it can never surface as a graph object. Unreachable is
-      a class of its own, not a case of "attested but not extracted": the
-      same distinction the manuscript already draws for relation types.
-
-Read-only with respect to the pipeline. Writes one JSON report.
+Historical name: 95d_fermer_partition_descripteurs.py
 
 Usage
------
-    python3 95d_fermer_partition_descripteurs.py
-    python3 95d_fermer_partition_descripteurs.py --vocab-attr NAME --lb-attr NAME
-    python3 95d_fermer_partition_descripteurs.py --list-constants
+    python scripts/analysis/descriptor_partition.py
+    python scripts/analysis/descriptor_partition.py --vocab-attr NAME --lb-attr NAME
+    python scripts/analysis/descriptor_partition.py --list-constants
 """
 
 import argparse
@@ -231,7 +225,7 @@ def audit_run16F():
     print(SUB)
     print("VERDICT run16F: " + report["verdict"])
     print("  reason: " + report["reason"])
-    print("  -> if EXPLORATORY_BRANCH, run16E remains the deliverable; record this and move on.")
+    print("  -> an exploratory branch is not a delivered configuration; run16E is.")
     print()
     return report
 
@@ -609,7 +603,7 @@ def main():
     if anomaly_unattested:
         print("ANOMALY A: extracted but zero corpus match under R2: "
               + ", ".join(sorted(anomaly_unattested)))
-        print("  -> a surface-form mismatch the counter does not model. Resolve before quoting the partition.")
+        print("  -> a surface-form mismatch that the counter does not model.")
     if anomaly_declared_unreachable:
         print("ANOMALY B: declared unreachable by a normalisation table, yet present in the graph: "
               + ", ".join(sorted(anomaly_declared_unreachable)))

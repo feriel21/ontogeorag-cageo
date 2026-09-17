@@ -1,33 +1,33 @@
 #!/usr/bin/env python3
-"""
-95i_provenance_benchmark26.py
+"""Provenance of the 26-edge benchmark and properties of the reference graph.
 
-Two questions left open once the real reference graph was located.
+Supports Sections 1.4 (i) and 2.3.1:
+    - reference graph: 174 relations, 90 nodes, two relation types (149 / 25);
+    - bibliographic attribution: 63 relations cite one work, 25 cite two to
+      four, 86 cite none;
+    - the benchmark edges do not appear in the reference edge list, so the
+      benchmark is derived from the reference, not selected from it (rule R9);
+    - how many reference relations the extraction schema could express.
 
-  A  How was the 26-edge benchmark built? The frozen file carries
-     `description`, `source` and `descriptors_13` fields that record it.
-     Print them verbatim rather than inferring.
+  A  Print the provenance fields recorded in the frozen 26-edge benchmark
+     (description, source, descriptors_13) verbatim.
+  B  Measure the reference graph: relation types, citation counts, whether
+     the benchmark edges are selected from it, and which relations have both
+     arguments in the validation vocabulary and a mappable relation type.
 
-  B  How much of the reference graph is expressible in the extraction
-     schema at all? The reference uses two generic relation types
-     (`impacts`, `related_to`) over 90 descriptive-variable nodes, while
-     the extraction schema declares 13 typed relations over a validation
-     vocabulary. Count how many of the 174 reference relations have both
-     arguments in that vocabulary and a relation that maps to an allowed
-     type.
+Decision rule
+  R9  A benchmark edge is SELECTED from the reference iff its argument pair
+      appears in the reference edge list; otherwise it is DERIVED, and recall
+      against it is not recall against the reference as published.
 
-DECISION RULE
--------------
-  R9  A benchmark edge is SELECTED from the reference iff it appears in
-      the reference edge list under content-key matching. Otherwise it
-      is DERIVED, and recall against it is not recall against the
-      reference as published.
+Read-only. Writes output/audit/95i_benchmark_provenance_report.json.
+Default paths follow the original layout (~/ontogeorag, ~/ontogeorag_D).
 
-Read-only. Writes one JSON report.
+Historical name: 95i_provenance_benchmark26.py
 
-Usage:
-    python3 95i_provenance_benchmark26.py
-    python3 95i_provenance_benchmark26.py --reference /path/to/reference_kg.json
+Usage
+    python scripts/analysis/reference_graph_and_benchmark_provenance.py
+    python scripts/analysis/reference_graph_and_benchmark_provenance.py --reference reference/reference_kg.json
 """
 
 import argparse
@@ -192,8 +192,7 @@ def main():
           + str(len(selected)) + " of " + str(len(e26)))
     if len(selected) == 0:
         print("VERDICT (rule R9): the 26-edge benchmark is DERIVED, not selected.")
-        print("  Do not write that N of the reference relations 'meet the criteria'.")
-        print("  Write that a typed benchmark was derived from the reference.")
+        print("  Recall against it is not recall against the reference as published.")
     else:
         print("VERDICT (rule R9): " + str(len(selected)) + " benchmark edges are selected from the reference.")
         for e in selected[:10]:
@@ -234,7 +233,7 @@ def main():
         expr[vname.strip()] = len(ok)
         print("  " + vname.ljust(26) + str(len(ok)).rjust(5) + " of " + str(len(R)))
     print(SUB)
-    print("-> the complement is the part of the reference the extraction schema")
+    print("-> the complement is the part of the reference that the extraction schema")
     print("   cannot express at all. Report it as a property of the two")
     print("   representations, not as a recall failure.")
     report["expressibility"] = {"allowed_relations": sorted(allowed),

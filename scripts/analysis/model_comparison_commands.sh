@@ -1,4 +1,14 @@
 #!/bin/bash
+# Commands executed for Table 4 (controlled model comparison), as written by
+# model_comparison.py --stage plan and run on the original cluster.
+#
+# Kept as a record: the paths are those of the original machine.
+#   /tmp/run16E_code   checkout of commit 9c03730 (code of the delivered run)
+#   ~/ontogeorag       configuration files; ~/ontogeorag_D  run16E index
+# To rerun elsewhere, replace the paths and point --model to a local snapshot
+# of each model at the listed revision.
+#
+# Historical name: 95p_commands.sh
 set -euo pipefail
 
 # the pipeline package is imported by name, so the repository root

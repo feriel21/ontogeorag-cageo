@@ -1,37 +1,33 @@
 #!/usr/bin/env python3
-"""
-95h_mesurer_graphe_reference.py
+"""Inventory of the reference graph and of the two benchmarks derived from it.
 
-Replaces the untraced "173 LB2019 relations" with a measured figure, and
-turns the sentence that follows it into counts instead of a list of
-reasons.
+Supports Sections 1.4 (i) and 2.3.1: the reference graph used for evaluation
+and its size (174 relations), and the relation of the 26- and 34-edge
+benchmarks to it.
 
-  A  Inventory every artefact on disk that could be the reference graph,
-     with its edge count. Nothing is assumed to be the reference.
+  A  Every JSON artefact on disk that could be the reference graph, with its
+     edge count. Nothing is assumed to be the reference.
+  B  The two frozen benchmarks compared with each other (26 is a subset of 34,
+     and which 8 edges were added).
+  C  For every reference edge outside the 26-edge benchmark, which admission
+     criterion it fails: C1 both arguments in the validation vocabulary,
+     C2 relation mappable to an allowed type, C3 single cited passage
+     (testable only if the reference records carry a provenance field).
 
-  B  Compare the two frozen benchmark files (26 and 34) against each
-     other and against the full reference set.
+Decision rules
+  R6  A definition explains a reported value iff it reproduces it exactly.
+  R8  The reference set is the artefact that contains the frozen 26-edge
+      benchmark, whatever its file name.
 
-  C  Funnel. For every edge of the full reference set that is NOT in the
-     26-edge benchmark, determine which admission criterion it fails:
-       C1  both arguments present in the validation vocabulary
-       C2  relation mappable to an allowed type
-       C3  supported by a single cited passage
-     Criterion C3 is only testable if the reference carries a provenance
-     field; if it does not, the script says so instead of inventing it.
+Read-only with respect to the pipeline. Writes output/audit/95h_reference_graph_report.json.
+Default paths follow the original layout (~/ontogeorag, ~/ontogeorag_D).
+The benchmark turned out to be derived from the reference rather than selected
+from it; see reference_graph_and_benchmark_provenance.py.
 
-DECISION RULES
---------------
-  R6 (unchanged)  a definition EXPLAINS a published value iff it
-                  reproduces it exactly.
-  R8  The reference set is whichever artefact the frozen 26-edge
-      benchmark is a subset of. An artefact the benchmark is not a
-      subset of is not the reference, whatever its name.
+Historical name: 95h_mesurer_graphe_reference.py
 
-Read-only. Writes one JSON report.
-
-Usage:
-    python3 95h_mesurer_graphe_reference.py
+Usage
+    python scripts/analysis/reference_graph_inventory.py
 """
 
 import importlib
@@ -229,15 +225,15 @@ def part_c(mod, sets, inventory, report):
     if reference is None:
         print(SUB)
         print("NO candidate contains the 26-edge benchmark.")
-        print("  -> the reference graph is not among the artefacts found. Do not")
-        print("     write a total until it is located; the 173 stays unsupported.")
+        print("  -> the reference graph is not among the artefacts found;")
+        print("     no reference total can be measured.")
         report["part_c"] = {"reference": None}
         return
 
     label, edges, keys, _ = reference
     print(SUB)
     print("reference set: " + label + "   " + str(len(keys)) + " edges")
-    print("MEASURED TOTAL for the manuscript sentence: " + str(len(keys)))
+    print("measured number of reference relations: " + str(len(keys)))
     print()
 
     rel_counts = Counter(e["relation"] for e in edges)
@@ -309,21 +305,19 @@ def part_c(mod, sets, inventory, report):
                   + "   multiple: " + str(multi).rjust(4) + "   absent: " + str(missing).rjust(4))
     else:
         print("  NO provenance field in the reference records.")
-        print("  -> criterion C3 is not testable from this artefact. Say in the paper")
-        print("     that the single-passage criterion was applied at benchmark")
-        print("     construction, and do not report a count for it.")
+        print("  -> criterion C3 cannot be tested from this artefact.")
 
     print(SUB)
     only_c2 = {key_of(e) for e in fail_c2}
     remaining = [e for e in excluded if key_of(e) not in only_c2]
-    print("SUGGESTED SENTENCE SHAPE")
+    print("SUMMARY")
     print("  Of the " + str(len(keys)) + " reference relations, " + str(len(k26))
-          + " meet the admission criteria.")
+          + " are in the 26-edge benchmark by content key.")
     print("  Of the " + str(len(excluded)) + " excluded, " + str(len(fail_c2))
           + " carry a relation type outside the extraction schema;")
     print("  the remaining " + str(len(remaining))
           + " fail on argument coverage or on the single-passage requirement.")
-    print("  (check the C1 table above before splitting that remainder further)")
+    print("  (see the C1 table above for the split of that remainder)")
 
     report["part_c"] = {"reference_label": label,
                         "n_reference": len(keys),

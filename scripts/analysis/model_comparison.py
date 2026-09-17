@@ -1,46 +1,43 @@
 #!/usr/bin/env python3
-"""
-95p_comparaison_controlee_modeles.py
+"""Controlled comparison of three extraction models (Table 4).
 
-Runs the model comparison that the manuscript currently declines to
-report, under conditions that make the difference attributable to the
-model and to nothing else.
+Every argument of the production extractor is held identical to the delivered
+run except --model and --output:
 
-PROTOCOL
---------
-Every argument of the production extractor is held identical to the
-delivered run except --model and --output:
-
-    index      run16E index (1758 chunks)
-    queries    configs/descriptor_queries_v2.jsonl  (287)
+    index      run16E index (1,758 chunks)
+    queries    configs/descriptor_queries_v2.jsonl (287 queries)
     schema     configs/ontology_schema.json
     retrieval  --bm25-topn 20 --min-bm25 2.0 --top-k 5 --max-chars 2800
                --reranker cross-encoder/ms-marco-MiniLM-L-6-v2
     decoding   --temperature 0.0, one pass
 
-One pass at temperature 0.0 removes sampling noise, so a difference
-between two models is a difference in what they extract, not in what
-they happened to sample. The comparison is made on raw extraction
-output, before verification, because the primary verifier is one of the
-compared models and would otherwise favour itself.
+A single pass at temperature 0.0 removes sampling noise, so differences come
+from the models. Outputs are compared as raw extraction, before verification,
+because the primary verifier is one of the compared models.
 
-RESIDUAL CONFOUND, to be stated in the paper
---------------------------------------------
-The instruction template was developed with Qwen in the loop. A prompt
-developed against one model favours that model. This experiment does not
-remove that bias; it removes every other difference.
+Residual confound: the instruction template was developed with Qwen in the
+loop, which favours that model. The comparison removes every other difference.
 
-STAGES
-------
-    --stage plan     resolve model snapshots, write the commands, run nothing
-    --stage run      execute the extraction runs sequentially
-    --stage report   evaluate the outputs and emit the LaTeX table
-    --stage all      run then report
+Stages
+    --stage plan     resolve model snapshots and write the commands; run nothing
+    --stage run      run the three extractions sequentially (GPU)
+    --stage report   score the outputs and write the LaTeX table
+    --stage all      run, then report
 
-Usage:
-    python3 95p_comparaison_controlee_modeles.py --stage plan
-    python3 95p_comparaison_controlee_modeles.py --stage run
-    python3 95p_comparaison_controlee_modeles.py --stage report
+Outputs (under output/audit/): 95p_model_comparison_report.json,
+tab_model_comparison.tex, 95p_commands.sh. The commands actually executed for
+the published table are kept as model_comparison_commands.sh.
+
+Default paths follow the original layout (~/ontogeorag for code and
+configuration, ~/ontogeorag_D for the run16E index); --code-root selects the
+code checkout used for extraction.
+
+Historical name: 95p_comparaison_controlee_modeles.py
+
+Usage
+    python scripts/analysis/model_comparison.py --stage plan
+    python scripts/analysis/model_comparison.py --stage run
+    python scripts/analysis/model_comparison.py --stage report
 """
 
 import argparse
@@ -228,7 +225,7 @@ def stage_plan(cmds, report):
     print(SUB)
     if missing:
         print("cannot run: no local snapshot for " + ", ".join(c["label"] for c in missing))
-        print("  fetch it first, or drop that model from MODELS and say so in the paper.")
+        print("  download the snapshot first, or remove that model from MODELS.")
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     lines = ["#!/bin/bash", "set -euo pipefail", "",
              "# the pipeline package is imported by name, so the repository root",
@@ -265,7 +262,7 @@ def stage_run(cmds, report):
         timings[c["slug"]] = {"seconds": round(dt, 1), "returncode": proc.returncode}
         print("  exit " + str(proc.returncode) + "   " + str(round(dt, 1)) + " s")
         if proc.returncode != 0:
-            print("  -> failed. Fix before reporting; a partial output is not a result.")
+            print("  -> failed: the output of this model is incomplete and must not be scored.")
     report["timings"] = timings
 
 

@@ -1,33 +1,31 @@
 #!/usr/bin/env python3
-"""
-95m_argv_manifeste_et_ciblage.py
+"""Extraction parameters recorded in the manifest, and benchmark targeting by the queries.
 
-Corrects two defects in 95l.
+Supports Section 2.2 (retrieval and extraction parameters of the delivered run)
+and Section 3.2 (17 of the 26 benchmark edges have at least one query written
+for them).
 
-  Defect 1. 95l reported the extraction parameters as NOT RECORDED. The
-  manifest does record them, in an `argv` list where a flag and its
-  value are separate elements. A regular expression looking for
-  "--flag value" inside one string can never match that. This script
-  parses argv as a list, which is what it is.
+  A  Parse the argv list of every step of the run16E manifest and report the
+     parameters that define retrieval and extraction (re-ranker, BM25 depth,
+     top-k, temperature, model, query file).
+  B  Count the DISTINCT benchmark edges targeted by at least one query, for the
+     26- and 34-edge benchmarks. A query targets an edge when its anchor names
+     both arguments as whole terms.
+  C  Report which query file each extraction step used (249 or 287 queries).
 
-  Defect 2. 95l matched benchmark arguments by substring, so a query
-  anchored on `discontinuous` was counted as targeting an edge whose
-  object is `continuous`. Matching here is on whole terms only, and the
-  count reported is the number of distinct benchmark EDGES targeted,
-  not the number of queries, since several queries can name one edge.
+Decision rules
+  R11  A parameter is reported as used only if a recorded invocation shows it;
+       otherwise the code default applied and is reported as a default.
+  R12  Argument matching is on whole terms: a term contained inside a longer
+       term (continuous in discontinuous) is not a match.
 
-DECISION RULES
---------------
-  R11 (unchanged)  a parameter is reported as used only if a recorded
-                   invocation shows it; otherwise the code default ran
-                   and is reported as a default.
-  R12  Argument matching is on whole terms. A term contained inside a
-       longer term is not a match.
+Read-only. Writes output/audit/95m_argv_and_targeting_report.json.
+Default paths follow the original layout (~/ontogeorag, ~/ontogeorag_D).
 
-Read-only. Writes one JSON report.
+Historical name: 95m_argv_manifeste_et_ciblage.py
 
-Usage:
-    python3 95m_argv_manifeste_et_ciblage.py
+Usage
+    python scripts/analysis/manifest_parameters_and_benchmark_targeting.py
 """
 
 import json
@@ -151,7 +149,7 @@ def part_a(report):
                 print("  " + flag.ljust(18) + str(flags[flag]))
 
     print(SEP)
-    print("PARAMETERS THAT DECIDE THE MANUSCRIPT SENTENCES")
+    print("RETRIEVAL AND EXTRACTION PARAMETERS")
     print(SEP)
     extract_steps = {k: v for k, v in per_step.items() if k.startswith("extract")}
     if not extract_steps:
@@ -180,7 +178,7 @@ def part_a(report):
         print("model identifier from the argv above.")
     else:
         print("No re-ranker in argv. Under rule R11 the delivered run used lexical")
-        print("retrieval alone, and the paper must not describe a re-ranking stage.")
+        print("retrieval alone.")
         print("This is now read from the recorded argv, not inferred from its absence")
         print("elsewhere.")
     report["part_a"] = {"manifest": str(man_path), "steps": per_step}
@@ -258,7 +256,6 @@ def part_b(report):
     print(SUB)
     print("-> the figure to report is the number of DISTINCT benchmark edges for")
     print("   which a query was written, since recall is computed over edges.")
-    print("   Report it beside recall, in the same sentence.")
     report["part_b"] = out
     print()
 

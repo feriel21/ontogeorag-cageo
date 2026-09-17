@@ -1,40 +1,41 @@
 #!/usr/bin/env python3
-"""
-95g_derniers_controles.py
+"""Surface forms of compound descriptors and entity-count conventions.
 
-The last disk questions before writing. Four independent checks, one pass.
+Supports Table 6 (surface forms of the six compound descriptors), the entity
+count of the delivered graph (216) and the hydrate-dissociation example of
+Section 3.10.
 
-  A  Reconcile the two compound-descriptor counts. The single-word counts
-     already agree exactly between the two implementations, so the
-     disagreement lives in the compound pattern, not in the corpus.
-     Four counting variants are run side by side and each is tested
-     against the previously published values.
+Four independent checks:
+  A  Compound descriptors counted under four separator variants (literal,
+     optional hyphen or space, one or more, zero or more), each compared with
+     the values of an earlier literal count. The surface breakdown separates
+     hyphenated, spaced, line-break and concatenated forms.
+  B  The same hyphen/whitespace question for KNOWN_SETTINGS, plus members of
+     that set that collapse onto each other.
+  C  Entity counts of the delivered graph under every plausible counting
+     convention (raw, stripped, lower-cased), to show which convention a
+     reported count follows.
+  D  Surface variants of hydrate dissociation, with their subject and object
+     counts.
 
-  B  Does the hyphen/whitespace problem also affect KNOWN_SETTINGS?
-     Same machinery as the descriptors, plus a check for members of the
-     set that collapse onto each other.
+Decision rules
+  R2  Attested iff at least one match: whole-word, case-insensitive, each
+      internal hyphen matching a hyphen OR whitespace.
+  R6  A counting variant EXPLAINS a reported value iff it reproduces it
+      exactly.
+  R7  "X- Y" (hyphen then whitespace) is a PDF line break of the hyphenated
+      spelling; "XY" (no separator) is a PDF concatenation artefact. Only
+      "X Y" is evidence that the literature writes the term in two words.
 
-  C  216 vs 217 entities. Every plausible counting convention is applied
-     to the delivered graph so the 217 can be attributed to one of them,
-     or shown to belong to none.
+Read-only. Writes output/audit/95g_derniers_controles_report.json.
+Default paths follow the original layout (~/ontogeorag, ~/ontogeorag_D); the
+earlier literal count is descriptor_frequencies_literal.py, looked up under its
+historical name 96_descriptor_frequencies_run16E.py.
 
-  D  Surface variants of `gas hydrate dissociation` in the delivered graph.
+Historical name: 95g_derniers_controles.py
 
-DECISION RULES, FIXED HERE
---------------------------
-  R2 (unchanged)  attested iff >=1 match, word-boundary, case-insensitive,
-                  internal hyphen may be hyphen OR whitespace.
-  R6  A counting variant EXPLAINS a published value iff it reproduces it
-      exactly. Approximate agreement is not agreement.
-  R7  `X- Y` (hyphen then whitespace) is a PDF line-break form of the
-      hyphenated spelling. `XY` (no separator) is a PDF concatenation
-      artefact. Neither is evidence that the literature writes the term
-      in two words. Only `X Y` is.
-
-Read-only. Writes one JSON report.
-
-Usage:
-    python3 95g_derniers_controles.py
+Usage
+    python scripts/analysis/surface_forms_and_entity_counts.py
 """
 
 import importlib
@@ -238,15 +239,15 @@ def part_a(texts, report):
     if consistent:
         print("VERDICT: the published values are reproduced across all six descriptors by: "
               + ", ".join(consistent))
-        print("  -> the earlier implementation used that separator rule. The disagreement")
-        print("     with the shipped count is a rule difference, not a corpus difference.")
+        print("  -> the earlier count used that separator rule; the two counts differ by")
+        print("     rule, not by corpus.")
     else:
         print("VERDICT: no single variant reproduces all six published values.")
         for t in terms:
             print("  " + t.ljust(22) + ("explained by " + ", ".join(explained[t])
                                         if explained[t] else "explained by NO variant"))
-        print("  -> the earlier numbers do not come from a separator rule alone.")
-        print("     Do not carry them into the manuscript; use the measured breakdown below.")
+        print("  -> the earlier values are not explained by a separator rule alone.")
+        print("     The measured breakdown below is the one to use.")
     print()
 
     print("surface breakdown under the most permissive variant (rule R7):")
@@ -370,12 +371,10 @@ def part_c(graph_path, report):
     hits = [n for n, s in conventions.items() if len(s) == 217]
     if hits:
         print("217 is produced by: " + "; ".join(hits))
-        print("  -> the 217 is a counting convention, not a second graph. Name the convention")
-        print("     in the manuscript and use one throughout.")
+        print("  -> 217 follows from a counting convention, not from another graph.")
     else:
         print("NO convention on this graph yields 217.")
-        print("  -> the 217 comes from another artefact or another run. Treat 216 as the")
-        print("     figure and drop the 217 rather than reconciling it.")
+        print("  -> 217 does not follow from this graph under any convention tested.")
 
     case_pairs = defaultdict(set)
     for v in uniq(subj_raw + obj_raw, strip):
@@ -418,8 +417,7 @@ def part_d(graph_path, report):
                   + str(c.get("object", 0)).rjust(8) + "  " + str(sum(c.values())))
         print(SUB)
         print("distinct forms: " + str(len(roles)))
-        print("  -> these are the merge candidates. Merging changes the entity count,")
-        print("     so decide before quoting 216.")
+        print("  -> merge candidates; merging them would change the entity count.")
     report["part_d"] = {form: dict(c) for form, c in roles.items()}
     print()
 
