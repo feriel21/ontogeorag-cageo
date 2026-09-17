@@ -98,3 +98,4 @@ scripts/analysis/reference_graph_and_benchmark_provenance.py	renamed from script
 scripts/analysis/manifest_parameters_and_benchmark_targeting.py	renamed from scripts/analysis/95m_argv_manifeste_et_ciblage.py (English text; code equivalent)	cfcca9a902cae4a992aec1e1bb8bf91da068fd228cf065ffb83e569fbaaefc74	check_code_unchanged
 scripts/analysis/model_comparison.py	renamed from scripts/analysis/95p_comparaison_controlee_modeles.py (English text; code equivalent)	69f9c8809a77af5964b55743d5f9cb1fec8d48f8a5d243f8a7930ee42ef4a9a8	check_code_unchanged
 scripts/analysis/model_comparison_commands.sh	renamed from scripts/analysis/95p_commands.sh (English header; commands identical)	1ed35e3539d7e0749a70711abb90184dad09b87b6dc42cf0d1e93e53763f174c	diff
+tools/check_code_unchanged.py	new version (--allow-messages, --allow-renames)	61918155a7c9d8a75dad0a1f2046a6dbc172a0cebf66db94d320a9836e3b9cb9	equivalence of eb205c4 verified
