@@ -1,50 +1,52 @@
 #!/usr/bin/env python3
-"""
-100_family_corroboration.py - Is the "55% single paper" figure an artefact?
+"""Corroboration of each delivered relation across the corpus, at concept-family level.
 
-ADDITIVE. Reads the graph and the chunk index, writes a CSV. MODIFIES NOTHING.
+Supports Section 2.3.5 (protocol), Section 3.10 and Figure 7:
+    - number of papers in which the two arguments of a relation co-occur in
+      the same indexed passage, counted at surface-string level and at
+      concept-family level;
+    - relations resting on at most one paper under each count;
+    - the family grouping itself (26 families with more than one form in the
+      published count: 19 from the manual table, 7 from the automatic rule).
 
-THE QUESTION
-------------
-08_rebuild_provenance.py counts, for each triple, the number of distinct
-papers whose text contains BOTH the subject and the object - as SURFACE
-STRINGS. On run16E that gives 128 of 232 relations (55%) resting on a
-single paper.
+Why families. The graph keeps several surface forms per concept ("pore
+pressure", "excess pore pressure", "overpressure"). Counted per string,
+co-occurrences are split across those forms and each form looks weakly
+corroborated. Counting per family measures the concept instead of the phrasing.
 
-But the graph splits one concept across several surface forms. The setting
-"deep water" appears as deep water / deepwater basin / deep-water setting /
-deepwater settings; "pore pressure" as pore pressure / excess pore pressure /
-elevated pore pressures / overpressure. Co-occurrences are therefore split
-across those forms, and every form looks poorly corroborated even when the
-concept is well attested.
+Grouping
+    Automatic rule: union-find joining two entities when the tokens of one are
+    contained in those of the other, they share the same nominal head, and they
+    are not polar opposites (high/low, stable/unstable, un-/dis-/non-/in-).
+    Manual table (--families, columns entity,family): overrides the automatic
+    rule for the entities it covers; the others keep the automatic grouping.
 
-So the 55% may be measuring the graph's own redundancy rather than the
-literature. This script tests that directly: it recomputes corroboration at
-CONCEPT-FAMILY level and reports how many relations move.
+Reading the counts
+    * Family-level counting can only raise a count, never lower it, so it cannot
+      create the finding that a relation rests on a single paper.
+    * Co-occurrence in a passage is not assertion of the relation: the count is
+      a corroboration signal, not a verification.
+    * A count of zero means the family names do not co-occur under the indexed
+      segmentation, not that the relation lacks an evidence sentence.
 
-    surface level : papers containing "deep water"        AND "mtd"
-    family level  : papers containing ANY form of the deep-water family
-                    AND any form of the MTD family
+Outputs
+    --out            one row per relation: tier, families, forms per family,
+                     papers_surface, papers_family, delta
+    <out>_groups.csv every family with more than one form
+The zero/one split, the surface-level count and the means and medians by tier
+reported in the article are computed from the --out file.
 
-INTERPRETATION - read before citing
-------------------------------------
-* If the single-paper share drops a lot, the two weaknesses (redundancy and
-  thin corroboration) are one weakness, and fixing canonicalisation fixes
-  both. If it barely moves, thin corroboration is real and independent.
-* Family-level counting can only RAISE the count, never lower it, so a rise
-  is expected. What matters is the SIZE of the move, and whether relations
-  cross the 1 -> 2 papers boundary.
-* Co-occurrence bounds consensus, it does not prove it. Two terms in one
-  chunk may appear in a contrastive sentence ("the MTD is deformed, unlike
-  the undeformed sediments below"). This measure inherits that limit from
-  08 and does not fix it.
-* Grouping is conservative and rule-based, with an antonym guard, and every
-  grouping decision is written to the CSV so it can be audited.
+Read-only with respect to the pipeline. No language model is involved.
+Default paths follow the original layout (~/ontogeorag_D).
 
-USAGE
------
-    python 100_family_corroboration.py
-    python 100_family_corroboration.py --graph ... --chunks ...
+Historical name: 100_family_corroboration.py
+
+Usage
+    python scripts/analysis/family_corroboration.py \
+        --graph /path/to/run16E/kg_final/flat_run16E_enforced_dedup.json \
+        --chunks /path/to/run16E/index/chunks.jsonl \
+        --families configs/entity_families.csv \
+        --out output/family_corroboration.csv
 """
 
 from __future__ import annotations
@@ -161,12 +163,11 @@ def main():
     ap.add_argument("--chunks", default=DEFAULT_CHUNKS)
     ap.add_argument("--out", default="family_corroboration.csv")
     ap.add_argument("--families", default=None,
-                     help="Optional CSV with columns entity,family (e.g. the "
-                          "expert-reviewed entity_families.csv). The automatic "
-                          "rule requires a shared nominal head, so it will NOT "
-                          "group 'deep water' with 'deepwater basin'. Supplying "
-                          "expert families removes that limitation and is the "
-                          "stronger test.")
+                     help="Optional CSV with columns entity,family: manually "
+                          "specified families overriding the automatic rule for the "
+                          "entities they cover. The automatic rule requires a shared "
+                          "nominal head, so it does not group 'deep water' with "
+                          "'deepwater basin'.")
     args = ap.parse_args()
 
     for f in (args.graph, args.chunks):
@@ -319,15 +320,13 @@ def main():
         if share >= 0.30:
             print("    " + format(share, ".0%") + " of the single-paper relations are")
             print("    single-paper only because the concept is split across surface")
-            print("    forms. The '55% single paper' figure is substantially an")
-            print("    artefact of redundancy: fixing canonicalisation addresses both.")
+            print("    forms: the surface-level count mostly reflects redundancy.")
         elif share >= 0.10:
             print("    " + format(share, ".0%") + " of the single-paper relations move.")
             print("    Redundancy explains part of the figure, not most of it.")
         else:
-            print("    Only " + format(share, ".0%") + " move. Thin corroboration is")
-            print("    real and independent of redundancy; it reflects extraction")
-            print("    coverage or the literature itself, not the graph's surface forms.")
+            print("    Only " + format(share, ".0%") + " move: thin corroboration does not")
+            print("    come from the graph's surface forms.")
 
     print()
     print("  Largest gains:")

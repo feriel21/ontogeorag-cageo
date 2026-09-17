@@ -99,3 +99,4 @@ scripts/analysis/manifest_parameters_and_benchmark_targeting.py	renamed from scr
 scripts/analysis/model_comparison.py	renamed from scripts/analysis/95p_comparaison_controlee_modeles.py (English text; code equivalent)	69f9c8809a77af5964b55743d5f9cb1fec8d48f8a5d243f8a7930ee42ef4a9a8	check_code_unchanged
 scripts/analysis/model_comparison_commands.sh	renamed from scripts/analysis/95p_commands.sh (English header; commands identical)	1ed35e3539d7e0749a70711abb90184dad09b87b6dc42cf0d1e93e53763f174c	diff
 tools/check_code_unchanged.py	new version (--allow-messages, --allow-renames)	61918155a7c9d8a75dad0a1f2046a6dbc172a0cebf66db94d320a9836e3b9cb9	equivalence of eb205c4 verified
+scripts/analysis/family_corroboration.py	renamed from scripts/analysis/100_family_corroboration.py (English text; code equivalent)	80bedbf14f62e6f6a482056538bbcf1d41d5927d3b0d3867683e06cd95324765	check_code_unchanged --allow-messages
