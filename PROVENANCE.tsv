@@ -115,3 +115,4 @@ scripts/paper/classify_open_vocabulary.py	renamed from scripts/paper/68_classify
 scripts/figures/fig_pipeline.py	evaluation row subtitles shortened to one line (159)	b60acc86a03b19eb5981e5bbea2038a5bea567ed2be40b00d8e79c5a1f0ee217	159
 scripts/figures/fig_corroboration.py	new producer of Figure 7 (checks published bins and tier statistics)	1488b619ef057f91623661385165220c88036b4e2c9058ea29a0706c057186e1	validated on cluster
 scripts/figures/fig_sensitivity.py	new producer of Figure 6 (checks published counts; labels say evidence sentence)	ce0e83aaab31738de9b220328e1491b7599380167ab62272cd7e9186aabda6f6	validated on cluster
+scripts/figures/fig_vocabulary_gap.py	new producer of Figure 5 (checks published counts; says extraction vocabulary)	b7daac710149eb398aec3df43baf571da7bf4ee730daf9948680cba2f852ad2c	validated on cluster
