@@ -114,3 +114,4 @@ scripts/evaluation/verifier_decision_rules.py	renamed from scripts/evaluation/10
 scripts/paper/classify_open_vocabulary.py	renamed from scripts/paper/68_classify_vocabulary.py (English; reproduces the Section 3.6 counts, checked by 159)	2a1f7ed601ad5c67b4586e2857ad8c54e371381999f6115d91ec3e351a3c9447	159
 scripts/figures/fig_pipeline.py	evaluation row subtitles shortened to one line (159)	b60acc86a03b19eb5981e5bbea2038a5bea567ed2be40b00d8e79c5a1f0ee217	159
 scripts/figures/fig_corroboration.py	new producer of Figure 7 (checks published bins and tier statistics)	1488b619ef057f91623661385165220c88036b4e2c9058ea29a0706c057186e1	validated on cluster
+scripts/figures/fig_sensitivity.py	new producer of Figure 6 (checks published counts; labels say evidence sentence)	ce0e83aaab31738de9b220328e1491b7599380167ab62272cd7e9186aabda6f6	validated on cluster
