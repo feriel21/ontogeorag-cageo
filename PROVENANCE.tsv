@@ -119,3 +119,7 @@ scripts/figures/fig_vocabulary_gap.py	new producer of Figure 5 (checks published
 scripts/figures/fig_descriptor_vocabulary.py	new producer of Figure 4 (checks the 40 published counts)	a8a5d93e9730135dd10e44c364298314ad4bf4d6fb2b7f80d824127804ddd414	validated on cluster
 scripts/figures/fig_layers.py	new producer of Figure 2 (provenance split; 12 directional relations not checked shown separately)	0e3afe44912b520261c71f506858033c547716ed2d66aab95b88a2f36c92a980	validated on cluster
 data/README.md	written for the release	ee88135c80071e3e5f7e17157ebab7381359b81bf030b3b48bf56a8dcfe46849	rewritten, replaces the copy from 9c03730
+results/run16E/flat_run16E_enforced_dedup.json	run16E output kg_final/flat_run16E_enforced_dedup.json	bd729d03dfbd42bd91e1f447b9b211ebb1b3754cc2502e7b03b48dadae4b4bf1	sha256 prefix = manifest artefact
+results/run16E/graph_with_located_provenance.json	delivered graph with located provenance (scripts/evaluation/graph_with_located_provenance.py), local paths removed	5ded342ed984bf4a130e865cb0c9cb5f9232a62f8a1ba2673e849e0500f1ac43	triples identical to the delivered graph
+results/run16E/controls/negatives_report.json	run16E output m4/negatives/negatives_report.json	e5e5218d48302d1af66c9c734ac0b4b362b4dc34e6d66a8245c49d5507d07829	copied unchanged
+results/run16E/controls/metrics_overall.csv	re-analysis of the run16E controls, m4/negatives/metrics_overall.csv	e898d532badd5ebe1836c1fca263f677beef6cb8618184e66869fc09974bcb39	copied unchanged

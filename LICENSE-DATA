@@ -1,0 +1,8 @@
+The data files in results/run16E/ (the delivered knowledge graph, its copy with located provenance, and the metrics of the adversarial controls) are licensed under the Creative Commons Attribution 4.0 International licence (CC BY 4.0):
+https://creativecommons.org/licenses/by/4.0/legalcode
+
+Exception: the evidence sentences stored with each relation (field `evidence`) are short quotations from the source articles. They remain subject to their publishers' terms and are not licensed under CC BY 4.0.
+
+Not covered: reference/reference_kg.json is derived from the supplementary material of Le Bouteiller et al. (2019) and is reused with the permission of its authors.
+
+The source code is licensed under the Apache License 2.0 (LICENSE).

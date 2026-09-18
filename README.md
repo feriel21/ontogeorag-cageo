@@ -12,9 +12,15 @@ The delivered run, **run16E**, indexed 41 documents into 1,758 passages. It prod
 
 - **The 41 publications and the index built from them.** They are under publishers' copyright. `data/README.md` and `data/corpus_table.md` give the references, DOIs, file names, sha256 checksums and passage counts, so the corpus can be rebuilt and checked.
 - **The commit that ran (`9c03730`).** Its tree contains the PDFs. The link between this repository and that commit is made by checksums (see below).
-- **The delivered graph and intermediate outputs** are not included in this version.
+- **Intermediate outputs** of the run (passes, verification, panel verdicts) are not included.
 
 `reference/reference_kg.json` is derived from the supplementary table of Le Bouteiller et al. (2019) and is reused with the permission of its authors.
+
+## Delivered graph and controls
+
+`results/run16E/flat_run16E_enforced_dedup.json` is the delivered graph exactly as the run wrote it; the first 16 characters of its sha256 are recorded in `results/run16E/manifest.json`. `results/run16E/graph_with_located_provenance.json` holds the same 232 relations with, for each, the location of its evidence sentence in the index (`located_provenance`: file names, passage identifiers, and whether the match is exact or partial), and with local paths removed. Each relation carries its evidence sentence (at most 400 characters), the query that retrieved its passages, its tier, the primary verdict and the panel decision. `results/run16E/controls/` holds the metrics of the 464 adversarial controls of the run (`negatives_report.json`) and the re-analysis comparing four decision rules (`metrics_overall.csv`).
+
+These files are released under CC BY 4.0 (`LICENSE-DATA`), except the evidence sentences, which are short quotations from the source articles and remain subject to their publishers' terms.
 
 ## Layout
 
@@ -27,7 +33,7 @@ The delivered run, **run16E**, indexed 41 documents into 1,758 passages. It prod
 | `m4/` | two-judge panel, tier integration, direction check, negative controls |
 | `configs/` | ontology schema, extraction queries, benchmark, entity families |
 | `reference/` | reference graph |
-| `results/` | manifests of the runs (run16E is the delivered one) |
+| `results/` | manifests of the runs (run16E is the delivered one); delivered graph and control metrics under `results/run16E/` |
 | `scripts/analysis/`, `scripts/evaluation/` | analyses and evaluations reported in the manuscript |
 | `scripts/figures/`, `scripts/paper/` | producers of the figures and tables |
 | `scripts/tools/` | corpus preflight, benchmark extraction |
@@ -72,7 +78,7 @@ The driver runs the 22 steps with the options of run16E and writes a manifest wi
 
 ## Figures and tables
 
-Scripts are run from the repository root: `PYTHONPATH=. python scripts/<folder>/<script>.py`. Each producer stops without writing if it does not find the value published in the manuscript.
+Scripts are run from the repository root: `PYTHONPATH=. python scripts/<folder>/<script>.py`. Each producer stops without writing if it does not find the values published in the manuscript, except `fig_tradeoff.py`, which plots the values of Table 5 as constants; those values are checked by `table5_ablation.py`.
 
 | Manuscript | Producer |
 |---|---|
@@ -236,4 +242,4 @@ Check that the repository files are the ones recorded in PROVENANCE.tsv and in t
 
 ## Citation and licence
 
-See `CITATION.cff`. Archived on Zenodo: https://doi.org/10.5281/zenodo.22827695. Code under the licence in `LICENSE`.
+See `CITATION.cff`. Archived on Zenodo (all versions): https://doi.org/10.5281/zenodo.22827694. Code under the Apache License 2.0 (`LICENSE`); data under CC BY 4.0 (`LICENSE-DATA`).

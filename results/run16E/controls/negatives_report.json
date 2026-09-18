@@ -1,0 +1,90 @@
+{
+  "n_scored": 464,
+  "decision_rule": "corrupted detected iff evidence verdict == NOT_SUPPORTED",
+  "overall": {
+    "sensitivity": 0.6121,
+    "specificity": 0.8707,
+    "precision": 0.8256,
+    "f1": 0.703,
+    "balanced_accuracy": 0.7414,
+    "tp": 142,
+    "fp": 30,
+    "tn": 202,
+    "fn": 90
+  },
+  "roc_auc_graded_score": 0.7937,
+  "per_corruption_class": {
+    "entity_sub": {
+      "sensitivity": 0.7111,
+      "specificity": 0.8707,
+      "precision": 0.6809,
+      "f1": 0.6957,
+      "balanced_accuracy": 0.7909,
+      "tp": 64,
+      "fp": 30,
+      "tn": 202,
+      "fn": 26,
+      "roc_auc": 0.8334,
+      "verdict_distribution": {
+        "PARTIALLY_SUPPORTED": 25,
+        "NOT_SUPPORTED": 64,
+        "SUPPORTED": 1
+      }
+    },
+    "inversion": {
+      "sensitivity": 0.4231,
+      "specificity": 0.8707,
+      "precision": 0.2683,
+      "f1": 0.3284,
+      "balanced_accuracy": 0.6469,
+      "tp": 11,
+      "fp": 30,
+      "tn": 202,
+      "fn": 15,
+      "roc_auc": 0.6744,
+      "verdict_distribution": {
+        "SUPPORTED": 4,
+        "NOT_SUPPORTED": 11,
+        "PARTIALLY_SUPPORTED": 11
+      }
+    },
+    "passage_perm": {
+      "sensitivity": 0.8276,
+      "specificity": 0.8707,
+      "precision": 0.6154,
+      "f1": 0.7059,
+      "balanced_accuracy": 0.8491,
+      "tp": 48,
+      "fp": 30,
+      "tn": 202,
+      "fn": 10,
+      "roc_auc": 0.8774,
+      "verdict_distribution": {
+        "NOT_SUPPORTED": 48,
+        "PARTIALLY_SUPPORTED": 10
+      }
+    },
+    "relation_sub": {
+      "sensitivity": 0.3276,
+      "specificity": 0.8707,
+      "precision": 0.3878,
+      "f1": 0.3551,
+      "balanced_accuracy": 0.5991,
+      "tp": 19,
+      "fp": 30,
+      "tn": 202,
+      "fn": 39,
+      "roc_auc": 0.7018,
+      "verdict_distribution": {
+        "NOT_SUPPORTED": 19,
+        "PARTIALLY_SUPPORTED": 38,
+        "SUPPORTED": 1
+      }
+    }
+  },
+  "original_verdict_distribution": {
+    "PARTIALLY_SUPPORTED": 126,
+    "NOT_SUPPORTED": 30,
+    "SUPPORTED": 76
+  }
+}

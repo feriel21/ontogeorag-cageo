@@ -177,3 +177,7 @@ Files not present in this repository were not published (for example the deliver
 | `scripts/figures/fig_descriptor_vocabulary.py` | new producer of Figure 4 (checks the 40 published counts) | `a8a5d93e9730` | validated on cluster | yes |
 | `scripts/figures/fig_layers.py` | new producer of Figure 2 (provenance split; 12 directional relations not checked shown separately) | `0e3afe44912b` | validated on cluster | yes |
 | `data/README.md` | written for the release | `ee88135c8007` | rewritten, replaces the copy from 9c03730 | yes |
+| `results/run16E/flat_run16E_enforced_dedup.json` | run16E output kg_final/flat_run16E_enforced_dedup.json | `bd729d03dfbd` | sha256 prefix = manifest artefact | yes |
+| `results/run16E/graph_with_located_provenance.json` | delivered graph with located provenance (scripts/evaluation/graph_with_located_provenance.py), local paths removed | `5ded342ed984` | triples identical to the delivered graph | yes |
+| `results/run16E/controls/negatives_report.json` | run16E output m4/negatives/negatives_report.json | `e5e5218d4830` | copied unchanged | yes |
+| `results/run16E/controls/metrics_overall.csv` | re-analysis of the run16E controls, m4/negatives/metrics_overall.csv | `e898d532badd` | copied unchanged | yes |

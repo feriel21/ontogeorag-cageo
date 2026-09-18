@@ -21,7 +21,11 @@ authors:
     given-names: Antoine
   - family-names: Leroy
     given-names: Sylvie
+doi: 10.5281/zenodo.22827694
 identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22827694
+    description: "Zenodo concept DOI (all versions)"
   - type: doi
     value: 10.5281/zenodo.22827695
     description: "Zenodo archive of release v1.0-cageo"
