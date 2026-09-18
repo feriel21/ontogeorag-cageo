@@ -118,3 +118,4 @@ scripts/figures/fig_sensitivity.py	new producer of Figure 6 (checks published co
 scripts/figures/fig_vocabulary_gap.py	new producer of Figure 5 (checks published counts; says extraction vocabulary)	b7daac710149eb398aec3df43baf571da7bf4ee730daf9948680cba2f852ad2c	validated on cluster
 scripts/figures/fig_descriptor_vocabulary.py	new producer of Figure 4 (checks the 40 published counts)	a8a5d93e9730135dd10e44c364298314ad4bf4d6fb2b7f80d824127804ddd414	validated on cluster
 scripts/figures/fig_layers.py	new producer of Figure 2 (provenance split; 12 directional relations not checked shown separately)	0e3afe44912b520261c71f506858033c547716ed2d66aab95b88a2f36c92a980	validated on cluster
+data/README.md	written for the release	ee88135c80071e3e5f7e17157ebab7381359b81bf030b3b48bf56a8dcfe46849	rewritten, replaces the copy from 9c03730

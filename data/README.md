@@ -1,31 +1,23 @@
 # Corpus
 
-The 41-document corpus cannot be distributed due to copyright.
+The corpus is the list of 41 publications in the References sheet of the supplementary table of Le Bouteiller et al. (2019). The sheet has 42 entries; entry 42 is a website and is not part of the corpus. The full references are in `lb2019_41_refs.txt`.
 
-## Corpus composition
+The publications are under publishers' copyright and are **not distributed**, nor is the index built from them (`chunks.jsonl`).
 
-| Subcorpus | Documents | Purpose |
-|---|---|---|
-| `full_corpus/` | 41 PDFs | Main pipeline (used in paper) |
-| `small_corpus/` | ~10 PDFs | Development & debugging |
+## Corpus table
 
-## Reconstruction
+`corpus_table.md` is generated from `lb2019_41_refs.txt`, the run16E index and the corpus files. For each publication it gives the reference and DOI. For each indexed file it gives the file name, sha256 checksum, number of passages, PDF extractor and matching reference. Use it to check a rebuilt corpus file by file.
 
-Collect PDFs of peer-reviewed MTD literature (Scopus/Web of Science,
-query: "mass transport deposit" OR "MTD seismic" OR "submarine landslide").
+## Index of the delivered run (run16E)
 
-Key papers cited in the manuscript:
-- Alves (2014) — Marine Geology
-- Posamentier & Martinsen (2011) — SEPM Special Publication
-- Reis et al. (2016) — Marine and Petroleum Geology
-- Le Bouteiller et al. (2019) — [thesis, ground truth]
+Built by `49_build_index_v2.py` (which replaces `pipeline/01_build_index.py`, not distributed) with `--chunk-size 2000 --overlap 200 --expect-docs 41`: 41 documents, 1,758 passages, none rejected. 27 documents were read with pypdf and 14 with PyMuPDF. The sha256 of `chunks.jsonl` is in `corpus_table.md`.
 
-Place PDFs in `data/full_corpus/` then rebuild the index:
-```bash
-python pipeline/01_build_index.py \
-    --pdf-dir data/full_corpus/ \
-    --outdir  output/step1/
-```
+## Preflight
 
-The BM25 index (`output/step1/chunks.jsonl`, ~40MB) is derived from
-these PDFs and is equally not distributed.
+`scripts/tools/corpus_preflight.py` checks a PDF folder before indexing. Its CSV columns and verdicts are in French; the glossary is in its docstring.
+
+## Rebuilding
+
+1. Collect the 41 publications listed in `lb2019_41_refs.txt`.
+2. Compare each file with `corpus_table.md` (the sha256 identifies the exact file used; another copy of the same article, for example a different publisher version, may give different passages).
+3. Run `PDF_DIR=/path/to/the/pdfs bash workflows/run_pipeline.sh` from the repository root.

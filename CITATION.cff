@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite it using the metadata below."
+type: software
+title: "OntoGeoRAG: code accompanying the Computers & Geosciences manuscript"
+version: v1.1-cageo
+license: Apache-2.0
+repository-code: "https://github.com/feriel21/ontogeorag-cageo"
+authors:
+  - family-names: Talbi
+    given-names: Feryal
+    affiliation: "Sorbonne Université, LIP6; IFP Energies nouvelles"
+  - family-names: Armitage
+    given-names: John
+  - family-names: Charléty
+    given-names: Jean
+  - family-names: Rabaute
+    given-names: Alain
+  - family-names: Vittaut
+    given-names: Jean-Noël
+  - family-names: Bouziat
+    given-names: Antoine
+  - family-names: Leroy
+    given-names: Sylvie
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22827695
+    description: "Zenodo archive of release v1.0-cageo"
+keywords:
+  - knowledge graph
+  - retrieval-augmented generation
+  - mass-transport deposits
+  - seismic interpretation
