@@ -5,3 +5,5 @@ scikit-learn==1.7.2
 rank-bm25==0.2.2
 pymupdf==1.23.7
 pypdf==6.15.0
+pdfplumber==0.11.4
+requests==2.32.5

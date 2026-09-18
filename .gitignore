@@ -8,3 +8,4 @@ logs/
 *.xlsx
 *chunks.jsonl
 *_key.csv
+.ipynb_checkpoints/
