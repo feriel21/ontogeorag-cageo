@@ -1,0 +1,273 @@
+entity,family,methode,occurrences,correction
+mass transport deposit,mass transport deposit,table,69,
+high-amplitude,,aucune,25,
+chaotic,,aucune,17,
+low-amplitude,,aucune,17,
+continuous,,aucune,16,
+discontinuous,,proposee,15,"descripteur, pas une famille de noms"
+parallel,,aucune,15,
+submarine landslide,slope failure,aucune,12,A DECIDER : evenement de rupture -> slope failure
+transparent,,aucune,12,
+debris flow,debris flow,table,10,
+levee,channel,table,10,
+turbidite,turbidity / turbidite,table,10,
+slope failure,slope failure,table,9,
+disrupted,,aucune,8,
+channel levee complex,channel,proposee,7,proposition gardee
+deformed,,aucune,7,
+irregular,,aucune,7,
+seismic reflection,,proposee,7,"donnee sismique, pas un seisme"
+unit pm2,,aucune,7,
+amapá megaslide complex,mass transport deposit,table,6,
+basal shear surface,basal surface,table,6,
+channel,channel,table,6,
+continental margin,contexte de marge,table,6,
+gas hydrate dissociation,gas hydrate,proposee,6,proposition gardee
+high sedimentation rates,sedimentation rate,proposee,6,proposition gardee
+mounded,,aucune,6,
+shear surface,basal surface,proposee,6,proposition gardee
+thick,,aucune,6,
+thin,,aucune,6,
+undeformed,,aucune,6,
+wavy,,aucune,6,
+folded,,aucune,5,
+am1 megaslide,mass transport deposit,proposee,4,proposition gardee
+continental slope,position bathymetrique,table,4,
+faulted,,aucune,4,
+fluid overpressure,pore pressure / overpressure,table,4,
+moderate-amplitude,,aucune,4,
+onlapping,,aucune,4,
+seismic facies,,proposee,4,"donnee sismique, pas un seisme"
+tabular,,aucune,4,
+turbidite system,turbidity / turbidite,aucune,4,ajoute
+turbidity current,turbidity / turbidite,table,4,
+unit a,,aucune,4,
+wedge-shaped,,aucune,4,
+am1,mass transport deposit,aucune,3,ajoute (megaslide AM1)
+blocky,,aucune,3,
+contorted,,aucune,3,
+deep-water environment,position bathymetrique,proposee,3,proposition gardee
+excess pore-water pressures,pore pressure / overpressure,table,3,
+extensional block,blocks,table,3,
+formation of debrites,debris flow,aucune,3,ajoute
+headwall scarp,headscarp,aucune,3,ajoute
+initiation of mass transport deposit,mass transport deposit,proposee,3,proposition gardee
+landslide,slope failure,aucune,3,A DECIDER : evenement de rupture -> slope failure
+large failures,slope failure,proposee,3,proposition gardee
+mass transport deposit 5,mass transport deposit,proposee,3,proposition gardee
+megaslide,mass transport deposit,table,3,
+megaslides,mass transport deposit,table,3,
+passive margin,contexte de marge,table,3,
+remnant block,blocks,proposee,3,proposition gardee
+rotated block,blocks,table,3,
+seabed,,aucune,3,
+sediment wave,wave action,table,3,
+seismic geomorphologic features,,aucune,3,
+seismic reflections,,proposee,3,"donnee sismique, pas un seisme"
+stratified,,aucune,3,
+structural tilting,oversteepening,aucune,3,A DECIDER : nouvelle famille
+amazon fan,systeme sedimentaire,proposee,2,proposition gardee
+block of undisturbed reflections,,aucune,2,
+coarse-grained strata (turbidites),turbidity / turbidite,aucune,2,ajoute
+cohesive parallel-bedded sediments,,aucune,2,
+debrite,debris flow,table,2,
+deepwater setting,position bathymetrique,proposee,2,proposition gardee
+discontinuous erosion surfaces,basal surface,table,2,
+earthquake,seismicity,table,2,
+earthquake loading,seismicity,proposee,2,proposition gardee
+erosion grooves,basal surface,proposee,2,proposition gardee
+erosional,,aucune,2,
+erosional groove,,aucune,2,
+excess pore pressure,pore pressure / overpressure,table,2,
+excess pore pressure build-up,pore pressure / overpressure,proposee,2,proposition gardee
+external perturbations,,aucune,2,
+facies 2,,aucune,2,
+failure plane generation,,aucune,2,
+gravitational collapse,,aucune,2,
+headscarps,headscarp,proposee,2,proposition gardee
+hemipelagic mud,,proposee,2,"hemipelagique, pas turbidite"
+"high-amplitude, fairly continuous reflectors",,aucune,2,
+"high-amplitude, onlapping reflectors",,aucune,2,
+hummocky,,aucune,2,
+instability,slope failure,proposee,2,proposition gardee
+intact block,blocks,proposee,2,proposition gardee
+internal blocks,blocks,table,2,
+major oversteepening of depositional slopes,oversteepening,aucune,2,A DECIDER : nouvelle famille
+opening-mode fractures propagation,,aucune,2,
+pearl river mouth basin,,aucune,2,
+pore pressure buildup,pore pressure / overpressure,proposee,2,proposition gardee
+pore pressure development,pore pressure / overpressure,proposee,2,proposition gardee
+proximal clay-rich and low-permeability sandstones,,aucune,2,
+qiongdongnan basin,,aucune,2,
+raft,,aucune,2,
+rapid sedimentation,sedimentation rate,proposee,2,proposition gardee
+ridge-like morphology,,aucune,2,
+rough,,aucune,2,
+seafloor mass-transport deposit,mass transport deposit,proposee,2,proposition gardee
+sediment,,aucune,2,
+sedimentary unit,,aucune,2,
+sedimentation conditions,sedimentation rate,proposee,2,proposition gardee
+sedimentation pattern,,proposee,2,"repartition, pas un taux"
+seismic trace,,proposee,2,"donnee sismique, pas un seisme"
+shallow frio,,aucune,2,
+sheet-like,,aucune,2,
+significantly higher sedimentation rates,sedimentation rate,proposee,2,proposition gardee
+slope failure initiation,slope failure,proposee,2,proposition gardee
+smooth,,aucune,2,
+three large deepwater basins,position bathymetrique,proposee,2,proposition gardee
+aleutian basin floor,position bathymetrique,proposee,1,proposition gardee
+am2-am6,mass transport deposit,aucune,1,ajoute (megaslides AM2-AM6)
+associated seabed topographic highs,,aucune,1,
+basal surface,basal surface,proposee,1,proposition gardee
+bear island fan complex,,aucune,1,
+bering continental margin,contexte de marge,proposee,1,proposition gardee
+block,blocks,table,1,
+brazos basin 4,,aucune,1,
+canyons,,aucune,1,
+cascadia margin,contexte de marge,proposee,1,proposition gardee
+channel-fill,channel,proposee,1,proposition gardee
+channel-levee complex sets,channel,proposee,1,proposition gardee
+chaotic mass transport deposit,mass transport deposit,proposee,1,proposition gardee
+cohesive parallel-bedded sediments (cpbs),,aucune,1,
+compressive domain,,aucune,1,
+continental uplift,,aucune,1,
+continuous strong plan-parallel units,,aucune,1,
+decreased slope-normal stress,effective stress,proposee,1,proposition gardee
+decreases in strength,sediment strength,proposee,1,proposition gardee
+deep-sea channel,channel,table,1,
+deep-sea environment,position bathymetrique,aucune,1,ajoute
+deep-sea fan,systeme sedimentaire,aucune,1,ajoute
+deepwater basin,position bathymetrique,table,1,
+deformation of bedding,,aucune,1,
+deposition of n1 and n2,,proposee,1,"unites locales, pas turbidite"
+draping,,aucune,1,
+duplex structures,,aucune,1,
+earthquakes,seismicity,proposee,1,proposition gardee
+eastward thinning,,aucune,1,
+ebro passive continental margin,contexte de marge,proposee,1,proposition gardee
+effective stress,effective stress,proposee,1,proposition gardee
+emplacement of mtcs s1-s5,,aucune,1,
+erosion and gully zone,,aucune,1,
+erosion of canyon heads,,aucune,1,
+erosional scour,,aucune,1,
+excess pore-pressure generation,pore pressure / overpressure,proposee,1,proposition gardee
+facies 4,,aucune,1,
+failed sediments,,aucune,1,
+failure,slope failure,aucune,1,ajoute
+failure of sedimentary environments,slope failure,aucune,1,ajoute
+gas hydrate destabilization,gas hydrate,proposee,1,proposition gardee
+gas solubility changes,,aucune,1,
+gravity spreading,,aucune,1,
+gravity tectonics,,aucune,1,
+headscarp,headscarp,table,1,
+headscarp formation,headscarp,table,1,
+high sedimentation rate,sedimentation rate,proposee,1,proposition gardee
+high-amplitude continuous strata,,aucune,1,
+hummocky deposits,,aucune,1,
+ice sheet decay,,aucune,1,
+increased methane solubility,,proposee,1,"consequence du rechauffement, pas un processus des hydrates"
+increases in pressure and temperature,,aucune,1,
+increases in the driving stresses,effective stress,proposee,1,proposition gardee
+internal transparent to chaotic facies,,aucune,1,
+large angular glide blocks,,aucune,1,
+lateral flow line,,proposee,1,"indicateur cinematique du MTD, pas migration de fluides"
+lateral flow lines,,proposee,1,"indicateur cinematique du MTD, pas migration de fluides"
+lateral scarps,,proposee,1,"bord du MTD, pas migration de fluides"
+layered,,aucune,1,
+leveed-channel complex,channel,table,1,
+localised fracturing,fracturing,table,1,
+localized fracturing,fracturing,table,1,
+longitudinal linear feature,,aucune,1,
+low permeability,,aucune,1,
+low-amplitude features,,aucune,1,
+low-angle thrust fault,,aucune,1,
+main body of the 'slide',,aucune,1,
+main slide mass,mass transport deposit,proposee,1,proposition gardee
+mass transport deposit a,mass transport deposit,table,1,
+mass transport deposit initiation,mass transport deposit,proposee,1,proposition gardee
+massive,,aucune,1,
+massive slope failure,slope failure,proposee,1,proposition gardee
+megaslides am2-am6,mass transport deposit,proposee,1,proposition gardee
+migration of depocenters,,aucune,1,
+mississippi fan,systeme sedimentaire,proposee,1,proposition gardee
+mississippi fan surface,,aucune,1,
+"near-proximal, clay-poor, and high-permeability sandstones",,aucune,1,
+negative seismic anomalies,,aucune,1,
+new slope failures,slope failure,table,1,
+open slope,position bathymetrique,aucune,1,ajoute
+orientation of n1 and n2,,aucune,1,
+overpressure,pore pressure / overpressure,table,1,
+overpressure source,pore pressure / overpressure,proposee,1,proposition gardee
+pakistan shelf and continental slope,position bathymetrique,proposee,1,proposition gardee
+plunge pool,,aucune,1,
+poor drainage,,aucune,1,
+possible tensional depression sediments,,aucune,1,
+promontory,,aucune,1,
+promontory-related ramps,,aucune,1,
+rafted block,blocks,proposee,1,proposition gardee
+rapid changes in sedimentation rates,sedimentation rate,proposee,1,proposition gardee
+reduced sediment strength,sediment strength,table,1,
+relative sea level change,sea level,proposee,1,proposition gardee
+relative sea level fall,sea level,proposee,1,proposition gardee
+remnant and rafted blocks,blocks,table,1,
+remobilized masses,mass transport deposit,aucune,1,ajoute
+retrogressive failure,slope failure,aucune,1,ajoute
+rise of hydrostatic pressure,,aucune,1,
+sea-level fall,sea level,proposee,1,proposition gardee
+seafloor mass-transport deposits,mass transport deposit,proposee,1,proposition gardee
+seafloor roughness,,aucune,1,
+sediment accumulation,sedimentation rate,proposee,1,proposition gardee
+sediment diffusion pattern,,aucune,1,
+sediment ridge,,aucune,1,
+sedimentary layers,,aucune,1,
+sedimentation rate,sedimentation rate,table,1,
+seismic activity,seismicity,proposee,1,proposition gardee
+seismic facies 1 and 3,,proposee,1,"donnee sismique, pas un seisme"
+seismic facies 2,,proposee,1,"donnee sismique, pas un seisme"
+seismic facies or units,,aucune,1,
+seismic geomorphologic elements,,aucune,1,
+seismic refections,,proposee,1,"donnee sismique, pas un seisme"
+shallow strata,,proposee,1,"couches peu profondes, pas une pression"
+shallow-water frio blocks,,aucune,1,
+shear strength degradation,sediment strength,proposee,1,proposition gardee
+shelf edge,position bathymetrique,aucune,1,ajoute
+silky clay,,aucune,1,
+silty clay,,aucune,1,
+slide,,proposee,1,"objet distinct (slide) : garde son propre nom, comme dans la comparaison"
+slide or rotated blocks,blocks,proposee,1,proposition gardee
+slope failure feature,slope failure,proposee,1,proposition gardee
+slope sediments,,proposee,1,"sediments de pente, pas une rupture"
+slope-attached mass transport deposit,mass transport deposit,proposee,1,proposition gardee
+slope-attached mass-transport deposit,mass transport deposit,table,1,
+slope-normal stress to decrease,effective stress,proposee,1,proposition gardee
+slump,,aucune,1,
+state of extreme underconsolidation,,aucune,1,
+storms,wave action,proposee,1,proposition gardee
+strain localization and creep processes,,aucune,1,
+subaqueous environment,,aucune,1,
+submarine canyon,,aucune,1,
+submarine environment,,aucune,1,
+surfacic unit,,aucune,1,
+synsedimentary processes,,aucune,1,
+tabular-like geometry,,aucune,1,
+tectonic uplift,,aucune,1,
+tensional depression sediments,,aucune,1,
+tensional depression sediments (ptds),,aucune,1,
+tilting and oversteepening of sediments,oversteepening,aucune,1,A DECIDER : nouvelle famille
+toe region,,aucune,1,
+topography of the source area,,aucune,1,
+translation domain area,,aucune,1,
+translational domain,,aucune,1,
+turbidite sequence,turbidity / turbidite,proposee,1,proposition gardee
+turbiditic and hemipelagic deposition,turbidity / turbidite,table,1,
+turbidity flow,turbidity / turbidite,aucune,1,ajoute
+un-deformed stratigraphic packages,,aucune,1,
+undeformed shallow frio,,aucune,1,
+undeformed substrate,,aucune,1,
+undisturbed high-amplitude block,,aucune,1,
+unit ia,,aucune,1,
+unit ib,,aucune,1,
+unit pm1,,aucune,1,
+upper surface,,aucune,1,
+weak layers,,aucune,1,
+wilkes land continental margin,contexte de marge,proposee,1,proposition gardee

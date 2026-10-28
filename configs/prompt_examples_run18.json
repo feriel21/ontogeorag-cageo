@@ -1,0 +1,53 @@
+{
+  "source": "Exemples de format tires de 11 articles hors du corpus evalue (index output/generalization/step1, candidats 177, graine 20261021). Chaque exemple est affirme par la phrase citee dans 'provenance'. Aucun exemple ne reprend un couple des relations de comparaison (verifie par 176 et 174).",
+  "descriptor": [
+    {"source": "slump", "source_type": "SeismicObject", "relation": "hasDescriptor", "target": "folded", "target_type": "Descriptor", "salience": "typical"},
+    {"source": "mass transport deposit", "source_type": "SeismicObject", "relation": "hasDescriptor", "target": "deformed", "target_type": "Descriptor", "salience": "typical"},
+    {"source": "mass transport deposit", "source_type": "SeismicObject", "relation": "hasDescriptor", "target": "irregular", "target_type": "Descriptor", "salience": "common"},
+    {"source": "mass transport deposit", "source_type": "SeismicObject", "relation": "hasDescriptor", "target": "smooth", "target_type": "Descriptor", "salience": "occasional"},
+    {"source": "basal shear surface", "source_type": "SeismicObject", "relation": "hasDescriptor", "target": "parallel", "target_type": "Descriptor", "salience": "common"},
+    {"source": "block", "source_type": "SeismicObject", "relation": "hasDescriptor", "target": "undeformed", "target_type": "Descriptor", "salience": "occasional"},
+    {"source": "landslide", "source_type": "SeismicObject", "relation": "hasDescriptor", "target": "faulted", "target_type": "Descriptor", "salience": "occasional"}
+  ],
+  "causal": [
+    {"source": "halokinesis", "source_type": "Process", "relation": "triggers", "target": "mass transport deposit", "target_type": "GeologicalObject"},
+    {"source": "storm", "source_type": "Process", "relation": "triggers", "target": "submarine landslide", "target_type": "Process"},
+    {"source": "episodic fluid flow", "source_type": "Process", "relation": "triggers", "target": "slope instability", "target_type": "Process"},
+    {"source": "fault", "source_type": "GeologicalObject", "relation": "causes", "target": "chaotic rearrangement of sediments", "target_type": "Process"},
+    {"source": "sea level fluctuation", "source_type": "Process", "relation": "causes", "target": "mass transport deposit", "target_type": "GeologicalObject"},
+    {"source": "topography", "source_type": "Process", "relation": "controls", "target": "mass transport deposit distribution", "target_type": "Process"},
+    {"source": "landslide volume", "source_type": "Process", "relation": "controls", "target": "tsunami wave magnitude", "target_type": "Process"}
+  ],
+  "context": [
+    {"source": "submarine landslide", "source_type": "GeologicalObject", "relation": "occursIn", "target": "active margin", "target_type": "GeologicalSetting"},
+    {"source": "slump complex", "source_type": "GeologicalObject", "relation": "occursIn", "target": "continental margin", "target_type": "GeologicalSetting"},
+    {"source": "basal shear zone", "source_type": "GeologicalObject", "relation": "overlies", "target": "undeformed substrate", "target_type": "GeologicalObject"},
+    {"source": "post-MTD sediment", "source_type": "GeologicalObject", "relation": "overlies", "target": "mass transport deposit", "target_type": "GeologicalObject"},
+    {"source": "Cenozoic sedimentary unit", "source_type": "GeologicalObject", "relation": "overlies", "target": "Mesozoic igneous basement", "target_type": "GeologicalObject"},
+    {"source": "basal shear zone", "source_type": "GeologicalObject", "relation": "partOf", "target": "mass transport deposit", "target_type": "GeologicalObject"},
+    {"source": "translational domain", "source_type": "GeologicalObject", "relation": "partOf", "target": "mass transport deposit", "target_type": "GeologicalObject"}
+  ],
+  "provenance": [
+    ["descriptor", "slump folded", "1-s2.0-S026481722100297X-main", "Slump folds consists of folded beds with heterogeneous facies including thin-bedded fine-grained turbidites disconnected from each other and siderite beds embedded within a muddy matrix"],
+    ["descriptor", "MTD deformed", "1-s2.0-S0025322725000404-main", "The MTD-CG1 consists of Middle Pleistocene sediments, which have been deformed by gravity sliding from the Holocene to the Present."],
+    ["descriptor", "MTD irregular", "jmse-12-02115", "Moreover, the distribution of predicted MTDs is characterized by irregular geometries."],
+    ["descriptor", "MTD smooth", "1-s2.0-S0264817220302725-main", "this topography occurs within the translational domain of the MTD, characterised by smooth upper surfaces associated with the highly deformed amorphous nature of the HF facies"],
+    ["descriptor", "basal shear surface parallel", "1-s2.0-S0264817220302725-main", "Basal shear surface Description: In the study area, the basal surface of the MTD is generally sub-parallel to the underlying undeformed stratigraphy (Fig. 3)."],
+    ["descriptor", "block undeformed", "1-s2.0-S0264817220302725-main", "These undeformed parallel reflectors are mainly composed of symmetrical fore- and back-thrust sediment blocks (Fig. 4d)."],
+    ["descriptor", "landslide faulted", "1-s2.0-S1367912025004390-main", "The brown wedge (repeated T40-T37) is interpreted as an exotic landslide probably from upper slope inserted into the Hanjiang Formation and later is faulted by later thrust activity."],
+    ["causal", "halokinesis triggers MTD", "1-s2.0-S026481722100297X-main", "In salt-controlled basins, the primary process triggering locally-derived MTDs is halokinesis"],
+    ["causal", "storm triggers submarine landslide", "1-s2.0-S0264817224000412-main", "We also note direct evidence of submarine landslides triggered by storms (Zhang et al., 2016)"],
+    ["causal", "episodic fluid flow triggers slope instability", "41598_2020_Article_71088", "Episodic fluid flow as a trigger for Miocene-Pliocene slope instability on the Utgard High, Norwegian Sea."],
+    ["causal", "fault causes chaotic rearrangement", "1-s2.0-S0025322725000404-main", "parallel and continuous seismic layers are interrupted by a fault rooted in the bsz (Fig. 11b), which induces the chaotic rearrangement of the sediments."],
+    ["causal", "sea level fluctuation causes MTD", "jmse-12-02115", "When the rate of sea level fluctuation increased, it often caused the occurrence of large-scale MTDs by landslides on the shelf edge and slope."],
+    ["causal", "topography controls MTD distribution", "jmse-12-02115", "A total of 10 factors were screened in this study, among which topographic and sedimentary factors have the most prominent controls on MTD distributions."],
+    ["causal", "landslide volume controls wave magnitude", "1-s2.0-S0264817224000412-main", "Submarine landslide initial volume and initial acceleration exert first order control over wave magnitude"],
+    ["context", "submarine landslide occursIn active margin", "1-s2.0-S0264817224000412-main", "Higher proportions of submarine landslides were recorded on the active margin (1/52 km2) compared to the passive margin (1/121 km2)"],
+    ["context", "slump complex occursIn continental margin", "1-s2.0-S1367912025004390-main", "3D seismic interpretation of slump complexes, examples from the continental margin of Israel."],
+    ["context", "basal shear zone overlies undeformed substrate", "1-s2.0-S0025322725000404-main", "In areas affected by mass transport erosion, the bsz acts as an irregular surface capping the underlying undeformed substrate."],
+    ["context", "post-MTD sediment overlies MTD", "1-s2.0-S0264817220302725-main", "submarine channels ... eroded sediments overlying the MTD to the northwest (Fig. 6d)."],
+    ["context", "Cenozoic unit overlies Mesozoic basement", "1-s2.0-S1367912025004390-main", "the sag (e.g. the Kaiping sag) of the PRMB has a Mesozoic igneous basement overlain by Cenozoic sedimentary unit (Luan, 2024)."],
+    ["context", "basal shear zone partOf MTD", "1-s2.0-S0025322725000404-main", "The basal shear zone (bsz) or basal continuous surface, a key structural feature in MTDs, was identified and analyzed."],
+    ["context", "translational domain partOf MTD", "1-s2.0-S0025322725000404-main", "In the translational domain the MTD-CG1 is characterized by alternating undisturbed and deformed sectors."]
+  ]
+}
