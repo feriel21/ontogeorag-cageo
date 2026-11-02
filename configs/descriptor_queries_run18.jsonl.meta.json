@@ -1,0 +1,661 @@
+{
+  "produced_by": "175_requetes_run18.py",
+  "rule": {
+    "R1": "focus starts with LB: or gapfill:",
+    "R2": "focus or query text names both arguments of a reference edge (whole terms)"
+  },
+  "reference_edges": "configs/lb_reference_edges_original26.json",
+  "reference_sha256": "c3a8324eacab4d7b5da673a8aaea5fab7f628d6c76b8fcc551d625bcf77d98da",
+  "input": "configs/descriptor_queries_v2.jsonl",
+  "input_sha256": "f4269b33fc47ab93c9c419826d3da60ec4ea35fd564613923ef52c327028f633",
+  "n_input": 287,
+  "output": "configs/descriptor_queries_run18.jsonl",
+  "output_sha256": "3dacffd9b7f72c96fd44adee5795bbba869db038dc33edb4af149f13246be5b9",
+  "n_kept": 210,
+  "n_removed": 77,
+  "removed_by_reason": {
+    "R1_LB": 32,
+    "R2_names_both_arguments": 32,
+    "R1_gapfill": 26
+  },
+  "kept_by_strategy": {
+    "descriptor": 107,
+    "causal": 19,
+    "context": 33,
+    "profile": 11,
+    "setting": 1,
+    "spatial": 1,
+    "descriptor_reverse": 38
+  },
+  "removed": [
+    {
+      "index": 99,
+      "focus": "LB:fluid overpressure->slope failure",
+      "query": "How does fluid overpressure trigger slope failure?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 100,
+      "focus": "LB:fluid overpressure->slope failure",
+      "query": "What is the relationship between fluid overpressure and slope failure in submarine environments?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 101,
+      "focus": "LB:seismic loading->slope failure",
+      "query": "How does seismic loading trigger slope failure?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 102,
+      "focus": "LB:seismic loading->slope failure",
+      "query": "What is the relationship between seismic loading and slope failure in submarine environments?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 103,
+      "focus": "LB:gas hydrate dissociation->slope failure",
+      "query": "How does gas hydrate dissociation trigger slope failure?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 104,
+      "focus": "LB:gas hydrate dissociation->slope failure",
+      "query": "What is the relationship between gas hydrate dissociation and slope failure in submarine environments?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 105,
+      "focus": "LB:wave loading->slope failure",
+      "query": "How does wave loading trigger slope failure?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 106,
+      "focus": "LB:wave loading->slope failure",
+      "query": "What is the relationship between wave loading and slope failure in submarine environments?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 107,
+      "focus": "LB:rapid sedimentation->fluid overpressure",
+      "query": "How does rapid sedimentation cause fluid overpressure?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 108,
+      "focus": "LB:rapid sedimentation->fluid overpressure",
+      "query": "What is the relationship between rapid sedimentation and fluid overpressure in submarine environments?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 109,
+      "focus": "LB:slope failure->mass transport deposit",
+      "query": "How does slope failure cause mass transport deposit?",
+      "reasons": [
+        "R1_LB",
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 110,
+      "focus": "LB:slope failure->mass transport deposit",
+      "query": "What is the relationship between slope failure and mass transport deposit in submarine environments?",
+      "reasons": [
+        "R1_LB",
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 111,
+      "focus": "LB:debris flow->turbidity current",
+      "query": "How does debris flow cause turbidity current?",
+      "reasons": [
+        "R1_LB",
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 112,
+      "focus": "LB:debris flow->turbidity current",
+      "query": "What is the relationship between debris flow and turbidity current in submarine environments?",
+      "reasons": [
+        "R1_LB",
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 113,
+      "focus": "LB:burial compaction->thickness",
+      "query": "How does burial compaction control thickness?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 114,
+      "focus": "LB:burial compaction->thickness",
+      "query": "What is the relationship between burial compaction and thickness in submarine environments?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 115,
+      "focus": "LB:sedimentation rate->thickness",
+      "query": "How does sedimentation rate control thickness?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 116,
+      "focus": "LB:sedimentation rate->thickness",
+      "query": "What is the relationship between sedimentation rate and thickness in submarine environments?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 117,
+      "focus": "LB:flow behavior->internal facies",
+      "query": "How does flow behavior affect internal facies?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 118,
+      "focus": "LB:flow behavior->internal facies",
+      "query": "What is the relationship between flow behavior and internal facies in submarine environments?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 119,
+      "focus": "LB:material heterogeneity->flow behavior",
+      "query": "How does material heterogeneity affect flow behavior?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 120,
+      "focus": "LB:material heterogeneity->flow behavior",
+      "query": "What is the relationship between material heterogeneity and flow behavior in submarine environments?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 121,
+      "focus": "LB:grain heterogeneity->flow behavior",
+      "query": "How does grain heterogeneity affect flow behavior?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 122,
+      "focus": "LB:grain heterogeneity->flow behavior",
+      "query": "What is the relationship between grain heterogeneity and flow behavior in submarine environments?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 123,
+      "focus": "LB:erosion->basal surface",
+      "query": "How does erosion affect basal surface?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 124,
+      "focus": "LB:erosion->basal surface",
+      "query": "What is the relationship between erosion and basal surface in submarine environments?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 125,
+      "focus": "LB:remobilization->transparent",
+      "query": "How does remobilization affect transparent?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 126,
+      "focus": "LB:remobilization->transparent",
+      "query": "What is the relationship between remobilization and transparent in submarine environments?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 127,
+      "focus": "LB:frontal compression->upper surface",
+      "query": "How does frontal compression affect upper surface?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 128,
+      "focus": "LB:frontal compression->upper surface",
+      "query": "What is the relationship between frontal compression and upper surface in submarine environments?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 129,
+      "focus": "LB:retrogressive failure->headscarp",
+      "query": "How does retrogressive failure cause headscarp?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 130,
+      "focus": "LB:retrogressive failure->headscarp",
+      "query": "What is the relationship between retrogressive failure and headscarp in submarine environments?",
+      "reasons": [
+        "R1_LB"
+      ]
+    },
+    {
+      "index": 156,
+      "focus": "mass transport deposit->continental slope",
+      "query": "Does mass transport deposit occur in continental slope?",
+      "reasons": [
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 164,
+      "focus": "debris flow->continental slope",
+      "query": "Does debris flow occur in continental slope?",
+      "reasons": [
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 194,
+      "focus": "gapfill:fluid overpressure triggers slope failure",
+      "query": "Describe the relationship between fluid overpressure and slope failure in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill"
+      ]
+    },
+    {
+      "index": 195,
+      "focus": "gapfill:seismic loading triggers slope failure",
+      "query": "Describe the relationship between seismic loading and slope failure in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill"
+      ]
+    },
+    {
+      "index": 196,
+      "focus": "gapfill:gas hydrate dissociation triggers slope failure",
+      "query": "Describe the relationship between gas hydrate dissociation and slope failure in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill"
+      ]
+    },
+    {
+      "index": 197,
+      "focus": "gapfill:wave loading triggers slope failure",
+      "query": "Describe the relationship between wave loading and slope failure in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill"
+      ]
+    },
+    {
+      "index": 198,
+      "focus": "gapfill:rapid sedimentation causes fluid overpressure",
+      "query": "Describe the relationship between rapid sedimentation and fluid overpressure in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill"
+      ]
+    },
+    {
+      "index": 199,
+      "focus": "gapfill:slope failure causes mass transport deposit",
+      "query": "Describe the relationship between slope failure and mass transport deposit in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill",
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 200,
+      "focus": "gapfill:debris flow causes turbidity current",
+      "query": "Describe the relationship between debris flow and turbidity current in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill",
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 201,
+      "focus": "gapfill:burial compaction controls thickness",
+      "query": "Describe the relationship between burial compaction and thickness in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill"
+      ]
+    },
+    {
+      "index": 202,
+      "focus": "gapfill:sedimentation rate controls thickness",
+      "query": "Describe the relationship between sedimentation rate and thickness in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill"
+      ]
+    },
+    {
+      "index": 203,
+      "focus": "gapfill:flow behavior affects internal facies",
+      "query": "Describe the relationship between flow behavior and internal facies in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill"
+      ]
+    },
+    {
+      "index": 204,
+      "focus": "gapfill:material heterogeneity affects flow behavior",
+      "query": "Describe the relationship between material heterogeneity and flow behavior in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill"
+      ]
+    },
+    {
+      "index": 205,
+      "focus": "gapfill:grain heterogeneity affects flow behavior",
+      "query": "Describe the relationship between grain heterogeneity and flow behavior in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill"
+      ]
+    },
+    {
+      "index": 206,
+      "focus": "gapfill:erosion affects basal surface",
+      "query": "Describe the relationship between erosion and basal surface in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill"
+      ]
+    },
+    {
+      "index": 207,
+      "focus": "gapfill:remobilization affects transparent",
+      "query": "Describe the relationship between remobilization and transparent in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill"
+      ]
+    },
+    {
+      "index": 208,
+      "focus": "gapfill:frontal compression affects upper surface",
+      "query": "Describe the relationship between frontal compression and upper surface in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill"
+      ]
+    },
+    {
+      "index": 209,
+      "focus": "gapfill:retrogressive failure causes headscarp",
+      "query": "Describe the relationship between retrogressive failure and headscarp in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill"
+      ]
+    },
+    {
+      "index": 210,
+      "focus": "gapfill:mass transport deposit hasDescriptor chaotic",
+      "query": "Describe the relationship between mass transport deposit and chaotic in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill",
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 211,
+      "focus": "gapfill:mass transport deposit hasDescriptor transparent",
+      "query": "Describe the relationship between mass transport deposit and transparent in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill",
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 212,
+      "focus": "gapfill:mass transport deposit hasDescriptor blocky",
+      "query": "Describe the relationship between mass transport deposit and blocky in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill",
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 213,
+      "focus": "gapfill:mass transport deposit hasDescriptor discontinuous",
+      "query": "Describe the relationship between mass transport deposit and discontinuous in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill",
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 214,
+      "focus": "gapfill:mass transport deposit hasDescriptor hummocky",
+      "query": "Describe the relationship between mass transport deposit and hummocky in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill",
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 215,
+      "focus": "gapfill:mass transport deposit hasDescriptor massive",
+      "query": "Describe the relationship between mass transport deposit and massive in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill",
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 216,
+      "focus": "gapfill:mass transport deposit occursIn continental slope",
+      "query": "Describe the relationship between mass transport deposit and continental slope in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill",
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 217,
+      "focus": "gapfill:turbidite occursIn deep-water environment",
+      "query": "Describe the relationship between turbidite and deep-water environment in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill"
+      ]
+    },
+    {
+      "index": 218,
+      "focus": "gapfill:headscarp partOf mass transport deposit",
+      "query": "Describe the relationship between headscarp and mass transport deposit in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill"
+      ]
+    },
+    {
+      "index": 219,
+      "focus": "gapfill:toe partOf mass transport deposit",
+      "query": "Describe the relationship between toe and mass transport deposit in mass transport deposits.",
+      "reasons": [
+        "R1_gapfill"
+      ]
+    },
+    {
+      "index": 224,
+      "focus": "",
+      "query": "What slide blocks or translated masses are described as undeformed or essentially undeformed?",
+      "reasons": [
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 226,
+      "focus": "debris flow",
+      "query": "What are the seismic characteristics of debris flow deposits including chaotic and hummocky facies?",
+      "reasons": [
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 227,
+      "focus": "slide",
+      "query": "How are slide deposits characterized in seismic data — blocky and undeformed reflections?",
+      "reasons": [
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 228,
+      "focus": "hemipelagite",
+      "query": "What seismic facies describe hemipelagite deposits — parallel continuous low amplitude?",
+      "reasons": [
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 229,
+      "focus": "turbidite",
+      "query": "Does turbidite show parallel continuous layered high-amplitude seismic character?",
+      "reasons": [
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 230,
+      "focus": "slope failure trigger",
+      "query": "What triggers slope failure — earthquake seismicity pore pressure?",
+      "reasons": [
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 232,
+      "focus": "debris flow transformation",
+      "query": "Does debris flow transform into turbidity current?",
+      "reasons": [
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 235,
+      "focus": "turbidite:parallel",
+      "query": "Are turbidites described as parallel or continuous reflectors in seismic data?",
+      "reasons": [
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 236,
+      "focus": "turbidite:layered",
+      "query": "What seismic character do turbidites show — high amplitude layered?",
+      "reasons": [
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 238,
+      "focus": "subject:slide",
+      "query": "What seismic facies describe slide deposits — blocky undeformed reflectors?",
+      "reasons": [
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 239,
+      "focus": "slide:undeformed",
+      "query": "Are slides characterized by undeformed or blocky seismic facies?",
+      "reasons": [
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 242,
+      "focus": "earthquake:triggers:slope_failure",
+      "query": "What triggers slope failure — earthquake seismic loading?",
+      "reasons": [
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 243,
+      "focus": "pore_pressure:controls:slope_failure",
+      "query": "How does pore pressure control slope stability and failure?",
+      "reasons": [
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 244,
+      "focus": "turbidity_current:formedBy:debris_flow",
+      "query": "Can debris flows transform into turbidity currents?",
+      "reasons": [
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 246,
+      "focus": "debris_flow:occursIn:continental_slope",
+      "query": "Where do debris flows occur — continental slope setting?",
+      "reasons": [
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 247,
+      "focus": "turbidite:occursIn:basin_floor",
+      "query": "Where do turbidites deposit — basin floor abyssal plain?",
+      "reasons": [
+        "R2_names_both_arguments"
+      ]
+    },
+    {
+      "index": 248,
+      "focus": "slide:overlies:hemipelagite",
+      "query": "Do slides overlie hemipelagic sediments stratigraphically?",
+      "reasons": [
+        "R2_names_both_arguments"
+      ]
+    }
+  ]
+}
