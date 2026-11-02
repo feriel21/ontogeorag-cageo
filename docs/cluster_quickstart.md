@@ -1,7 +1,9 @@
-# run18 on a SLURM cluster — copy-paste quickstart
+# run18 on a SLURM cluster â€” copy-paste quickstart
 
 Short version of `docs/INSTALL_cluster.md` for a session where the repository is already cloned and the Python environment already created.
 Fill in **block 0 only**. Every other block is copied as is, in order, in the same terminal. Each block ends with the result to check before going on.
+
+The cluster needs **no internet access**: the models are downloaded once on a machine that has internet (step 3a), copied to the cluster (step 3b), and the job reads them offline (`HF_HUB_OFFLINE=1`, set by the sbatch). Nothing has to be installed on the cluster for this; `huggingface-hub` is already in the venv.
 
 No file needs editing: `slurm/run18.sbatch` reads `REPO`, `VENV`, `HF_HOME`, `PDF_DIR`, `SMOKE`, `INDEX_FROM` and `OUT` from the environment, and `--account` / `--partition` given on the `sbatch` command line replace the `A_REMPLIR` lines. The cluster's values therefore never enter the repository.
 
@@ -18,7 +20,7 @@ export CLUSTER_PARTITION="FILL_ME"   # GPU partition:   sinfo -o "%P %G %l"
 export REPO="$HOME/ontogeorag"     # where the repository was cloned
 export VENV="$HOME/ontogeorag_venv"  # the venv created for OntoGeoRAG
 export PDF_DIR="FILL_ME"           # folder holding the 41 corpus PDFs
-export HF_HOME="$HOME/.cache/huggingface"  # must be visible from compute nodes; ~50 GB free
+export HF_HOME="FILL_ME"           # model cache on a shared scratch space visible from compute nodes; ~50 GB free
 # ---------------------------------------------------------------------
 ```
 
@@ -36,10 +38,10 @@ git fetch origin
 git checkout run18
 git pull origin run18
 git log -1 --oneline
-ls slurm/run18.sbatch workflows/prefetch_models.sh workflows/run_pipeline_run18.sh
+ls slurm/run18.sbatch workflows/run_pipeline_run18.sh
 ```
 
-Check: the three files are listed.
+Check: the two files are listed.
 
 ---
 
@@ -57,17 +59,78 @@ Check: Python 3.10, `pypdf 6.15.0`, `PyMuPDF 1.23.7` (versions of the paper inde
 
 ---
 
-## 3. Models (login node with internet, once)
+## 3. Models (once)
 
-The Llama 3.1 licence must first be accepted on the Hugging Face account used here (model page `meta-llama/Llama-3.1-8B-Instruct`).
+The pipeline needs five models: three LLMs at the revisions of the paper, the reranker and SciBERT.
+The Llama 3.1 licence must first be accepted on the Hugging Face account used (model page `meta-llama/Llama-3.1-8B-Instruct`).
+
+### 3a. Download â€” on a machine with internet (laptop or workstation, not the cluster)
+
+`huggingface-hub` is installed at the same version as in the cluster venv; it provides the `hf` command (the former `huggingface-cli`).
 
 ```bash
-cd "$REPO" && pwd
-huggingface-cli login
-bash workflows/prefetch_models.sh 2>&1 | tee prefetch_models.log
+python3 -m venv ~/hf_download_env
+source ~/hf_download_env/bin/activate
+pip install "huggingface-hub==0.36.0"
+hf auth login
+export HF_HOME="$HOME/hf_ontogeorag"
+hf download Qwen/Qwen2.5-7B-Instruct --revision a09a35458c702b33eeacc393d103063234e8bc28 --exclude "*.bin" "*.pth" "original/*"
+hf download mistralai/Mistral-7B-Instruct-v0.2 --revision 63a8b081895390a26e140280378bc85ec8bce07a --exclude "*.bin" "*.pth" "original/*"
+hf download meta-llama/Llama-3.1-8B-Instruct --revision 0e9e39f249a16976918f6564b8830bc894c89659 --exclude "*.bin" "*.pth" "original/*"
+hf download cross-encoder/ms-marco-MiniLM-L-6-v2
+hf download allenai/scibert_scivocab_uncased
+ls "$HF_HOME/hub"
+du -sh "$HF_HOME"
 ```
 
-Check: one `ok` line per model (three LLMs at the pinned revisions, reranker, SciBERT). A `WARNING` on the reranker or SciBERT means a different revision than the paper: the run still works, but write it down for the report.
+The `--exclude` patterns skip duplicate copies of the LLM weights (`.bin`, `.pth`, `original/`). The pipeline loads the `.safetensors` files only, so they are not needed and would double the size. Do not use `--exclude` on SciBERT and the reranker: they are small, and SciBERT may only have a `.bin`.
+With `huggingface-hub` 1.x, several patterns are given by repeating the flag (`--exclude "*.bin" --exclude "*.pth"`); version 0.36.0 takes them after a single `--exclude`, as above.
+
+Check: five `models--â€¦` folders. The reranker and SciBERT are loaded by name; compare their revision with the paper's:
+
+```bash
+ls "$HF_HOME/hub/models--cross-encoder--ms-marco-MiniLM-L-6-v2/snapshots/"   # paper: 233902d25c440f23af6f7d6e94d2946bac0bee0a
+ls "$HF_HOME/hub/models--allenai--scibert_scivocab_uncased/snapshots/"       # paper: 24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1
+```
+
+A different revision still works; write it down for the report.
+If the five models are already cached on another machine (another cluster, for example), copy that cache in step 3b instead of downloading again.
+
+### 3b. Copy to the cluster â€” keep the symbolic links
+
+In the Hugging Face cache, `snapshots/` only holds symbolic links to the files in `blobs/`. `scp -r`, WinSCP, FileZilla or a zip follow the links and copy every file twice (or more), which multiplies the size on the cluster. Use `rsync -a`, which keeps the links:
+
+```bash
+rsync -a --info=progress2 "$HOME/hf_ontogeorag/" <user>@<cluster>:<HF_HOME_on_the_cluster>/
+```
+
+If `rsync` is not available on the machine, use `tar`, which also keeps the links:
+
+```bash
+tar -cf hf_ontogeorag.tar -C "$HOME" hf_ontogeorag
+scp hf_ontogeorag.tar <user>@<cluster>:<scratch_folder>/
+```
+
+then on the cluster:
+
+```bash
+cd <scratch_folder> && pwd
+tar -xf hf_ontogeorag.tar
+ls hf_ontogeorag/hub
+```
+
+and set `HF_HOME` in block 0 to `<scratch_folder>/hf_ontogeorag`.
+
+### 3c. Check on the cluster (offline, as the job will read the models)
+
+```bash
+find "$HF_HOME/hub" -type l | wc -l
+du -sh "$HF_HOME"
+HF_HUB_OFFLINE=1 python -c "from huggingface_hub import snapshot_download as s; [print('ok', r, s(r, revision=v, local_files_only=True)) for r, v in [('Qwen/Qwen2.5-7B-Instruct', 'a09a35458c702b33eeacc393d103063234e8bc28'), ('meta-llama/Llama-3.1-8B-Instruct', '0e9e39f249a16976918f6564b8830bc894c89659'), ('mistralai/Mistral-7B-Instruct-v0.2', '63a8b081895390a26e140280378bc85ec8bce07a'), ('cross-encoder/ms-marco-MiniLM-L-6-v2', None), ('allenai/scibert_scivocab_uncased', None)]]"
+```
+
+Check: the number of links is not `0`; the size is close to the size measured in 3a; five `ok` lines.
+Do not run `workflows/prefetch_models.sh` on a cluster without internet: it downloads.
 
 ---
 
@@ -109,7 +172,7 @@ tail -f logs/run18_<jobid>.out
 Check in `logs/run18_<jobid>.out`:
 - the `=== GATE ===` section passes;
 - the line `index: 1758 passages, sha256 03db65349faa`;
-- the end: `manifest: … (22 steps …)` then `=== smoke_run18 finished ===`.
+- the end: `manifest: â€¦ (22 steps â€¦)` then `=== smoke_run18 finished ===`.
 
 The smoke numbers mean nothing; only the chain is tested.
 
@@ -127,7 +190,7 @@ squeue -u "$USER"
 Outputs go to `output/run18_rerun/` (delivered graph in `kg_final/`, manifest in `manifest.json`).
 To reuse the index checked in step 4 instead of rebuilding it, add `INDEX_FROM=output/test_index` to `--export` (the manifest then has 21 steps).
 
-The driver never overwrites an output folder. If it stops with `STOP: … exists, nothing is overwritten`, add `OUT=output/<new_name>` to `--export`; do not delete the previous output.
+The driver never overwrites an output folder. If it stops with `STOP: â€¦ exists, nothing is overwritten`, add `OUT=output/<new_name>` to `--export`; do not delete the previous output.
 
 ---
 
@@ -136,7 +199,9 @@ The driver never overwrites an output folder. If it stops with `STOP: … exists, 
 | Message | Cause |
 |---|---|
 | `Invalid account` or job refused | wrong `CLUSTER_ACCOUNT` or `CLUSTER_PARTITION` |
-| `401` / `403` on Llama | licence not accepted, or not logged in |
-| model download attempted on a compute node | step 3 not done, or `HF_HOME` differs between login and compute nodes |
+| `401` / `403` on Llama (step 3a) | licence not accepted, or not logged in (`hf auth login`) |
+| `hf: command not found` (step 3a) | `huggingface-hub` not installed in the active environment |
+| `LocalEntryNotFoundError` or a download attempted in the job | model missing from the cache, or `HF_HOME` not the same in block 0 and in step 3b |
+| cache 2â€“3 times larger on the cluster than in 3a | symbolic links were followed during the copy; redo 3b with `rsync -a` or `tar` |
 | `CUDA out of memory` | GPU too small; the recorded run used an A100 slice with 40 GB |
-| `STOP: set PDF_DIR …` | `PDF_DIR` not exported in block 0 |
+| `STOP: set PDF_DIR â€¦` | `PDF_DIR` not exported in block 0 |
