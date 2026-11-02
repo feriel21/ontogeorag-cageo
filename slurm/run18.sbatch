@@ -1,13 +1,13 @@
 #!/bin/bash
 # =====================================================================
-# slurm/orion_run18.sbatch — template to run the run18 pipeline on a SLURM cluster
+# slurm/run18.sbatch — template to run the run18 pipeline on a SLURM cluster
 #
-# Lines marked A_REMPLIR must be filled for the target cluster (Orion):
+# Lines marked A_REMPLIR must be filled for the target cluster:
 # project number, partition and GPU request. Ask the cluster documentation
 # or the admins for the exact names.
 #
-#   Test (about 10 minutes):  sbatch --export=ALL,SMOKE=1 slurm/orion_run18.sbatch
-#   Full run (several hours): sbatch slurm/orion_run18.sbatch
+#   Test (about 10 minutes):  sbatch --export=ALL,SMOKE=1 slurm/run18.sbatch
+#   Full run (several hours): sbatch slurm/run18.sbatch
 #
 # Before the first job, on a login node with internet access:
 #   bash workflows/prefetch_models.sh        (downloads the three pinned models)
