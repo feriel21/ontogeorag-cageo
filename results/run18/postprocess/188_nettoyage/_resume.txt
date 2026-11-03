@@ -1,0 +1,40 @@
+=== 188 nettoyage par regles et familles ===
+graphe : /home/talbi/ontogeorag_release/results/run18/postprocess/187_provenance/graphe_avec_provenance.json (sha 979b91fb1df5) ; familles : configs/entity_families_run18.csv (sha 3423afd62509, 120 entites, 21 familles)
+phrases des autres extractions relues : oui ; phrases affichees retrouvees en entier (coupees a 400) : 37
+
+-- retraits --
+relations : 364 -> 281 (retirees 83)
+Tier 1 : 197 -> 164
+entites : 272 -> 230
+par regle (une relation peut en avoir plusieurs) : {'R2 etiquette': 36, 'R3 sujet absent des phrases sources': 48, 'R1 bibliographie': 9}
+retirees par tier et decision du panel : {(1, 'ACCEPT'): 33, (2, 'ACCEPT'): 11, (2, 'UNCERTAIN'): 39}
+
+-- signalements (non retires sauf option) --
+{'S3 legende de figure probable': 15, 'S1 lieu nomme': 26, 'S4 sujet repris par un pronom': 9, 'S2 commentaire du modele': 2}
+
+-- familles (graphe nettoye) --
+relations 281 -> groupes (famille, relation, famille) 206
+groupes avec au moins 2 relations : 44 (119 relations)
+entites hors table (sujets, et objets hors hasDescriptor) : 87
+
+-- groupes les plus fournis --
+    5 rel. (3 T1, 3 art.)  sedimentation rate --causes--> pore pressure / overpressure
+    5 rel. (3 T1, 13 art.)  mass transport deposit --hasDescriptor--> chaotic
+    5 rel. (4 T1, 2 art.)  mass transport deposit --occursIn--> position bathymetrique
+    5 rel. (5 T1, 3 art.)  seismicity --triggers--> slope failure
+    4 rel. (3 T1, 11 art.)  mass transport deposit --hasDescriptor--> discontinuous
+    4 rel. (4 T1, 3 art.)  mass transport deposit --occursIn--> contexte de marge
+    4 rel. (4 T1, 2 art.)  turbidity / turbidite --occursIn--> position bathymetrique
+    4 rel. (4 T1, 4 art.)  pore pressure / overpressure --triggers--> slope failure
+    3 rel. (3 T1, 7 art.)  basal surface --hasDescriptor--> parallel
+    3 rel. (3 T1, 2 art.)  channel --hasDescriptor--> high-amplitude
+    3 rel. (1 T1, 1 art.)  channel --hasDescriptor--> mounded
+    3 rel. (2 T1, 3 art.)  blocks --hasDescriptor--> high-amplitude
+    3 rel. (3 T1, 9 art.)  mass transport deposit --hasDescriptor--> deformed
+    3 rel. (1 T1, 8 art.)  mass transport deposit --hasDescriptor--> thick
+    3 rel. (3 T1, 1 art.)  slope failure --occursIn--> contexte de marge
+
+-- comparaison LB2019 (26 aretes, correspondance exacte) --
+avant : 9/26 ; apres : 9/26 ; perdues : []
+
+R3 et S1 reposent sur des listes ecrites dans ce fichier : relire relations_retirees.tsv avant de citer un chiffre.

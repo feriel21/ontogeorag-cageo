@@ -1,0 +1,207 @@
+famille_sujet	relation	famille_objet	n_relations	n_tier1	n_articles	membres
+sedimentation rate	causes	pore pressure / overpressure	5	3	3	high sedimentation rate -> pore pressure buildup ; high sedimentation rates -> excess pore pressure build-up ; high sedimentation rates -> pore pressure buildup ; rapid changes in sedimentation rates -> excess pore pressure build-up ; rapid sedimentation -> excess pore-water pressures
+mass transport deposit	hasDescriptor	chaotic	5	3	13	amapá megaslide complex -> chaotic ; chaotic mass transport deposit -> chaotic ; mass transport deposit -> chaotic ; megaslide -> chaotic ; megaslides -> chaotic
+mass transport deposit	occursIn	position bathymetrique	5	4	2	mass transport deposit -> aleutian basin floor ; mass transport deposit -> deep-water environment ; mass transport deposit -> deepwater basin ; mass transport deposit -> deepwater setting ; mass transport deposit -> shelf edge
+seismicity	triggers	slope failure	5	5	3	earthquake -> new slope failures ; earthquake -> slope failure ; earthquake loading -> slope failure ; earthquakes -> submarine landslide ; seismic activity -> large failures
+mass transport deposit	hasDescriptor	discontinuous	4	3	11	amapá megaslide complex -> discontinuous ; mass transport deposit -> discontinuous ; slope-attached mass transport deposit -> discontinuous ; slope-attached mass-transport deposit -> discontinuous
+mass transport deposit	occursIn	contexte de marge	4	4	3	mass transport deposit -> bering continental margin ; mass transport deposit -> continental margin ; mass transport deposit -> ebro passive continental margin ; mass transport deposit -> passive margin
+turbidity / turbidite	occursIn	position bathymetrique	4	4	2	turbidite -> continental slope ; turbidite -> deep-water environment ; turbidite -> deepwater setting ; turbidity flow -> continental slope
+pore pressure / overpressure	triggers	slope failure	4	4	4	excess pore pressure -> slope failure ; excess pore pressure -> submarine landslide ; excess pore-water pressures -> massive slope failure ; fluid overpressure -> slope failure
+basal surface	hasDescriptor	parallel	3	3	7	basal shear surface -> parallel ; basal surface -> parallel ; shear surface -> parallel
+channel	hasDescriptor	high-amplitude	3	3	2	channel -> high-amplitude ; channel levee complex -> high-amplitude ; channel-fill -> high-amplitude
+channel	hasDescriptor	mounded	3	1	1	channel -> mounded ; channel levee complex -> mounded ; levee -> mounded
+blocks	hasDescriptor	high-amplitude	3	2	3	internal blocks -> high-amplitude ; remnant and rafted blocks -> high-amplitude ; remnant block -> high-amplitude
+mass transport deposit	hasDescriptor	deformed	3	3	9	mass transport deposit -> deformed ; seafloor mass-transport deposit -> deformed ; seafloor mass-transport deposits -> deformed
+mass transport deposit	hasDescriptor	thick	3	1	8	amapá megaslide complex -> thick ; mass transport deposit -> thick ; megaslides -> thick
+slope failure	occursIn	contexte de marge	3	3	1	landslide -> passive margin ; submarine landslide -> continental margin ; submarine landslide -> passive margin
+turbidity / turbidite	occursIn	contexte de marge	3	1	2	turbidite system -> cascadia margin ; turbidite system -> continental margin ; turbidite system -> wilkes land continental margin
+blocks	hasDescriptor	undeformed	3	0	3	block -> undeformed ; intact block -> undeformed ; remnant block -> undeformed
+channel	hasDescriptor	thin	3	0	2	channel -> thin ; channel levee complex -> thin ; levee -> thin
+mass transport deposit	overlies	turbidity / turbidite	3	0	2	mass transport deposit -> coarse-grained strata (turbidites) ; mass transport deposit -> turbidite ; mass transport deposit -> turbidite sequence
+sedimentation rate	causes	mass transport deposit	2	1	2	high sedimentation rates -> initiation of mass transport deposit ; sedimentation rate -> mass transport deposit
+channel	hasDescriptor	wedge-shaped	2	2	2	channel -> wedge-shaped ; levee -> wedge-shaped
+channel	hasDescriptor	discontinuous	2	1	1	channel -> discontinuous ; channel levee complex -> discontinuous
+debris flow	hasDescriptor	chaotic	2	2	3	debris flow -> chaotic ; debrite -> chaotic
+debris flow	hasDescriptor	low-amplitude	2	1	1	debris flow -> low-amplitude ; debrite -> low-amplitude
+blocks	hasDescriptor	continuous	2	2	2	extensional block -> continuous ; intact block -> continuous
+headscarp	hasDescriptor	high-amplitude	2	2	2	headscarps -> high-amplitude ; headwall scarp -> high-amplitude
+mass transport deposit	hasDescriptor	high-amplitude	2	1	9	mass transport deposit -> high-amplitude ; megaslide -> high-amplitude
+slope failure	hasDescriptor	faulted	2	1	3	landslide -> faulted ; slope failure feature -> faulted
+turbidity / turbidite	hasDescriptor	continuous	2	1	3	turbidite -> continuous ; turbiditic and hemipelagic deposition -> continuous
+mass transport deposit	occursIn	systeme sedimentaire	2	2	1	mass transport deposit -> amazon fan ; mass transport deposit -> mississippi fan
+slope failure	occursIn	position bathymetrique	2	1	2	submarine landslide -> continental slope ; submarine landslide -> open slope
+basal surface	partOf	mass transport deposit	2	2	1	basal shear surface -> mass transport deposit ; shear surface -> mass transport deposit
+effective stress	triggers	slope failure	2	2	2	decreased slope-normal stress -> slope failure ; increases in the driving stresses -> submarine landslide
+external perturbations	triggers	slope failure	2	2	1	external perturbations -> failure of sedimentary environments ; external perturbations -> slope failure
+gas hydrate	triggers	slope failure	2	2	2	gas hydrate dissociation -> slope failure ; gas hydrate dissociation -> submarine landslide
+sedimentation rate	triggers	slope failure	2	2	2	high sedimentation rates -> submarine landslide ; sediment accumulation -> failure
+basal surface	underlies	mass transport deposit	2	2	1	basal shear surface -> mass transport deposit ; shear surface -> mass transport deposit
+basal surface	hasDescriptor	high-amplitude	2	0	1	basal shear surface -> high-amplitude ; shear surface -> high-amplitude
+channel	hasDescriptor	parallel	2	0	1	channel levee complex -> parallel ; levee -> parallel
+blocks	hasDescriptor	disrupted	2	0	3	extensional block -> disrupted ; rotated block -> disrupted
+sedimentation rate	controls	sedimentation rate	2	0	2	high sedimentation rates -> sedimentation conditions ; significantly higher sedimentation rates -> sedimentation conditions
+mass transport deposit	hasDescriptor	onlapping	2	0	2	amapá megaslide complex -> onlapping ; mass transport deposit -> onlapping
+basal surface	hasDescriptor	continuous	2	0	2	basal shear surface -> continuous ; shear surface -> continuous
+headscarp	hasDescriptor	irregular	2	0	2	headscarp -> irregular ; headwall scarp -> irregular
+basal surface	affects	basal surface	1	1	1	basal shear surface -> erosion grooves
+pore pressure / overpressure	affects	slope failure	1	1	1	fluid overpressure -> slope failure
+pore pressure / overpressure	affects	effective stress	1	1	1	fluid overpressure -> effective stress
+slope failure	affects	topography of the source area	1	1	1	retrogressive failure -> topography of the source area
+erosion of canyon heads	causes	mass transport deposit	1	1	1	erosion of canyon heads -> initiation of mass transport deposit
+gas hydrate	causes	mass transport deposit	1	1	1	gas hydrate destabilization -> initiation of mass transport deposit
+gravitational collapse	causes	debris flow	1	1	1	gravitational collapse -> formation of debrites
+low permeability	causes	pore pressure / overpressure	1	1	1	low permeability -> overpressure
+poor drainage	causes	effective stress	1	1	1	poor drainage -> slope-normal stress to decrease
+pore pressure / overpressure	causes	failure plane generation	1	1	1	pore pressure development -> failure plane generation
+sedimentation rate	causes	state of extreme underconsolidation	1	1	1	rapid sedimentation -> state of extreme underconsolidation
+sediment strength	causes	fracturing	1	1	1	reduced sediment strength -> localized fracturing
+rise of hydrostatic pressure	causes	slope failure	1	1	1	rise of hydrostatic pressure -> instability
+oversteepening	causes	mass transport deposit	1	1	1	structural tilting -> mass transport deposit
+oversteepening	causes	oversteepening	1	1	1	structural tilting -> major oversteepening of depositional slopes
+synsedimentary processes	causes	deformation of bedding	1	1	1	synsedimentary processes -> deformation of bedding
+tectonic uplift	causes	oversteepening	1	1	1	tectonic uplift -> tilting and oversteepening of sediments
+cohesive parallel-bedded sediments	hasDescriptor	parallel	1	1	1	cohesive parallel-bedded sediments -> parallel
+cohesive parallel-bedded sediments (cpbs)	hasDescriptor	parallel	1	1	1	cohesive parallel-bedded sediments (cpbs) -> parallel
+erosional scour	hasDescriptor	erosional	1	1	1	erosional scour -> erosional
+blocks	hasDescriptor	blocky	1	1	1	extensional block -> blocky
+high-amplitude, onlapping reflectors	hasDescriptor	onlapping	1	1	1	high-amplitude, onlapping reflectors -> onlapping
+hummocky deposits	hasDescriptor	hummocky	1	1	1	hummocky deposits -> hummocky
+internal transparent to chaotic facies	hasDescriptor	transparent	1	1	1	internal transparent to chaotic facies -> transparent
+channel	hasDescriptor	deformed	1	1	1	levee -> deformed
+longitudinal linear feature	hasDescriptor	parallel	1	1	1	longitudinal linear feature -> parallel
+low-amplitude features	hasDescriptor	low-amplitude	1	1	1	low-amplitude features -> low-amplitude
+low-angle thrust fault	hasDescriptor	faulted	1	1	1	low-angle thrust fault -> faulted
+mass transport deposit	hasDescriptor	wedge-shaped	1	1	3	mass transport deposit -> wedge-shaped
+mass transport deposit	hasDescriptor	disrupted	1	1	5	mass transport deposit -> disrupted
+mass transport deposit	hasDescriptor	low-amplitude	1	1	7	mass transport deposit -> low-amplitude
+mass transport deposit	hasDescriptor	thin	1	1	2	mass transport deposit -> thin
+mass transport deposit	hasDescriptor	mounded	1	1	3	mass transport deposit -> mounded
+mass transport deposit	hasDescriptor	irregular	1	1	6	mass transport deposit -> irregular
+mass transport deposit	hasDescriptor	sheet-like	1	1	2	mass transport deposit -> sheet-like
+mass transport deposit	hasDescriptor	blocky	1	1	3	mass transport deposit -> blocky
+mass transport deposit	hasDescriptor	continuous	1	1	4	mass transport deposit -> continuous
+mass transport deposit	hasDescriptor	hummocky	1	1	2	mass transport deposit -> hummocky
+mass transport deposit	hasDescriptor	layered	1	1	3	mass transport deposit -> layered
+pore pressure / overpressure	hasDescriptor	high-amplitude	1	1	1	overpressure source -> high-amplitude
+possible tensional depression sediments	hasDescriptor	discontinuous	1	1	1	possible tensional depression sediments -> discontinuous
+promontory	hasDescriptor	high-amplitude	1	1	1	promontory -> high-amplitude
+proximal clay-rich and low-permeability sandstones	hasDescriptor	discontinuous	1	1	1	proximal clay-rich and low-permeability sandstones -> discontinuous
+raft	hasDescriptor	low-amplitude	1	1	1	raft -> low-amplitude
+blocks	hasDescriptor	deformed	1	1	1	rotated block -> deformed
+blocks	hasDescriptor	faulted	1	1	1	rotated block -> faulted
+seabed	hasDescriptor	rough	1	1	1	seabed -> rough
+wave action	hasDescriptor	deformed	1	1	1	sediment wave -> deformed
+sedimentary layers	hasDescriptor	stratified	1	1	1	sedimentary layers -> stratified
+seismic facies	hasDescriptor	discontinuous	1	1	1	seismic facies -> discontinuous
+seismic reflection	hasDescriptor	low-amplitude	1	1	1	seismic reflection -> low-amplitude
+seismic reflection	hasDescriptor	onlapping	1	1	1	seismic reflection -> onlapping
+seismic reflection	hasDescriptor	continuous	1	1	3	seismic reflection -> continuous
+seismic reflection	hasDescriptor	chaotic	1	1	1	seismic reflection -> chaotic
+seismic reflections	hasDescriptor	transparent	1	1	1	seismic reflections -> transparent
+seismic reflections	hasDescriptor	low-amplitude	1	1	1	seismic reflections -> low-amplitude
+seismic reflections	hasDescriptor	moderate-amplitude	1	1	1	seismic reflections -> moderate-amplitude
+shallow frio	hasDescriptor	deformed	1	1	1	shallow frio -> deformed
+shallow frio	hasDescriptor	undeformed	1	1	1	shallow frio -> undeformed
+tabular-like geometry	hasDescriptor	tabular	1	1	1	tabular-like geometry -> tabular
+tensional depression sediments (ptds)	hasDescriptor	discontinuous	1	1	1	tensional depression sediments (ptds) -> discontinuous
+turbidity / turbidite	hasDescriptor	thin	1	1	1	turbidite -> thin
+turbidity / turbidite	hasDescriptor	moderate-amplitude	1	1	1	turbidite -> moderate-amplitude
+turbidity / turbidite	hasDescriptor	high-amplitude	1	1	1	turbidite -> high-amplitude
+mass transport deposit	occursIn	canyons	1	1	1	mass transport deposit -> canyons
+mass transport deposit	occursIn	mississippi fan surface	1	1	1	mass transport deposit -> mississippi fan surface
+plunge pool	occursIn	position bathymetrique	1	1	1	plunge pool -> continental slope
+turbidity / turbidite	occursIn	slope sediments	1	1	1	turbidite -> slope sediments
+channel	overlies	un-deformed stratigraphic packages	1	1	1	channel-levee complex sets -> un-deformed stratigraphic packages
+upper surface	overlies	mass transport deposit	1	1	1	upper surface -> mass transport deposit
+block of undisturbed reflections	partOf	mass transport deposit	1	1	1	block of undisturbed reflections -> mass transport deposit
+qiongdongnan basin	partOf	position bathymetrique	1	1	1	qiongdongnan basin -> three large deepwater basins
+blocks	partOf	mass transport deposit	1	1	1	rafted block -> mass transport deposit
+ridge-like morphology	partOf	seafloor roughness	1	1	1	ridge-like morphology -> seafloor roughness
+undisturbed high-amplitude block	partOf	mass transport deposit	1	1	1	undisturbed high-amplitude block -> mass transport deposit
+sediment strength	triggers	slope failure	1	1	1	decreases in strength -> submarine landslide
+seismicity	triggers	sediment strength	1	1	1	earthquake loading -> shear strength degradation
+gas hydrate	triggers	pore pressure / overpressure	1	1	1	gas hydrate dissociation -> excess pore-water pressures
+gas solubility changes	triggers	gas hydrate	1	1	1	gas solubility changes -> gas hydrate dissociation
+ice sheet decay	triggers	slope failure	1	1	1	ice sheet decay -> large failures
+increased methane solubility	triggers	gas hydrate	1	1	1	increased methane solubility -> gas hydrate dissociation
+increases in pressure and temperature	triggers	gas hydrate	1	1	1	increases in pressure and temperature -> gas hydrate dissociation
+opening-mode fractures propagation	triggers	slope failure	1	1	1	opening-mode fractures propagation -> slope failure initiation
+pore pressure / overpressure	triggers	failure plane generation	1	1	1	pore pressure development -> failure plane generation
+sea level	triggers	pore pressure / overpressure	1	1	1	sea-level fall -> excess pore-pressure generation
+basal surface	triggers	basal surface	1	1	1	shear surface -> erosion grooves
+slope failure	triggers	headscarp	1	1	1	slope failure initiation -> headscarp formation
+oversteepening	triggers	oversteepening	1	1	1	structural tilting -> major oversteepening of depositional slopes
+mass transport deposit	hasDescriptor	transparent	1	0	1	amapá megaslide complex -> transparent
+channel	hasDescriptor	transparent	1	0	1	channel -> transparent
+slope failure	hasDescriptor	folded	1	0	1	landslide -> folded
+lateral flow line	hasDescriptor	parallel	1	0	1	lateral flow line -> parallel
+lateral flow lines	hasDescriptor	parallel	1	0	1	lateral flow lines -> parallel
+channel	hasDescriptor	folded	1	0	1	levee -> folded
+main body of the 'slide'	hasDescriptor	draping	1	0	1	main body of the 'slide' -> draping
+mass transport deposit	hasDescriptor	rough	1	0	2	mass transport deposit -> rough
+near-proximal, clay-poor, and high-permeability sandstones	hasDescriptor	parallel	1	0	1	near-proximal, clay-poor, and high-permeability sandstones -> parallel
+proximal clay-rich and low-permeability sandstones	hasDescriptor	mounded	1	0	1	proximal clay-rich and low-permeability sandstones -> mounded
+sedimentary unit	hasDescriptor	parallel	1	0	1	sedimentary unit -> parallel
+seismic geomorphologic features	hasDescriptor	discontinuous	1	0	2	seismic geomorphologic features -> discontinuous
+seismic reflection	hasDescriptor	high-amplitude	1	0	4	seismic reflection -> high-amplitude
+seismic reflection	hasDescriptor	transparent	1	0	1	seismic reflection -> transparent
+seismic reflection	hasDescriptor	wedge-shaped	1	0	1	seismic reflection -> wedge-shaped
+blocks	hasDescriptor	folded	1	0	1	slide or rotated blocks -> folded
+surfacic unit	hasDescriptor	transparent	1	0	1	surfacic unit -> transparent
+tensional depression sediments	hasDescriptor	discontinuous	1	0	1	tensional depression sediments -> discontinuous
+translation domain area	hasDescriptor	continuous	1	0	1	translation domain area -> continuous
+undeformed shallow frio	hasDescriptor	undeformed	1	0	2	undeformed shallow frio -> undeformed
+mass transport deposit	occursIn	pearl river mouth basin	1	0	1	mass transport deposit -> pearl river mouth basin
+mass transport deposit	overlies	undeformed substrate	1	0	1	mass transport deposit -> undeformed substrate
+mass transport deposit	overlies	hemipelagic mud	1	0	1	mass transport deposit -> hemipelagic mud
+mass transport deposit	partOf	sediment diffusion pattern	1	0	1	mass transport deposit -> sediment diffusion pattern
+mass transport deposit	partOf	translational domain	1	0	1	mass transport deposit -> translational domain
+pearl river mouth basin	partOf	position bathymetrique	1	0	1	pearl river mouth basin -> three large deepwater basins
+basal surface	triggers	debris flow	1	0	1	discontinuous erosion surfaces -> formation of debrites
+wave action	triggers	slope failure	1	0	1	storms -> submarine landslide
+silty clay	underlies	mass transport deposit	1	0	1	silty clay -> mass transport deposit
+basal surface	causes	debris flow	1	0	1	discontinuous erosion surfaces -> formation of debrites
+gravity tectonics	causes	mass transport deposit	1	0	1	gravity tectonics -> mass transport deposit initiation
+migration of depocenters	causes	slope failure	1	0	1	migration of depocenters -> instability
+sea level	causes	mass transport deposit	1	0	1	relative sea level change -> mass transport deposit
+weak layers	causes	strain localization and creep processes	1	0	1	weak layers -> strain localization and creep processes
+sedimentation rate	controls	sedimentation pattern	1	0	1	significantly higher sedimentation rates -> sedimentation pattern
+continuous strong plan-parallel units	hasDescriptor	continuous	1	0	1	continuous strong plan-parallel units -> continuous
+debris flow	hasDescriptor	disrupted	1	0	1	debris flow -> disrupted
+duplex structures	hasDescriptor	contorted	1	0	1	duplex structures -> contorted
+headscarp	hasDescriptor	parallel	1	0	1	headwall scarp -> parallel
+high-amplitude, fairly continuous reflectors	hasDescriptor	high-amplitude	1	0	1	high-amplitude, fairly continuous reflectors -> high-amplitude
+high-amplitude, fairly continuous reflectors	hasDescriptor	continuous	1	0	1	high-amplitude, fairly continuous reflectors -> continuous
+high-amplitude, onlapping reflectors	hasDescriptor	high-amplitude	1	0	1	high-amplitude, onlapping reflectors -> high-amplitude
+channel	hasDescriptor	thick	1	0	1	levee -> thick
+channel	hasDescriptor	irregular	1	0	1	levee -> irregular
+channel	hasDescriptor	disrupted	1	0	1	levee -> disrupted
+channel	hasDescriptor	wavy	1	0	1	leveed-channel complex -> wavy
+mass transport deposit	hasDescriptor	contorted	1	0	3	mass transport deposit -> contorted
+mass transport deposit	hasDescriptor	wavy	1	0	3	mass transport deposit -> wavy
+mass transport deposit	hasDescriptor	massive	1	0	1	mass transport deposit -> massive
+mass transport deposit	hasDescriptor	erosional	1	0	1	mass transport deposit -> erosional
+mass transport deposit	hasDescriptor	moderate-amplitude	1	0	1	mass transport deposit -> moderate-amplitude
+mass transport deposit	hasDescriptor	stratified	1	0	3	mass transport deposit -> stratified
+promontory-related ramps	hasDescriptor	continuous	1	0	1	promontory-related ramps -> continuous
+blocks	hasDescriptor	low-amplitude	1	0	1	remnant block -> low-amplitude
+wave action	hasDescriptor	low-amplitude	1	0	1	sediment wave -> low-amplitude
+wave action	hasDescriptor	wavy	1	0	1	sediment wave -> wavy
+seismic facies	hasDescriptor	thick	1	0	1	seismic facies -> thick
+seismic facies or units	hasDescriptor	transparent	1	0	1	seismic facies or units -> transparent
+seismic geomorphologic elements	hasDescriptor	disrupted	1	0	1	seismic geomorphologic elements -> disrupted
+shallow-water frio blocks	hasDescriptor	undeformed	1	0	1	shallow-water frio blocks -> undeformed
+mass transport deposit	occursIn	qiongdongnan basin	1	0	1	mass transport deposit -> qiongdongnan basin
+slope failure	occursIn	submarine canyon	1	0	1	submarine landslide -> submarine canyon
+turbidity / turbidite	occursIn	systeme sedimentaire	1	0	1	turbidite system -> amazon fan
+block of undisturbed reflections	overlies	failed sediments	1	0	1	block of undisturbed reflections -> failed sediments
+turbidity / turbidite	overlies	associated seabed topographic highs	1	0	1	coarse-grained strata (turbidites) -> associated seabed topographic highs
+shallow strata	overlies	mass transport deposit	1	0	1	shallow strata -> mass transport deposit
+mass transport deposit	partOf	compressive domain	1	0	1	mass transport deposit -> compressive domain
+ridge-like morphology	partOf	toe region	1	0	1	ridge-like morphology -> toe region
+slide	partOf	mass transport deposit	1	0	1	slide -> mass transport deposit
+turbidity / turbidite	partOf	mass transport deposit	1	0	1	turbidity current -> mass transport deposit
+continental uplift	triggers	slope failure	1	0	1	continental uplift -> large failures
+pore pressure / overpressure	triggers	gravity spreading	1	0	1	fluid overpressure -> gravity spreading
+sea level	triggers	mass transport deposit	1	0	1	relative sea level fall -> mass transport deposit
+hemipelagic mud	underlies	silky clay	1	0	1	hemipelagic mud -> silky clay

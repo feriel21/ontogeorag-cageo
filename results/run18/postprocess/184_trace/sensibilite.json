@@ -1,0 +1,53 @@
+{
+  "graphe_livre": {
+    "relations": 364,
+    "tier1": 197,
+    "aretes_reference_exactes": [
+      "debris flow|hasDescriptor|chaotic",
+      "earthquake|triggers|slope failure",
+      "mass transport deposit|hasDescriptor|blocky",
+      "mass transport deposit|hasDescriptor|chaotic",
+      "mass transport deposit|hasDescriptor|discontinuous",
+      "mass transport deposit|hasDescriptor|hummocky",
+      "mass transport deposit|hasDescriptor|massive",
+      "turbidite|hasDescriptor|continuous",
+      "turbidite|hasDescriptor|high-amplitude"
+    ]
+  },
+  "sans_relations_uniquement_R": {
+    "relations": 342,
+    "tier1": 189,
+    "aretes_reference_exactes": [
+      "debris flow|hasDescriptor|chaotic",
+      "earthquake|triggers|slope failure",
+      "mass transport deposit|hasDescriptor|blocky",
+      "mass transport deposit|hasDescriptor|chaotic",
+      "mass transport deposit|hasDescriptor|discontinuous",
+      "mass transport deposit|hasDescriptor|hummocky",
+      "mass transport deposit|hasDescriptor|massive",
+      "turbidite|hasDescriptor|continuous",
+      "turbidite|hasDescriptor|high-amplitude"
+    ]
+  },
+  "retirees_uniquement_R": {
+    "relations": 22,
+    "tier1": 8,
+    "aretes_reference_exactes": []
+  },
+  "sans_relations_uniquement_16": {
+    "relations": 339,
+    "tier1": 187,
+    "aretes_reference_exactes": [
+      "debris flow|hasDescriptor|chaotic",
+      "earthquake|triggers|slope failure",
+      "mass transport deposit|hasDescriptor|blocky",
+      "mass transport deposit|hasDescriptor|chaotic",
+      "mass transport deposit|hasDescriptor|discontinuous",
+      "mass transport deposit|hasDescriptor|hummocky",
+      "mass transport deposit|hasDescriptor|massive",
+      "turbidite|hasDescriptor|continuous",
+      "turbidite|hasDescriptor|high-amplitude"
+    ]
+  },
+  "avertissement": "analyse de sensibilite sur le graphe existant, pas un nouveau run : retirer des requetes changerait aussi les doublons, la table des noms et le panel"
+}

@@ -1,0 +1,16 @@
+passe	etape	raison	n_extractions
+a	04_validation	entity_too_long_object	17
+a	04_validation	entity_too_long_subject	16
+a	04_validation	self_loop	1
+a	04_validation	type_constraint	135
+a	04_verdict	verif_not_supported	132
+a	doublon_04	meme cle apres fusion des noms	7
+a	doublon_04	meme cle avant fusion des noms	349
+a	entre_en_fusion		282
+b	04_validation	entity_too_long_object	21
+b	04_validation	entity_too_long_subject	12
+b	04_validation	type_constraint	131
+b	04_verdict	verif_not_supported	109
+b	doublon_04	meme cle apres fusion des noms	13
+b	doublon_04	meme cle avant fusion des noms	336
+b	entre_en_fusion		257

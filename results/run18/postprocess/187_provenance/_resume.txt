@@ -1,0 +1,34 @@
+=== 187 article, reference et section de chaque relation ===
+graphe : /home/talbi/ontogeorag_release/results/run18/postprocess/run_view/kg_final/flat_run18_enforced_dedup.json (sha caccdca00ff3) ; suivi 184 : /home/talbi/ontogeorag_release/results/run18/postprocess/184_trace/suivi_extractions.tsv (sha efad8ad08dbd)
+references : pdf_to_ref.tsv c9d661475b5e, lb2019_41_refs.txt d433a2cee75a
+
+relations : 364
+phrase affichee localisee : {'exact': 316, 'partial': 47, 'not_found': 1}
+relations avec au moins un article : 364/364 (100 %)
+articles par relation : {1: 326, 2: 17, 3: 9, 4: 2, 5: 1, 6: 2, 7: 2, 8: 1, 9: 2, 10: 1, 13: 1}
+references non resolues (doc_id sans reference) : 0 []
+
+-- phrase affichee --
+section deduite trouvee : 316/364 (87 %)
+type de titre : {'numerote': 114, 'mot de section': 202, 'aucun': 47, 'non localisee': 1}
+legende de figure probable : 15/364 (4 %)
+apres le titre 'references' : 9/364 (2 %)
+
+-- articles les plus cites (relations dont la preuve y est localisee) --
+   47  Sutton & Mitchum (2011)
+   39  Reis et al. (2016)
+   37  Nelson et al. (2011)
+   34  Alves et al. (2014)
+   33  Frey-Martínez et al. (2011)
+   25  Lee et al. (2007)
+   24  Clark & Cartwright (2009)
+   22  Moscardelli & Wood (2008)
+   22  Ogiesoba & Hammes (2012)
+   20  Bourget et al. (2011)
+   17  Frey-Martínez (2010)
+   15  Reis et al. (2010)
+   14  Wu et al. (2011)
+   14  Leynaud et al. (2009)
+   12  Silva et al. (2010)
+
+Section : deduction a partir du texte extrait des PDF (titres numerotes ou mots de section), a verifier sur l'article avant de la citer.

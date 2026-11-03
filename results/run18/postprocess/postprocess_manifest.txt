@@ -1,0 +1,13 @@
+postprocess of /home/talbi/ontogeorag_run18/output/run18
+date: 2026-11-03T11:29:21+01:00
+code: 5ef4e78
+sha256 d91587b33575  184_trace_requetes_et_pertes.py
+sha256 a3e2b2d18303  187_provenance_articles.py
+sha256 b48944390d09  188_nettoyage_familles.py
+sha256 3423afd62509  configs/entity_families_run18.csv
+sha256 c3a8324eacab  configs/lb_reference_edges_original26.json
+sha256 c9d661475b5e  data/pdf_to_ref.tsv
+sha256 d433a2cee75a  data/lb2019_41_refs.txt
+input kg   : /home/talbi/ontogeorag_run18/output/run18/kg/tiered_kg_run18.json
+input flat : /home/talbi/ontogeorag_run18/output/run18/kg_final/flat_run18_enforced_dedup.json
+RETIRER_LIEUX=0
