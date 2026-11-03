@@ -1,5 +1,4 @@
-# OntoGeoRAG — code accompanying the *Computers & Geosciences* manuscript
-
+# OntoGeoRAG 
 This repository contains the code that built the knowledge graph on mass-transport deposits (MTDs) reported in the OntoGeoRAG manuscript, the tools that tie this code to the recorded run, and the scripts that produce every table and figure of the manuscript.
 
 ## What the pipeline does
