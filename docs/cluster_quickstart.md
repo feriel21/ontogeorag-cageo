@@ -197,7 +197,22 @@ The driver never overwrites an output folder. If it stops with `STOP: … exists
 
 ---
 
-## 7. Compare with the recorded run18
+## 7. Rule-based cleaning (CPU, a few minutes)
+
+The full run delivers the graph before cleaning. The cleaning of the paper is applied afterwards by three read-only scripts, chained by `workflows/postprocess_run18.sh`: 184 follows every extraction and checks the replay against the run's own files, 187 locates the article, reference and section of every relation, 188 removes relations by fixed rules (R1 bibliography, R2 local label, R3 subject absent from the source sentences), flags others (S1 place name, S2 model comment, S3 figure caption, S4 pronoun) and groups relations by entity families. The run folder is not modified.
+
+```bash
+cd "$REPO" && pwd
+RUN_DIR=output/run18_rerun bash workflows/postprocess_run18.sh
+cat output/run18_rerun/postprocess/188_nettoyage/_resume.txt
+```
+
+Check: 184 ends with `0 controle(s) en echec` (if a check fails, the script stops before 187); the last line is `=== postprocess finished ===`.
+Outputs in `output/run18_rerun/postprocess/`: `188_nettoyage/graphe_nettoye.json` (cleaned graph), `relations_retirees.tsv` (each removed relation with its rule), `relations_signalees.tsv`, `relations_par_famille.tsv`, and the summaries `_resume.txt` of each step (in French).
+
+---
+
+## 8. Compare with the recorded run18
 
 The outputs of the recorded run18 are distributed in `results/run18/`. Compare your run with them yourself (CPU, a few seconds, nothing is modified):
 
@@ -208,7 +223,7 @@ python scripts/tools/compare_runs.py --ref results/run18 --new output/run18_reru
 ```
 
 Open:
-- `output/compare_run18/compare_report.txt`: number of records at each stage, pass a, delivered graph (relations, tiers, judges' decisions, relation types, relations in common), `article_metrics.json` value by value, manifests;
+- `output/compare_run18/compare_report.txt`: number of records at each stage, pass a, delivered graph (relations, tiers, judges' decisions, relation types, relations in common), `article_metrics.json` value by value, cleaned graph of step 7 (relations kept and removed by rule, flags, family groups, LB2019 before and after), manifests;
 - `output/compare_run18/relations_only_ref.tsv` and `relations_only_new.tsv`: the delivered relations found by one run only, with their evidence sentence;
 - `output/compare_run18/metrics_side_by_side.tsv`: every metric of both runs.
 
@@ -216,7 +231,7 @@ What to expect: counts of the same order on both sides, not identical ones. Pass
 
 ---
 
-## 8. If something fails
+## 9. If something fails
 
 | Message | Cause |
 |---|---|
@@ -228,4 +243,5 @@ What to expect: counts of the same order on both sides, not identical ones. Pass
 | `CUDA out of memory` | GPU too small; the recorded run used an A100 slice with 40 GB |
 | `STOP: set PDF_DIR …` | `PDF_DIR` not exported in block 0 |
 | `REJET … ratio alphabetique 0.xx < 0.55` in step 4 | `pdfplumber` installed; uninstall it (step 2) |
+| `STOP: a 184 check failed` in step 7 | a file of the run does not match its replay; read `postprocess/184_trace/_resume.txt` (lines `ECHEC`) |
 | `requires accelerate` or `ModuleNotFoundError` when a model loads | environment installed from an older `requirements-gpu.txt`; reinstall it (step 2) |

@@ -13,6 +13,7 @@ slurm/run18_clean.sh:
     m4_panel/                  judges' decisions and quarantine
     kg_final/flat_<run>_enforced_dedup.json   delivered graph
     kg_final/article_metrics.json
+    postprocess/188_nettoyage/   cleaned graph (workflows/postprocess_run18.sh), if present
 
 Usage:
     python scripts/tools/compare_runs.py --ref results/run18 \
@@ -281,8 +282,57 @@ def main():
                 row(k[-46:], a, b)
     say()
 
-    # ---- 5. manifests ---------------------------------------------------
-    say("--- 5. MANIFEST " + "-" * 62)
+    # ---- 5. cleaned graph (postprocess 184 -> 187 -> 188) ----------------
+    say("--- 5. CLEANED GRAPH (postprocess/188_nettoyage) " + "-" * 29)
+    c_ref = ref / "postprocess" / "188_nettoyage"
+    c_new = new / "postprocess" / "188_nettoyage"
+    if not ((c_ref / "graphe_nettoye.json").exists() and (c_new / "graphe_nettoye.json").exists()):
+        say("  [!] cleaned graph missing on one side (run workflows/postprocess_run18.sh); section skipped.")
+    else:
+        def load_clean(d):
+            g = json.loads((d / "graphe_nettoye.json").read_text(encoding="utf-8"))
+            return g["triples"] if isinstance(g, dict) else g
+
+        def read_tsv(p):
+            if not p.exists():
+                return []
+            with open(p, encoding="utf-8") as f:
+                head = f.readline().rstrip("\n").split("\t")
+                return [dict(zip(head, line.rstrip("\n").split("\t"))) for line in f if line.strip()]
+
+        g_ref, g_new = load_clean(c_ref), load_clean(c_new)
+        say("  {:<46} {:>12} {:>12}   {}".format("", "ref", "new", "new - ref"))
+        row("relations kept", len(g_ref), len(g_new))
+        row("tier 1 kept", sum(1 for t in g_ref if str(t.get("tier")) == "1"),
+            sum(1 for t in g_new if str(t.get("tier")) == "1"))
+        rem_ref, rem_new = read_tsv(c_ref / "relations_retirees.tsv"), read_tsv(c_new / "relations_retirees.tsv")
+        row("relations removed", len(rem_ref), len(rem_new))
+        rr = collections.Counter(x.split(" (")[0] for r in rem_ref for x in r.get("regles", "").split(" | ") if x)
+        rn = collections.Counter(x.split(" (")[0] for r in rem_new for x in r.get("regles", "").split(" | ") if x)
+        for rule in sorted(set(rr) | set(rn)):
+            row("  removed by " + rule, rr.get(rule, 0), rn.get(rule, 0))
+        fl_ref, fl_new = read_tsv(c_ref / "relations_signalees.tsv"), read_tsv(c_new / "relations_signalees.tsv")
+        fr = collections.Counter(x.split(" (")[0] for r in fl_ref for x in r.get("signalements", "").split(" | ") if x)
+        fn = collections.Counter(x.split(" (")[0] for r in fl_new for x in r.get("signalements", "").split(" | ") if x)
+        for flag in sorted(set(fr) | set(fn)):
+            row("  flagged " + flag, fr.get(flag, 0), fn.get(flag, 0))
+        row("family groups", len(read_tsv(c_ref / "relations_par_famille.tsv")),
+            len(read_tsv(c_new / "relations_par_famille.tsv")))
+        kr = {key(t) for t in g_ref}
+        kn = {key(t) for t in g_new}
+        union = kr | kn
+        say("  same (s, r, o) in both : {}   only ref : {}   only new : {}   Jaccard {:.3f}".format(
+            len(kr & kn), len(kr - kn), len(kn - kr), len(kr & kn) / float(len(union)) if union else 0.0))
+        for side, d in (("ref", c_ref), ("new", c_new)):
+            p = d / "_resume.txt"
+            if p.exists():
+                lb = [l for l in p.read_text(encoding="utf-8").splitlines() if l.startswith("avant :")]
+                if lb:
+                    say("  {} LB2019 (exact match, before / after cleaning): {}".format(side, lb[0]))
+    say()
+
+    # ---- 6. manifests ---------------------------------------------------
+    say("--- 6. MANIFEST " + "-" * 62)
     for side, folder in (("ref", ref), ("new", new)):
         mp = folder / "manifest.json"
         if mp.exists():
