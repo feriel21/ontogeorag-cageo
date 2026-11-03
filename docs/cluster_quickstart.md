@@ -201,11 +201,24 @@ The driver never overwrites an output folder. If it stops with `STOP: … exists
 
 The full run delivers the graph before cleaning. The cleaning of the paper is applied afterwards by three read-only scripts, chained by `workflows/postprocess_run18.sh`: 184 follows every extraction and checks the replay against the run's own files, 187 locates the article, reference and section of every relation, 188 removes relations by fixed rules (R1 bibliography, R2 local label, R3 subject absent from the source sentences), flags others (S1 place name, S2 model comment, S3 figure caption, S4 pronoun) and groups relations by entity families. The run folder is not modified.
 
+If the full run of step 6 was made with an earlier version of the repository, first update the code (the run output under `output/` is not affected):
+
+```bash
+cd "$REPO" && pwd
+source "$VENV/bin/activate"
+git pull origin run18
+ls workflows/postprocess_run18.sh scripts/tools/compare_runs.py results/run18/postprocess
+```
+
+Then:
+
 ```bash
 cd "$REPO" && pwd
 RUN_DIR=output/run18_rerun bash workflows/postprocess_run18.sh
 cat output/run18_rerun/postprocess/188_nettoyage/_resume.txt
 ```
+
+If the full run was written to another folder (`OUT=` in step 6), use that folder in `RUN_DIR=` here and in `--new` at step 8.
 
 Check: 184 ends with `0 controle(s) en echec` (if a check fails, the script stops before 187); the last line is `=== postprocess finished ===`.
 Outputs in `output/run18_rerun/postprocess/`: `188_nettoyage/graphe_nettoye.json` (cleaned graph), `relations_retirees.tsv` (each removed relation with its rule), `relations_signalees.tsv`, `relations_par_famille.tsv`, and the summaries `_resume.txt` of each step (in French).
