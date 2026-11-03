@@ -11,7 +11,7 @@ The delivered run, **run16E**, indexed 41 documents into 1,758 passages. It prod
 
 - **The 41 publications and the index built from them.** They are under publishers' copyright. `data/README.md` and `data/corpus_table.md` give the references, DOIs, file names, sha256 checksums and passage counts, so the corpus can be rebuilt and checked.
 - **The commit that ran (`9c03730`).** Its tree contains the PDFs. The link between this repository and that commit is made by checksums (see below).
-- **Intermediate outputs** of the run (passes, verification, panel verdicts) are not included.
+- **Intermediate outputs of run16E** (passes, verification, panel verdicts) are not included. Those of run18 are in `results/run18/` (see below).
 
 `reference/reference_kg.json` is derived from the supplementary table of Le Bouteiller et al. (2019) and is reused with the permission of its authors.
 
@@ -20,6 +20,7 @@ The delivered run, **run16E**, indexed 41 documents into 1,758 passages. It prod
 `results/run16E/flat_run16E_enforced_dedup.json` is the delivered graph exactly as the run wrote it; the first 16 characters of its sha256 are recorded in `results/run16E/manifest.json`. `results/run16E/graph_with_located_provenance.json` holds the same 232 relations with, for each, the location of its evidence sentence in the index (`located_provenance`: file names, passage identifiers, and whether the match is exact or partial), and with local paths removed. Each relation carries its evidence sentence (at most 400 characters), the query that retrieved its passages, its tier, the primary verdict and the panel decision. `results/run16E/controls/` holds the metrics of the 464 adversarial controls of the run (`negatives_report.json`) and the re-analysis comparing four decision rules (`metrics_overall.csv`).
 
 These files are released under CC BY 4.0 (`LICENSE-DATA`), except the evidence sentences, which are short quotations from the source articles and remain subject to their publishers' terms.
+
 ## run18 (current version)
 
 The branch `run18` adds the run18 settings and the tools to rerun and check them. The paper version above (run16E) is unchanged.
@@ -38,20 +39,28 @@ These files are released under CC BY 4.0 (`LICENSE-DATA`), with the same excepti
 |---|---|
 | `49_build_index_v2.py`, `52_repair_provenance.py`, `53_verify_repaired.py` | pipeline stages kept at the repository root, byte-identical to the run |
 | `58v2_freeze_benchmark.py`, `61_extend_queries.py` | benchmark freeze check; query extension |
+| `174_audit_fuite_benchmark.py` | run18: leak audit of the queries and pipeline scripts against the evaluation edges (gate of the run18 driver) |
+| `175_requetes_run18.py`, `176_generer_scripts_run18.py`, `177_candidats_exemples_hors_corpus.py` | run18: query set (210 queries), generation of `pipeline/02_extract_triples_run18.py` and `pipeline/04_clean_validate_run18.py` from 02 and 04 without modifying them, prompt examples taken from articles outside the corpus |
+| `184_trace_requetes_et_pertes.py`, `187_provenance_articles.py`, `188_nettoyage_familles.py` | run18: trace of every extraction, provenance of every relation, rule-based cleaning and entity families (read-only, CPU) |
 | `pipeline/` | extraction, verification, validation, fusion, metrics; `rag/` retrieval and model wrappers |
 | `analysis_suite/` | schema enforcement, lexicon, rule canonicalisation, flattening |
 | `m4/` | two-judge panel, tier integration, direction check, negative controls |
 | `configs/` | ontology schema, extraction queries, benchmark, entity families |
 | `reference/` | reference graph |
-| `results/` | manifests of the runs (run16E is the delivered one); delivered graph and control metrics under `results/run16E/` |
+| `results/` | manifests of the runs (run16E is the delivered one); delivered graph and control metrics under `results/run16E/`; recorded run18 outputs and cleaning under `results/run18/` |
 | `scripts/analysis/`, `scripts/evaluation/` | analyses and evaluations reported in the manuscript |
 | `scripts/figures/`, `scripts/paper/` | producers of the figures and tables |
-| `scripts/tools/` | corpus preflight, benchmark extraction |
+| `scripts/tools/` | corpus preflight, benchmark extraction, comparison of a rerun with a recorded run (`compare_runs.py`) |
 | `tools/` | provenance, replay and code-equivalence checks |
-| `workflows/run_pipeline.sh` | public driver of the full pipeline |
+| `workflows/run_pipeline.sh` | public driver of the full pipeline (run16E settings) |
+| `workflows/run_pipeline_run18.sh`, `workflows/postprocess_run18.sh` | run18 driver; rule-based cleaning of a run18 output |
+| `workflows/prefetch_models.sh` | download of the models at the pinned revisions (login node with internet) |
 | `slurm/run16_full.sh` | cluster driver used for the delivered run (kept as run) |
+| `slurm/run18_clean.sh` | cluster driver used for the recorded run18 (kept as run) |
+| `slurm/run18.sbatch` | SLURM template for the run18 driver on another cluster |
 | `environment/` | pinned requirements (CPU and GPU) |
 | `docs/provenance.md` | recorded steps, options and checksums |
+| `docs/INSTALL_cluster.md`, `docs/cluster_quickstart.md` | installing and running run18 on a SLURM cluster (full guide; copy-paste version) |
 
 ## How the published code is tied to the run
 
@@ -67,6 +76,8 @@ The analysis, evaluation and figure scripts were translated into English and ren
 
 Python 3.10. Install `environment/requirements-cpu.txt`, plus `environment/requirements-gpu.txt` for the extraction, verification and panel steps. The delivered run used one A100 slice with 40 GB (`a100_3g.40gb`). Extraction and verification of both passes took about 3.5 hours.
 
+`pdfplumber` must not be installed: `49_build_index_v2.py` uses it when present, which changes the extracted text and the index. `accelerate` is required to load the language models. Both are handled by the requirements files.
+
 | Model | Revision |
 |---|---|
 | Qwen/Qwen2.5-7B-Instruct | `a09a35458c702b33eeacc393d103063234e8bc28` |
@@ -75,7 +86,7 @@ Python 3.10. Install `environment/requirements-cpu.txt`, plus `environment/requi
 | roberta-large-mnli (verifier comparison) | `2a8f12d27941090092df78e4ba6f0928eb5eac98` |
 | cross-encoder/ms-marco-MiniLM-L-6-v2 (reranker) | not recorded |
 
-Llama 3.1 requires accepting its licence on Hugging Face before download.
+Llama 3.1 requires accepting its licence on Hugging Face before download. For run18, `workflows/prefetch_models.sh` downloads the three language models at the revisions above and compares the reranker and SciBERT with the revisions of the recorded run. On a cluster without internet access, see step 3 of `docs/cluster_quickstart.md`.
 
 ## Running the pipeline
 
@@ -86,9 +97,20 @@ SMOKE=1 PDF_DIR=/path/to/the/41/pdfs bash workflows/run_pipeline.sh   # chain ch
 
 The driver runs the 22 steps with the options of run16E and writes a manifest with the same structure. A rerun is not expected to reproduce the delivered graph byte for byte, because pass b samples at temperature 0.3.
 
+run18:
+
+```bash
+PDF_DIR=/path/to/the/41/pdfs bash workflows/run_pipeline_run18.sh             # writes output/run18_rerun
+SMOKE=1 PDF_DIR=/path/to/the/41/pdfs bash workflows/run_pipeline_run18.sh     # chain check, about 10 minutes
+RUN_DIR=output/run18_rerun bash workflows/postprocess_run18.sh                # rule-based cleaning (CPU)
+python scripts/tools/compare_runs.py --ref results/run18 --new output/run18_rerun --out output/compare_run18
+```
+
+On a SLURM cluster, follow `docs/cluster_quickstart.md`.
+
 ## Figures and tables
 
-Scripts are run from the repository root: `PYTHONPATH=. python scripts/<folder>/<script>.py`. Each producer stops without writing if it does not find the values published in the manuscript, except `fig_tradeoff.py`, which plots the values of Table 5 as constants; those values are checked by `table5_ablation.py`.
+The figures and tables below are those of the run16E version of the manuscript. Scripts are run from the repository root: `PYTHONPATH=. python scripts/<folder>/<script>.py`. Each producer stops without writing if it does not find the values published in the manuscript, except `fig_tradeoff.py`, which plots the values of Table 5 as constants; those values are checked by `table5_ablation.py`.
 
 | Manuscript | Producer |
 |---|---|
