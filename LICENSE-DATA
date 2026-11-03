@@ -1,4 +1,4 @@
-The data files in results/run16E/ (the delivered knowledge graph, its copy with located provenance, and the metrics of the adversarial controls) are licensed under the Creative Commons Attribution 4.0 International licence (CC BY 4.0):
+The data files in results/run16E/ (the delivered knowledge graph, its copy with located provenance, and the metrics of the adversarial controls) and in results/run18/ (the outputs of the recorded run18) are licensed under the Creative Commons Attribution 4.0 International licence (CC BY 4.0):
 https://creativecommons.org/licenses/by/4.0/legalcode
 
 Exception: the evidence sentences stored with each relation (field `evidence`) are short quotations from the source articles. They remain subject to their publishers' terms and are not licensed under CC BY 4.0.
