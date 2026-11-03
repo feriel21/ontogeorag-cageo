@@ -1,142 +1,107 @@
-# run18 on a SLURM cluster — copy-paste quickstart
+# Installing and running the run18 pipeline on a SLURM cluster
 
-Short version of `docs/INSTALL_cluster.md` for a session where the repository is already cloned and the Python environment already created.
-Fill in **block 0 only**. Every other block is copied as is, in order, in the same terminal. Each block ends with the result to check before going on.
+This guide installs the OntoGeoRAG pipeline (run18 settings) on a new cluster and runs it in two stages: a 10-minute test, then the full run.
 
-No file needs editing: `slurm/run18.sbatch` reads `REPO`, `VENV`, `HF_HOME`, `PDF_DIR`, `SMOKE`, `INDEX_FROM` and `OUT` from the environment, and `--account` / `--partition` given on the `sbatch` command line replace the `A_REMPLIR` lines. The cluster's values therefore never enter the repository.
+## 1. What you need
 
-Use `workflows/run_pipeline_run18.sh` (called by the sbatch), not `workflows/run_pipeline.sh`.
+| Item | Detail |
+|---|---|
+| Python | 3.10 |
+| GPU | The recorded run used one A100 slice with 40 GB. Smaller GPUs are untested. |
+| Disk | About 50 GB for the three models in the Hugging Face cache, plus outputs. |
+| Hugging Face account | Needed for Llama 3.1, which is gated: accept the Meta licence on the model page first. |
+| Corpus | The 41 PDFs listed in `data/corpus_table.md`. They are under publishers' copyright and are not in this repository. |
+| SLURM | A project number (`--account`) and the name of a GPU partition. |
 
----
-
-## 0. Values to fill in (once per terminal session)
+## 2. Code and environment
 
 ```bash
-# --- FILL IN ---------------------------------------------------------
-export CLUSTER_ACCOUNT="FILL_ME"     # project number:  sacctmgr show assoc user=$USER format=account%30
-export CLUSTER_PARTITION="FILL_ME"   # GPU partition:   sinfo -o "%P %G %l"
-export REPO="$HOME/ontogeorag"     # where the repository was cloned
-export VENV="$HOME/ontogeorag_venv"  # the venv created for OntoGeoRAG
-export PDF_DIR="FILL_ME"           # folder holding the 41 corpus PDFs
-export HF_HOME="$HOME/.cache/huggingface"  # must be visible from compute nodes; ~50 GB free
-# ---------------------------------------------------------------------
+git clone https://github.com/feriel21/ontogeorag-cageo.git ~/ontogeorag
+cd ~/ontogeorag && git checkout run18          # or the release tag
+python3.10 -m venv ~/ontogeorag_venv
+source ~/ontogeorag_venv/bin/activate
+pip install -r environment/requirements-cpu.txt -r environment/requirements-gpu.txt
+python -c "import torch; print(torch.__version__, torch.cuda.is_available())"
 ```
 
-If the cluster needs modules for Python or CUDA, load them here too (`module avail python cuda` to see the names), for example `module load <python_module> <cuda_module>`. `sbatch --export=ALL` passes the loaded environment to the job.
+`pdfplumber` must not be installed (see section 4); `accelerate` is required to load the language models. Both are handled by the requirements files.
 
-Check: `env | grep -E "CLUSTER_|^REPO=|^VENV=|PDF_DIR|HF_HOME"` shows no `FILL_ME`.
+`torch` must match the CUDA version of the cluster. If the pinned wheel does not load, install the `torch` build recommended by the cluster administrators and keep the other versions.
 
----
-
-## 1. Branch run18
+## 3. Models (once, on a login node with internet)
 
 ```bash
-cd "$REPO" && pwd
-git fetch origin
-git checkout run18
-git pull origin run18
-git log -1 --oneline
-ls slurm/run18.sbatch workflows/prefetch_models.sh workflows/run_pipeline_run18.sh
+source ~/ontogeorag_venv/bin/activate
+huggingface-cli login          # or: export HF_TOKEN=...
+bash workflows/prefetch_models.sh
 ```
 
-Check: the three files are listed.
+The script downloads Qwen2.5-7B-Instruct, Llama-3.1-8B-Instruct and Mistral-7B-Instruct-v0.2 at the revisions used by the run, plus the reranker and SciBERT. Compute nodes then read the cache offline (`HF_HUB_OFFLINE=1` in the SLURM script).
 
----
+## 4. Corpus
 
-## 2. Environment
+Put the 41 PDFs in one folder, for example `~/ontogeorag_corpus_pdfs`. Check them before indexing:
 
 ```bash
-source "$VENV/bin/activate"
-python --version
-python -c "import pypdf, fitz; print('pypdf', pypdf.__version__); print(fitz.__doc__)"
-python -c "import torch; print('torch', torch.__version__, 'cuda build', torch.version.cuda)"
+PYTHONPATH=. python scripts/tools/corpus_preflight.py --corpus-dir ~/ontogeorag_corpus_pdfs \
+    --chunk-size 2000 --overlap 200 --out output/preflight
 ```
 
-Check: Python 3.10, `pypdf 6.15.0`, `PyMuPDF 1.23.7` (versions of the paper index).
-`torch.cuda.is_available()` is False on a login node; the job prints it again on the GPU node.
+`data/corpus_table.md` gives, for each file, its sha256 and number of passages. A different copy of the same article (another publisher version) can give different passages. The index of the paper has 1,758 passages (sha256 `03db65349faaâ€¦`); the driver prints the values of the index it builds so they can be compared.
 
----
-
-## 3. Models (login node with internet, once)
-
-The Llama 3.1 licence must first be accepted on the Hugging Face account used here (model page `meta-llama/Llama-3.1-8B-Instruct`).
+The index can be checked on its own, on CPU, in a few minutes, before any GPU job:
 
 ```bash
-cd "$REPO" && pwd
-huggingface-cli login
-bash workflows/prefetch_models.sh 2>&1 | tee prefetch_models.log
-```
-
-Check: one `ok` line per model (three LLMs at the pinned revisions, reranker, SciBERT). A `WARNING` on the reranker or SciBERT means a different revision than the paper: the run still works, but write it down for the report.
-
----
-
-## 4. Corpus and index (CPU, a few minutes, before any GPU job)
-
-```bash
-cd "$REPO" && pwd
-ls "$PDF_DIR"/*.pdf | wc -l
-PYTHONPATH=. python scripts/tools/corpus_preflight.py --corpus-dir "$PDF_DIR" \
-    --chunk-size 2000 --overlap 200 --out output/preflight_check
-python 49_build_index_v2.py --pdf-dir "$PDF_DIR" --outdir output/test_index \
+python 49_build_index_v2.py --pdf-dir ~/ontogeorag_corpus_pdfs --outdir output/test_index49 \
     --chunk-size 2000 --overlap 200 --expect-docs 41
-wc -l output/test_index/chunks.jsonl
-sha256sum output/test_index/chunks.jsonl | cut -c1-12
+wc -l output/test_index49/chunks.jsonl                    # expected: 1758
+sha256sum output/test_index49/chunks.jsonl | cut -c1-12   # expected: 03db65349faa
 ```
 
-Check: `41` PDFs; per-file sha256 and passage counts as in `data/corpus_table.md`; index `1758` passages and sha `03db65349faa`.
-If the index differs, stop here: a PDF is a different copy of the article or the PDF readers differ.
+The reference index was rebuilt this way from the 41 PDFs on 28 Oct 2026 with `pypdf` 6.15.0 and `PyMuPDF` 1.23.7 installed and `pdfplumber` absent (the script prints which readers it finds). With other reader versions, the text extracted from some PDFs can change.
 
----
+## 5. SLURM script
 
-## 5. Smoke test (about 10 minutes)
+Edit the lines marked `A_REMPLIR` in `slurm/run18.sbatch`: `--account` (project number), `--partition` (GPU partition), and, if the cluster uses them, the `module load` line. Keep `--gres=gpu:1`.
 
-```bash
-cd "$REPO" && pwd
-mkdir -p logs
-sbatch --account="$CLUSTER_ACCOUNT" --partition="$CLUSTER_PARTITION" \
-       --export=ALL,SMOKE=1 slurm/run18.sbatch
-squeue -u "$USER"
-```
-
-Follow the job (replace `<jobid>` with the number printed by `sbatch`):
+## 6. Test (about 10 minutes)
 
 ```bash
-tail -f logs/run18_<jobid>.err
+cd ~/ontogeorag
+mkdir -p logs                  # SLURM needs this folder before the job starts
+sbatch --export=ALL,SMOKE=1 slurm/run18.sbatch
+squeue -u $USER
 tail -f logs/run18_<jobid>.out
 ```
 
-Check in `logs/run18_<jobid>.out`:
-- the `=== GATE ===` section passes;
-- the line `index: 1758 passages, sha256 03db65349faa`;
-- the end: `manifest: … (22 steps …)` then `=== smoke_run18 finished ===`.
+The test runs the whole chain on 5 queries and 20 verified triples. Its numbers mean nothing. Check that:
 
-The smoke numbers mean nothing; only the chain is tested.
+- the `GATE` section passes (checksums and leak audit 174, exit code 0);
+- the log ends with `manifest: â€¦ (22 steps â€¦)` and `smoke_run18 finished` (21 steps if an existing index was copied with `INDEX_FROM`).
 
----
-
-## 6. Full run (several hours)
+## 7. Full run
 
 ```bash
-cd "$REPO" && pwd
-sbatch --account="$CLUSTER_ACCOUNT" --partition="$CLUSTER_PARTITION" \
-       --export=ALL slurm/run18.sbatch
-squeue -u "$USER"
+sbatch slurm/run18.sbatch
 ```
 
-Outputs go to `output/run18_rerun/` (delivered graph in `kg_final/`, manifest in `manifest.json`).
-To reuse the index checked in step 4 instead of rebuilding it, add `INDEX_FROM=output/test_index` to `--export` (the manifest then has 21 steps).
+On the recorded run, extraction and verification of both passes took about 3.5 hours; the panel adds to this. Outputs go to `output/run18_rerun/`:
 
-The driver never overwrites an output folder. If it stops with `STOP: … exists, nothing is overwritten`, add `OUT=output/<new_name>` to `--export`; do not delete the previous output.
+| File | Content |
+|---|---|
+| `kg_final/flat_run18_rerun_enforced_dedup.json` | delivered graph |
+| `m4_panel/m4_quarantine.jsonl` | relations rejected by the panel |
+| `kg_final/article_metrics.json` | metrics |
+| `manifest.json` | each step with its script checksum, arguments and times |
 
----
+A rerun is not expected to reproduce the published graph byte for byte, because pass b samples at temperature 0.3. Pass a (temperature 0) is reproducible.
 
-## 7. If something fails
+## 8. Common problems
 
 | Message | Cause |
 |---|---|
-| `Invalid account` or job refused | wrong `CLUSTER_ACCOUNT` or `CLUSTER_PARTITION` |
-| `401` / `403` on Llama | licence not accepted, or not logged in |
-| model download attempted on a compute node | step 3 not done, or `HF_HOME` differs between login and compute nodes |
-| `CUDA out of memory` | GPU too small; the recorded run used an A100 slice with 40 GB |
-| `STOP: set PDF_DIR …` | `PDF_DIR` not exported in block 0 |
+| `Invalid account` or job refused | wrong `--account` or partition |
+| `401` / `403` on Llama | licence not accepted, or no token |
+| model download on a compute node fails | models not prefetched; run step 3 on a login node |
+| `CUDA out of memory` | GPU too small; request a larger one |
+| `STOP: â€¦ exists, nothing is overwritten` | choose another `OUT` or move the previous output |
