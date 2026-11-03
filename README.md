@@ -20,6 +20,17 @@ The delivered run, **run16E**, indexed 41 documents into 1,758 passages. It prod
 `results/run16E/flat_run16E_enforced_dedup.json` is the delivered graph exactly as the run wrote it; the first 16 characters of its sha256 are recorded in `results/run16E/manifest.json`. `results/run16E/graph_with_located_provenance.json` holds the same 232 relations with, for each, the location of its evidence sentence in the index (`located_provenance`: file names, passage identifiers, and whether the match is exact or partial), and with local paths removed. Each relation carries its evidence sentence (at most 400 characters), the query that retrieved its passages, its tier, the primary verdict and the panel decision. `results/run16E/controls/` holds the metrics of the 464 adversarial controls of the run (`negatives_report.json`) and the re-analysis comparing four decision rules (`metrics_overall.csv`).
 
 These files are released under CC BY 4.0 (`LICENSE-DATA`), except the evidence sentences, which are short quotations from the source articles and remain subject to their publishers' terms.
+## run18 (current version)
+
+The branch `run18` adds the run18 settings and the tools to rerun and check them. The paper version above (run16E) is unchanged.
+
+- **Driver**: `workflows/run_pipeline_run18.sh` (210 queries in `configs/descriptor_queries_run18.jsonl`, full retrieved context, a gate that checks the run18 files and the leak audit `174_audit_fuite_benchmark.py` before any model is loaded). The changes with respect to run16E are listed in `pipeline/RUN18_PATCHES.md`.
+- **Rule-based cleaning**: `workflows/postprocess_run18.sh` chains three read-only CPU scripts on a run output: `184_trace_requetes_et_pertes.py` (follows every extraction and checks the replay against the run's own files), `187_provenance_articles.py` (article, reference and deduced section of every relation) and `188_nettoyage_familles.py` (removes relations by fixed rules R1 bibliography, R2 local label, R3 subject absent from the source sentences; flags S1–S4; groups relations by entity families). Their messages and output columns are in French.
+- **Recorded outputs**: `results/run18/` holds the delivered graph (`kg_final/`), the metrics, the panel quarantine, both passes (`pass_a/`, `pass_b/`), the manifest, and the cleaning outputs (`postprocess/`). The delivered graph has 364 relations (197 in tier 1); after cleaning, 281 relations (164 in tier 1). The figures and rules are in `results/run18/postprocess/*/_resume.txt`.
+- **Running on a SLURM cluster**: `docs/INSTALL_cluster.md` (full guide) and `docs/cluster_quickstart.md` (copy-paste version, including clusters without internet access).
+- **Checking a rerun**: `scripts/tools/compare_runs.py --ref results/run18 --new <your output>` compares every stage, the delivered graph, the metrics and the cleaned graph with the recorded run.
+
+These files are released under CC BY 4.0 (`LICENSE-DATA`), with the same exception for evidence sentences as above.
 
 ## Layout
 
