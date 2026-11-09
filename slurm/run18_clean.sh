@@ -1,29 +1,29 @@
 #!/bin/bash
 # =====================================================================
-# slurm/run18_clean.sh — run18 : chaine de run17 ; le pipeline ne lit
-#                        jamais les aretes d'evaluation
+# slurm/run18_clean.sh — run18: chain of run17; the pipeline never reads
+#                        the evaluation edges (driver of the recorded run18)
 #
-# MEMES PARAMETRES QUE run17 (contexte complet --max-chars 12000,
-# --max-tokens 2048, meme index copie, memes modeles, memes temperatures,
-# verification 5 x 2000, panel Llama + Mistral).
+# SAME SETTINGS AS run17 (full context --max-chars 12000, --max-tokens 2048,
+# same copied index, same models, same temperatures, verification on
+# 5 passages of 2000 characters, Llama + Mistral panel).
 #
-# SEULE INTERVENTION : separation stricte entre pipeline et evaluation
-#   - requetes   : configs/descriptor_queries_run18.jsonl (175, 210 requetes)
-#   - extraction : pipeline/02_extract_triples_run18.py (176, exemples lus
-#                  dans $EXAMPLES, pris hors du corpus d'evaluation)
-#   - nettoyage  : pipeline/04_clean_validate_run18.py (176, protection =
-#                  vocabulaire complet de l'ontologie, aucune arete d'evaluation)
-#   - porte      : 174_audit_fuite_benchmark.py doit sortir en code 0,
-#                  sinon rien n'est lance
-#   Seule l'etape 07 (metriques) lit les aretes d'evaluation, apres coup.
+# ONLY CHANGE: strict separation between pipeline and evaluation
+#   - queries    : configs/descriptor_queries_run18.jsonl (175, 210 queries)
+#   - extraction : pipeline/02_extract_triples_run18.py (176, examples read
+#                  from $EXAMPLES, taken outside the evaluated corpus)
+#   - cleaning   : pipeline/04_clean_validate_run18.py (176, protection =
+#                  whole ontology vocabulary, no evaluation edge)
+#   - gate       : 174_audit_fuite_benchmark.py must exit with code 0,
+#                  otherwise nothing is run
+#   Only step 07 (metrics) reads the evaluation edges, after the run.
 #
 # VARIABLES
-#     REPO       racine du worktree run18 (branche run18*)
-#     INDEX_FROM dossier index de run16E (contient chunks.jsonl)
-#     EXAMPLES   fichier JSON des exemples du prompt (celui passe a 176)
+#     REPO       root of the run18 worktree (branch run18*)
+#     INDEX_FROM index folder of run16E (holds chunks.jsonl)
+#     EXAMPLES   JSON file of the prompt examples (the one given to 176)
 #     sbatch --export=ALL,REPO=$HOME/ontogeorag_run18,INDEX_FROM=$HOME/ontogeorag_D/output/run16E/index,EXAMPLES=configs/prompt_examples_run18.json slurm/run18_clean.sh
 #
-# MODE SMOKE (~10 min, a faire avant) :
+# SMOKE MODE (about 10 min, run it first):
 #     SMOKE=1 MAIL_TO="" REPO=... INDEX_FROM=... EXAMPLES=... bash slurm/run18_clean.sh
 # =====================================================================
 #SBATCH --job-name=ontogeorag-run18
@@ -63,8 +63,8 @@ OUT=$REPO/output/$RUN
 RERANKER=cross-encoder/ms-marco-MiniLM-L-6-v2
 QUERIES=configs/descriptor_queries_run18.jsonl
 TOPK=5; BM25TOPN=20; MINBM25=2.0
-MAXCHARS=12000          # run16E : 2800
-MAXTOKENS=2048          # comme run17
+MAXCHARS=12000          # run16E: 2800
+MAXTOKENS=2048          # as in run17
 
 cd $REPO
 source $VENV/bin/activate
@@ -91,7 +91,7 @@ if [ "$SMOKE" != "1" ]; then
 fi
 python 58v2_freeze_benchmark.py check --benchmark configs/benchmark/benchmark_v3.json \
     || { echo "ARRET : benchmark non conforme." >&2; exit 2; }
-# Porte : scripts generes conformes a 176, puis aucune fuite (174)
+# Gate: the generated scripts match 176, then no leak (174)
 for F in pipeline/02_extract_triples_run18.py pipeline/04_clean_validate_run18.py "$QUERIES" "$EXAMPLES"; do
     [ -f "$F" ] || { echo "ARRET : $F introuvable (lancer 175 et 176, puis committer)." >&2; exit 2; }
     H=$(sha256sum "$F" | cut -d' ' -f1)
@@ -124,8 +124,8 @@ PY
 }
 
 # =====================================================================
-# 1 — INDEX : COPIE de l'index de run16E (lecture seule de la source)
-#     Pas de reconstruction : la recherche doit voir les memes chunks.
+# 1 — INDEX: COPY of the run16E index (the source is only read).
+#     No rebuild, so that retrieval sees the same passages.
 # =====================================================================
 NCH=$(grep -c . "$INDEX_FROM/chunks.jsonl")
 [ "$NCH" = "$EXPECT_CHUNKS" ] || { echo "ARRET : $NCH chunks dans $INDEX_FROM, attendu $EXPECT_CHUNKS." >&2; exit 2; }
@@ -143,7 +143,7 @@ open(log, "a", encoding="utf-8").write(json.dumps(
 PY
 
 # =====================================================================
-# 2 — EXTRACTION, deux regimes de temperature (design de la fusion tiered)
+# 2 — EXTRACTION, two temperatures (the tiered fusion needs both passes)
 # =====================================================================
 for P in a b; do
     [ "$P" = "a" ] && TEMP=0.0 || TEMP=0.3
@@ -160,8 +160,8 @@ for P in a b; do
 done
 
 # =====================================================================
-# 3 — PROVENANCE (02 ecrit selected_chunks, 03 lit top_chunks : c'est la
-#     discordance qui faisait verifier sur 15 % du contexte) puis 53
+# 3 — PROVENANCE, then verification (53). 02 writes selected_chunks and
+#     03 reads top_chunks; that mismatch made 03 verify on 15 % of the context.
 # =====================================================================
 run_step repair_provenance 52_repair_provenance.py \
     --chunks "$OUT/index/chunks.jsonl" \
@@ -177,7 +177,7 @@ for P in a b; do
 done
 
 # =====================================================================
-# 4 — VALIDATION / CANONICALISATION / LEXIQUE
+# 4 — VALIDATION / CANONICALISATION / LEXICON
 # =====================================================================
 for P in a b; do
     run_step "clean_pass_$P" pipeline/04_clean_validate_run18.py \
@@ -199,8 +199,8 @@ run_step fusion pipeline/06_tiered_fusion.py \
     --output "$OUT/kg/tiered_kg_$RUN.json"
 
 # =====================================================================
-# 6 — PANEL M4  (le panel juge la phrase d'evidence citee, pas les passages
-#     sources : independance de famille de modele, pas de materiel)
+# 6 — M4 PANEL. The panel judges the cited evidence sentence, not the source
+#     passages: the judges are independent by model family, not by material.
 # =====================================================================
 for J in llama mistral; do
     [ "$J" = "llama" ] && JM="$LLAMA_LOCAL" || JM="$MISTRAL_LOCAL"
@@ -234,14 +234,14 @@ run_step flatten analysis_suite/24_kg_to_flat.py \
     --include tier1,tier2 --dedup --out "$OUT/kg_final/flat_${RUN}_enforced_dedup.json"
 
 # =====================================================================
-# 8 — METRIQUES
+# 8 — METRICS
 # =====================================================================
 run_step metrics pipeline/07_final_metrics.py \
     --kg "$OUT/kg_final/flat_${RUN}_enforced_dedup.json" \
     --output "$OUT/kg_final/article_metrics.json"
 
 # =====================================================================
-# 9 — MANIFESTE + comparaison indicative a run16E
+# 9 — MANIFEST, and an indicative comparison with run16E
 # =====================================================================
 RUN16E_DIR=$(dirname "$INDEX_FROM")
 python - "$OUT/manifest.json" "$STEPS_LOG" "$GIT_SHA" "$GIT_DESC" "$OUT" "$RUN" "$RUN16E_DIR" "$MAXTOKENS" <<'PY' | tee "$OUT/_resume.txt"
@@ -274,10 +274,10 @@ PY
 echo ""; echo "=== $RUN termine ==="
 
 # =====================================================================
-# 10 — MAIL DES RESULTATS (si la commande `mail` existe sur le noeud)
-#      Echec d'envoi = sans consequence : les resultats restent sur disque.
+# 10 — RESULTS BY MAIL (if the `mail` command exists on the node).
+#      A failed sending has no effect: the results stay on disk.
 # =====================================================================
-MAIL_TO="${MAIL_TO-talbiferyel@gmail.com}"     # MAIL_TO="" = pas de mail (smoke)
+MAIL_TO="${MAIL_TO-talbiferyel@gmail.com}"     # MAIL_TO="" = no mail (smoke)
 if [ -z "$MAIL_TO" ]; then
     echo "(pas de mail demande)"
 elif command -v mail >/dev/null 2>&1; then

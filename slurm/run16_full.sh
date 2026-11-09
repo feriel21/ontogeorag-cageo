@@ -1,30 +1,30 @@
 #!/bin/bash
 # =====================================================================
-# slurm/run16_full.sh — run16 COMPLET DEPUIS LES PDF
+# slurm/run16_full.sh — full run16 from the PDFs (driver of the delivered run16E)
 #
-# Contrairement a run15 (qui repartait des triples verifies de run14 via
-# 52/53), ce driver execute la chaine entiere : index -> extraction ->
-# provenance -> verification -> validation -> fusion -> panel -> metriques.
+# run15 started again from the verified triples of run14 (via 52/53).
+# This driver runs the whole chain instead: index -> extraction ->
+# provenance -> verification -> validation -> fusion -> panel -> metrics.
 #
-# CONSEQUENCE ASSUMEE : les chiffres seront neufs. run16 n'est PAS une
-# reproduction de run15 et ne doit pas etre compare arete par arete.
+# The counts are therefore new: run16 is not a reproduction of run15 and
+# must not be compared with it edge by edge.
 #
-# PARAMETRES D'EXTRACTION : repris a l'identique de slurm/run11_gpu.sh, qui
-# a produit run14 (donc l'amont de run15). Ne pas les changer sans le
-# declarer — les defauts de 02 (top-k 3, min-bm25 0.0) ne reproduisent rien.
+# EXTRACTION SETTINGS: copied unchanged from slurm/run11_gpu.sh, which
+# produced run14 (the input of run15). Any change must be declared:
+# the defaults of 02 (top-k 3, min-bm25 0.0) reproduce no earlier run.
 #     pass_a : temperature 0.0
 #     pass_b : temperature 0.3
 #     top-k 5, bm25-topn 20, min-bm25 2.0
 #     reranker cross-encoder/ms-marco-MiniLM-L-6-v2
 #
-# SEULE VARIABLE A FOURNIR : PDF_DIR
-#     sbatch --export=ALL,PDF_DIR=/chemin/vers/les/41/pdf slurm/run16_full.sh
+# ONLY VARIABLE TO SET: PDF_DIR
+#     sbatch --export=ALL,PDF_DIR=/path/to/the/41/pdfs slurm/run16_full.sh
 #
-# MODE SMOKE (fortement recommande avant le run complet, ~10 min) :
+# SMOKE MODE (about 10 min, recommended before the full run):
 #     SMOKE=1 PDF_DIR=... bash slurm/run16_full.sh
-#     -> limite l'extraction a 5 requetes et la verification a 20 triples.
-#        Valide la compatibilite 49 -> 02 et l'enchainement complet sans
-#        bruler 3 h de GPU pour decouvrir une incompatibilite de format.
+#     -> limits extraction to 5 queries and verification to 20 triples.
+#        Checks that 49 and 02 are compatible and that the chain runs end
+#        to end before 3 h of GPU time are spent.
 # =====================================================================
 #SBATCH --job-name=ontogeorag-run16
 #SBATCH --partition=convergence
@@ -104,15 +104,16 @@ PY
 }
 
 # =====================================================================
-# 1 — INDEX (49 remplace 01 : boucle de chunking non terminante, cle meta)
-#     L'index de run14 n'est pas reproductible ; celui-ci sera different.
+# 1 — INDEX. 49 replaces 01, whose chunking loop could not terminate and
+#     which used another metadata key. The run14 index cannot be rebuilt,
+#     so this index differs from it.
 # =====================================================================
 run_step index 49_build_index_v2.py \
     --pdf-dir "$PDF_DIR" --outdir "$OUT/index" \
     --chunk-size 2000 --overlap 200 $EXPECT_DOCS
 
 # =====================================================================
-# 2 — EXTRACTION, deux regimes de temperature (design de la fusion tiered)
+# 2 — EXTRACTION, two temperatures (the tiered fusion needs both passes)
 # =====================================================================
 for P in a b; do
     [ "$P" = "a" ] && TEMP=0.0 || TEMP=0.3
@@ -129,8 +130,8 @@ for P in a b; do
 done
 
 # =====================================================================
-# 3 — PROVENANCE (02 ecrit selected_chunks, 03 lit top_chunks : c'est la
-#     discordance qui faisait verifier sur 15 % du contexte) puis 53
+# 3 — PROVENANCE, then verification (53). 02 writes selected_chunks and
+#     03 reads top_chunks; that mismatch made 03 verify on 15 % of the context.
 # =====================================================================
 run_step repair_provenance 52_repair_provenance.py \
     --chunks "$OUT/index/chunks.jsonl" \
@@ -146,7 +147,7 @@ for P in a b; do
 done
 
 # =====================================================================
-# 4 — VALIDATION / CANONICALISATION / LEXIQUE
+# 4 — VALIDATION / CANONICALISATION / LEXICON
 # =====================================================================
 for P in a b; do
     run_step "clean_pass_$P" pipeline/04_clean_validate.py \
@@ -168,8 +169,8 @@ run_step fusion pipeline/06_tiered_fusion.py \
     --output "$OUT/kg/tiered_kg_$RUN.json"
 
 # =====================================================================
-# 6 — PANEL M4  (le panel juge la phrase d'evidence citee, pas les passages
-#     sources : independance de famille de modele, pas de materiel)
+# 6 — M4 PANEL. The panel judges the cited evidence sentence, not the source
+#     passages: the judges are independent by model family, not by material.
 # =====================================================================
 for J in llama mistral; do
     [ "$J" = "llama" ] && JM="$LLAMA_LOCAL" || JM="$MISTRAL_LOCAL"
@@ -203,14 +204,14 @@ run_step flatten analysis_suite/24_kg_to_flat.py \
     --include tier1,tier2 --dedup --out "$OUT/kg_final/flat_${RUN}_enforced_dedup.json"
 
 # =====================================================================
-# 8 — METRIQUES
+# 8 — METRICS
 # =====================================================================
 run_step metrics pipeline/07_final_metrics.py \
     --kg "$OUT/kg_final/flat_${RUN}_enforced_dedup.json" \
     --output "$OUT/kg_final/article_metrics.json"
 
 # =====================================================================
-# 9 — MANIFESTE + comparaison indicative a run15
+# 9 — MANIFEST, and an indicative comparison with run15
 # =====================================================================
 python - "$OUT/manifest.json" "$STEPS_LOG" "$GIT_SHA" "$GIT_DESC" "$OUT" "$RUN" <<'PY'
 import hashlib, json, subprocess, sys

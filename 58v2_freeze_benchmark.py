@@ -1,26 +1,29 @@
 #!/usr/bin/env python3
 """
-58v2_freeze_benchmark.py — Sortir le benchmark du code, sans modifier le code
+58v2_freeze_benchmark.py — Freeze the benchmark edges into a file, without changing the code.
 
-Corrige v1 : `norm()` supposait des triplets stricts. Au moins un des fichiers
-benchmark porte des elements d'une autre forme (dicts, ou listes de longueur
-!= 3). v2 accepte :
-  - [s, r, o] et tout iterable de longueur >= 3 (les 3 premiers champs)
-  - {"subject"/"source"/"s", "relation"/"r"/"rel", "object"/"target"/"o"}
-et nomme le fichier fautif si la forme reste inconnue.
+Version 2 fixes version 1, whose `norm()` assumed strict triples.
+At least one benchmark file holds items of another shape (dictionaries, or
+lists whose length is not 3).
+Version 2 accepts:
+  - [s, r, o] and any sequence of length >= 3 (first three fields);
+  - {"subject"/"source"/"s", "relation"/"r"/"rel", "object"/"target"/"o"}.
+The script names the faulty file when the shape is still unknown.
 
-Sous-commande `inspect` ajoutee : affiche la forme reelle de chaque fichier
-avant toute tentative de gel.
+The `inspect` subcommand prints the actual shape of each file before any
+freezing.
 
-PRINCIPE INCHANGE
-    LB_REFERENCE_EDGES reste code en dur dans 04 (le retirer casserait la
-    reproductibilite de run15-frozen). On ne le retire pas : on le rend
-    VERIFIABLE. `check` sort en code 1 a la moindre divergence.
+PRINCIPLE
+    LB_REFERENCE_EDGES stays hard-coded in 04, because removing it would break
+    the reproducibility of run15-frozen.
+    The script makes the constant checkable instead: `check` exits with code 1
+    at the first difference between the constant and the frozen file.
 
-Usage :
+Usage:
     python 58v2_freeze_benchmark.py inspect
     python 58v2_freeze_benchmark.py build --out configs/benchmark/benchmark_v1.json
     python 58v2_freeze_benchmark.py check --benchmark configs/benchmark/benchmark_v1.json
+Messages are in French.
 """
 import argparse, ast, hashlib, json, subprocess, sys, tempfile
 from pathlib import Path
@@ -58,7 +61,7 @@ def _pick(d, keys):
 
 
 def as_edge(x, where):
-    """Ramene un element quelconque a (s, r, o) ou leve avec un message utile."""
+    """Return (s, r, o) for any supported item shape, or raise with the location of the item."""
     if isinstance(x, dict):
         s, r, o = _pick(x, S_KEYS), _pick(x, R_KEYS), _pick(x, O_KEYS)
         if None not in (s, r, o):
@@ -85,7 +88,7 @@ def sha(obj):
 
 
 def raw_list(p):
-    """Renvoie la liste d'aretes brute d'un fichier JSON, ou None."""
+    """Return the raw edge list of a JSON file, or None if the file is missing or has no edge list."""
     if not Path(p).exists():
         return None
     d = json.load(open(p, encoding="utf-8"))

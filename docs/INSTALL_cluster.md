@@ -62,7 +62,7 @@ The reference index was rebuilt this way from the 41 PDFs on 28 Oct 2026 with `p
 
 ## 5. SLURM script
 
-Edit the lines marked `A_REMPLIR` in `slurm/run18.sbatch`: `--account` (project number), `--partition` (GPU partition), and, if the cluster uses them, the `module load` line. Keep `--gres=gpu:1`.
+Edit the lines marked `TO_FILL` in `slurm/run18.sbatch`: `--account` (project number), `--partition` (GPU partition), and, if the cluster uses them, the `module load` line. Keep `--gres=gpu:1`.
 
 ## 6. Test (about 10 minutes)
 

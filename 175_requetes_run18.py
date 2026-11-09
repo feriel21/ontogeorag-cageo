@@ -1,20 +1,22 @@
 #!/usr/bin/env python3
-"""175 — Jeu de requetes de run18 : aucune requete ne nomme une arete d'evaluation.
+"""175 — Query set of run18: queries that name an evaluation edge are removed.
 
-REGLE (fixee avant run18)
-    Une requete du fichier source est retiree si
-      R1  son ancre (focus) appartient aux familles LB: ou gapfill:
-          (ancres ecrites a partir du graphe expert ou d'une arete visee), ou
-      R2  son ancre OU son texte nomme les deux arguments d'une arete de
-          configs/lb_reference_edges_original26.json, en termes entiers
-          (un terme contenu dans un terme plus long ne compte pas).
-    Toutes les autres requetes sont gardees, dans leur ordre, sans modification.
+RULE (fixed before run18)
+    A query of the input file is removed if
+      R1  its anchor (focus) belongs to the families LB: or gapfill:
+          (anchors written from the expert graph or for a targeted edge), or
+      R2  its anchor OR its text names both arguments of an edge of
+          configs/lb_reference_edges_original26.json, as whole terms
+          (a term contained in a longer term does not count).
+    All other queries are kept unchanged and in their original order.
+    The whole-term match does not cover plurals or abbreviations such as MTD:
+    16 of the 210 kept queries still name both terms of an expert edge.
 
-SORTIES
-    --out            fichier jsonl des requetes gardees
-    --out.meta.json  regle, sha256 de l'entree et de la sortie, comptes,
-                     indices retires et raison
-    Le script refuse d'ecraser une sortie existante.
+OUTPUTS
+    --out            JSONL file of the kept queries
+    --out.meta.json  rule, sha256 of input and output, counts, and the index
+                     and reason of each removed query
+    The script refuses to overwrite an existing output.
 
 USAGE
     python 175_requetes_run18.py --repo . \
@@ -95,7 +97,7 @@ def main():
 
     if not args.no_expect and (len(Q), len(kept)) != (EXPECT["input"], EXPECT["kept"]):
         die("attendu %d -> %d, obtenu %d -> %d" % (EXPECT["input"], EXPECT["kept"], len(Q), len(kept)))
-    # controle : plus aucune requete gardee ne nomme une arete
+    # check: no kept query names an edge under the same whole-term rule
     for line in kept:
         q = json.loads(line)
         a, t = anchor_text(q.get("focus")), norm(q.get("query"))

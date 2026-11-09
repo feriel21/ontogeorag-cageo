@@ -1,33 +1,35 @@
 #!/usr/bin/env python3
-"""177 — Phrases candidates pour les exemples du prompt de run18, prises HORS du corpus d'evaluation.
+"""177 — Candidate sentences for the run18 prompt examples, taken OUTSIDE the evaluated corpus.
 
-POURQUOI
-    Les exemples du prompt doivent venir de textes que le pipeline n'evalue
-    pas (pratique standard : les exemples sont exclus du jeu d'evaluation).
-    L'index archive step1_contamine_3386 contient des articles absents du
-    corpus de 41 articles. Ce script en extrait des phrases candidates ;
-    le choix final des exemples (6 a 8 par type) est fait a la main, puis
-    verifie par 176 et 174.
+WHY
+    Prompt examples must come from texts that the pipeline does not evaluate,
+    as examples are usually excluded from the evaluation set.
+    The archived index step1_contamine_3386 holds papers that are not among
+    the 41 papers of the corpus.
+    The script extracts candidate sentences from those papers.
+    The final examples (6 to 8 per type) are chosen by hand, then checked by
+    176 and 174.
 
-QUOI (lecture seule, CPU)
-    1. Documents hors corpus = documents de --index-hors absents de
-       --index16E, apres retrait du suffixe "-checkpoint" (copies d'un meme
-       article). Le nombre de vrais documents hors corpus est affiche.
-    2. Decoupe en phrases ; trois familles de candidates :
-         descriptor : un descripteur du vocabulaire (KNOWN_DESCRIPTORS) et
-                      un objet geologique
-         causal     : un verbe causal (trigger, cause, control, induce, lead to,
+STEPS (read-only, CPU)
+    1. Out-of-corpus documents are the documents of --index-hors that are
+       absent from --index16E, after removing the "-checkpoint" suffix
+       (copies of the same paper). The number of distinct out-of-corpus
+       documents is printed.
+    2. Text is split into sentences, with three families of candidates:
+         descriptor : a descriptor of the vocabulary (KNOWN_DESCRIPTORS) and
+                      a geological object
+         causal     : a causal verb (trigger, cause, control, induce, lead to,
                       result in, promote)
-         context    : un cadre (KNOWN_SETTINGS) ou overlie/underlie
-    3. Exclut toute phrase qui nomme les deux arguments d'une arete
-       d'evaluation (configs/lb_reference_edges_original26.json).
-    4. Au plus --max phrases par famille, tirees avec une graine fixe.
+         context    : a setting (KNOWN_SETTINGS) or overlie/underlie
+    3. Any sentence that names both arguments of an evaluation edge
+       (configs/lb_reference_edges_original26.json) is excluded.
+    4. At most --max sentences per family are drawn with a fixed seed.
 
-SORTIES (--outdir, jamais ecrase)
+OUTPUTS (--outdir, never overwritten; file names and messages in French)
     candidats_descriptor.tsv, candidats_causal.tsv, candidats_context.tsv,
     documents_hors_corpus.txt, _resume.txt
 
-USAGE (racine du worktree run18)
+USAGE (root of the run18 worktree)
     python 177_candidats_exemples_hors_corpus.py --repo . \
         --index-hors $HOME/ontogeorag/output/_archive/step1_contamine_3386/chunks.jsonl \
         --index16E $HOME/ontogeorag_D/output/run16E/index/chunks.jsonl \
