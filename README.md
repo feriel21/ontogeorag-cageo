@@ -51,6 +51,7 @@ These files are released under CC BY 4.0 (`LICENSE-DATA`), with the same excepti
 | `results/` | manifests of the runs (run16E is the delivered one); delivered graph and control metrics under `results/run16E/`; recorded run18 outputs and cleaning under `results/run18/` |
 | `scripts/analysis/`, `scripts/evaluation/` | analyses and evaluations reported in the manuscript |
 | `scripts/figures/`, `scripts/paper/` | producers of the figures and tables |
+| `scripts/figures/run18/` | producers of the five figures of the run18 manuscript, from the files of `results/run18/` (`scripts/figures/run18/README.md`) |
 | `scripts/tools/` | corpus preflight, benchmark extraction, comparison of a rerun with a recorded run (`compare_runs.py`) |
 | `tools/` | provenance, replay and code-equivalence checks |
 | `workflows/run_pipeline.sh` | public driver of the full pipeline (run16E settings) |
