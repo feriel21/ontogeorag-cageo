@@ -123,26 +123,18 @@ results/run16E/flat_run16E_enforced_dedup.json	run16E output kg_final/flat_run16
 results/run16E/graph_with_located_provenance.json	delivered graph with located provenance (scripts/evaluation/graph_with_located_provenance.py), local paths removed	5ded342ed984bf4a130e865cb0c9cb5f9232a62f8a1ba2673e849e0500f1ac43	triples identical to the delivered graph
 results/run16E/controls/negatives_report.json	run16E output m4/negatives/negatives_report.json	e5e5218d48302d1af66c9c734ac0b4b362b4dc34e6d66a8245c49d5507d07829	copied unchanged
 results/run16E/controls/metrics_overall.csv	re-analysis of the run16E controls, m4/negatives/metrics_overall.csv	e898d532badd5ebe1836c1fca263f677beef6cb8618184e66869fc09974bcb39	copied unchanged
-scripts/run18/audit/171_compare_run16E_run17.py	file:~/ontogeorag/171_compare_run16E_run17.py	6e7002bb906d97d18eee8e677f3392920a001298cb06ec3ad9b101bfc60b9986	run18 audit script, copied unchanged (194)
-scripts/run18/audit/171_expert_table_zones.py	file:~/ontogeorag/171_expert_table_zones.py	ac2278865b061c002e428b5794034e370fea3e803feaccae79d7e2d913174da9	run18 audit script, copied unchanged (194)
 scripts/run18/audit/179_trace_relations_absentes.py	file:~/ontogeorag/179_trace_relations_absentes.py	bd7092bc1e8bf6ad409ed1336f4f7051f70d38d488ac9803016d8f4a8e490d1b	run18 audit script, copied unchanged (194)
-scripts/run18/audit/180_blind50_knowledge_form.py	file:~/ontogeorag/180_blind50_knowledge_form.py	91c8ccce906db715992fbd56cfdffdaa22f848809376ff8b5b63aa412495d3fe	run18 audit script, copied unchanged (194)
 scripts/run18/audit/180_passage_vu_par_le_panel.py	file:~/ontogeorag/180_passage_vu_par_le_panel.py	19c832c48220d6e52a2de344f78fbefcdb4dcd19bd804cfb244601a808793d77	run18 audit script, copied unchanged (194)
-scripts/run18/audit/181_axisA_causal_structure.py	file:~/ontogeorag/181_axisA_causal_structure.py	87f66e540c837d45790533d0e0738eb65ddfacf0f8250ba01a6fe8fd572c7f53	run18 audit script, copied unchanged (194)
 scripts/run18/audit/181_regles_decision.py	file:~/ontogeorag/181_regles_decision.py	fdc9978ab57f78703c22419f608113ec6d3f303b1076bdd91669ca2ee474e57a	run18 audit script, copied unchanged (194)
-scripts/run18/audit/182_corroborated_links_full.py	file:~/ontogeorag/182_corroborated_links_full.py	889726d28f11f6b51430d84112a06bfce90c2aa7d164a5afdbb33384c219037b	run18 audit script, copied unchanged (194)
 scripts/run18/audit/182_familles_noms_run18.py	file:~/ontogeorag/182_familles_noms_run18.py	714d0975160de1b7755aa4c8ab07e5eb4a7acf456c88f391d34d8262ece02070	run18 audit script, copied unchanged (194)
 scripts/run18/audit/183_comparer_passes.py	file:~/ontogeorag/183_comparer_passes.py	ba3ef48958393832674f32733e40ac9fdfd8043a992ff33f73b77617fb7126dd	run18 audit script, copied unchanged (194)
-scripts/run18/audit/183_prepare_qclaim_pilot.py	file:~/ontogeorag/183_prepare_qclaim_pilot.py	9a10f6d434a44dec3b598b3d36961ac936d0aaa8f74170ecb99665b9edc4ca16	run18 audit script, copied unchanged (194)
 scripts/run18/audit/185_fiche_triplet.py	file:~/ontogeorag/185_fiche_triplet.py	3807dd5e351e3ab5c897ae4534c46a484db14a551aea76fce4464eb5499c1d7e	run18 audit script, copied unchanged (194)
 scripts/run18/audit/186_marqueurs_portee.py	file:~/ontogeorag/186_marqueurs_portee.py	a094cb80d80ae584ffb24843aeb6801c1ce704b49f1d04881d13443fb7c29bc3	run18 audit script, copied unchanged (194)
 scripts/run18/audit/189_elements_article.py	file:~/ontogeorag/189_elements_article.py	578bfcf5605e4301fd68345445d8e893a1cbddbed15cca03df9b610fba6f2b77	run18 audit script, copied unchanged (194)
 scripts/run18/audit/189_frequence_vocabulaire.py	file:~/ontogeorag/189_frequence_vocabulaire.py	a8f457d994488be3e7b24f1439c6a99ef81fe0f0d4e05a1e039db244a1518cff	run18 audit script, copied unchanged (194)
 scripts/run18/audit/190_controles_et_coherence.py	file:~/ontogeorag/190_controles_et_coherence.py	7491da3cacd72d1f6f4907e171a4c2954d96c879657bf9c1700aff66087da574	run18 audit script, copied unchanged (194)
-scripts/run18/audit/190_inventaire_figures_partie2.py	file:~/ontogeorag/190_inventaire_figures_partie2.py	fb1e666fac9de5f027174021d9a45764c82845c83e4aa6ee767e9d197845b010	run18 audit script, copied unchanged (194)
 scripts/run18/audit/190_rejeu_recherche_run18.py	file:~/ontogeorag/190_rejeu_recherche_run18.py	6ed8935fb19107bb2ca1c64dd9f0e8f7f11be4d849319ef520fa5783118814ba	run18 audit script, copied unchanged (194)
 scripts/run18/audit/191_regles_et_sensibilite.py	file:~/ontogeorag/191_regles_et_sensibilite.py	16c6e7c839ba1616a8f063245e11f2e8bf0ec4ce5384ea1baa6b84df383649fc	run18 audit script, copied unchanged (194)
-scripts/run18/audit/192_contenu_graphe.py	file:~/ontogeorag_run18/192_contenu_graphe.py	e75fe1107fc497532440225a8a41c72ca14b1a2ab27e5026280470101ba4a8af	run18 audit script, copied unchanged (194)
 scripts/run18/audit/192_infos_manquantes.py	file:~/ontogeorag/192_infos_manquantes.py	6809465d7524d5a72f7371282631a46a4e83a2134a2ab0fd902c596c96be8a88	run18 audit script, copied unchanged (194)
 scripts/run18/audit/193_couverture_descripteurs.py	file:~/ontogeorag/193_couverture_descripteurs.py	6661336cb5549cbb04939f6cccdb84fc9e5ea55bad044cef7c9ed1c54e63d423	run18 audit script, copied unchanged (194)
 174_audit_fuite_benchmark.py	git:44411e0:174_audit_fuite_benchmark.py (published version)	596a85e6088f533170ea6d963cd0b1a98b765019059a90be26c7daa2e5c0fa52	as published before translation
