@@ -2,18 +2,18 @@
 """182 — Name families and abstract tables, on the run18 delivered graph.
 
 TWO STEPS
-  1. proposer: each entity of the graph receives a family.
+  1. propose: each entity of the graph receives a family.
        - "table"    : the name is already in configs/entity_families.csv (table made
                       by hand on run16E);
-       - "proposee" : name absent from the table; a family is proposed if at least
+       - "proposed" : name absent from the table; a family is proposed if at least
                       half of its content words are shared with the names of one
                       family (a single winning family); TO BE CHECKED BY HAND;
-       - "aucune"   : nothing close.
-     Writes <outdir>/familles_run18_a_valider.csv (entity, family, methode, occurrences).
+       - "none"     : nothing close.
+     Writes <outdir>/families_run18_to_check.csv (entity, family, method, occurrences).
      The family column is corrected by hand (empty = no family) and the file is
      saved as configs/entity_families_run18.csv.
 
-  2. mesurer: with the validated table, computes the numbers quoted in the abstract:
+  2. measure: with the validated table, computes the numbers quoted in the abstract:
        - Table 1: per family, the number of names and the names;
        - connected components of the whole graph before and after grouping by family;
        - components of the causal subgraph (causes, triggers, controls, affects)
@@ -24,14 +24,13 @@ TWO STEPS
          (a table to read, to spot lost conditions).
 
 USAGE
-  python 182_familles_noms_run18.py proposer --repo . \
+  python 182_name_families_run18.py propose --repo . \
       --graph output/run18/kg_final/flat_run18_enforced_dedup.json \
-      --outdir output/audit/182_familles
-  python 182_familles_noms_run18.py mesurer --repo . \
+      --outdir output/audit/182_families
+  python 182_name_families_run18.py measure --repo . \
       --graph output/run18/kg_final/flat_run18_enforced_dedup.json \
       --families configs/entity_families_run18.csv \
-      --outdir output/audit/182_mesures
-  Subcommands, messages and output files are in French.
+      --outdir output/audit/182_measures
 """
 
 import argparse
@@ -49,7 +48,7 @@ STOP = {"of", "the", "in", "on", "a", "an", "and", "to", "at", "by", "for", "wit
 
 
 def die(msg):
-    print("ARRET : " + msg, file=sys.stderr, flush=True)
+    print("STOP: " + msg, file=sys.stderr, flush=True)
     sys.exit(1)
 
 
@@ -82,7 +81,7 @@ def components(nodes, edges):
     return len({find(n) for n in nodes})
 
 
-def proposer(args):
+def propose(args):
     G = load_graph(args.graph)
     table = {low(r["entity"]): r["family"] for r in csv.DictReader(open(Path(args.repo) / "configs/entity_families.csv", encoding="utf-8"))}
     fam_words = defaultdict(set)
@@ -105,23 +104,23 @@ def proposer(args):
                 best.append((share, f))
         best.sort(reverse=True)
         if best and (len(best) == 1 or best[0][0] > best[1][0]):
-            rows.append([e, best[0][1], "proposee", n])
+            rows.append([e, best[0][1], "proposed", n])
         else:
-            rows.append([e, "", "aucune", n])
+            rows.append([e, "", "none", n])
     out = Path(args.outdir)
     out.mkdir(parents=True)
-    with open(out / "familles_run18_a_valider.csv", "w", newline="", encoding="utf-8") as f:
+    with open(out / "families_run18_to_check.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
-        w.writerow(["entity", "family", "methode", "occurrences"])
+        w.writerow(["entity", "family", "method", "occurrences"])
         w.writerows(rows)
     c = Counter(r[2] for r in rows)
-    print("entites du graphe : %d ; dans la table run16E : %d ; famille proposee : %d ; aucune : %d"
-          % (len(rows), c["table"], c["proposee"], c["aucune"]))
-    print("a valider : " + str(out / "familles_run18_a_valider.csv"))
-    print("ensuite : corriger la colonne family, enregistrer sous configs/entity_families_run18.csv, lancer « mesurer »")
+    print("graph entities: %d; in the run16E table: %d; family proposed: %d; none: %d"
+          % (len(rows), c["table"], c["proposed"], c["none"]))
+    print("to check: " + str(out / "families_run18_to_check.csv"))
+    print("next: correct the family column, save as configs/entity_families_run18.csv, run \"measure\"")
 
 
-def mesurer(args):
+def measure(args):
     G = load_graph(args.graph)
     fam = {}
     for r in csv.DictReader(open(args.families, encoding="utf-8")):
@@ -153,46 +152,46 @@ def mesurer(args):
     t2 = [t for t in G if t["relation"] == "triggers" and g(t["object"]) == "slope failure" and t.get("tier") == 1]
     with open(out / "table2_triggers_slope_failure.tsv", "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f, delimiter="\t")
-        w.writerow(["relation", "tier", "phrase"])
+        w.writerow(["relation", "tier", "sentence"])
         for t in t2:
             w.writerow(["%s triggers %s" % (t["subject"], t["object"]), t.get("tier"), (t.get("evidence") or "").strip('"')])
-    with open(out / "table1_familles.tsv", "w", newline="", encoding="utf-8") as f:
+    with open(out / "table1_families.tsv", "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f, delimiter="\t")
-        w.writerow(["famille", "nombre_de_noms", "noms"])
+        w.writerow(["family", "n_names", "names"])
         for fa, ms in sorted(members.items(), key=lambda x: -len(x[1])):
             w.writerow([fa, len(ms), ", ".join(sorted(ms))])
 
-    L = ["=== 182 familles de noms sur le graphe livre ===",
-         "relations : %d ; entites : %d ; entites dans une famille : %d" % (len(G), len(nodes), sum(len(m) for m in members.values())),
-         "composantes du graphe entier : %d avant regroupement -> %d apres" % (c_before, c_after),
-         "composantes du sous-graphe causal : %d avant -> %d apres" % (cc_before, cc_after),
-         "voisinage causal de slope failure : %d noms distincts -> %d familles ou noms apres regroupement" % (len(neigh), len(neigh_fam)),
-         "relations Tier 1 « X triggers slope failure » : %d (table2_triggers_slope_failure.tsv)" % len(t2),
-         "", "Table 1 (familles d'au moins 2 noms) :"]
+    L = ["=== 182 name families on the delivered graph ===",
+         "relations: %d; entities: %d; entities in a family: %d" % (len(G), len(nodes), sum(len(m) for m in members.values())),
+         "components of the whole graph: %d before grouping -> %d after" % (c_before, c_after),
+         "components of the causal subgraph: %d before -> %d after" % (cc_before, cc_after),
+         "causal neighbourhood of slope failure: %d distinct names -> %d families or names after grouping" % (len(neigh), len(neigh_fam)),
+         "Tier 1 relations \"X triggers slope failure\": %d (table2_triggers_slope_failure.tsv)" % len(t2),
+         "", "Table 1 (families of at least 2 names):"]
     for fa, ms in sorted(members.items(), key=lambda x: -len(x[1])):
         if len(ms) >= 2:
             L.append("  %-35s %3d  %s" % (fa, len(ms), ", ".join(sorted(ms))[:160]))
     txt = "\n".join(L)
-    (out / "_resume.txt").write_text(txt + "\n", encoding="utf-8")
+    (out / "_summary.txt").write_text(txt + "\n", encoding="utf-8")
     print(txt)
 
 
 def main():
     ap = argparse.ArgumentParser()
     sp = ap.add_subparsers(dest="cmd", required=True)
-    p = sp.add_parser("proposer")
+    p = sp.add_parser("propose")
     p.add_argument("--repo", default=".")
     p.add_argument("--graph", required=True)
     p.add_argument("--outdir", required=True)
-    m = sp.add_parser("mesurer")
+    m = sp.add_parser("measure")
     m.add_argument("--repo", default=".")
     m.add_argument("--graph", required=True)
     m.add_argument("--families", required=True)
     m.add_argument("--outdir", required=True)
     args = ap.parse_args()
     if Path(args.outdir).exists():
-        die("le dossier existe deja, rien n'est ecrase : " + args.outdir)
-    proposer(args) if args.cmd == "proposer" else mesurer(args)
+        die("the folder already exists, nothing is overwritten: " + args.outdir)
+    propose(args) if args.cmd == "propose" else measure(args)
 
 
 if __name__ == "__main__":

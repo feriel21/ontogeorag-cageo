@@ -8,20 +8,20 @@ WHY
     Three rules are measured on the same records:
       admission    rule of the pipeline: the relation is set aside only if
                    p is not SUPPORTED AND v is not PLAUSIBLE
-      phrase       the sentence comes first: set aside if p = NOT_SUPPORTED, or if
+      sentence_first the sentence comes first: set aside if p = NOT_SUPPORTED, or if
                    p = PARTIALLY_SUPPORTED and v is not PLAUSIBLE
-      phrase_seule set aside if p = NOT_SUPPORTED (verdict with the sentence only)
+      sentence_only  set aside if p = NOT_SUPPORTED (verdict with the sentence only)
     For each rule and each verifying-LLM, then for the panel (set aside if either
     verifier sets it aside): share of corrupted copies set aside, per corruption
     type, and share of the graph relations set aside.
     Same definitions as scripts/evaluation/verifier_decision_rules.py.
-    Only phrase_seule is used in the manuscript: 191 recomputed the three rules
+    Only sentence_only is used in the manuscript: 191 recomputed the three rules
     from the joined verdicts and did not reproduce the counts of the other two.
 
 USAGE
-    python 181_regles_decision.py --stress output/run18/stress_test
+    python 181_decision_rules.py --stress output/run18/stress_test
     (the folder holds controls.jsonl, llama/m4_verdicts.jsonl, mistral/m4_verdicts.jsonl)
-    Messages and output files are in French.
+    Outputs: decision_rules.json and decision_rules.txt in the --stress folder.
 """
 
 import argparse
@@ -47,9 +47,9 @@ def v_of(v):
 
 RULES = {
     "admission":    lambda v: p_of(v) != "SUPPORTED" and v_of(v) != "PLAUSIBLE",
-    "phrase":       lambda v: p_of(v) == "NOT_SUPPORTED"
+    "sentence_first": lambda v: p_of(v) == "NOT_SUPPORTED"
                               or (p_of(v) == "PARTIALLY_SUPPORTED" and v_of(v) != "PLAUSIBLE"),
-    "phrase_seule": lambda v: p_of(v) == "NOT_SUPPORTED",
+    "sentence_only": lambda v: p_of(v) == "NOT_SUPPORTED",
 }
 
 
@@ -64,10 +64,10 @@ def main():
     for j in args.judges:
         V[j] = jsonl(d / j / "m4_verdicts.jsonl")
         if len(V[j]) != len(controls):
-            sys.exit("ARRET : %s a %d verdicts pour %d controles" % (j, len(V[j]), len(controls)))
+            sys.exit("STOP: %s has %d verdicts for %d records" % (j, len(V[j]), len(controls)))
         for i, v in enumerate(V[j]):
             if "m4_index" in v and v["m4_index"] != i:
-                sys.exit("ARRET : %s ligne %d mal alignee" % (j, i))
+                sys.exit("STOP: %s line %d is not aligned" % (j, i))
 
     cls = [c.get("corruption_class", "none") for c in controls]
     corrupted = [i for i, c in enumerate(controls) if c.get("label") == "corrupted"]
@@ -81,10 +81,10 @@ def main():
         return [RULES[rule](V[who][i]) for i in range(len(controls))]
 
     out = {}
-    L = ["=== 181 regles de decision sur %d controles (%d originaux, %d corrompus) ==="
+    L = ["=== 181 decision rules on %d records (%d originals, %d corrupted) ==="
          % (len(controls), len(originals), len(corrupted)),
-         "par type de corruption : " + ", ".join("%s %d" % (k, n_cls[k]) for k in classes), ""]
-    header = "%-13s %-8s %16s %18s  " % ("regle", "juge", "corrompues_ecart.", "originaux_mis_cote") + \
+         "per corruption type: " + ", ".join("%s %d" % (k, n_cls[k]) for k in classes), ""]
+    header = "%-13s %-8s %16s %18s  " % ("rule", "verifier", "corrupted_set_aside", "originals_set_aside") + \
              "  ".join("%-14s" % k for k in classes)
     L.append(header)
     for rule in RULES:
@@ -101,11 +101,11 @@ def main():
                 fp, len(originals), 100 * fp / len(originals)) +
                 "  ".join("%-14s" % ("%d/%d" % (per[k], n_cls[k])) for k in classes))
         L.append("")
-    L.append("admission = regle du pipeline ; phrase = la phrase prime ; phrase_seule = verdict avec la phrase seul")
-    L.append("panel = ecartee si l'un des deux juges l'ecarte (le plus prudent, comme dans le pipeline)")
+    L.append("admission = rule of the pipeline; sentence_first = the sentence comes first; sentence_only = verdict with the sentence only")
+    L.append("panel = set aside if either verifier sets it aside (the most cautious, as in the pipeline)")
     txt = "\n".join(L)
-    (d / "regles_decision.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
-    (d / "regles_decision.txt").write_text(txt + "\n", encoding="utf-8")
+    (d / "decision_rules.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
+    (d / "decision_rules.txt").write_text(txt + "\n", encoding="utf-8")
     print(txt)
 
 

@@ -14,10 +14,11 @@ STEPS FOLLOWED (files of --run-dir, read-only)
                 were these passages given to the extracting-LLM?
     extraction  pass_*/raw_triples.jsonl
     verif_qwen  pass_*/verified_triples.jsonl (verdict of Qwen)
-    cleaning    pass_*/rejected_triples_v5.jsonl (_reject_reason)
-    after_clean pass_*/canonical_triples_v5.rulecanon.lexicon_enforced.jsonl
+    cleaning_rejected  pass_*/rejected_triples_v5.jsonl (_reject_reason)
+    after_cleaning     pass_*/canonical_triples_v5.rulecanon.lexicon_enforced.jsonl
     fusion      kg/tiered_kg_<run>.json
-    panel       m4_panel/tiered_kg_m4.json and m4_panel/m4_quarantine.jsonl
+    panel       m4_panel/tiered_kg_m4.json
+    panel_quarantine   m4_panel/m4_quarantine.jsonl
     delivered   kg_final/flat_<run>_enforced_dedup.json
 
 MATCHING (fixed before looking at the results)
@@ -36,9 +37,8 @@ LIMITATION
     not visible. "Not retrieved" is therefore an upper bound.
 
 USAGE
-    python 179_trace_relations_absentes.py --repo . --run-dir output/run18 \
+    python 179_trace_missing_expert_relations.py --repo . --run-dir output/run18 \
         --outdir output/audit/179_trace_run18
-    Messages and output files are in French.
 """
 
 import argparse
@@ -53,7 +53,7 @@ REF26 = "configs/lb_reference_edges_original26.json"
 
 
 def die(msg):
-    print("ARRET : " + msg, file=sys.stderr, flush=True)
+    print("STOP: " + msg, file=sys.stderr, flush=True)
     sys.exit(1)
 
 
@@ -135,13 +135,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--repo", default=".")
     ap.add_argument("--run-dir", required=True)
-    ap.add_argument("--run-name", default=None, help="par defaut : nom du dossier")
+    ap.add_argument("--run-name", default=None, help="default: name of the folder")
     ap.add_argument("--outdir", required=True)
     args = ap.parse_args()
 
     out = Path(args.outdir)
     if out.exists():
-        die("le dossier existe deja, rien n'est ecrase : " + str(out))
+        die("the folder already exists, nothing is overwritten: " + str(out))
     rd = Path(args.run_dir)
     run = args.run_name or rd.name
     edges = [(e["subject"], e["relation"], e["object"]) for e in
@@ -151,12 +151,12 @@ def main():
     for P in ("a", "b"):
         stages += [("extraction_" + P, rd / ("pass_%s/raw_triples.jsonl" % P)),
                    ("verif_qwen_" + P, rd / ("pass_%s/verified_triples.jsonl" % P)),
-                   ("rejet_nettoyage_" + P, rd / ("pass_%s/rejected_triples_v5.jsonl" % P)),
-                   ("apres_nettoyage_" + P, rd / ("pass_%s/canonical_triples_v5.rulecanon.lexicon_enforced.jsonl" % P))]
+                   ("cleaning_rejected_" + P, rd / ("pass_%s/rejected_triples_v5.jsonl" % P)),
+                   ("after_cleaning_" + P, rd / ("pass_%s/canonical_triples_v5.rulecanon.lexicon_enforced.jsonl" % P))]
     stages += [("fusion", rd / ("kg/tiered_kg_%s.json" % run)),
                ("panel", rd / "m4_panel/tiered_kg_m4.json"),
-               ("quarantaine_panel", rd / "m4_panel/m4_quarantine.jsonl"),
-               ("livre", rd / ("kg_final/flat_%s_enforced_dedup.json" % run))]
+               ("panel_quarantine", rd / "m4_panel/m4_quarantine.jsonl"),
+               ("delivered", rd / ("kg_final/flat_%s_enforced_dedup.json" % run))]
     data = {}
     for name, path in stages:
         d = load_any(path)
@@ -183,70 +183,70 @@ def main():
                     cochunks.append(c)
                     sent += [(c.get("doc_id"), x) for x in ss]
         seen = [c for c in cochunks if c.get("chunk_id") in retrieved]
-        info = {"phrases_corpus": len(sent), "passages_corpus": len(cochunks),
-                "passages_donnes_extracteur": len(seen),
-                "requetes_qui_les_ont_ramenes": sorted({q for c in seen for q in retrieved[c.get("chunk_id")]})[:6],
-                "exemples_phrases": [[d, x[:300]] for d, x in sent[:3]], "etapes": {}}
+        info = {"corpus_sentences": len(sent), "corpus_passages": len(cochunks),
+                "passages_given_to_extractor": len(seen),
+                "queries_that_retrieved_them": sorted({q for c in seen for q in retrieved[c.get("chunk_id")]})[:6],
+                "example_sentences": [[d, x[:300]] for d, x in sent[:3]], "steps": {}}
         for name, _ in stages:
             hits = defaultdict(list)
             for t in data[name]:
                 m = match(t, ps, po, r)
                 if m:
                     hits[m].append(t)
-            info["etapes"][name] = {
+            info["steps"][name] = {
                 "A": len(hits["A"]), "B": len(hits["B"]),
-                "exemples": [[lvl, *[str(x) for x in fields(t)], verdict_of(t),
+                "examples": [[lvl, *[str(x) for x in fields(t)], verdict_of(t),
                               str(t.get("evidence") or "")[:200]]
                              for lvl in ("A", "B") for t in hits[lvl][:3]]}
-        E = info["etapes"]
+        E = info["steps"]
         a_extr = E["extraction_a"]["A"] + E["extraction_b"]["A"]
         b_extr = E["extraction_a"]["B"] + E["extraction_b"]["B"]
-        if E["livre"]["A"]:
-            why = "PRESENTE dans le graphe livre (niveau A)"
+        if E["delivered"]["A"]:
+            why = "PRESENT in the delivered graph (level A)"
         elif not sent:
-            why = "AUCUNE_PHRASE : aucune phrase du corpus ne nomme les deux termes"
+            why = "NO_SENTENCE: no sentence of the corpus names both terms"
         elif not seen:
-            why = "NON_RETROUVEE : les passages qui la contiennent n'ont jamais ete donnes a l'extracteur"
+            why = "NOT_RETRIEVED: the passages that hold it were never given to the extracting-LLM"
         elif not a_extr and not b_extr:
-            why = "NON_EXTRAITE : passage lu par l'extracteur, aucune relation entre les deux termes"
+            why = "NOT_EXTRACTED: passage read by the extracting-LLM, no relation between the two terms"
         elif not a_extr:
-            why = "AUTRE_FORME : extraite seulement avec une autre relation ou dans l'autre sens"
+            why = "OTHER_FORM: extracted only with another relation or in the other direction"
         else:
-            order = ["verif_qwen", "apres_nettoyage", "fusion", "panel", "livre"]
+            order = ["verif_qwen", "after_cleaning", "fusion", "panel", "delivered"]
             why = "?"
             for st in order:
                 n = (E[st]["A"] if st in E else E[st + "_a"]["A"] + E[st + "_b"]["A"])
                 if n == 0:
-                    rej = E["rejet_nettoyage_a"]["A"] + E["rejet_nettoyage_b"]["A"]
-                    if st == "apres_nettoyage" and rej:
-                        reasons = sorted({x[4] for k in ("rejet_nettoyage_a", "rejet_nettoyage_b")
-                                          for x in E[k]["exemples"] if x[0] == "A"})
-                        why = "RETIREE_AU_NETTOYAGE (%s)" % "; ".join(reasons)
+                    rej = E["cleaning_rejected_a"]["A"] + E["cleaning_rejected_b"]["A"]
+                    if st == "after_cleaning" and rej:
+                        reasons = sorted({x[4] for k in ("cleaning_rejected_a", "cleaning_rejected_b")
+                                          for x in E[k]["examples"] if x[0] == "A"})
+                        why = "REMOVED_AT_CLEANING (%s)" % "; ".join(reasons)
                     else:
-                        why = "RETIREE_A_L_ETAPE " + st
+                        why = "REMOVED_AT_STEP " + st
                     break
-        info["raison"] = why
+        info["reason"] = why
         details["%s --%s--> %s" % (s, r, o)] = info
         rows.append([s, r, o, len(sent), len(cochunks), len(seen),
-                     a_extr, b_extr, E["livre"]["A"], E["livre"]["B"], why])
+                     a_extr, b_extr, E["delivered"]["A"], E["delivered"]["B"], why])
 
     out.mkdir(parents=True)
     with open(out / "trace_26.tsv", "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f, delimiter="\t")
-        w.writerow(["sujet", "relation", "objet", "phrases_corpus", "passages_corpus",
-                    "passages_lus", "extraites_A", "extraites_B", "livre_A", "livre_B", "raison"])
+        w.writerow(["subject", "relation", "object", "corpus_sentences", "corpus_passages",
+                    "passages_read", "extracted_A", "extracted_B", "delivered_A", "delivered_B", "reason"])
         w.writerows(rows)
     json.dump(details, open(out / "details.json", "w", encoding="utf-8"), indent=1, ensure_ascii=False)
-    L = ["=== 179 chemin des relations de comparaison dans %s ===" % run,
-         "%-48s %5s %5s %5s %4s %4s %4s %4s  %s" % ("relation", "phr", "pass", "lus", "exA", "exB", "livA", "livB", "raison")]
+    L = ["=== 179 path of the expert relations in %s ===" % run,
+         "%-48s %5s %5s %5s %4s %4s %4s %4s  %s" % ("relation", "sent", "pass", "read", "exA", "exB", "delA", "delB", "reason")]
     for rw in rows:
         L.append("%-48s %5d %5d %5d %4d %4d %4d %4d  %s" % ("%s --%s--> %s" % tuple(rw[:3]), *rw[3:10], rw[10]))
-    L.append("phr = phrases du corpus qui nomment les deux termes ; pass = passages qui les contiennent ;")
-    L.append("lus = ces passages donnes a l'extracteur ; exA/exB = relations extraites niveau A/B ; livA/livB = dans le graphe livre")
-    L.append("fichiers : trace_26.tsv, details.json (phrases, requetes, exemples par etape)")
+    L.append("sent = corpus sentences that name both terms; pass = passages that hold them;")
+    L.append("read = those passages given to the extracting-LLM; exA/exB = relations extracted at level A/B; delA/delB = in the delivered graph")
+    L.append("files: trace_26.tsv, details.json (sentences, queries, examples per step)")
     txt = "\n".join(L)
-    (out / "_resume.txt").write_text(txt + "\n", encoding="utf-8")
-    print(txt + "\n[fait] " + str(out), flush=True)
+    (out / "_summary.txt").write_text(txt + "\n", encoding="utf-8")
+    print(txt + "\n[done] " + str(out), flush=True)
 
 
 if __name__ == "__main__":

@@ -1,28 +1,27 @@
 #!/usr/bin/env python3
-"""185 — Traceability sheet of one run18 relation, from the query to the delivered graph.
+"""185 — Trace sheet of one run18 relation, from the query to the delivered graph.
 
 READ-ONLY. CPU. No model is called (the Qwen tokenizer can be loaded to show the
 exact text after the chat template).
 Writes only into --outdir (refuses to overwrite).
 
 Each block of the sheet states its origin:
-  [TEXTE]     text of the paper as stored in the index (lowercase, SYNONYM_MAP of 49)
+  [TEXT]      text of the paper as stored in the index (lowercase, SYNONYM_MAP of 49)
   [CONFIG]    configuration file of the run (queries, schema)
   [CODE]      value produced or changed by a script, with the file and the function
-  [MODELE]    output of an LLM, read from a file of the run
-  [REGENERE]  not logged by the run; recomputed here with the same function and the
+  [MODEL]     output of an LLM, read from a file of the run
+  [REGENERATED] not logged by the run; recomputed here with the same function and the
               same inputs; the sheet states how the regeneration is checked
   [INFERENCE] deduced, not recorded by the run
-  [MANQUANT]  no file of the run holds it; nothing is rebuilt
+  [MISSING]   no file of the run holds it; nothing is rebuilt
 
 USAGE (root of the run18 worktree, environment active)
   cd ~/ontogeorag_run18 && export PYTHONPATH=$PWD
-  python 185_fiche_triplet.py --repo . --run output/run18 \
+  python 185_relation_trace_sheet.py --repo . --run output/run18 \
       --subject earthquake --relation triggers --object "slope failure" \
-      --outdir output/audit/185_fiche_earthquake
+      --outdir output/audit/185_trace_earthquake
   option: --tokenizer <local folder of Qwen2.5-7B-Instruct> to show the exact text
           after the chat template (otherwise the script looks for it in _steps.jsonl)
-  The sheet is written in French.
 """
 
 import argparse
@@ -45,7 +44,7 @@ WINDOW = 40
 
 
 def die(msg):
-    print("ARRET : " + msg, file=sys.stderr, flush=True)
+    print("STOP: " + msg, file=sys.stderr, flush=True)
     sys.exit(1)
 
 
@@ -79,7 +78,7 @@ def locate(ev, texts):
     if ex:
         return "exact", ex
     if len(e) <= WINDOW:
-        return ("vide" if not e else "not_found"), []
+        return ("empty" if not e else "not_found"), []
     mid = (len(e) - WINDOW) // 2
     wins = [e[:WINDOW], e[mid:mid + WINDOW], e[-WINDOW:]]
     pa = [i for i, c in enumerate(al) if any(w in c for w in wins)]
@@ -95,24 +94,24 @@ def main():
     ap.add_argument("--object", required=True)
     ap.add_argument("--outdir", required=True)
     ap.add_argument("--tokenizer", default=None)
-    ap.add_argument("--max-chars", type=int, default=None, help="sinon lu dans _steps.jsonl, sinon 12000")
+    ap.add_argument("--max-chars", type=int, default=None, help="otherwise read from _steps.jsonl, otherwise 12000")
     ap.add_argument("--nfkc", action="store_true",
-                    help="normaliser les ligatures avant la recherche des preuves (regle 145 sinon)")
-    ap.add_argument("--no-sha-check", action="store_true", help="pour les tests seulement")
+                    help="normalise ligatures before searching the evidence (rule of 145 otherwise)")
+    ap.add_argument("--no-sha-check", action="store_true", help="for tests only")
     args = ap.parse_args()
     global NFKC
     NFKC = args.nfkc
 
     repo, run, out = Path(args.repo), Path(args.run), Path(args.outdir)
     if out.exists():
-        die("le dossier existe deja, rien n'est ecrase : " + str(out))
+        die("the folder already exists, nothing is overwritten: " + str(out))
     sys.path.insert(0, str(repo.resolve()))
     sys.path.insert(0, str((repo / "m4").resolve()))
     for f, s12 in ((EXTRACT, EXTRACT_SHA12), (CLEAN, CLEAN_SHA12)):
         if not (repo / f).exists():
-            die("introuvable : " + f)
+            die("not found: " + f)
         if not args.no_sha_check and sha(repo / f)[:12] != s12:
-            die("%s n'est pas celui de run18 (sha %s)" % (f, sha(repo / f)[:12]))
+            die("%s is not the run18 version (sha %s)" % (f, sha(repo / f)[:12]))
 
     from pipeline.rag.constants import normalize_entity, normalize_relation
     E = load(repo / EXTRACT, "extract18")
@@ -137,13 +136,13 @@ def main():
     kg = json.load(open(run / "kg/tiered_kg_run18.json", encoding="utf-8"))["triples"]
     recs = [r for r in kg if (r["subject"], r["relation"], r["object"]) == key]
     if len(recs) != 1:
-        die("relation %s trouvee %d fois dans tiered_kg_run18.json" % (key, len(recs)))
+        die("relation %s found %d times in tiered_kg_run18.json" % (key, len(recs)))
     rec = recs[0]
-    P("# Fiche run18 : %s — %s — %s\n" % key)
-    P("Relation de la fusion : tier %s, origine `%s`, verdict retenu `%s`." % (rec.get("tier"), rec.get("origin"),
+    P("# run18 trace sheet: %s — %s — %s\n" % key)
+    P("Fused relation: tier %s, origin `%s`, kept verdict `%s`." % (rec.get("tier"), rec.get("origin"),
                                                                                rec.get("verdict")))
-    P("Pour une relation presente dans les deux passes, 06 garde l'enregistrement de la passe a "
-      "(boucle sur `idx_a`), donc la fiche suit la passe %s." % ("b" if rec.get("origin") == "iter_b" else "a"))
+    P("For a relation found in both passes, 06 keeps the record of pass a "
+      "(loop over `idx_a`), so the sheet follows pass %s." % ("b" if rec.get("origin") == "iter_b" else "a"))
     Ppass = "b" if rec.get("origin") == "iter_b" else "a"
     d = run / ("pass_" + Ppass)
 
@@ -151,7 +150,7 @@ def main():
     enf = jl(d / "canonical_triples_v5.rulecanon.lexicon_enforced.jsonl")
     idx = F.build_index(enf)
     if key not in idx:
-        die("cle absente de lexicon_enforced de la passe " + Ppass)
+        die("key missing from lexicon_enforced of pass " + Ppass)
     t06 = idx[key]["raw"]
     prov = t06.get("_provenance") or {}
     ver6 = t06.get("_verification") or {}
@@ -179,46 +178,46 @@ def main():
         if F.triple_key(t) == key:
             cand.append(i)
     if not cand:
-        die("ligne d'origine introuvable dans verified_triples.jsonl")
+        die("original line not found in verified_triples.jsonl")
     li = cand[0]
-    P("Ligne d'origine : passe %s, ligne %d de `verified_triples.jsonl` et de `raw_triples.jsonl` "
-      "(%d ligne(s) candidate(s) ; 04 garde la premiere)." % (Ppass, li, len(cand)))
+    P("Original line: pass %s, line %d of `verified_triples.jsonl` and `raw_triples.jsonl` "
+      "(%d candidate line(s); 04 keeps the first)." % (Ppass, li, len(cand)))
     v = verified[li]
     r0 = raw[li]
     if (r0.get("source"), r0.get("relation"), r0.get("target")) != (v.get("source"), v.get("relation"), v.get("target")):
-        die("raw et verified ne concordent pas a la ligne %d" % li)
+        die("raw and verified do not match at line %d" % li)
 
     # ---------- 1. query
-    H("1. La requete")
+    H("1. The query")
     Q = jl(repo / QUERIES)
     qi = [i for i, q in enumerate(Q) if str(q.get("query", "")).strip() == str(prov.get("query", "")).strip()]
     q = Q[qi[0]] if qi else {}
-    block("[CONFIG] %s, ligne %s (0 = premiere)" % (QUERIES, qi[0] if qi else "?"), json.dumps(q, ensure_ascii=False))
-    P("La strategie `%s` choisit le gabarit de prompt (`get_prompt`, 02) ; une strategie absente de `PROMPTS` "
-      "prend le gabarit `descriptor`. [CODE]" % q.get("strategy"))
+    block("[CONFIG] %s, line %s (0 = first)" % (QUERIES, qi[0] if qi else "?"), json.dumps(q, ensure_ascii=False))
+    P("Strategy `%s` selects the prompt template (`get_prompt`, 02); a strategy missing from `PROMPTS` "
+      "takes the `descriptor` template. [CODE]" % q.get("strategy"))
 
     # ---------- 2. passages
-    H("2. Les cinq passages selectionnes")
+    H("2. The five selected passages")
     chunks = {c["chunk_id"]: c for c in jl(run / "index/chunks.jsonl")}
     sel = prov.get("selected_chunks") or []
-    P("Ordre = ordre apres reranking (cross-encoder), puis `candidates[:5]`. [CODE]")
-    P("Score BM25 du premier candidat : %s, seuil %s. [CODE]" % (prov.get("best_bm25"), prov.get("bm25_threshold")))
-    P("[MANQUANT] Les scores BM25 et de reranking de chaque passage et les 15 autres candidats ne sont pas "
-      "ecrits par 02.")
-    missing.append("scores BM25 / reranking par passage et candidats 6 a 20 (non ecrits par 02)")
+    P("Order = order after reranking (cross-encoder), then `candidates[:5]`. [CODE]")
+    P("BM25 score of the first candidate: %s, threshold %s. [CODE]" % (prov.get("best_bm25"), prov.get("bm25_threshold")))
+    P("[MISSING] The BM25 and reranking scores of each passage and the 15 other candidates are not "
+      "written by 02.")
+    missing.append("BM25 / reranking scores per passage and candidates 6 to 20 (not written by 02)")
     for k, cid in enumerate(sel, 1):
         c = chunks.get(cid)
         if c is None:
-            P("[MANQUANT] passage %s absent de l'index" % cid)
-            missing.append("texte du passage " + cid)
+            P("[MISSING] passage %s not in the index" % cid)
+            missing.append("text of passage " + cid)
             continue
-        block("[TEXTE] passage %d : %s (article %s, %d caracteres)" % (k, cid, c.get("doc_id"), len(c["text"])),
+        block("[TEXT] passage %d: %s (paper %s, %d characters)" % (k, cid, c.get("doc_id"), len(c["text"])),
               c["text"])
-    P("Le texte est celui de l'index : minuscules, et `SYNONYM_MAP` de 49 deja appliquee "
-      "(par ex. mtd -> mass transport deposit). [CODE]")
+    P("The text is the one of the index: lowercase, with `SYNONYM_MAP` of 49 already applied "
+      "(e.g. mtd -> mass transport deposit). [CODE]")
 
     # ---------- 3. prompt
-    H("3. Le prompt envoye a Qwen")
+    H("3. The prompt sent to Qwen")
     max_chars = args.max_chars
     stp = run / "_steps.jsonl"
     model_path = args.tokenizer
@@ -235,7 +234,7 @@ def main():
                     model_path = m.group(1)
     if max_chars is None:
         max_chars = 12000
-        P("`--max-chars` non trouve dans `_steps.jsonl` : 12000 (valeur du job). [CONFIG]")
+        P("`--max-chars` not found in `_steps.jsonl`: 12000 (value of the job). [CONFIG]")
     sel_dicts = [{"text": chunks[c]["text"], "source_file": chunks[c].get("source_file", "unknown")}
                  for c in sel if c in chunks]
     ctx = E.concat_chunks(sel_dicts, max_chars=max_chars)
@@ -249,17 +248,17 @@ def main():
         kw["focus_object"] = foc or "mass transport deposit"
     prompt = E.get_prompt(q.get("strategy", "descriptor"), **kw)
     ok_prev = ctx[:1500] == ((v.get("_provenance") or {}).get("context_preview") or "")
-    P("[REGENERE] Le prompt n'est pas journalise. Il est recalcule avec `concat_chunks` et `get_prompt` de "
-      "`%s`, les 5 passages ci-dessus, `max_chars=%d`, et les listes du schema." % (EXTRACT, max_chars))
-    P("Controle : les 1 500 premiers caracteres du contexte regenere %s `context_preview` enregistre par 02."
-      % ("sont IDENTIQUES a" if ok_prev else "DIFFERENT de"))
-    P("En-tete de chaque passage : `[CHUNK i | %s]` — `source_file` vient de l'index ; s'il manque, le code met "
+    P("[REGENERATED] The prompt is not logged. We recompute it with `concat_chunks` and `get_prompt` of "
+      "`%s`, the 5 passages above, `max_chars=%d`, and the lists of the schema." % (EXTRACT, max_chars))
+    P("Check: the first 1,500 characters of the regenerated context %s the `context_preview` stored by 02."
+      % ("are IDENTICAL to" if ok_prev else "DIFFER from"))
+    P("Header of each passage: `[CHUNK i | %s]` — `source_file` comes from the index; when it is missing, the code writes "
       "`unknown`. [CODE]" % ", ".join(sorted({d_["source_file"] for d_ in sel_dicts})))
-    P("Listes du schema transmises : relations = `%s`, types = `%s` (lues dans les cles `relations` et `types`). "
-      "[CODE]" % (", ".join(relations) or "(vide)", ", ".join(types) or "(vide)"))
-    P("Longueur du prompt : %d caracteres. Envoye comme message utilisateur, sans message systeme "
+    P("Schema lists passed on: relations = `%s`, types = `%s` (read from the keys `relations` and `types`). "
+      "[CODE]" % (", ".join(relations) or "(empty)", ", ".join(types) or "(empty)"))
+    P("Prompt length: %d characters. Sent as a user message, without a system message "
       "(`generate = lambda prompt: _gen(\"\", prompt, ...)`). [CODE]" % len(prompt))
-    block("[REGENERE] prompt (message utilisateur)", prompt)
+    block("[REGENERATED] prompt (user message)", prompt)
     if model_path:
         try:
             from transformers import AutoTokenizer
@@ -267,43 +266,43 @@ def main():
             full = tok.apply_chat_template([{"role": "user", "content": prompt}], tokenize=False,
                                            add_generation_prompt=True)
             head = full[:full.find(prompt[:80])] if prompt[:80] in full else full[:400]
-            block("[REGENERE] texte ajoute par le gabarit de conversation de Qwen avant le message", head)
-            P("Ce gabarit vient du tokenizer de Qwen (%s), pas du code du pipeline. [CODE]" % model_path)
+            block("[REGENERATED] text added by the Qwen chat template before the message", head)
+            P("This template comes from the Qwen tokenizer (%s), not from the pipeline code. [CODE]" % model_path)
         except Exception as e:
-            P("Gabarit de conversation non affiche (%s)." % e)
+            P("Chat template not shown (%s)." % e)
     else:
-        P("Gabarit de conversation de Qwen non affiche : passer `--tokenizer <dossier du modele>`.")
-    P("Parametres de generation : temperature %s, `top_p=0.9` si temperature > 0, `repetition_penalty=1.1`, "
-      "`max_new_tokens` = `--max-tokens` du job. [CODE]" % ("0.0" if Ppass == "a" else "0.3"))
+        P("Qwen chat template not shown: pass `--tokenizer <model folder>`.")
+    P("Generation parameters: temperature %s, `top_p=0.9` when temperature > 0, `repetition_penalty=1.1`, "
+      "`max_new_tokens` = `--max-tokens` of the job. [CODE]" % ("0.0" if Ppass == "a" else "0.3"))
 
     # ---------- 4. raw answer
-    H("4. La reponse brute de Qwen")
-    P("[MANQUANT] 02 n'ecrit pas la reponse du modele : il ne garde que les triplets lus par `parse_response`. "
-      "Aucun fichier du run ne la contient. Rien n'est reconstruit ici.")
-    missing.append("reponse brute de Qwen a l'extraction (non ecrite par 02)")
+    H("4. The raw answer of Qwen")
+    P("[MISSING] 02 does not write the answer of the model: it keeps only the triples read by `parse_response`. "
+      "No file of the run holds it. Nothing is rebuilt here.")
+    missing.append("raw answer of Qwen at extraction (not written by 02)")
 
     # ---------- 5. triple after parsing
-    H("5. Le triplet apres parsing")
+    H("5. The triple after parsing")
     vis = {k: r0.get(k) for k in ("source", "source_type", "relation", "target", "target_type", "salience")}
-    block("raw_triples.jsonl, passe %s, ligne %d" % (Ppass, li), json.dumps(vis, ensure_ascii=False, indent=1))
-    P("- `source`, `target`, `source_type`, `target_type` : ecrits par Qwen, recopies tels quels. [MODELE]")
-    P("- `relation` : deja remplacee par `normalize_relation` (constants) dans 02 ; le libelle ecrit par Qwen "
-      "n'est pas conserve. [CODE] [MANQUANT pour le libelle d'origine]")
-    P("- `salience` : ecrite par Qwen, ou mise a `common` par 02 si absente pour un hasDescriptor ; le fichier "
-      "ne dit pas lequel des deux. [MODELE ou CODE]")
-    missing.append("libelle de relation ecrit par Qwen (remplace dans 02)")
-    block("[CODE] _provenance (sans les textes)", json.dumps({k: v_ for k, v_ in (r0.get("_provenance") or {}).items()
+    block("raw_triples.jsonl, pass %s, line %d" % (Ppass, li), json.dumps(vis, ensure_ascii=False, indent=1))
+    P("- `source`, `target`, `source_type`, `target_type`: written by Qwen, copied as they are. [MODEL]")
+    P("- `relation`: already replaced by `normalize_relation` (constants) in 02; the label written by Qwen "
+      "is not kept. [CODE] [MISSING for the original label]")
+    P("- `salience`: written by Qwen, or set to `common` by 02 when missing for a hasDescriptor; the file "
+      "does not say which. [MODEL or CODE]")
+    missing.append("relation label written by Qwen (replaced in 02)")
+    block("[CODE] _provenance (without the texts)", json.dumps({k: v_ for k, v_ in (r0.get("_provenance") or {}).items()
                                                              if k not in ("context_preview",)}, ensure_ascii=False,
                                                             indent=1))
 
     # ---------- 6. normalisations
-    H("6. Les normalisations appliquees")
+    H("6. The normalisations applied")
     t = copy.deepcopy(v)
     tn0 = M.normalize_entity(v.get("target_norm", v.get("target", "")))
     amb0 = [x for x in sorted(KD_SET) if tn0 not in KD_SET and (x in tn0 or tn0 in x)]
     if len(amb0) > 1:
-        P("Objet ambigu : `%s` contient plusieurs descripteurs (%s). 04 prend le premier d'un ensemble Python, "
-          "dont l'ordre depend de PYTHONHASHSEED ; le run a retenu `%s`. Ce choix n'est pas reproductible. [CODE]"
+        P("Ambiguous object: `%s` contains several descriptors (%s). 04 takes the first item of a Python set, "
+          "whose order depends on PYTHONHASHSEED; the run kept `%s`. This choice is not reproducible. [CODE]"
           % (tn0, ", ".join(amb0), key[2]))
     rows = [("02 parse + normalize_relation", "%s | %s | %s" % (t.get("source"), t.get("relation"), t.get("target")))]
     M.apply_relation_mapping(t)
@@ -316,7 +315,7 @@ def main():
     used = {k_: cmap[k_] for k_ in (M.normalize_entity(t.get("source", "")), M.normalize_entity(t.get("target", "")))
             if k_ in cmap}
     M.apply_canonical_map([t], cmap)
-    rows.append(("04 canonical_map_v5 %s" % (used or "(aucune regle)"),
+    rows.append(("04 canonical_map_v5 %s" % (used or "(no rule)"),
                  "%s | %s | %s" % (t.get("source"), t.get("relation"), t.get("target"))))
     logp = d / "canonical_triples_v5.rulecanon_log.csv"
     rlog = {}
@@ -324,30 +323,30 @@ def main():
         import csv
         rlog = {x["from"]: x["to"] for x in csv.DictReader(open(logp, encoding="utf-8"))}
     hit5 = [kf for kf in ("subject", "object") if t.get(kf) and str(t[kf]).strip() in rlog]
-    rows.append(("05a (lit subject/object ; champs presents : %s)" % [k_ for k_ in ("subject", "object") if k_ in t],
-                 "substitution : %s" % (hit5 or "aucune")))
+    rows.append(("05a (reads subject/object; fields present: %s)" % [k_ for k_ in ("subject", "object") if k_ in t],
+                 "substitution: %s" % (hit5 or "none")))
     rows.append(("06 normalize_entity / normalize_relation", "%s | %s | %s" % F.triple_key(t)))
-    P("| Etape (fichier, fonction) | Valeur apres l'etape |\n|---|---|")
+    P("| Step (file, function) | Value after the step |\n|---|---|")
     for a_, b_ in rows:
         P("| %s | %s |" % (a_, b_))
-    P("\nToutes ces valeurs sont produites par le code [CODE], a partir des noms ecrits par Qwen [MODELE].")
+    P("\nThe code produces all these values [CODE], from the names written by Qwen [MODEL].")
     try:
         enfkg = json.load(open(run / "kg_enforced/tiered_kg_enforced.json", encoding="utf-8"))
         allr = enfkg.get("tier1", []) + enfkg.get("tier2", []) if isinstance(enfkg, dict) else enfkg
         e4b = [x for x in allr if (normalize_entity(x.get("subject", "")), normalize_relation(x.get("relation", "")),
                                    normalize_entity(x.get("object", ""))) == key]
         if e4b:
-            P("Types : Qwen `%s` / `%s` -> 04b `%s` / `%s` (TYPE_MAP de 04b). [MODELE] puis [CODE]" % (
+            P("Types: Qwen `%s` / `%s` -> 04b `%s` / `%s` (TYPE_MAP of 04b). [MODEL] then [CODE]" % (
                 rec.get("subject_type"), rec.get("object_type"), e4b[0].get("subject_type"),
                 e4b[0].get("object_type")))
     except FileNotFoundError:
-        P("[MANQUANT] kg_enforced/tiered_kg_enforced.json")
+        P("[MISSING] kg_enforced/tiered_kg_enforced.json")
 
     # ---------- 7. verification
-    H("7. Le passage et le verdict qui ont permis de le garder")
+    H("7. The passage and the verdict that kept it")
     ver = v.get("_verification") or {}
     top = [c.get("text", "") for c in (v.get("_provenance") or {}).get("top_chunks", [])]
-    block("[MODELE] verdict de Qwen (verified_triples.jsonl, ligne %d)" % li,
+    block("[MODEL] verdict of Qwen (verified_triples.jsonl, line %d)" % li,
           json.dumps({k: ver.get(k) for k in ("verdict", "evidence", "reasoning", "chunks_checked", "model")},
                      ensure_ascii=False, indent=1))
     aud = d / "verification_audit.jsonl"
@@ -357,21 +356,21 @@ def main():
         if li < len(al) and al[li].get("index") == li:
             araw = al[li].get("raw")
     if araw is not None:
-        block("[MODELE] reponse brute de Qwen pour le passage retenu (verification_audit.jsonl, index %d)" % li, araw)
+        block("[MODEL] raw answer of Qwen for the kept passage (verification_audit.jsonl, index %d)" % li, araw)
     else:
-        P("[MANQUANT] reponse brute de la verification (verification_audit.jsonl absent ou sans champ raw).")
-        missing.append("reponse brute de la verification")
-    P("[MANQUANT] 03 ne journalise que la reponse du meilleur passage, pas les quatre autres, ni le numero du "
-      "passage retenu. Le code garde le premier passage qui atteint le meilleur verdict (`score > best_score`).")
-    missing.append("reponses de verification des 4 autres passages et numero du passage retenu")
+        P("[MISSING] raw answer of the verification (verification_audit.jsonl missing or without a raw field).")
+        missing.append("raw answer of the verification")
+    P("[MISSING] 03 logs only the answer for the best passage, not the four others, nor the number of the "
+      "kept passage. The code keeps the first passage that reaches the best verdict (`score > best_score`).")
+    missing.append("verification answers for the 4 other passages and number of the kept passage")
     st, where = locate(ver.get("evidence", ""), top)
-    P("[INFERENCE] La phrase `evidence` est retrouvee (%s) dans le(s) passage(s) %s. Regles du script 145 : "
-      "comparaison en minuscules alphanumeriques ; partial = une des trois fenetres de 40 caracteres." % (
-          st, [i + 1 for i in where] or "aucun"))
+    P("[INFERENCE] The `evidence` sentence is found (%s) in passage(s) %s. Rules of script 145: "
+      "comparison on lowercase alphanumeric characters; partial = one of the three 40-character windows." % (
+          st, [i + 1 for i in where] or "none"))
     for i in where[:1]:
         cid = ((v.get("_provenance") or {}).get("top_chunks") or [{}])[i].get("chunk_id")
         chunk_chars = 2000
-        block("[TEXTE] passage %d (%s) tel que lu par le verificateur (coupe a %d caracteres)" % (i + 1, cid,
+        block("[TEXT] passage %d (%s) as read by the verifier (cut at %d characters)" % (i + 1, cid,
                                                                                                     chunk_chars),
               top[i][:chunk_chars])
         rel = normalize_relation(str(v.get("relation_norm", v.get("relation", ""))))
@@ -379,58 +378,58 @@ def main():
                                    relation=rel, gloss=V.RELATION_GLOSSES.get(rel, "Subject %s Object" % rel)
                                    if hasattr(V, "RELATION_GLOSSES") else rel,
                                    target=v.get("target_norm", v.get("target", "")))
-        block("[REGENERE] message systeme de la verification (03, SYSTEM)", V.SYSTEM)
-        block("[REGENERE] message utilisateur de la verification pour ce passage (03, COT_PROMPT)", user)
-    P("Decision de 04 sur le verdict : `%s` (politique normal : STRONG et WEAK gardes, NO_CHUNK et UNPARSEABLE "
-      "gardes aussi). [CODE]" % reason_v)
-    P("Tier a la fusion : `verdict_to_tier(%s)` = %s ; tier de la relation fusionnee = %s, origine `%s`. [CODE]" % (
+        block("[REGENERATED] system message of the verification (03, SYSTEM)", V.SYSTEM)
+        block("[REGENERATED] user message of the verification for this passage (03, COT_PROMPT)", user)
+    P("Decision of 04 on the verdict: `%s` (normal policy: STRONG and WEAK kept, NO_CHUNK and UNPARSEABLE "
+      "kept too). [CODE]" % reason_v)
+    P("Tier at fusion: `verdict_to_tier(%s)` = %s; tier of the fused relation = %s, origin `%s`. [CODE]" % (
         ver.get("verdict"), F.verdict_to_tier(ver.get("verdict", "")), rec.get("tier"), rec.get("origin")))
 
     # ---------- 8. panel and delivered graph
-    H("8. Panel et graphe livre")
+    H("8. Panel and delivered graph")
     passage_j = J.evidence_from_provenance(rec)
-    block("[CODE] passage donne aux juges (m4_verify.evidence_from_provenance sur l'enregistrement fusionne ; "
-          "06 a coupe evidence a 400 caracteres)", passage_j)
+    block("[CODE] passage given to the judges (m4_verify.evidence_from_provenance on the fused record; "
+          "06 cut evidence at 400 characters)", passage_j)
 
     def nk(s, r, o):
         return (str(s).strip().lower(), str(r).strip(), str(o).strip().lower())
     for jn in ("llama", "mistral"):
         p = run / "m4" / jn / "m4_verdicts.jsonl"
         if not p.exists():
-            P("[MANQUANT] " + str(p))
+            P("[MISSING] " + str(p))
             missing.append(str(p))
             continue
         jr = [x for x in jl(p) if nk(x["subject"], x["relation"], x["object"]) == nk(*key)]
         if not jr:
-            P("[MANQUANT] relation absente de " + str(p))
+            P("[MISSING] relation not in " + str(p))
             continue
         x = jr[0]
-        block("[MODELE] %s, passe aveugle : verdict %s (reponse coupee a 800 caracteres par m4_verify)" % (
+        block("[MODEL] %s, blind pass: verdict %s (answer cut at 800 characters by m4_verify)" % (
             jn, x["blind"].get("verdict")), x["blind"].get("raw", ""))
-        block("[MODELE] %s, passe avec phrase : verdict %s (reponse coupee a 800 caracteres)" % (
+        block("[MODEL] %s, pass with sentence: verdict %s (answer cut at 800 characters)" % (
             jn, x["evidence"].get("verdict")), x["evidence"].get("raw", ""))
     dec = [x for x in jl(run / "m4_panel/m4_panel_decisions.jsonl")
            if nk(x["subject"], x["relation"], x["object"]) == nk(*key)]
     if dec:
-        P("Decision du panel : `%s`. [CODE]" % dec[0].get("m4_decision"))
+        P("Panel decision: `%s`. [CODE]" % dec[0].get("m4_decision"))
     flat = json.load(open(run / "kg_final/flat_run18_enforced_dedup.json", encoding="utf-8"))
     flat = flat["triples"] if isinstance(flat, dict) else flat
     fr = [x for x in flat if nk(x.get("subject"), x.get("relation"), x.get("object")) == nk(*key)]
     if fr:
-        block("[CODE] enregistrement livre (flat_run18_enforced_dedup.json)", json.dumps(fr[0], ensure_ascii=False,
+        block("[CODE] delivered record (flat_run18_enforced_dedup.json)", json.dumps(fr[0], ensure_ascii=False,
                                                                                         indent=1))
     else:
-        P("Relation absente du graphe livre (quarantaine ou retiree).")
+        P("Relation not in the delivered graph (quarantined or removed).")
 
-    H("Ce qui manque dans les fichiers du run")
+    H("What the run files do not hold")
     for m_ in dict.fromkeys(missing):
         P("- " + m_)
 
     out.mkdir(parents=True)
     slug = re.sub(r"[^a-z0-9]+", "_", "_".join(key).lower()).strip("_")
-    (out / ("fiche_%s.md" % slug)).write_text("\n".join(md) + "\n", encoding="utf-8")
+    (out / ("trace_%s.md" % slug)).write_text("\n".join(md) + "\n", encoding="utf-8")
     print("\n".join(md))
-    print("\n[fait] " + str(out / ("fiche_%s.md" % slug)))
+    print("\n[done] " + str(out / ("trace_%s.md" % slug)))
 
 
 if __name__ == "__main__":

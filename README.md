@@ -42,7 +42,7 @@ These files are released under CC BY 4.0 (`LICENSE-DATA`), with the same excepti
 | `174_audit_fuite_benchmark.py` | run18: leak audit of the queries and pipeline scripts against the evaluation edges (gate of the run18 driver) |
 | `175_requetes_run18.py`, `176_generer_scripts_run18.py`, `177_candidats_exemples_hors_corpus.py` | run18: query set (210 queries), generation of `pipeline/02_extract_triples_run18.py` and `pipeline/04_clean_validate_run18.py` from 02 and 04 without modifying them, prompt examples taken from articles outside the corpus |
 | `184_trace_requetes_et_pertes.py`, `187_provenance_articles.py`, `188_nettoyage_familles.py` | run18: trace of every extraction, provenance of every relation, rule-based cleaning and entity families (read-only, CPU) |
-| `scripts/run18/audit/` | run18: audit scripts behind the numbers of the manuscript (comparison with the expert relations, self-audit decision rules, marker counts, vocabulary frequencies, checks on the graphs), copied unchanged from the cluster |
+| `scripts/run18/audit/` | run18: audit scripts behind the numbers of the manuscript (comparison with the expert relations, self-audit decision rules, marker counts, vocabulary frequencies, checks on the graphs), copied from the cluster, then translated into English and renamed |
 | `pipeline/` | extraction, verification, validation, fusion, metrics; `rag/` retrieval and model wrappers |
 | `analysis_suite/` | schema enforcement, lexicon, rule canonicalisation, flattening |
 | `m4/` | two-judge panel, tier integration, direction check, negative controls |
@@ -82,9 +82,11 @@ Comments and docstrings are in English, except in the files that must stay byte-
 - the stage scripts recorded in the run16E and run18 manifests, among them `49_build_index_v2.py`, `52_repair_provenance.py`, `53_verify_repaired.py`, `pipeline/02_extract_triples_run18.py` and `pipeline/04_clean_validate_run18.py`;
 - the cleaning scripts recorded in the run18 postprocess manifest: `184_trace_requetes_et_pertes.py`, `187_provenance_articles.py` and `188_nettoyage_familles.py`. `docs/run18_cleaning_outputs.md` describes, in English, what these three scripts do and what each of their output columns means.
 
-The modules these scripts import at run time (`pipeline/rag/`, `m4/m4_config.py`, `analysis_suite/kg_io.py`) are also left as they were at the recorded commit. In the other scripts, the comments were translated after the run, and `PROVENANCE.tsv` records both versions. For the Python scripts, `tools/check_code_unchanged.py` confirmed that the syntax tree, docstrings excluded, is unchanged. For the shell drivers, the commands are identical once the comments are removed. Printed messages and output file names are not translated, because changing them would change the files that the scripts write.
+The modules these scripts import at run time (`pipeline/rag/`, `m4/m4_config.py`, `analysis_suite/kg_io.py`) are also left as they were at the recorded commit. In the other scripts, the comments were translated after the run, and `PROVENANCE.tsv` records both versions. For the Python scripts, `tools/check_code_unchanged.py` confirmed that the syntax tree, docstrings excluded, is unchanged. For the shell drivers, the commands are identical once the comments are removed. In these scripts, printed messages and output file names are not translated, because changing them would change the files that the scripts write.
 
 The analysis, evaluation and figure scripts were translated into English and renamed after the run. `tools/check_code_unchanged.py` compared each translated script with its original at the level of the syntax tree. With `--allow-messages` it tolerates translated printed text, help strings and exception messages. With `--allow-renames` it tolerates consistent renaming of identifiers and command-line flags. All were found equivalent. Known limitation: expressions inside printed f-strings are not compared.
+
+The run18 audit scripts in `scripts/run18/audit/` were translated completely, printed messages and output file names included, and renamed. With `--allow-strings`, `tools/check_code_unchanged.py` ignores the text of every string constant and compares the rest of the syntax tree; all were found equivalent. A rerun writes their outputs under the new English names; `scripts/run18/audit/README.md` gives the order in which to rerun them.
 
 `tools/replay_cpu_steps.py` replays the final CPU steps from the recorded intermediate outputs. On the authors' copy it regenerates the delivered graph; the only differences are the absolute input paths stored in metadata fields (`flattened_from`, `input_kg`). It needs outputs that are not distributed.
 
@@ -266,6 +268,8 @@ Check that an edited Python file does the same computation as its original.
 | `--tree` | flag | compare every .py file of two directories |
 | `--allow-messages` | flag | tolerate translated or removed text |
 | `--allow-renames` | flag | tolerate consistent renaming |
+| `--allow-strings` | flag | tolerate changes to the text of any string |
+| `--list-strings` | None | with --allow-strings, write the changed strings here |
 
 ### `tools/replay_cpu_steps.py`
 

@@ -15,6 +15,14 @@ Default (strict) mode
     Every other string (paths, patterns, dictionary keys, file names) must
     stay identical, and so must every print that shows a computed value.
 
+--allow-strings
+    Also tolerates changes to the text of any string literal, including the literal
+    parts of f-strings, file names, dictionary keys and column names. The expressions
+    inside f-strings and every other node must stay identical. Use this when all the
+    text of a script is translated. With --list-strings FILE, every changed string is
+    written to FILE (tab-separated: file, original, edited) so that each change can be
+    read; a string read from a file produced by another script must be checked there.
+
 --allow-renames
     Also tolerates consistent renaming of identifiers (functions, variables,
     arguments) and of command-line flags together with their attribute on
@@ -102,6 +110,9 @@ def canonical_names(tree):
                 if isinstance(arg, ast.Constant) and isinstance(arg.value, str) and arg.value.startswith("--"):
                     flags.add(arg.value[2:].replace("-", "_"))
     mapping = {}
+    # keyword arguments are renamed only when the name is a parameter defined in the file,
+    # so that a keyword of a library call (encoding=, indent=) can never be renamed
+    params = {node.arg for node in ast.walk(tree) if isinstance(node, ast.arg)}
 
     def canon(key):
         return mapping.setdefault(key, "id%d" % len(mapping))
@@ -113,6 +124,8 @@ def canonical_names(tree):
             node.name = canon(node.name)
         elif isinstance(node, ast.arg):
             node.arg = canon(node.arg)
+        elif isinstance(node, ast.keyword) and node.arg in params:
+            node.arg = canon(node.arg)
         elif isinstance(node, ast.ExceptHandler) and node.name:
             node.name = canon(node.name)
         elif isinstance(node, ast.Attribute) and node.attr in flags:
@@ -123,13 +136,27 @@ def canonical_names(tree):
     return mapping
 
 
-def fingerprint(path, allow_messages, allow_renames):
+def string_constants(tree):
+    return [n.value for n in ast.walk(tree) if isinstance(n, ast.Constant) and isinstance(n.value, str)]
+
+
+def blank_all_strings(tree):
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Constant) and isinstance(node.value, str):
+            node.value = BLANK
+
+
+def fingerprint(path, allow_messages, allow_renames, allow_strings=False, strings=None):
     tree = ast.parse(Path(path).read_text(encoding="utf-8"), filename=str(path))
     strip_docstrings(tree)
     if allow_messages:
         relax_messages(tree)
     if allow_renames:
         canonical_names(tree)
+    if allow_strings:
+        if strings is not None:
+            strings.extend(string_constants(tree))
+        blank_all_strings(tree)
     return ast.dump(tree, annotate_fields=True, include_attributes=False)
 
 
@@ -139,7 +166,10 @@ def main():
     ap.add_argument("--tree", action="store_true", help="compare every .py file of two directories")
     ap.add_argument("--allow-messages", action="store_true", help="tolerate translated or removed text")
     ap.add_argument("--allow-renames", action="store_true", help="tolerate consistent renaming")
+    ap.add_argument("--allow-strings", action="store_true", help="tolerate changes to the text of any string")
+    ap.add_argument("--list-strings", default=None, help="with --allow-strings, write the changed strings here")
     args = ap.parse_args()
+    listed = []
     a, b = Path(args.paths[0]), Path(args.paths[1])
 
     pairs = [(a, b)]
@@ -152,13 +182,25 @@ def main():
             changed += 1
             continue
         try:
-            same = (fingerprint(original, args.allow_messages, args.allow_renames)
-                    == fingerprint(edited, args.allow_messages, args.allow_renames))
+            sa, sb = [], []
+            same = (fingerprint(original, args.allow_messages, args.allow_renames, args.allow_strings, sa)
+                    == fingerprint(edited, args.allow_messages, args.allow_renames, args.allow_strings, sb))
+            if same and args.allow_strings:
+                listed += [(str(edited), x, y) for x, y in zip(sa, sb) if x != y]
         except SyntaxError as exc:
             print("SYNTAX ERROR  %s: %s" % (edited, exc))
             same = False
         print(("equivalent    " if same else "CODE CHANGED  ") + str(edited))
         changed += not same
+    if args.list_strings:
+        seen = set()
+        with open(args.list_strings, "w", encoding="utf-8") as f:
+            f.write("file\toriginal\tedited\n")
+            for row in listed:
+                if row not in seen:
+                    seen.add(row)
+                    f.write("\t".join(x.replace("\t", "\\t").replace("\n", "\\n") for x in row) + "\n")
+        print("%d changed strings written to %s" % (len(seen), args.list_strings))
     sys.exit(1 if changed else 0)
 
 

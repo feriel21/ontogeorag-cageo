@@ -10,9 +10,9 @@ READ-ONLY
     No existing file is modified. The script refuses to overwrite its output.
 
 USAGE (from the repository root)
-    python 189_frequence_vocabulaire.py \
+    python 189_vocabulary_frequency.py \
         --chunks <run16E index>/chunks.jsonl \
-        --out    output/run18/vocab_frequence.csv
+        --out    output/run18/vocabulary_frequency.csv
 """
 
 import argparse
@@ -45,14 +45,14 @@ def main():
 
     out = Path(args.out)
     if out.exists():
-        sys.exit("ERREUR : {} existe deja. Refus d'ecraser.".format(out))
+        sys.exit("ERROR: {} already exists. Refusing to overwrite.".format(out))
 
     chunks = [json.loads(l) for l in open(args.chunks, encoding="utf-8")]
     n_docs = len({c["doc_id"] for c in chunks})
-    print("passages : {}   articles : {}".format(len(chunks), n_docs))
+    print("passages: {}   papers: {}".format(len(chunks), n_docs))
 
-    terms = [(t, "descripteur_LB2019") for t in sorted(LB2019_BENCHMARK_DESCRIPTORS)]
-    terms += [(t, "descripteur_ajoute") for t in
+    terms = [(t, "descriptor_LB2019") for t in sorted(LB2019_BENCHMARK_DESCRIPTORS)]
+    terms += [(t, "descriptor_added") for t in
               sorted(KNOWN_DESCRIPTORS - LB2019_BENCHMARK_DESCRIPTORS)]
     terms += [(t, "setting") for t in sorted(KNOWN_SETTINGS)]
 
@@ -61,27 +61,27 @@ def main():
         rx = pattern(term)
         hit = [c for c in chunks if rx.search(c["text"])]
         docs = {c["doc_id"] for c in hit}
-        rows.append({"terme": term, "groupe": group,
-                     "articles": len(docs), "passages": len(hit)})
+        rows.append({"term": term, "group": group,
+                     "papers": len(docs), "passages": len(hit)})
 
     out.parent.mkdir(parents=True, exist_ok=True)
     with open(out, "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=["terme", "groupe", "articles", "passages"])
+        w = csv.DictWriter(f, fieldnames=["term", "group", "papers", "passages"])
         w.writeheader()
         w.writerows(rows)
 
-    for group in ("descripteur_LB2019", "descripteur_ajoute", "setting"):
-        g = [r for r in rows if r["groupe"] == group]
-        g.sort(key=lambda r: -r["articles"])
-        print("\n== {} ({} termes)".format(group, len(g)))
+    for group in ("descriptor_LB2019", "descriptor_added", "setting"):
+        g = [r for r in rows if r["group"] == group]
+        g.sort(key=lambda r: -r["papers"])
+        print("\n== {} ({} terms)".format(group, len(g)))
         for r in g:
-            print("  {:<26} {:>3} articles  {:>5} passages".format(
-                r["terme"], r["articles"], r["passages"]))
-        print("  -> termes presents dans >= 5 articles : {}/{}".format(
-            sum(r["articles"] >= 5 for r in g), len(g)))
-        print("  -> termes absents du corpus : {}".format(
-            [r["terme"] for r in g if r["articles"] == 0]))
-    print("\nEcrit : {}".format(out))
+            print("  {:<26} {:>3} papers  {:>5} passages".format(
+                r["term"], r["papers"], r["passages"]))
+        print("  -> terms present in >= 5 papers: {}/{}".format(
+            sum(r["papers"] >= 5 for r in g), len(g)))
+        print("  -> terms absent from the corpus: {}".format(
+            [r["term"] for r in g if r["papers"] == 0]))
+    print("\nwritten: {}".format(out))
 
 
 if __name__ == "__main__":

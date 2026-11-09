@@ -13,19 +13,18 @@ WHY
 
 WHAT (read-only, CPU)
     For each relation of kg/tiered_kg_<run>.json, in the order read by m4_verify:
-      vue       the evidence sentence is in top_chunks[0][:1500]
-      chunk1    in top_chunks[0] but after 1,500 characters
+      seen      the evidence sentence is in top_chunks[0][:1500]
+      chunk1_after_1500  in top_chunks[0] but after 1,500 characters
       chunkN    in top_chunks[N-1], N = 2..5 (never shown to the verifier)
-      absente   in none of the 5 passages
+      absent    in none of the 5 passages
     (comparison on lowercase alphanumeric text; if the full sentence is not
     found, one of three 40-character windows is enough, as in 145)
     Panel decision and verdicts: m4/llama and m4/mistral (m4_verdicts.jsonl,
     same order as the input), and m4_panel/m4_panel_decisions.jsonl.
 
 USAGE
-    python 180_passage_vu_par_le_panel.py --repo . --run-dir output/run18 \
+    python 180_passage_seen_by_panel.py --repo . --run-dir output/run18 \
         --outdir output/audit/180_passage_panel
-    Messages and output files are in French.
 """
 
 import argparse
@@ -40,7 +39,7 @@ WINDOW = 40
 
 
 def die(msg):
-    print("ARRET : " + msg, file=sys.stderr, flush=True)
+    print("STOP: " + msg, file=sys.stderr, flush=True)
     sys.exit(1)
 
 
@@ -73,7 +72,7 @@ def main():
     args = ap.parse_args()
     out = Path(args.outdir)
     if out.exists():
-        die("le dossier existe deja, rien n'est ecrase : " + str(out))
+        die("the folder already exists, nothing is overwritten: " + str(out))
     repo = Path(args.repo).resolve()
     sys.path.insert(0, str(repo / "m4"))
     sys.path.insert(0, str(repo))
@@ -89,9 +88,9 @@ def main():
     dec = jsonl(rd / "m4_panel" / "m4_panel_decisions.jsonl")
     for j, v in ver.items():
         if len(v) != len(kg):
-            die("%s : %d verdicts pour %d relations, ordre non garanti" % (j, len(v), len(kg)))
+            die("%s: %d verdicts for %d relations, order not guaranteed" % (j, len(v), len(kg)))
     if dec and len(dec) != len(kg):
-        die("panel : %d decisions pour %d relations" % (len(dec), len(kg)))
+        die("panel: %d decisions for %d relations" % (len(dec), len(kg)))
 
     rows, tab = [], defaultdict(Counter)
     for i, t in enumerate(kg):
@@ -102,11 +101,11 @@ def main():
         texts = [(c or {}).get("text", "") for c in tops]
         shown = m4v.evidence_from_provenance(t)[:MAX_EVIDENCE_CHARS]
         if contains(ev, shown):
-            pos = "vue"
+            pos = "seen"
         elif texts and contains(ev, texts[0]):
-            pos = "chunk1_apres_%d" % MAX_EVIDENCE_CHARS
+            pos = "chunk1_after_%d" % MAX_EVIDENCE_CHARS
         else:
-            pos = "absente"
+            pos = "absent"
             for k, tx in enumerate(texts[1:], start=2):
                 if contains(ev, tx):
                     pos = "chunk%d" % k
@@ -124,23 +123,23 @@ def main():
         for r in rows:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
     pos_c = Counter(r["position"] for r in rows)
-    L = ["=== 180 la phrase de preuve est-elle dans le texte montre au panel ? (%s) ===" % run,
-         "relations : %d ; texte montre au juge : top_chunks[0][:%d]" % (len(rows), MAX_EVIDENCE_CHARS),
-         "position de la phrase : " + json.dumps(dict(pos_c.most_common()), ensure_ascii=False), "",
-         "decision du panel selon la position :"]
+    L = ["=== 180 is the evidence sentence in the text shown to the panel? (%s) ===" % run,
+         "relations: %d; text shown to the verifier: top_chunks[0][:%d]" % (len(rows), MAX_EVIDENCE_CHARS),
+         "position of the sentence: " + json.dumps(dict(pos_c.most_common()), ensure_ascii=False), "",
+         "panel decision by position:"]
     decs = sorted({d for (_, d) in tab["decision"]})
     L.append("  %-22s" % "position" + "".join("%11s" % d for d in decs))
     for p, _ in pos_c.most_common():
         L.append("  %-22s" % p + "".join("%11d" % tab["decision"][(p, d)] for d in decs))
     L.append("")
-    L.append("verdicts avec passage (llama|mistral) selon la position :")
+    L.append("verdicts with the passage (llama|mistral) by position:")
     for p, _ in pos_c.most_common():
         c = Counter({e: n for (pp, e), n in tab["evidence"].items() if pp == p})
         L.append("  %-22s %s" % (p, ", ".join("%s %d" % kv for kv in c.most_common(4))))
-    L.append("fichier : relations.jsonl")
+    L.append("file: relations.jsonl")
     txt = "\n".join(L)
-    (out / "_resume.txt").write_text(txt + "\n", encoding="utf-8")
-    print(txt + "\n[fait] " + str(out), flush=True)
+    (out / "_summary.txt").write_text(txt + "\n", encoding="utf-8")
+    print(txt + "\n[done] " + str(out), flush=True)
 
 
 if __name__ == "__main__":

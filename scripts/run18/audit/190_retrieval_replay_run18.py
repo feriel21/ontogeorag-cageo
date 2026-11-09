@@ -15,10 +15,10 @@ READ-ONLY
     No LLM; no existing file is modified. The script refuses to overwrite its output.
 
 USAGE (from the repository root, on a GPU or CPU node)
-    python 190_rejeu_recherche_run18.py \
+    python 190_retrieval_replay_run18.py \
         --chunks  <run16E index>/chunks.jsonl \
         --queries configs/descriptor_queries_run18.jsonl \
-        --out     output/run18/rejeu_recherche_190.json
+        --out     output/run18/retrieval_replay_190.json
 """
 
 import argparse
@@ -44,11 +44,11 @@ def main():
 
     out = Path(args.out)
     if out.exists():
-        sys.exit("ERREUR : {} existe deja. Refus d'ecraser.".format(out))
+        sys.exit("ERROR: {} already exists. Refusing to overwrite.".format(out))
 
     chunks = [json.loads(l) for l in open(args.chunks, encoding="utf-8") if l.strip()]
     queries = [json.loads(l) for l in open(args.queries, encoding="utf-8") if l.strip()]
-    print("passages : {}   questions : {}".format(len(chunks), len(queries)))
+    print("passages: {}   questions: {}".format(len(chunks), len(queries)))
 
     # identical to 02_extract_triples_run18.load_bm25
     bm25 = BM25Okapi([c.get("text", "").lower().split() for c in chunks])
@@ -85,31 +85,31 @@ def main():
     n = len(from_bm25_top5)
     dist = Counter(from_bm25_top5)
     res = {
-        "parametres": {"bm25": "BM25Okapi defauts (k1=1.5, b=0.75)",
+        "parameters": {"bm25": "BM25Okapi defaults (k1=1.5, b=0.75)",
                        "tokens": "lower().split()", "top_n": TOPN, "top_k": TOPK,
-                       "seuil": THR, "reranker": RERANKER},
-        "A_questions_ecartees_par_le_seuil": len(skipped),
+                       "threshold": THR, "reranker": RERANKER},
+        "A_questions_dropped_by_the_threshold": len(skipped),
         "A_detail": skipped,
-        "B_questions_lues": n,
-        "B_passages_lus_venant_du_top5_BM25_moyenne": round(statistics.mean(from_bm25_top5), 2) if n else None,
-        "B_distribution_0a5": {k: dist.get(k, 0) for k in range(6)},
-        "B_questions_ou_le_cross_encoder_change_au_moins_un_passage": sum(1 for x in from_bm25_top5 if x < TOPK),
-        "C_rangs_BM25_des_passages_remontes": dict(sorted(promoted_ranks.items())),
-        "par_question": rows,
+        "B_questions_read": n,
+        "B_passages_read_from_the_BM25_top5_mean": round(statistics.mean(from_bm25_top5), 2) if n else None,
+        "B_distribution_0_to_5": {k: dist.get(k, 0) for k in range(6)},
+        "B_questions_where_the_cross_encoder_changes_at_least_one_passage": sum(1 for x in from_bm25_top5 if x < TOPK),
+        "C_BM25_ranks_of_the_passages_moved_up": dict(sorted(promoted_ranks.items())),
+        "per_question": rows,
     }
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(res, indent=1, ensure_ascii=False), encoding="utf-8")
 
-    print("\nA  questions ecartees par le seuil {} : {}".format(THR, len(skipped)))
+    print("\nA  questions dropped by the threshold {}: {}".format(THR, len(skipped)))
     for s in skipped:
         print("     [{}] {:.2f}  {}".format(s["strategy"], s["best_bm25_after_rerank"], s["query"][:90]))
-    print("B  questions lues : {}".format(n))
-    print("   passages lus venant du top 5 BM25 (moyenne sur 5) : {}".format(res["B_passages_lus_venant_du_top5_BM25_moyenne"]))
-    print("   distribution (nb de passages du top 5 BM25 parmi les 5 lus) : {}".format(res["B_distribution_0a5"]))
-    print("   questions ou le cross-encoder change au moins un passage : {}/{}".format(
-        res["B_questions_ou_le_cross_encoder_change_au_moins_un_passage"], n))
-    print("C  rangs BM25 (6-20) des passages remontes : {}".format(res["C_rangs_BM25_des_passages_remontes"]))
-    print("\nEcrit : {}".format(out))
+    print("B  questions read: {}".format(n))
+    print("   passages read from the BM25 top 5 (mean over 5): {}".format(res["B_passages_read_from_the_BM25_top5_mean"]))
+    print("   distribution (number of BM25 top-5 passages among the 5 read): {}".format(res["B_distribution_0_to_5"]))
+    print("   questions where the cross-encoder changes at least one passage: {}/{}".format(
+        res["B_questions_where_the_cross_encoder_changes_at_least_one_passage"], n))
+    print("C  BM25 ranks (6-20) of the passages moved up: {}".format(res["C_BM25_ranks_of_the_passages_moved_up"]))
+    print("\nwritten: {}".format(out))
 
 
 if __name__ == "__main__":
