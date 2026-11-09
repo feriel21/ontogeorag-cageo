@@ -30,13 +30,12 @@ Check: `env | grep -E "CLUSTER_|^REPO=|^VENV=|PDF_DIR|HF_HOME"` shows no `FILL_M
 
 ---
 
-## 1. Branch run18
+## 1. Release v2.0-run18
 
 ```bash
 cd "$REPO" && pwd
-git fetch origin
-git checkout run18
-git pull origin run18
+git fetch origin --tags
+git checkout v2.0-run18
 git log -1 --oneline
 ls slurm/run18.sbatch workflows/run_pipeline_run18.sh
 ```
