@@ -1,36 +1,41 @@
 #!/usr/bin/env python3
-"""176 — Genere les deux scripts de production de run18 a partir de 02 et 04, sans les modifier.
+"""176 — Generates the two run18 production scripts from 02 and 04, which stay unchanged.
 
-PRINCIPE
-    pipeline/02_extract_triples.py et pipeline/04_clean_validate.py restent
-    intacts. Ce script lit leur texte, applique des remplacements exacts
-    (chacun doit apparaitre exactement une fois, sinon arret), et ecrit :
+PRINCIPLE
+    pipeline/02_extract_triples.py and pipeline/04_clean_validate.py are left
+    intact.
+    The script reads their text and applies exact replacements; each pattern
+    must occur exactly once, otherwise the script stops.
+    The script writes:
         pipeline/02_extract_triples_run18.py
         pipeline/04_clean_validate_run18.py
-        pipeline/RUN18_PATCHES.md   (regles, sha256 avant/apres, diff complet)
-    Il refuse d'ecraser un fichier existant.
+        pipeline/RUN18_PATCHES.md   (rules, sha256 before and after, full diff)
+    The script refuses to overwrite an existing file.
+    The text written into the generated files (header lines, inline comments,
+    RUN18_PATCHES.md) is in French and must stay as is: the run18 manifest
+    records the sha256 of the generated scripts.
 
-CHANGEMENTS (et rien d'autre)
-    02  E1  les exemples des prompts descripteur, causal et contexte sont lus
-            dans --examples (JSON) au lieu d'etre ecrits dans le code ;
-        E2  les deux contre-exemples qui citaient un couple objet/descripteur
-            sont remplaces par une formulation generique ;
-    04  N1  la protection contre la fusion porte sur tout le vocabulaire de
-            l'ontologie (KNOWN_DESCRIPTORS, 40 termes) ;
-        N2  la protection des cadres porte sur KNOWN_SETTINGS (liste de 04) ;
-        N3  la liste d'aretes d'evaluation est retiree du code (liste vide) :
-            le rappel n'est plus calcule pendant le nettoyage, seulement a l'etape 07.
-    Le fichier --examples est refuse si un exemple nomme les deux arguments
-    d'une arete de configs/lb_reference_edges_original26.json.
+CHANGES (and nothing else)
+    02  E1  the examples of the descriptor, causal and context prompts are read
+            from --examples (JSON) instead of being written in the code;
+        E2  the two counter-examples that named an object/descriptor pair are
+            replaced by a generic wording;
+    04  N1  the protection against merging covers the whole ontology
+            vocabulary (KNOWN_DESCRIPTORS, 40 terms);
+        N2  the protection of settings covers KNOWN_SETTINGS (list of 04);
+        N3  the list of evaluation edges is removed from the code (empty list),
+            so recall is computed only at step 07, not during cleaning.
+    The --examples file is refused if an example names both arguments of an
+    edge of configs/lb_reference_edges_original26.json.
 
-FORMAT DE --examples
-    {"source": "texte libre : d'ou viennent les exemples",
+FORMAT OF --examples
+    {"source": "free text: where the examples come from",
      "descriptor": [{"source":..,"source_type":..,"relation":"hasDescriptor","target":..,
                      "target_type":"Descriptor","salience":"typical"}, ...],
      "causal":     [{"source":..,"source_type":..,"relation":..,"target":..,"target_type":..}, ...],
      "context":    [ ... ]}
 
-USAGE (racine du worktree run18)
+USAGE (root of the run18 worktree)
     python 176_generer_scripts_run18.py --repo . --examples configs/prompt_examples_run18.json
 """
 
@@ -67,7 +72,7 @@ def replace_once(text, old, new, label):
 
 
 def block(text, start_marker, label):
-    """Bloc d'exemples : du marqueur jusqu'au ']' qui ferme la liste."""
+    """Example block: from the marker to the ']' that closes the list."""
     i = text.find(start_marker)
     if i < 0 or text.count(start_marker) != 1:
         die(label + " : marqueur introuvable ou multiple")
@@ -120,7 +125,7 @@ def main():
     # ---- 02 ---------------------------------------------------------
     n02 = t02
     marker = "GOLD EXAMPLES (from peer-reviewed MTD literature):"
-    # les trois blocs dans l'ordre : descripteur, causal, contexte
+    # the three example blocks, in order: descriptor, causal, context
     parts = n02.split(marker)
     if len(parts) != 4:
         die("02 : %d blocs d'exemples au lieu de 3" % (len(parts) - 1))
@@ -163,7 +168,7 @@ def main():
     n04 = HDR + ("# GENERE par 176_generer_scripts_run18.py a partir de pipeline/04_clean_validate.py (sha %s).\n"
                  "# Voir pipeline/RUN18_PATCHES.md. Ne pas editer a la main.\n" % sha(t04)[:12]) + n04[len(HDR):]
 
-    # controles
+    # checks: both generated scripts compile, and 02 names no evaluation pair
     compile(n02, str(o02), "exec")
     compile(n04, str(o04), "exec")
     low02 = n02.lower()

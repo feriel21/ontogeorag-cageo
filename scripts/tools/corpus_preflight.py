@@ -276,7 +276,7 @@ def main():
             verdict, flag))
     print()
 
-    # ---------- D. appariement ----------
+    # ---------- D. matching with the reference list ----------
     if args.refs and Path(os.path.expanduser(args.refs)).is_file():
         print("--- D. MATCHING AGAINST THE LB2019 REFERENCE LIST ------------")
         refs = []
@@ -330,7 +330,7 @@ def main():
         print("  (matching uses file names only)")
         print()
 
-    # ---------- synthese ----------
+    # ---------- summary ----------
     print("=" * 74)
     print("SUMMARY")
     print("=" * 74)

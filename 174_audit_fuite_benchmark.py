@@ -1,29 +1,32 @@
 #!/usr/bin/env python3
-"""174 — Fuite du benchmark (26 aretes) dans le pipeline : audit et porte d'entree de run18.
+"""174 — Leak audit of the 26 evaluation edges in the pipeline; gate of the run18 driver.
 
-POURQUOI
-    Un rappel contre le benchmark n'est une mesure que si le pipeline n'a pas
-    vu le benchmark. Ce script cherche les 26 aretes de
-    configs/lb_reference_edges_original26.json dans tout ce que le pipeline
-    lit ou execute avant l'evaluation (etape 07), et s'arrete en code 1 a la
-    moindre fuite. Lance sur run16E, il mesure la fuite ; lance avant run18,
-    il prouve qu'il n'y en a plus.
+WHY
+    A recall against the 26 expert edges is a measurement only if the pipeline
+    has not seen those edges.
+    The script looks for the 26 edges of configs/lb_reference_edges_original26.json
+    in everything the pipeline reads or runs before the evaluation step (07).
+    The script exits with code 1 at the first leak found.
+    Run on run16E, the script measures the leak; run before run18, the script
+    shows that no leak remains.
 
-QUOI (lecture seule, CPU)
-    F1 prompt   : exemples {source, relation, target} du script d'extraction
-                  (--extract) qui nomment les deux arguments d'une arete.
-    F2 requetes : requetes du fichier --queries dont l'ancre (focus) ou le
-                  texte nomme les deux arguments d'une arete, en termes entiers
-                  (regle R12 de manifest_parameters_and_benchmark_targeting.py),
-                  plus les familles d'ancres LB: et gapfill: (ecrites a partir
-                  du graphe expert ou pour combler une arete manquee).
-    F3 nettoyage: termes du benchmark proteges nommement dans le script de
-                  nettoyage (--clean) : import de LB2019_BENCHMARK_DESCRIPTORS,
-                  liste lb_settings, liste LB_REFERENCE_EDGES non vide (rappel
-                  calcule pendant le nettoyage).
-    Pour chaque arete : vue dans le prompt, nombre de requetes qui la visent,
-    protegee au nettoyage. Avec --flat NOM=chemin (repetable) : retrouvee ou non
-    (apparieur exact de 07), et rappel separe aretes vues / jamais vues.
+CHECKS (read-only, CPU)
+    F1 prompt   : examples {source, relation, target} of the extraction script
+                  (--extract) that name both arguments of an edge.
+    F2 queries  : queries of --queries whose anchor (focus) or text names both
+                  arguments of an edge, as whole terms (rule R12 of
+                  scripts/analysis/manifest_parameters_and_benchmark_targeting.py),
+                  plus every query of the anchor families LB: and gapfill:
+                  (written from the expert graph or to recover a missed edge).
+    F3 cleaning : evaluation terms protected by name in the cleaning script
+                  (--clean): import of LB2019_BENCHMARK_DESCRIPTORS, the
+                  lb_settings list, and a non-empty LB_REFERENCE_EDGES list
+                  (recall computed during cleaning).
+    Per edge, the report gives: seen in the prompt, number of queries that
+    target the edge, protected during cleaning.
+    With --flat NAME=path (repeatable), the report also gives whether each edge
+    is recovered (exact matcher of 07), with the recall split between edges
+    seen and never seen by the pipeline.
 
 USAGE
     python 174_audit_fuite_benchmark.py --repo . \
@@ -32,7 +35,8 @@ USAGE
         --clean pipeline/04_clean_validate.py \
         --flat run16E=results/run16E/flat_run16E_enforced_dedup.json \
         --outdir output/audit/174_fuite
-    Code de sortie : 0 aucune fuite, 1 fuite trouvee, 2 erreur d'entree.
+    Exit code: 0 no leak, 1 leak found, 2 input error.
+    Messages and output text are in French.
 """
 
 import argparse
@@ -59,7 +63,7 @@ def nrel(r):
 
 
 def mentions(term, text):
-    """Terme entier : un terme contenu dans un terme plus long ne compte pas."""
+    """Whole-term match: a term contained in a longer term does not count."""
     return bool(term) and re.search(r"(?<![a-z])" + re.escape(term) + r"(?![a-z])", text) is not None
 
 
@@ -106,7 +110,7 @@ def main():
     if len(edges) != 26:
         die("benchmark : %d aretes, attendu 26" % len(edges))
 
-    # F1 — exemples du prompt
+    # F1 — prompt examples
     src = Path(args.extract).read_text(encoding="utf-8")
     examples = []
     for m in re.finditer(r"\{\{(.*?)\}\}", src, flags=re.S):
@@ -114,13 +118,13 @@ def main():
         if {"source", "relation", "target"} <= set(g):
             examples.append((norm(g["source"]), g["relation"], norm(g["target"])))
     bad = src.find("BAD EXAMPLES")
-    # les exemples "BAD" sont ceux qui suivent immediatement le marqueur ; on les signale a part
+    # `bad` is not used afterwards: counter-examples are counted with the other examples.
     in_prompt = {}
     for e in edges:
         hits = [x for x in examples if x[0] == e[0] and x[2] == e[2]]
         in_prompt[e] = len(hits)
 
-    # F2 — requetes
+    # F2 — queries
     Q = [json.loads(l) for l in open(args.queries, encoding="utf-8") if l.strip()]
     targeted = {e: [] for e in edges}
     fam_count = {"gapfill:": 0, "LB:": 0}
@@ -136,7 +140,7 @@ def main():
                 targeted[e].append(i)
                 flagged.add(i)
 
-    # F3 — nettoyage
+    # F3 — cleaning
     csrc = Path(args.clean).read_text(encoding="utf-8")
     f3 = {"imports_LB2019_BENCHMARK_DESCRIPTORS": "LB2019_BENCHMARK_DESCRIPTORS" in csrc,
           "computes_lb_recall": re.search(r"LB_REFERENCE_EDGES\s*=\s*\[\s*\(", csrc) is not None,
@@ -152,7 +156,7 @@ def main():
     protected = {e: (e[2] in lb_desc and nrel(e[1]) == "hasdescriptor")
                  or e[0] in f3["lb_settings"] or e[2] in f3["lb_settings"] for e in edges}
 
-    # rappel separe (optionnel)
+    # optional: recall split between seen and never-seen edges
     found = {}
     if args.flat:
         m07 = load_07(repo)

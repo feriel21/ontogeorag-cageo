@@ -2,7 +2,7 @@
 # =====================================================================
 # slurm/run18.sbatch — template to run the run18 pipeline on a SLURM cluster
 #
-# Lines marked A_REMPLIR must be filled for the target cluster:
+# Lines marked TO_FILL must be filled for the target cluster:
 # project number, partition and GPU request. Ask the cluster documentation
 # or the admins for the exact names.
 #
@@ -13,8 +13,8 @@
 #   bash workflows/prefetch_models.sh        (downloads the three pinned models)
 # =====================================================================
 #SBATCH --job-name=ontogeorag-run18
-#SBATCH --account=A_REMPLIR_numero_de_projet
-#SBATCH --partition=A_REMPLIR_partition_gpu
+#SBATCH --account=TO_FILL_project_number
+#SBATCH --partition=TO_FILL_gpu_partition
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64G
@@ -22,7 +22,7 @@
 #SBATCH --output=logs/run18_%j.out
 #SBATCH --error=logs/run18_%j.err
 ##SBATCH --mail-type=END,FAIL
-##SBATCH --mail-user=A_REMPLIR
+##SBATCH --mail-user=TO_FILL
 
 set -euo pipefail
 REPO="${REPO:-$SLURM_SUBMIT_DIR}"
@@ -31,7 +31,7 @@ mkdir -p logs
 
 # ---- environment (adapt: module load, conda or venv) ----------------
 VENV="${VENV:-$HOME/ontogeorag_venv}"
-# module load python/3.10 cuda      # A_REMPLIR si le cluster utilise des modules
+# module load python/3.10 cuda      # TO_FILL if the cluster uses modules
 source "$VENV/bin/activate"
 
 # ---- data and models --------------------------------------------------

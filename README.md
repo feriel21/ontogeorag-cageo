@@ -23,7 +23,7 @@ These files are released under CC BY 4.0 (`LICENSE-DATA`), except the evidence s
 
 ## run18 (current version)
 
-The branch `run18` adds the run18 settings and the tools to rerun and check them. The paper version above (run16E) is unchanged.
+The branch `run18` adds the run18 settings and the tools to rerun and check them. run18 is the run reported in the manuscript submitted to *Computers & Geosciences*. run16E, described above, is the earlier version; its files are unchanged.
 
 - **Driver**: `workflows/run_pipeline_run18.sh` (210 queries in `configs/descriptor_queries_run18.jsonl`, full retrieved context, a gate that checks the run18 files and the leak audit `174_audit_fuite_benchmark.py` before any model is loaded). The changes with respect to run16E are listed in `pipeline/RUN18_PATCHES.md`.
 - **Rule-based cleaning**: `workflows/postprocess_run18.sh` chains three read-only CPU scripts on a run output: `184_trace_requetes_et_pertes.py` (follows every extraction and checks the replay against the run's own files), `187_provenance_articles.py` (article, reference and deduced section of every relation) and `188_nettoyage_familles.py` (removes relations by fixed rules R1 bibliography, R2 local label, R3 subject absent from the source sentences; flags S1–S4; groups relations by entity families). Their messages and output columns are in French.
@@ -42,6 +42,7 @@ These files are released under CC BY 4.0 (`LICENSE-DATA`), with the same excepti
 | `174_audit_fuite_benchmark.py` | run18: leak audit of the queries and pipeline scripts against the evaluation edges (gate of the run18 driver) |
 | `175_requetes_run18.py`, `176_generer_scripts_run18.py`, `177_candidats_exemples_hors_corpus.py` | run18: query set (210 queries), generation of `pipeline/02_extract_triples_run18.py` and `pipeline/04_clean_validate_run18.py` from 02 and 04 without modifying them, prompt examples taken from articles outside the corpus |
 | `184_trace_requetes_et_pertes.py`, `187_provenance_articles.py`, `188_nettoyage_familles.py` | run18: trace of every extraction, provenance of every relation, rule-based cleaning and entity families (read-only, CPU) |
+| `scripts/run18/audit/` | run18: audit scripts behind the numbers of the manuscript (comparison with the expert relations, self-audit decision rules, marker counts, vocabulary frequencies, checks on the graphs), copied unchanged from the cluster |
 | `pipeline/` | extraction, verification, validation, fusion, metrics; `rag/` retrieval and model wrappers |
 | `analysis_suite/` | schema enforcement, lexicon, rule canonicalisation, flattening |
 | `m4/` | two-judge panel, tier integration, direction check, negative controls |
@@ -65,6 +66,22 @@ These files are released under CC BY 4.0 (`LICENSE-DATA`), with the same excepti
 ## How the published code is tied to the run
 
 `results/run16E/manifest.json` records, for each of the 22 steps, the script, its sha256, its command line and its start and end times. `PROVENANCE.tsv` records the origin and checksum of each published file. `tools/verify_provenance.py` checks both. The 15 stage scripts have the checksums recorded in the manifest and keep their names and locations.
+
+For run18, the manifest records 22 steps: one index copy and 21 steps run by 14 distinct scripts. The postprocess manifest records the checksums of the three cleaning scripts and of their input tables. Both are checked with:
+
+```
+python tools/verify_provenance.py --manifest results/run18/manifest.json \
+    --postprocess results/run18/postprocess/postprocess_manifest.txt
+```
+
+### Language of comments
+
+Comments and docstrings are in English, except in the files that must stay byte-identical to the code that ran, because a manifest records their checksum. These files keep their original comments, some of them in French:
+
+- the stage scripts recorded in the run16E and run18 manifests, among them `49_build_index_v2.py`, `52_repair_provenance.py`, `53_verify_repaired.py`, `pipeline/02_extract_triples_run18.py` and `pipeline/04_clean_validate_run18.py`;
+- the cleaning scripts recorded in the run18 postprocess manifest: `184_trace_requetes_et_pertes.py`, `187_provenance_articles.py` and `188_nettoyage_familles.py`.
+
+The modules these scripts import at run time (`pipeline/rag/`, `m4/m4_config.py`, `analysis_suite/kg_io.py`) are also left as they were at the recorded commit. In the other scripts, the comments were translated after the run, and `PROVENANCE.tsv` records both versions. For the Python scripts, `tools/check_code_unchanged.py` confirmed that the syntax tree, docstrings excluded, is unchanged. For the shell drivers, the commands are identical once the comments are removed. Printed messages and output file names are not translated, because changing them would change the files that the scripts write.
 
 The analysis, evaluation and figure scripts were translated into English and renamed after the run. `tools/check_code_unchanged.py` compared each translated script with its original at the level of the syntax tree. With `--allow-messages` it tolerates translated printed text, help strings and exception messages. With `--allow-renames` it tolerates consistent renaming of identifiers and command-line flags. All were found equivalent. Known limitation: expressions inside printed f-strings are not compared.
 

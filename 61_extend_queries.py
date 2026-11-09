@@ -1,37 +1,37 @@
 #!/usr/bin/env python3
 """
-61_extend_queries.py — Combler l'asymetrie du generateur de requetes
+61_extend_queries.py — Add descriptor-anchored queries to the query set.
 
-CONSTAT MESURE
-    pipeline/generate_augmented_queries.py definit quatre templates, tous
-    orientes ENTITE -> descripteur ("What are the descriptors of {e}?"), et
-    fixe TYPE_STRATEGIES["Descriptor"] = set(). Consequence : aucune des 249
-    requetes n'est ancree sur un descripteur. 20 descripteurs du lexique
-    canonique presents dans le corpus (erosional 162 chunks / 28 docs,
-    deformed 141/28, thin 129/30, faulted 52/12, folded 50/10...) ne sont
-    cibles par aucune requete et n'entrent jamais dans le graphe.
+OBSERVATION
+    The query generator (pipeline/generate_augmented_queries.py, not published)
+    defines four templates, all oriented from an entity to its descriptors
+    ("What are the descriptors of {e}?"), and sets
+    TYPE_STRATEGIES["Descriptor"] = set().
+    As a result, none of the 249 base queries is anchored on a descriptor.
+    Twenty vocabulary descriptors that occur in the corpus were targeted by no
+    query and never entered the graph (for example erosional 162 passages in
+    28 documents, deformed 141/28, thin 129/30, faulted 52/12, folded 50/10).
 
-CE QUE FAIT CE SCRIPT
-    Ajoute UN template inverse, le seul geologiquement coherent pour le type
-    Descriptor :
+WHAT THE SCRIPT DOES
+    The script adds one reverse template for the Descriptor type:
         "Which seismic objects or deposits are described as {d}?"
-    genere pour chaque descripteur canonique ATTESTE dans le corpus (les
-    descripteurs a zero occurrence sont exclus et listes), et fusionne avec
-    le jeu existant sans le modifier.
+    One query is generated for each vocabulary descriptor found in the passages.
+    Descriptors with zero occurrences are skipped and listed.
+    The occurrence test is a literal whole-word match: a hyphenated descriptor
+    written with a space in the corpus (variable amplitude) counts as absent.
+    The new queries are appended to the existing set, which is not modified.
+    Each added query carries strategy="descriptor_reverse" and origin="ext_v2",
+    so the original set can be recovered by filtering.
 
-    Chaque requete ajoutee porte strategy="descriptor_reverse" et
-    origin="ext_v2", donc l'effet est mesurable a posteriori et le jeu
-    d'origine est reconstituble par filtrage.
+NOTE
+    The extension covers the whole vocabulary, independently of the benchmark.
+    The extension is therefore distinct from the gapfill queries, which were
+    written for reference edges found missing, and is declared separately.
 
-DECLARATION POUR LE MANUSCRIT
-    Cette extension corrige une asymetrie STRUCTURELLE du generateur : elle
-    couvre systematiquement le lexique, independamment du benchmark. Elle
-    n'est PAS du gapfill (ajout de requetes visant des aretes de reference
-    constatees manquantes) et doit etre declaree separement.
+Additive: neither generate_augmented_queries.py nor the existing set is modified.
+Messages are in French.
 
-Additif : ne modifie ni generate_augmented_queries.py ni le jeu existant.
-
-Usage :
+Usage:
     cd ~/ontogeorag && export PYTHONPATH=$PWD
     python 61_extend_queries.py \
         --queries configs/descriptor_queries.jsonl \
