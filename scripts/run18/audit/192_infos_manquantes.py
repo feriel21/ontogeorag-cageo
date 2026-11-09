@@ -1,23 +1,26 @@
 #!/usr/bin/env python3
-"""192_infos_manquantes.py : lecture seule, aucun modele, aucun run.
+"""192_infos_manquantes.py: read-only, no model, no run.
 
-Rassemble les dernieres informations manquantes pour l'article :
+Gathers the last items missing for the manuscript:
 
-  1. Controle sur le passage applique aux graphes (364 et 281) : relation signalee
-     si au moins un juge rend NOT_SUPPORTED dans m4.evidence_verdict (Llama|Mistral).
-     Verification : sur le graphe de 364, le total doit valoir 79 (stress test, 191).
-     Repartition par tier, par decision du panel et par type de relation.
-  2. Articles qui contribuent (references distinctes dans provenance.sources),
-     dans le graphe avec provenance (187) et dans le graphe nettoye (188).
-  3. Meta des juges du run (modele, nombre de relations, plafond du passage, duree).
-  4. Statistiques des etapes (appels, extractions, rejets) : tous les champs
-     numeriques des fichiers *stats*.json, *report*.json et article_metrics.json.
-  5. Jobs SLURM du 22 oct. 2026 (sacct) : nom, duree, GPU, noeud, etat.
+  1. Evidence check applied to the graphs (364 and 281 relations): a relation is
+     flagged if at least one verifying-LLM gives NOT_SUPPORTED in
+     m4.evidence_verdict (Llama|Mistral).
+     Check: on the 364-relation graph, the total must be 79 (self-audit, 191).
+     Breakdown by tier, by panel decision and by relation type.
+  2. Contributing papers (distinct references in provenance.sources), in the
+     graph with provenance (187) and in the cleaned graph (188).
+  3. Metadata of the verifying-LLMs of the run (model, number of relations,
+     passage limit, duration).
+  4. Statistics of the steps (calls, extractions, rejections): every numerical
+     field of the files *stats*.json, *report*.json and article_metrics.json.
+  5. SLURM jobs of 22 Oct. 2026 (sacct): name, duration, GPU, node, state.
 
-N'ecrit que dans --outdir, refuse d'ecraser un dossier existant.
+Writes only into --outdir and refuses to overwrite an existing folder.
 
-Usage (depuis le worktree run18) :
+Usage (from the run18 worktree):
   python ~/ontogeorag/192_infos_manquantes.py --repo . --outdir output/audit/192_infos_manquantes
+  Messages and output files are in French.
 """
 import argparse
 import glob

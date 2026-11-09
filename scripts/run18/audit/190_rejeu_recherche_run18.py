@@ -1,23 +1,22 @@
 #!/usr/bin/env python3
-"""190 — Rejeu de la recherche de run18 (sans LLM) pour argumenter la Step 2.
+"""190 — Replay of the run18 retrieval (no LLM), to support Step 2 of the Method.
 
-BUT
-    Rejouer exactement la recherche de pipeline/02_extract_triples_run18.py
-    (BM25Okapi par defaut, jetons = texte en minuscules coupe sur les espaces,
-    20 candidats, re-classement cross-encoder, 5 passages, seuil 2.0 sur le
-    score BM25 du premier passage apres re-classement) sur les 210 questions,
-    et mesurer :
-      A  combien de questions le seuil 2.0 a ecartees ;
-      B  combien des 5 passages lus viennent du top 5 de BM25, c'est-a-dire
-         ce que le cross-encoder change dans ce que lit l'extracting-LLM ;
-      C  le rang BM25 (1-20) des passages que le cross-encoder fait remonter.
+PURPOSE
+    Replay exactly the retrieval of pipeline/02_extract_triples_run18.py
+    (default BM25Okapi, tokens = lowercase text split on spaces, 20 candidates,
+    cross-encoder reranking, 5 passages, threshold 2.0 on the BM25 score of the
+    first passage after reranking) on the 210 questions, and measure:
+      A  how many questions the 2.0 threshold dropped;
+      B  how many of the 5 passages read come from the BM25 top 5, i.e. what the
+         cross-encoder changes in what the extracting-LLM reads;
+      C  the BM25 rank (1-20) of the passages that the cross-encoder moves up.
 
-LECTURE SEULE
-    Aucun LLM, aucun fichier existant modifie. Refuse d'ecraser la sortie.
+READ-ONLY
+    No LLM; no existing file is modified. The script refuses to overwrite its output.
 
-USAGE (depuis la racine du depot, sur le noeud GPU ou CPU)
+USAGE (from the repository root, on a GPU or CPU node)
     python 190_rejeu_recherche_run18.py \
-        --chunks  /home/talbi/ontogeorag_D/output/run16E/index/chunks.jsonl \
+        --chunks  <run16E index>/chunks.jsonl \
         --queries configs/descriptor_queries_run18.jsonl \
         --out     output/run18/rejeu_recherche_190.json
 """
@@ -51,7 +50,7 @@ def main():
     queries = [json.loads(l) for l in open(args.queries, encoding="utf-8") if l.strip()]
     print("passages : {}   questions : {}".format(len(chunks), len(queries)))
 
-    # identique a 02_extract_triples_run18.load_bm25
+    # identical to 02_extract_triples_run18.load_bm25
     bm25 = BM25Okapi([c.get("text", "").lower().split() for c in chunks])
     ce = CrossEncoder(RERANKER)
 
@@ -59,7 +58,7 @@ def main():
     for i, q in enumerate(queries):
         text = q.get("query") or q.get("question") or ""
         scores = bm25.get_scores(text.lower().split())
-        top = scores.argsort()[-TOPN:][::-1]            # rangs BM25 1..20
+        top = scores.argsort()[-TOPN:][::-1]            # BM25 ranks 1..20
         bm25_rank = {int(j): r + 1 for r, j in enumerate(top)}
         ce_scores = ce.predict([(text, chunks[j].get("text", "")) for j in top])
         order = [int(top[k]) for k in sorted(range(len(top)),

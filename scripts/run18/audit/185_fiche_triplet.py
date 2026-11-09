@@ -1,27 +1,28 @@
 #!/usr/bin/env python3
-"""185 — Fiche d'un triplet de run18, de la requete au graphe livre.
+"""185 — Traceability sheet of one run18 relation, from the query to the delivered graph.
 
-LECTURE SEULE. CPU. Aucun modele n'est appele (le tokenizer de Qwen peut etre
-charge pour afficher le texte exact apres le gabarit de conversation).
-N'ecrit que dans --outdir (refuse d'ecraser).
+READ-ONLY. CPU. No model is called (the Qwen tokenizer can be loaded to show the
+exact text after the chat template).
+Writes only into --outdir (refuses to overwrite).
 
-Chaque bloc de la fiche porte son origine :
-  [TEXTE]     texte de l'article, tel qu'il est dans l'index (minuscules, SYNONYM_MAP de 49)
-  [CONFIG]    fichier de configuration du run (requetes, schema)
-  [CODE]      valeur produite ou modifiee par un script, avec le fichier et la fonction
-  [MODELE]    sortie d'un LLM, lue dans un fichier du run
-  [REGENERE]  non journalise par le run ; recalcule ici avec la meme fonction et les memes
-              entrees ; la fiche dit comment la regeneration est controlee
-  [INFERENCE] deduit, non enregistre par le run
-  [MANQUANT]  aucun fichier du run ne le contient ; rien n'est reconstruit
+Each block of the sheet states its origin:
+  [TEXTE]     text of the paper as stored in the index (lowercase, SYNONYM_MAP of 49)
+  [CONFIG]    configuration file of the run (queries, schema)
+  [CODE]      value produced or changed by a script, with the file and the function
+  [MODELE]    output of an LLM, read from a file of the run
+  [REGENERE]  not logged by the run; recomputed here with the same function and the
+              same inputs; the sheet states how the regeneration is checked
+  [INFERENCE] deduced, not recorded by the run
+  [MANQUANT]  no file of the run holds it; nothing is rebuilt
 
-USAGE (racine du worktree run18, venv actif)
+USAGE (root of the run18 worktree, environment active)
   cd ~/ontogeorag_run18 && export PYTHONPATH=$PWD
   python 185_fiche_triplet.py --repo . --run output/run18 \
       --subject earthquake --relation triggers --object "slope failure" \
       --outdir output/audit/185_fiche_earthquake
-  option : --tokenizer <dossier local de Qwen2.5-7B-Instruct> pour afficher le texte
-           exact apres gabarit de conversation (sinon le script le cherche dans _steps.jsonl)
+  option: --tokenizer <local folder of Qwen2.5-7B-Instruct> to show the exact text
+          after the chat template (otherwise the script looks for it in _steps.jsonl)
+  The sheet is written in French.
 """
 
 import argparse
@@ -63,7 +64,7 @@ def load(path, name):
     return m
 
 
-NFKC = False   # --nfkc : ligatures (ﬁ, ﬂ...) et formes de compatibilite ramenees a l'ASCII avant comparaison
+NFKC = False   # --nfkc: ligatures (ﬁ, ﬂ...) and compatibility forms are mapped to ASCII before comparison
 
 
 def alnum(x):
@@ -132,7 +133,7 @@ def main():
     def block(label, txt):
         md.append("**%s**\n\n```\n%s\n```\n" % (label, txt))
 
-    # ---------- relation dans la fusion
+    # ---------- relation in the fusion
     kg = json.load(open(run / "kg/tiered_kg_run18.json", encoding="utf-8"))["triples"]
     recs = [r for r in kg if (r["subject"], r["relation"], r["object"]) == key]
     if len(recs) != 1:
@@ -146,7 +147,7 @@ def main():
     Ppass = "b" if rec.get("origin") == "iter_b" else "a"
     d = run / ("pass_" + Ppass)
 
-    # enregistrement exact que 06 a utilise : build_index sur lexicon_enforced
+    # exact record used by 06: build_index on lexicon_enforced
     enf = jl(d / "canonical_triples_v5.rulecanon.lexicon_enforced.jsonl")
     idx = F.build_index(enf)
     if key not in idx:
@@ -155,13 +156,13 @@ def main():
     prov = t06.get("_provenance") or {}
     ver6 = t06.get("_verification") or {}
 
-    # ligne d'origine dans verified_triples (rejeu des normalisations de 04)
+    # original line in verified_triples (replay of the normalisations of 04)
     verified = jl(d / "verified_triples.jsonl")
     raw = jl(d / "raw_triples.jsonl")
     cmap = json.load(open(d / "canonical_map_v5.json", encoding="utf-8"))
-    # 04 remplace un descripteur hors vocabulaire par le PREMIER descripteur d'un ensemble
-    # Python qui le contient : avec plusieurs candidats, le choix depend de PYTHONHASHSEED.
-    # Pour retrouver la ligne, l'objet de la relation est place en tete de l'ordre.
+    # 04 replaces an out-of-vocabulary descriptor by the FIRST descriptor of a Python set
+    # that contains it: with several candidates, the choice depends on PYTHONHASHSEED.
+    # To find the line again, the object of the relation is put first in the order.
     KD_SET = M.KNOWN_DESCRIPTORS
     M.KNOWN_DESCRIPTORS = ([key[2]] if key[2] in KD_SET else []) + sorted(x for x in KD_SET if x != key[2])
     cand = []
@@ -187,7 +188,7 @@ def main():
     if (r0.get("source"), r0.get("relation"), r0.get("target")) != (v.get("source"), v.get("relation"), v.get("target")):
         die("raw et verified ne concordent pas a la ligne %d" % li)
 
-    # ---------- 1. requete
+    # ---------- 1. query
     H("1. La requete")
     Q = jl(repo / QUERIES)
     qi = [i for i, q in enumerate(Q) if str(q.get("query", "")).strip() == str(prov.get("query", "")).strip()]
@@ -275,13 +276,13 @@ def main():
     P("Parametres de generation : temperature %s, `top_p=0.9` si temperature > 0, `repetition_penalty=1.1`, "
       "`max_new_tokens` = `--max-tokens` du job. [CODE]" % ("0.0" if Ppass == "a" else "0.3"))
 
-    # ---------- 4. reponse brute
+    # ---------- 4. raw answer
     H("4. La reponse brute de Qwen")
     P("[MANQUANT] 02 n'ecrit pas la reponse du modele : il ne garde que les triplets lus par `parse_response`. "
       "Aucun fichier du run ne la contient. Rien n'est reconstruit ici.")
     missing.append("reponse brute de Qwen a l'extraction (non ecrite par 02)")
 
-    # ---------- 5. triplet apres parsing
+    # ---------- 5. triple after parsing
     H("5. Le triplet apres parsing")
     vis = {k: r0.get(k) for k in ("source", "source_type", "relation", "target", "target_type", "salience")}
     block("raw_triples.jsonl, passe %s, ligne %d" % (Ppass, li), json.dumps(vis, ensure_ascii=False, indent=1))
@@ -385,7 +386,7 @@ def main():
     P("Tier a la fusion : `verdict_to_tier(%s)` = %s ; tier de la relation fusionnee = %s, origine `%s`. [CODE]" % (
         ver.get("verdict"), F.verdict_to_tier(ver.get("verdict", "")), rec.get("tier"), rec.get("origin")))
 
-    # ---------- 8. panel et graphe livre
+    # ---------- 8. panel and delivered graph
     H("8. Panel et graphe livre")
     passage_j = J.evidence_from_provenance(rec)
     block("[CODE] passage donne aux juges (m4_verify.evidence_from_provenance sur l'enregistrement fusionne ; "

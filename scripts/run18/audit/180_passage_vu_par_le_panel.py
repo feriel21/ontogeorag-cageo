@@ -1,29 +1,31 @@
 #!/usr/bin/env python3
-"""180 — Le panel voit-il la phrase qui soutient chaque relation ?
+"""180 — Does the panel see the sentence that supports each relation?
 
-POURQUOI
-    m4/m4_verify.py donne au verificateur `evidence_from_provenance(t)` :
-    le texte du PREMIER passage retrouve (_provenance.top_chunks[0]),
-    tronque a MAX_EVIDENCE_CHARS (1 500 caracteres). Dans run18, l'extracteur
-    lit les 5 passages : la phrase de preuve peut etre dans un passage 2 a 5,
-    ou apres le 1 500e caractere du premier. Le juge dit alors NOT_SUPPORTED
-    sans avoir vu la phrase. Ce script mesure ce cas sur le graphe fusionne
-    (entree du panel) et le croise avec la decision du panel.
+WHY
+    m4/m4_verify.py gives the verifying-LLM `evidence_from_provenance(t)`: the
+    text of the FIRST retrieved passage (_provenance.top_chunks[0]), cut at
+    MAX_EVIDENCE_CHARS (1,500 characters).
+    In run18 the extracting-LLM reads all 5 passages, so the evidence sentence
+    can lie in passage 2 to 5, or after the 1,500th character of the first one.
+    The verifying-LLM then answers NOT_SUPPORTED without having seen the sentence.
+    The script measures this case on the merged graph (input of the panel) and
+    crosses it with the panel decision.
 
-QUOI (lecture seule, CPU)
-    Pour chaque relation de kg/tiered_kg_<run>.json, dans l'ordre que lit m4_verify :
-      vue       la phrase de preuve est dans top_chunks[0][:1500]
-      chunk1    dans top_chunks[0] mais apres 1 500 caracteres
-      chunkN    dans top_chunks[N-1], N = 2..5 (jamais montre au juge)
-      absente   dans aucun des 5 passages
-    (comparaison en minuscules alphanumeriques ; si la phrase complete n'est pas
-    trouvee, une des trois fenetres de 40 caracteres suffit, comme dans 145)
-    Decision du panel et verdicts : m4/llama et m4/mistral (m4_verdicts.jsonl,
-    meme ordre que l'entree), et m4_panel/m4_panel_decisions.jsonl.
+WHAT (read-only, CPU)
+    For each relation of kg/tiered_kg_<run>.json, in the order read by m4_verify:
+      vue       the evidence sentence is in top_chunks[0][:1500]
+      chunk1    in top_chunks[0] but after 1,500 characters
+      chunkN    in top_chunks[N-1], N = 2..5 (never shown to the verifier)
+      absente   in none of the 5 passages
+    (comparison on lowercase alphanumeric text; if the full sentence is not
+    found, one of three 40-character windows is enough, as in 145)
+    Panel decision and verdicts: m4/llama and m4/mistral (m4_verdicts.jsonl,
+    same order as the input), and m4_panel/m4_panel_decisions.jsonl.
 
 USAGE
     python 180_passage_vu_par_le_panel.py --repo . --run-dir output/run18 \
         --outdir output/audit/180_passage_panel
+    Messages and output files are in French.
 """
 
 import argparse

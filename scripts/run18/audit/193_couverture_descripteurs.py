@@ -1,21 +1,22 @@
 #!/usr/bin/env python3
-"""193_couverture_descripteurs.py : lecture seule, aucun modele, aucun run.
+"""193_couverture_descripteurs.py: read-only, no model, no run.
 
-Explique l'ecart sur la couverture des 13 descripteurs LB2019 :
-  189 trouve 13/13 (objets hasDescriptor, NFKC, minuscules, tiret = espace) ;
-  article_metrics.json (07) trouve 12/13 (Tier 1 et 2) et 11/13 (Tier 1).
+Explains the difference in the coverage of the 13 LB2019 descriptors:
+  189 finds 13/13 (hasDescriptor objects, NFKC, lowercase, hyphen = space);
+  article_metrics.json (07) finds 12/13 (Tier 1 and 2) and 11/13 (Tier 1).
 
-Pour chaque descripteur et chaque graphe (livre 364, nettoye 281), compte les
-relations hasDescriptor dont l'objet correspond :
-  exact      : chaine identique
-  minuscules : identique apres strip().lower()
-  normalise  : NFKC, minuscules, tiret et souligne = espace (regle de 189)
-et donne la repartition par tier. Affiche aussi les lignes de 07 qui calculent
-la couverture, pour lire la regle de 07 sans la supposer.
+For each descriptor and each graph (delivered 364, cleaned 281), counts the
+hasDescriptor relations whose object matches:
+  exact      : identical string
+  minuscules : identical after strip().lower()
+  normalise  : NFKC, lowercase, hyphen and underscore read as a space (rule of 189)
+and gives the breakdown by tier. Also prints the lines of 07 that compute the
+coverage, so that the rule of 07 is read rather than assumed.
 
-Usage (depuis le worktree run18) :
+Usage (from the run18 worktree):
   python ~/ontogeorag/193_couverture_descripteurs.py --repo . \
       --outdir output/audit/193_couverture_descripteurs
+  Messages and output files are in French.
 """
 import argparse
 import json
@@ -53,7 +54,7 @@ def main():
         sys.exit(f"{outdir} existe deja : aucune sortie n'est ecrasee.")
     os.makedirs(outdir)
     sys.path.insert(0, os.path.abspath(a.repo))
-    from pipeline.rag.constants import LB2019_BENCHMARK_DESCRIPTORS as LB  # lecture seule
+    from pipeline.rag.constants import LB2019_BENCHMARK_DESCRIPTORS as LB  # read-only
 
     out = ["193_couverture_descripteurs : lecture seule.",
            f"descripteurs LB2019 ({len(LB)}) : " + ", ".join(repr(d) for d in LB)]

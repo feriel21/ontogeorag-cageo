@@ -1,23 +1,27 @@
 #!/usr/bin/env python3
-"""181 — Regles de decision des verificateurs, mesurees sur les controles du stress test.
+"""181 — Decision rules of the verifying-LLMs, measured on the self-audit records.
 
-POURQUOI
-    Le stress test (stress18.sh) donne, pour chaque controle, deux verdicts par
-    verificateur : avec la phrase (p) et a l'aveugle (v). Une REGLE transforme ces
-    verdicts en decision. On mesure ici trois regles, sur les memes controles :
-      admission   la regle du pipeline : la relation est ecartee seulement si
-                  p n'est pas SUPPORTED ET v n'est pas PLAUSIBLE
-      phrase      la phrase prime : ecartee si p = NOT_SUPPORTED, ou si
-                  p = PARTIALLY_SUPPORTED et v n'est pas PLAUSIBLE
-      phrase_seule ecartee si p = NOT_SUPPORTED (le verdict avec la phrase seul)
-    Pour chaque regle et chaque verificateur, puis pour le panel (ecartee si l'un
-    des deux juges l'ecarte) : part des copies corrompues ecartees, par type de
-    corruption, et part des relations du graphe mises de cote.
-    Memes definitions que scripts/evaluation/verifier_decision_rules.py du depot.
+WHY
+    The self-audit (stress18.sh) gives two verdicts per verifying-LLM for each
+    record: with the evidence sentence (p) and blind (v).
+    A RULE turns these verdicts into a decision.
+    Three rules are measured on the same records:
+      admission    rule of the pipeline: the relation is set aside only if
+                   p is not SUPPORTED AND v is not PLAUSIBLE
+      phrase       the sentence comes first: set aside if p = NOT_SUPPORTED, or if
+                   p = PARTIALLY_SUPPORTED and v is not PLAUSIBLE
+      phrase_seule set aside if p = NOT_SUPPORTED (verdict with the sentence only)
+    For each rule and each verifying-LLM, then for the panel (set aside if either
+    verifier sets it aside): share of corrupted copies set aside, per corruption
+    type, and share of the graph relations set aside.
+    Same definitions as scripts/evaluation/verifier_decision_rules.py.
+    Only phrase_seule is used in the manuscript: 191 recomputed the three rules
+    from the joined verdicts and did not reproduce the counts of the other two.
 
 USAGE
     python 181_regles_decision.py --stress output/run18/stress_test
-    (le dossier contient controls.jsonl, llama/m4_verdicts.jsonl, mistral/m4_verdicts.jsonl)
+    (the folder holds controls.jsonl, llama/m4_verdicts.jsonl, mistral/m4_verdicts.jsonl)
+    Messages and output files are in French.
 """
 
 import argparse

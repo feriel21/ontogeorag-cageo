@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
-"""191_regles_et_sensibilite.py : lecture seule, aucun modele, aucun run.
+"""191_regles_et_sensibilite.py: read-only, no model, no run.
 
-1. Joint controls.jsonl et les verdicts Llama et Mistral par m4_index, en verifiant
-   pour chaque ligne que sujet, relation et objet sont identiques (sinon : arret).
-2. Recalcule des regles explicites et indique lesquelles reproduisent les chiffres
-   de negatives_report.json et regles_decision.json (verification, pas hypothese).
-3. Taux par type de perturbation avec intervalles de Wilson a 95 %.
-4. Sensibilite : memes taux sans les cas ambigus (entite introduite presente dans le
-   passage, relation de la meme famille, boucle sujet = objet).
-5. Originaux : verdicts du stress test compares a ceux du graphe livre (jointure par
-   cle de contenu), et recouvrement des originaux ecartes avec les UNCERTAIN.
+1. Joins controls.jsonl and the Llama and Mistral verdicts by m4_index, checking
+   on each line that subject, relation and object are identical (stops otherwise).
+2. Recomputes explicit rules and states which ones reproduce the counts of
+   negatives_report.json and regles_decision.json (checked, not assumed).
+3. Rates per perturbation type with 95 % Wilson intervals.
+4. Sensitivity: same rates without the ambiguous records (introduced entity
+   present in the passage, relation of the same family, subject = object).
+5. Originals: verdicts of the self-audit compared with those of the delivered
+   graph (join by content key), and overlap of the originals set aside with the
+   UNCERTAIN relations.
 
-Usage (depuis le worktree run18) :
+Usage (from the run18 worktree):
   python ~/ontogeorag/191_regles_et_sensibilite.py --repo . \
       --outdir output/audit/191_regles_et_sensibilite
+  Messages and output files are in French.
 """
 import argparse
 import csv
@@ -99,7 +101,7 @@ def main():
                 sys.exit(f"m4_index {i} en double dans {j} : arret.")
             par[i] = r
         juges[j] = par
-    # --- 1. jointure verifiee
+    # --- 1. checked join
     lignes = []
     for i, c in enumerate(ctrl):
         rec = {"i": i, "c": c}
@@ -115,7 +117,7 @@ def main():
     out.append(f"jointure par m4_index verifiee sur le contenu : {len(lignes)}/{len(ctrl)} lignes, "
                f"0 discordance, pour llama et mistral")
 
-    # --- 2. regles explicites
+    # --- 2. explicit rules
     def ev(rec, j):
         return str(g(rec[j], "evidence.verdict"))
 
@@ -135,7 +137,7 @@ def main():
             lambda r: ev(r, "llama") != "SUPPORTED" and ev(r, "mistral") != "SUPPORTED",
         "aveugle IMPLAUSIBLE, au moins un juge": lambda r: "IMPLAUSIBLE" in (bl(r, "llama"), bl(r, "mistral")),
     }
-    # chiffres publies a reproduire
+    # published counts to reproduce
     publies = {}
     for j in ("llama", "mistral"):
         try:
@@ -172,7 +174,7 @@ def main():
     out.append("   chiffres publies non reproduits par ces regles : " +
                (", ".join(f"{p} {v}" for p, v in publies.items() if v not in resultats.values()) or "aucun"))
 
-    # --- 3 et 4. taux par type, avec et sans cas ambigus
+    # --- 3 and 4. rates per type, with and without the ambiguous records
     origs_par_idx = {str(r["c"]["orig_index"]): r["c"] for r in orig}
 
     def ambigu(r):
@@ -227,7 +229,7 @@ def main():
             lignes_csv.append([titre, nom, "originaux_conserves", len(orig), m, round(taux(m, len(orig)), 4),
                                round(lo2, 4), round(hi2, 4)])
 
-    # --- 5. originaux contre graphe livre
+    # --- 5. originals against the delivered graph
     out.append("\n=== 5. Originaux du stress test et graphe livre ===")
     with open(R(a.graphe), encoding="utf-8") as f:
         graphe = json.load(f)

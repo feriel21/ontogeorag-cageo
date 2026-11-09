@@ -79,7 +79,7 @@ python tools/verify_provenance.py --manifest results/run18/manifest.json \
 Comments and docstrings are in English, except in the files that must stay byte-identical to the code that ran, because a manifest records their checksum. These files keep their original comments, some of them in French:
 
 - the stage scripts recorded in the run16E and run18 manifests, among them `49_build_index_v2.py`, `52_repair_provenance.py`, `53_verify_repaired.py`, `pipeline/02_extract_triples_run18.py` and `pipeline/04_clean_validate_run18.py`;
-- the cleaning scripts recorded in the run18 postprocess manifest: `184_trace_requetes_et_pertes.py`, `187_provenance_articles.py` and `188_nettoyage_familles.py`.
+- the cleaning scripts recorded in the run18 postprocess manifest: `184_trace_requetes_et_pertes.py`, `187_provenance_articles.py` and `188_nettoyage_familles.py`. `docs/run18_cleaning_outputs.md` describes, in English, what these three scripts do and what each of their output columns means.
 
 The modules these scripts import at run time (`pipeline/rag/`, `m4/m4_config.py`, `analysis_suite/kg_io.py`) are also left as they were at the recorded commit. In the other scripts, the comments were translated after the run, and `PROVENANCE.tsv` records both versions. For the Python scripts, `tools/check_code_unchanged.py` confirmed that the syntax tree, docstrings excluded, is unchanged. For the shell drivers, the commands are identical once the comments are removed. Printed messages and output file names are not translated, because changing them would change the files that the scripts write.
 

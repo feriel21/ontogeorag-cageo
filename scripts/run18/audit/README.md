@@ -2,7 +2,7 @@
 
 Read-only CPU scripts run on the recorded run18 outputs after the run. No model is called and no run output is modified. Each script refuses to overwrite its output folder.
 
-The files are copied unchanged from the cluster; `PROVENANCE.tsv` records the origin and SHA-256 of each one. Their comments, messages and output file names are in French. Two numbers are used twice (189 and 190), because the scripts were numbered in the order they were written.
+The files were copied from the cluster; `PROVENANCE.tsv` records the SHA-256 of each copy. Their comments and docstrings were then translated into English, and `tools/check_code_unchanged.py` confirmed that the code is unchanged; `PROVENANCE.tsv` records both versions. Their messages and output file names are still in French, because changing them would change the files that the scripts write. Two numbers are used twice (189 and 190), because the scripts were numbered in the order they were written.
 
 | Script | What it computes |
 |---|---|

@@ -1,29 +1,30 @@
 #!/usr/bin/env python3
-"""190_controles_et_coherence.py : lecture seule, aucun modele, aucun run.
+"""190_controles_et_coherence.py: read-only, no model, no run.
 
-Complete 189 sur les points restes vides ou nouveaux :
+Completes 189 on the points left empty and on new points:
 
-  1. Coherence du graphe livre et du graphe nettoye :
+  1. Consistency of the delivered graph and of the cleaned graph:
      tier x tier_label x tier_original, tier x verdict x m4.decision,
-     m4.flags x verdict, relations dont la cle de contenu est en double.
-  2. Fichiers des controles : inventaire des dossiers stress_test et 181
-     (taille, sha, nombre d'enregistrements, champs), identite des controls.jsonl.
-  3. Verdicts des juges sur les 728 controles : recherche des fichiers qui les
-     contiennent, jointure sur des champs communs (jamais sur l'ordre sans le dire),
-     distribution complete des valeurs par type de perturbation.
-  4. Cas ambigus par type de perturbation, a partir de supporting_passage et de
-     la relation originale retrouvee par orig_index :
-       passage_perm : le passage echange nomme-t-il deja le sujet et l'objet ?
-       entity_sub   : l'entite introduite figure-t-elle dans le passage ?
-       relation_sub : relation originale -> relation introduite (matrice)
-       inversion    : relations inversees
-  5. Etapes du manifeste avec leur duree, et sacct si des numeros de job sont donnes.
+     m4.flags x verdict, relations whose content key is duplicated.
+  2. Files of the perturbed records: inventory of the stress_test and 181 folders
+     (size, sha, number of records, fields), identity of the controls.jsonl files.
+  3. Verdicts of the verifying-LLMs on the 728 records: search for the files that
+     hold them, join on common fields (never on line order without saying so),
+     full distribution of the values per perturbation type.
+  4. Ambiguous records per perturbation type, from supporting_passage and from
+     the original relation found through orig_index:
+       passage_perm : does the swapped passage already name the subject and the object?
+       entity_sub   : does the introduced entity appear in the passage?
+       relation_sub : original relation -> introduced relation (matrix)
+       inversion    : inverted relations
+  5. Manifest steps with their duration, and sacct if job numbers are given.
 
-N'ecrit que dans --outdir, refuse d'ecraser un dossier existant.
+Writes only into --outdir and refuses to overwrite an existing folder.
 
-Usage (depuis le worktree run18) :
+Usage (from the run18 worktree):
   python ~/ontogeorag/190_controles_et_coherence.py --repo . \
       --outdir output/audit/190_controles_et_coherence
+  Messages and output files are in French.
 """
 import argparse
 import csv
@@ -90,7 +91,7 @@ def aplatir(d):
 
 
 def charger(chemin):
-    """(liste d'enregistrements aplatis, objet brut si json non tabulaire)."""
+    """Return (list of flattened records, raw object if the JSON is not tabular)."""
     ext = os.path.splitext(chemin)[1].lower()
     try:
         if ext == ".jsonl":
@@ -205,7 +206,7 @@ def champs_verdict(recs):
 
 
 def cle_jointure(controles, recs):
-    """Champs communs utilisables pour joindre, du plus sur au moins sur."""
+    """Common fields usable for a join, from the most to the least reliable."""
     kc, kr = set(cles(controles)), set(cles(recs))
     for jeu in (["orig_index", "label", "corruption_class", "subject", "relation", "object"],
                 ["orig_index", "label", "corruption_class"],

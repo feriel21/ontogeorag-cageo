@@ -1,26 +1,28 @@
 #!/usr/bin/env python3
-"""189_elements_article.py : lecture seule, aucun modele, aucun run.
+"""189_elements_article.py: read-only, no model, no run.
 
-Rassemble, a partir des sorties existantes de run18, les elements qui manquent
-pour ecrire l'article :
+Gathers, from the existing run18 outputs, the items still missing to write the
+manuscript:
 
-  A. Schema des fichiers lus (pour verifier les champs detectes).
-  B. Les graphes : avant nettoyage (graphe livre) et apres nettoyage (sortie 188).
-     Relations, entites, types de relations, tiers, decisions, drapeaux,
-     couverture des 13 descripteurs LB2019, provenance jointe par cle de contenu.
-  C. Controles perturbes : taux de rejet par type de perturbation et par juge ou
-     regle, taux de conservation des originaux, intervalles de Wilson a 95 %.
-  D. Cas ambigus par type de perturbation (perturbation qui pourrait rester
-     soutenue par la phrase).
-  E. Marqueurs de nuance (sortie 186) et resumes existants de 184, 186, 187, 188.
-  F. Materiel, duree et appels : manifestes et journaux SLURM.
+  A. Schema of the files read (to check the detected fields).
+  B. The graphs before cleaning (delivered graph) and after cleaning (output of 188):
+     relations, entities, relation types, tiers, decisions, flags, coverage of the
+     13 LB2019 descriptors, provenance joined by content key.
+  C. Perturbed records: rejection rate per perturbation type and per verifier or
+     rule, retention rate of the originals, 95 % Wilson intervals.
+  D. Ambiguous records per perturbation type (a perturbation that could remain
+     supported by the sentence).
+  E. Qualification markers (output of 186) and existing summaries of 184, 186,
+     187 and 188.
+  F. Hardware, duration and calls: manifests and SLURM logs.
 
-Le script n'ecrit que dans --outdir et refuse d'ecraser un dossier existant.
-Les jointures se font sur des cles de contenu normalisees, jamais sur des indices.
+The script writes only into --outdir and refuses to overwrite an existing folder.
+Joins use normalised content keys, never positions.
 
-Usage (depuis le worktree run18) :
+Usage (from the run18 worktree):
   python ~/ontogeorag/189_elements_article.py --repo . --run output/run18 \
       --outdir output/audit/189_elements_article
+  Messages and output files are in French.
 """
 import argparse
 import csv
@@ -34,7 +36,7 @@ import unicodedata
 from collections import Counter, defaultdict
 
 # --------------------------------------------------------------------------
-# Constantes de lecture (pas de parametre du pipeline)
+# Reading constants (not pipeline parameters)
 # --------------------------------------------------------------------------
 CAND_SUJET = ["source", "subject", "head", "subj", "s"]
 CAND_REL = ["relation", "predicate", "rel", "r"]
@@ -43,12 +45,12 @@ CAND_PHRASE = ["evidence_sentence", "evidence", "sentence", "phrase", "quote",
                "evidence_text", "support_sentence", "text"]
 CAND_TIER = ["tier"]
 
-# Predicats orientes : une inversion les rend faux en general.
+# Directed predicates: an inversion generally makes the relation false.
 ORIENTES = {"causes", "triggers", "controls", "affects", "overlies", "underlies",
             "partof", "formedby", "occursin", "hasdescriptor", "indicates",
             "evidences"}
-# Familles de predicats voisins : un changement a l'interieur d'une famille
-# peut rester soutenu par la phrase.
+# Families of neighbouring predicates: a change inside a family
+# can remain supported by the sentence.
 FAMILLES = {
     "causal": {"causes", "triggers", "controls", "affects", "formedby"},
     "stratigraphique": {"overlies", "underlies"},
@@ -60,14 +62,14 @@ MOTIF_VERDICT = re.compile(r"SUPPORT|ACCEPT|REJECT|UNCERTAIN|PLAUSIBLE|NOT_|IMPL
                            re.I)
 MOTIF_REJET = re.compile(r"NOT[_ ]SUPPORTED|REJECT", re.I)
 MOTIF_CONTROLES = re.compile(r"stress|control|corrupt|adversar|perturb", re.I)
-MAX_MODALITES = 12          # au-dela, un champ est traite comme du texte libre
+MAX_MODALITES = 12          # above this length, a field is treated as free text
 
 
 # --------------------------------------------------------------------------
-# Outils
+# Helpers
 # --------------------------------------------------------------------------
 def norm(x):
-    """Cle de texte : NFKC (ligatures), minuscules, tiret et souligne = espace."""
+    """Text key: NFKC (ligatures), lowercase, hyphen and underscore read as a space."""
     if x is None:
         return ""
     s = unicodedata.normalize("NFKC", str(x)).lower()
@@ -101,7 +103,7 @@ def aplatir(d):
 
 
 def charger(chemin):
-    """Retourne une liste de dicts aplatis, ou [] si le fichier n'est pas tabulaire."""
+    """Return a list of flattened dicts, or [] if the file is not tabular."""
     ext = os.path.splitext(chemin)[1].lower()
     try:
         if ext == ".jsonl":
@@ -124,13 +126,13 @@ def charger(chemin):
         if ext in (".csv", ".tsv"):
             with open(chemin, encoding="utf-8", newline="") as f:
                 return [dict(r) for r in csv.DictReader(f, delimiter="\t" if ext == ".tsv" else ",")]
-    except Exception as e:  # fichier illisible : on le signale, on continue
+    except Exception as e:  # unreadable file: reported, then skipped
         print(f"  [lecture impossible] {chemin} : {e}", file=sys.stderr)
     return []
 
 
 def cle(cles, candidats, prefixe_exclu=None):
-    """Trouve un champ : nom exact, puis dernier segment, puis sous-chaine."""
+    """Find a field: exact name, then last segment, then substring."""
     cles = [k for k in cles if not (prefixe_exclu and k.lower().startswith(prefixe_exclu))]
     bas = {k.lower(): k for k in cles}
     for c in candidats:
@@ -190,12 +192,12 @@ def schema(nom, recs):
 
 
 # --------------------------------------------------------------------------
-# B. Graphes
+# B. Graphs
 # --------------------------------------------------------------------------
 def lb13(repo):
     sys.path.insert(0, os.path.abspath(repo))
     try:
-        from pipeline.rag.constants import LB2019_BENCHMARK_DESCRIPTORS  # lecture seule
+        from pipeline.rag.constants import LB2019_BENCHMARK_DESCRIPTORS  # read-only
         return [norm(x) for x in LB2019_BENCHMARK_DESCRIPTORS]
     except Exception as e:
         print(f"  [constantes] LB2019_BENCHMARK_DESCRIPTORS introuvable : {e}", file=sys.stderr)
@@ -239,7 +241,7 @@ def stats_graphe(nom, recs, lb, provenances, out):
 
 
 # --------------------------------------------------------------------------
-# C et D. Controles perturbes
+# C and D. Perturbed records
 # --------------------------------------------------------------------------
 def categorie(v):
     t = norm(v)
@@ -354,7 +356,7 @@ def analyser_controles(nom, recs, out, lignes_csv, lignes_amb, attendu):
 
 
 # --------------------------------------------------------------------------
-# F. Materiel, duree, appels
+# F. Hardware, duration, calls
 # --------------------------------------------------------------------------
 MOTIF_MANIFESTE = re.compile(r"time|duration|elapsed|gpu|device|host|node|start|end|date|calls|n_", re.I)
 MOTIF_SLURM = re.compile(r"NVIDIA|A100|GPU|CUDA_VISIBLE|Elapsed|elapsed|SLURM_JOB_ID|JobId|"
@@ -404,7 +406,7 @@ def main():
     resume, schemas = [], []
     resume.append("189_elements_article : lecture seule. Chiffres a verifier contre les sorties citees.")
 
-    # ---- B. graphes
+    # ---- B. graphs
     resume.append("\n=== B. Graphes ===")
     avant = R(a.graphe_avant or os.path.join(a.run, "kg_final", "flat_run18_enforced_dedup.json"))
     graphes = []
@@ -441,7 +443,7 @@ def main():
             w.writeheader()
             w.writerows(lignes_g)
 
-    # ---- C et D. controles
+    # ---- C and D. perturbed records
     resume.append("\n=== C et D. Controles perturbes ===")
     if a.controles:
         fichiers = [R(x) for x in a.controles]
@@ -470,7 +472,7 @@ def main():
         w.writerow(["fichier", "categorie", "statut", "sujet", "relation", "objet", "phrase"])
         w.writerows(lignes_amb)
 
-    # ---- E. nuance et resumes existants
+    # ---- E. qualification markers and existing summaries
     resume.append("\n=== E. Nuance (186) et resumes existants ===")
     for f in sorted(glob.glob(os.path.join(R(a.dossier_186), "**", "*"), recursive=True)):
         if os.path.splitext(f)[1].lower() in (".json", ".jsonl", ".csv", ".tsv"):
@@ -488,7 +490,7 @@ def main():
             with open(f, encoding="utf-8", errors="replace") as h:
                 resume += [l.rstrip("\n") for l in h.readlines()[:80]]
 
-    # ---- F. materiel, duree, appels
+    # ---- F. hardware, duration, calls
     resume.append("\n=== F. Materiel, duree, appels ===")
     for f in sorted(glob.glob(os.path.join(R(a.run), "**", "*manifest*"), recursive=True))[:10]:
         try:

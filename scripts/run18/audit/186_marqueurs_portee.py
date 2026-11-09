@@ -1,23 +1,25 @@
 #!/usr/bin/env python3
-"""186 — Marqueurs de portee dans les phrases de preuve du graphe livre (indicateur automatique).
+"""186 — Scope markers in the evidence sentences of the delivered graph (automatic indicator).
 
-LECTURE SEULE. CPU. Aucun modele. N'ecrit que dans --outdir (refuse d'ecraser).
+READ-ONLY. CPU. No model. Writes only into --outdir (refuses to overwrite).
 
 QUESTION
-    Un triplet (sujet, relation, objet) ne peut pas porter les nuances de sa phrase :
-    modalite (may, potential...), quantificateur partiel (some, locally...), condition
-    (where, under, down to...), valeur chiffree, cas particulier (figure, zone d'etude),
-    partie d'un objet (top surface, distal...). Ce script compte, dans la phrase de preuve
-    de chaque relation livree, les marqueurs lexicaux de ces nuances, puis croise ce compte
-    avec le tier et les verdicts des juges du panel.
+    A triple (subject, relation, object) cannot carry the qualifications of its
+    sentence: modality (may, potential...), partial quantifier (some, locally...),
+    condition (where, under, down to...), numerical value, particular case
+    (figure, study area), part of an object (top surface, distal...).
+    The script counts the lexical markers of these qualifications in the
+    evidence sentence of each delivered relation, then crosses the count with
+    the tier and the verdicts of the panel.
 
-CE QUE LE CHIFFRE VEUT DIRE
-    C'est un INDICATEUR LEXICAL, pas un jugement : un marqueur present ne prouve pas que
-    le triplet a perdu une nuance (ex. "where" peut etre un simple relatif), et une nuance
-    sans mot-cle de la liste n'est pas comptee. Les listes sont fixees ci-dessous, avant
-    lecture des resultats, et chaque relation reporte les mots trouves pour relecture.
+WHAT THE COUNT MEANS
+    The count is a LEXICAL INDICATOR, not a judgement.
+    A marker does not prove that the triple lost a qualification ("where" can be
+    a plain relative), and a qualification without a listed keyword is not counted.
+    The lists below were fixed before reading the results, and each relation
+    reports the words found, for review.
 
-CATEGORIES (mots entiers, phrase en minuscules, ligatures normalisees NFKC)
+CATEGORIES (whole words, lowercase sentence, ligatures normalised with NFKC)
     modalite      may, might, could, can, possibly, possible, potential(ly), probably,
                   probable, likely, unlikely, perhaps, presumably, suggest*, appear(s/ed) to,
                   seem*, inferred, interpreted, thought to, hypothes*, uncertain
@@ -25,23 +27,24 @@ CATEGORIES (mots entiers, phrase en minuscules, ligatures normalisees NFKC)
                   locally, occasionally, sometimes, partly, partially, few, in places
     condition     if, when, where, unless, provided, depending, only, under, during,
                   down to, deeper, shallower, greater than, less than
-    valeur        nombre suivi d'une unite (m, km, ms, %, degre) ou "magnitude"
+    valeur        number followed by a unit (m, km, ms, %, degree) or "magnitude"
     cas           fig., figure, this study, this area, study area, here, survey,
-                  "the <nom> slide/basin/margin/area/mass transport deposit"
+                  "the <name> slide/basin/margin/area/mass transport deposit"
     partie        top surface, upper surface, basal, base of, distal, proximal, fill,
                   flank, toe, headscarp, headwall, upper part, lower part, internal, edge
-                  (compte seulement si le mot n'est pas deja dans le sujet du triplet)
-    negation      not, no, never, without, absence, absent, lack (compte a part)
-    "phrase nuancee" = au moins une categorie parmi modalite, partiel, condition, valeur,
-    cas, partie.
+                  (counted only if the word is not already in the subject of the triple)
+    negation      not, no, never, without, absence, absent, lack (counted separately)
+    "qualified sentence" = at least one category among modalite, partiel, condition,
+    valeur, cas, partie.
 
-AUTRES SIGNAUX LUS DANS L'ENREGISTREMENT (aucun calcul de modele)
-    tronquee : la phrase fait 400 caracteres, longueur de coupe de 06
-    juges    : m4.evidence_verdict (Llama|Mistral), m4.decision, tier
+OTHER SIGNALS READ FROM THE RECORD (no model computation)
+    truncated : the sentence is 400 characters long, the cut length of 06
+    verifiers : m4.evidence_verdict (Llama|Mistral), m4.decision, tier
 
-USAGE (racine du worktree run18)
+USAGE (root of the run18 worktree)
     python 186_marqueurs_portee.py --graph output/run18/kg_final/flat_run18_enforced_dedup.json \
         --quarantine output/run18/m4_panel/m4_quarantine.jsonl --outdir output/audit/186_portee
+    Category names, messages and output files are in French.
 """
 
 import argparse
@@ -54,7 +57,7 @@ import unicodedata
 from collections import Counter, defaultdict
 from pathlib import Path
 
-CUT = 400  # longueur de coupe de evidence dans 06_tiered_fusion.get_evidence
+CUT = 400  # cut length of the evidence in 06_tiered_fusion.get_evidence
 
 PATTERNS = {
     "modalite": [r"may", r"might", r"could", r"can", r"possibly", r"possible", r"potential(?:ly)?",

@@ -1,18 +1,17 @@
 #!/usr/bin/env python3
-"""189 — Frequence des termes du vocabulaire d'extraction dans le corpus.
+"""189 — Frequency of the extraction vocabulary terms in the corpus.
 
-BUT
-    Argumenter les 27 descripteurs ajoutes et les 21 settings : pour chaque
-    terme de KNOWN_DESCRIPTORS et KNOWN_SETTINGS, compter le nombre d'articles
-    et de passages de l'index qui le contiennent (mot entier, texte deja en
-    minuscules par 49).
+PURPOSE
+    Support the 27 added descriptors and the 21 settings: for each term of
+    KNOWN_DESCRIPTORS and KNOWN_SETTINGS, count the papers and the passages of
+    the index that contain it (whole word; the text is already lowercased by 49).
 
-LECTURE SEULE
-    Ne modifie aucun fichier existant. Refuse d'ecraser la sortie.
+READ-ONLY
+    No existing file is modified. The script refuses to overwrite its output.
 
-USAGE (depuis la racine du depot)
+USAGE (from the repository root)
     python 189_frequence_vocabulaire.py \
-        --chunks /home/talbi/ontogeorag_D/output/run16E/index/chunks.jsonl \
+        --chunks <run16E index>/chunks.jsonl \
         --out    output/run18/vocab_frequence.csv
 """
 
@@ -32,8 +31,8 @@ from pipeline.rag.constants import (  # noqa: E402
 
 
 def pattern(term):
-    # mot entier ; un tiret ou un espace dans le terme peut etre ecrit
-    # avec un tiret ou un espace dans le texte (high-amplitude / high amplitude)
+    # whole word; a hyphen or a space in the term may be written
+    # as a hyphen or a space in the text (high-amplitude / high amplitude)
     body = r"[\s-]".join(re.escape(w) for w in re.split(r"[\s-]", term))
     return re.compile(r"(?<![a-z0-9-])" + body + r"(?![a-z0-9-])")
 

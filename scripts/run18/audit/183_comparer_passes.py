@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""183 — La passe deterministe rejouee redonne-t-elle les memes relations ?
+"""183 — Does a replayed deterministic pass give the same relations again?
 
-Compare deux fichiers raw_triples.jsonl (sortie de 02) sur l'ensemble des relations
-DISTINCTES (source, relation, cible) en minuscules, espaces normalises : meme mesure
-que le « 279/279 » de run16E. Ecrit le resume a cote de --b.
+Compares two raw_triples.jsonl files (output of 02) on the set of DISTINCT
+relations (source, relation, target), in lowercase with normalised spaces.
+The measure is the same as the "279/279" of run16E.
+Writes the summary next to --b.
 
 USAGE
     python 183_comparer_passes.py --a output/run18/pass_a/raw_triples.jsonl \

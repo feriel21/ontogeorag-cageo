@@ -1,41 +1,44 @@
 #!/usr/bin/env python3
-"""179 — Ou se perd chaque relation de comparaison absente du graphe de run18 ?
+"""179 — Where is each expert relation missing from the run18 graph lost?
 
-POURQUOI
-    Pour chaque relation du graphe de Le Bouteiller (26, comparaison seulement),
-    on suit son chemin dans run18, etape par etape, pour savoir POURQUOI elle
-    manque : pas de phrase dans le corpus, passage jamais retrouve, retrouve mais
-    pas extrait, extrait sous une autre forme, ou extrait puis retire a une etape.
+WHY
+    For each relation of the graph of Le Bouteiller et al. (26 relations, used
+    for comparison only), the script follows its path through run18, step by
+    step, to find why the relation is missing: no sentence in the corpus,
+    passage never retrieved, retrieved but not extracted, extracted in another
+    form, or extracted then removed at a later step.
 
-ETAPES SUIVIES (fichiers de --run-dir, lecture seule)
-    corpus      index/chunks.jsonl : phrases qui nomment les deux termes
-    recherche   pass_*/raw_triples.jsonl, champ _provenance.selected_chunks :
-                ces passages ont-ils ete donnes a l'extracteur ?
+STEPS FOLLOWED (files of --run-dir, read-only)
+    corpus      index/chunks.jsonl: sentences that name both terms
+    retrieval   pass_*/raw_triples.jsonl, field _provenance.selected_chunks:
+                were these passages given to the extracting-LLM?
     extraction  pass_*/raw_triples.jsonl
-    verif_qwen  pass_*/verified_triples.jsonl (verdict de Qwen)
-    nettoyage   pass_*/rejected_triples_v5.jsonl (_reject_reason)
-    apres_nett. pass_*/canonical_triples_v5.rulecanon.lexicon_enforced.jsonl
+    verif_qwen  pass_*/verified_triples.jsonl (verdict of Qwen)
+    cleaning    pass_*/rejected_triples_v5.jsonl (_reject_reason)
+    after_clean pass_*/canonical_triples_v5.rulecanon.lexicon_enforced.jsonl
     fusion      kg/tiered_kg_<run>.json
-    panel       m4_panel/tiered_kg_m4.json et m4_panel/m4_quarantine.jsonl
-    livre       kg_final/flat_<run>_enforced_dedup.json
+    panel       m4_panel/tiered_kg_m4.json and m4_panel/m4_quarantine.jsonl
+    delivered   kg_final/flat_<run>_enforced_dedup.json
 
-APPARIEMENT (fixe avant de regarder)
-    Un terme est trouve dans un texte s'il y apparait en mots entiers, avec
-    espace ou trait d'union indifferents et pluriel s/es accepte.
-    niveau A : meme relation, sujet et objet contiennent les deux termes
-               (ex. "turbidite deposits" --hasDescriptor--> "parallel")
-    niveau B : les deux termes sont presents mais la relation differe ou le sens
-               est inverse (ex. "mass transport deposit" --formedBy--> "slope failure")
-    La raison retenue est la premiere etape ou la relation disparait au niveau A.
+MATCHING (fixed before looking at the results)
+    A term is found in a text if it occurs as whole words, with space and
+    hyphen treated alike and the plurals s/es accepted.
+    level A : same relation; subject and object contain the two terms
+              (e.g. "turbidite deposits" --hasDescriptor--> "parallel")
+    level B : both terms are present but the relation differs or the direction
+              is reversed (e.g. "mass transport deposit" --formedBy--> "slope failure")
+    The reason reported is the first step at which the relation disappears at
+    level A.
 
-LIMITE
-    02 n'ecrit la provenance que des requetes qui ont produit au moins une
-    relation : un passage donne a l'extracteur sans aucune relation en sortie
-    n'est pas visible. « non retrouve » est donc une borne haute.
+LIMITATION
+    02 writes the provenance only for queries that produced at least one
+    relation: a passage given to the extracting-LLM that yielded no relation is
+    not visible. "Not retrieved" is therefore an upper bound.
 
 USAGE
     python 179_trace_relations_absentes.py --repo . --run-dir output/run18 \
         --outdir output/audit/179_trace_run18
+    Messages and output files are in French.
 """
 
 import argparse
@@ -161,7 +164,7 @@ def main():
         print("%-20s %6s  %s" % (name, len(d) if d is not None else "absent", path), flush=True)
 
     chunks = [json.loads(l) for l in open(rd / "index/chunks.jsonl", encoding="utf-8") if l.strip()]
-    retrieved = defaultdict(set)   # chunk_id -> requetes
+    retrieved = defaultdict(set)   # chunk_id -> queries
     for P in ("a", "b"):
         for t in data["extraction_" + P]:
             pv = t.get("_provenance") or {}

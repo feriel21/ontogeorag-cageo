@@ -1,27 +1,27 @@
 #!/usr/bin/env python3
-"""182 — Familles de noms et tables de l'abstract, sur le graphe livre de run18.
+"""182 — Name families and abstract tables, on the run18 delivered graph.
 
-DEUX ETAPES
-  1. proposer : chaque entite du graphe recoit une famille.
-       - « table »     : le nom est deja dans configs/entity_families.csv (table faite
-                         a la main sur run16E) ;
-       - « proposee »  : nom absent de la table ; famille proposee si au moins la
-                         moitie de ses mots porteurs sont partages avec les noms d'une
-                         famille (une seule famille gagnante) ; A VALIDER A LA MAIN ;
-       - « aucune »    : rien de proche.
-     Ecrit <outdir>/familles_run18_a_valider.csv (entity, family, methode, occurrences).
-     Tu corriges la colonne family (vide = pas de famille), puis tu l'enregistres sous
-     configs/entity_families_run18.csv.
+TWO STEPS
+  1. proposer: each entity of the graph receives a family.
+       - "table"    : the name is already in configs/entity_families.csv (table made
+                      by hand on run16E);
+       - "proposee" : name absent from the table; a family is proposed if at least
+                      half of its content words are shared with the names of one
+                      family (a single winning family); TO BE CHECKED BY HAND;
+       - "aucune"   : nothing close.
+     Writes <outdir>/familles_run18_a_valider.csv (entity, family, methode, occurrences).
+     The family column is corrected by hand (empty = no family) and the file is
+     saved as configs/entity_families_run18.csv.
 
-  2. mesurer : avec la table validee, calcule ce que cite l'abstract :
-       - Table 1 : par famille, le nombre de noms et les noms ;
-       - composantes du graphe entier avant / apres regroupement des familles ;
-       - composantes du sous-graphe causal (causes, triggers, controls, affects)
-         avant / apres regroupement ;
-       - voisinage de « slope failure » : noms distincts relies par une relation
-         causale a un membre de la famille slope failure, avant / apres ;
-       - Table 2 : relations Tier 1 « X triggers <slope failure> » avec leur phrase
-         (tableau a lire pour reperer les conditions perdues).
+  2. mesurer: with the validated table, computes the numbers quoted in the abstract:
+       - Table 1: per family, the number of names and the names;
+       - connected components of the whole graph before and after grouping by family;
+       - components of the causal subgraph (causes, triggers, controls, affects)
+         before and after grouping;
+       - neighbourhood of "slope failure": distinct names linked by a causal
+         relation to a member of the slope-failure family, before and after;
+       - Table 2: Tier 1 relations "X triggers <slope failure>" with their sentence
+         (a table to read, to spot lost conditions).
 
 USAGE
   python 182_familles_noms_run18.py proposer --repo . \
@@ -31,6 +31,7 @@ USAGE
       --graph output/run18/kg_final/flat_run18_enforced_dedup.json \
       --families configs/entity_families_run18.csv \
       --outdir output/audit/182_mesures
+  Subcommands, messages and output files are in French.
 """
 
 import argparse
