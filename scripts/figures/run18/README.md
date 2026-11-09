@@ -8,7 +8,7 @@ Producers of the figures of the run18 manuscript. They read only files of this r
 | `fig_text_to_graph_run18.py` | `fig:texttograph`, from four sentences of Alves et al. (2014) to the cleaned graph | graph with located provenance (187), removed relations (188) |
 | `fig_overview_zoom_run18.py` | `fig:overview`, the cleaned graph by family and the neighbourhood of mass transport deposits | cleaned graph (188) |
 | `fig_lb2019_vs_graph_run18.py` | `fig:lb2019`, the 26 expert relations and their status in the cleaned graph | cleaned graph, `configs/lb_reference_edges_original26.json`, `configs/entity_families_run18.csv` |
-| `fig_pressure_families_run18.py` | `fig:pressurefamilies`, the neighbourhood of slope failure by family | cleaned graph (188) |
+| `fig_pressure_families_run18.py` | `fig:pressurefamilies`, causal relations around pore pressure and slope failure, by family | cleaned graph (188) |
 
 Run all five from the repository root:
 

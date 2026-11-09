@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Figure fig:pressurefamilies — neighbourhood of slope failure in the cleaned run18 graph,
-after grouping entity names by family.
+"""Figure fig:pressurefamilies — causal relations around pore pressure and slope failure in the
+cleaned run18 graph, after grouping entity names by family.
 
-Selection. The figure shows eleven families, fixed below: pore pressure / overpressure, the seven
-families it is linked to by a causal relation (causes, triggers, controls, affects), seismicity,
-which gives the largest number of relations into slope failure, and poor drainage, which acts on
-effective stress. Every causal relation of the cleaned graph between two of these families is
+Selection. The figure shows eleven families, fixed below: pore pressure / overpressure, the eight
+families it is linked to by a causal relation (causes, triggers, controls, affects), slope failure
+among them, seismicity, which sends as many relations to slope failure as pore pressure (5 each),
+and poor drainage, which causes a change of effective stress. Every causal relation of the cleaned graph between two of these families is
 drawn; relations inside one family are not drawn.
 
 Each node gives the number of distinct entity names grouped in the family (fields famille_sujet
