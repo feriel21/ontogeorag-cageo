@@ -1,0 +1,183 @@
+191_regles_et_sensibilite : lecture seule.
+jointure par m4_index verifiee sur le contenu : 728/728 lignes, 0 discordance, pour llama et mistral
+
+--- contenu de output/run18/stress_test/regles_decision.txt
+=== 181 regles de decision sur 728 controles (364 originaux, 364 corrompus) ===
+par type de corruption : entity_sub 159, inversion 23, passage_perm 91, relation_sub 91
+
+regle         juge     corrompues_ecart. originaux_mis_cote  entity_sub      inversion       passage_perm    relation_sub  
+admission     llama          51/364  14%       20/364   5%  22/159          2/23            11/91           16/91         
+admission     mistral        62/364  17%       40/364  11%  29/159          1/23            18/91           14/91         
+admission     panel          92/364  25%       52/364  14%  39/159          3/23            26/91           24/91         
+
+phrase        llama         274/364  75%       94/364  26%  128/159         11/23           82/91           53/91         
+phrase        mistral       184/364  51%       58/364  16%  93/159          1/23            65/91           25/91         
+phrase        panel         284/364  78%      126/364  35%  133/159         11/23           85/91           55/91         
+
+phrase_seule  llama         268/364  74%       74/364  20%  127/159         10/23           82/91           49/91         
+phrase_seule  mistral       161/364  44%       18/364   5%  86/159          1/23            60/91           14/91         
+phrase_seule  panel         275/364  76%       79/364  22%  131/159         10/23           84/91           50/91         
+
+admission = regle du pipeline ; phrase = la phrase prime ; phrase_seule = verdict avec la phrase seul
+panel = ecartee si l'un des deux juges l'ecarte (le plus prudent, comme dans le pipeline)
+
+=== 2. Regles recalculees (perturbes 364, originaux 364) ===
+   phrase NOT_SUPPORTED llama                              perturbes ecartes 268/364, originaux ecartes  74/364   = negatives_report llama, regles_decision phrase_seule|llama
+   phrase NOT_SUPPORTED mistral                            perturbes ecartes 161/364, originaux ecartes  18/364   = negatives_report mistral, regles_decision phrase_seule|mistral
+   phrase NOT_SUPPORTED, au moins un juge                  perturbes ecartes 275/364, originaux ecartes  79/364   = regles_decision phrase_seule|panel
+   phrase NOT_SUPPORTED, les deux juges                    perturbes ecartes 154/364, originaux ecartes  13/364
+   phrase NOT ou aveugle IMPLAUSIBLE, llama                perturbes ecartes 271/364, originaux ecartes  89/364
+   phrase NOT ou aveugle IMPLAUSIBLE, mistral              perturbes ecartes 168/364, originaux ecartes  36/364
+   phrase NOT ou aveugle IMPLAUSIBLE, au moins un juge     perturbes ecartes 279/364, originaux ecartes 100/364
+   phrase non SUPPORTED (NOT ou PARTIALLY), les deux juges perturbes ecartes 318/364, originaux ecartes 193/364
+   aveugle IMPLAUSIBLE, au moins un juge                   perturbes ecartes  38/364, originaux ecartes  24/364
+   chiffres publies non reproduits par ces regles : regles_decision admission|llama (51, 20), regles_decision admission|mistral (62, 40), regles_decision admission|panel (92, 52), regles_decision phrase|llama (274, 94), regles_decision phrase|mistral (184, 58), regles_decision phrase|panel (284, 126)
+
+=== 3. Cas ambigus retenus pour la sensibilite ===
+   entity_sub     boucle sujet = objet : 3
+   entity_sub     entite introduite presente dans le passage : 12
+   relation_sub   relation de la meme famille : 10
+
+=== 4. Taux par type, tous les perturbes (Wilson 95 %) ===
+   -- phrase NOT_SUPPORTED llama
+      entity_sub     rejet 127/159 = 0.799 [0.730 ; 0.854]
+      passage_perm   rejet  82/91  = 0.901 [0.823 ; 0.947]
+      relation_sub   rejet  49/91  = 0.538 [0.437 ; 0.637]
+      inversion      rejet  10/23  = 0.435 [0.256 ; 0.632]
+      tous           rejet 268/364 = 0.736 [0.689 ; 0.779]
+      originaux      conservation 290/364 = 0.797 [0.752 ; 0.835]
+   -- phrase NOT_SUPPORTED mistral
+      entity_sub     rejet  86/159 = 0.541 [0.463 ; 0.616]
+      passage_perm   rejet  60/91  = 0.659 [0.557 ; 0.748]
+      relation_sub   rejet  14/91  = 0.154 [0.094 ; 0.242]
+      inversion      rejet   1/23  = 0.043 [0.008 ; 0.210]
+      tous           rejet 161/364 = 0.442 [0.392 ; 0.494]
+      originaux      conservation 346/364 = 0.951 [0.923 ; 0.968]
+   -- phrase NOT_SUPPORTED, au moins un juge
+      entity_sub     rejet 131/159 = 0.824 [0.757 ; 0.875]
+      passage_perm   rejet  84/91  = 0.923 [0.850 ; 0.962]
+      relation_sub   rejet  50/91  = 0.549 [0.447 ; 0.648]
+      inversion      rejet  10/23  = 0.435 [0.256 ; 0.632]
+      tous           rejet 275/364 = 0.755 [0.709 ; 0.797]
+      originaux      conservation 285/364 = 0.783 [0.738 ; 0.822]
+   -- phrase NOT_SUPPORTED, les deux juges
+      entity_sub     rejet  82/159 = 0.516 [0.439 ; 0.592]
+      passage_perm   rejet  58/91  = 0.637 [0.535 ; 0.729]
+      relation_sub   rejet  13/91  = 0.143 [0.085 ; 0.229]
+      inversion      rejet   1/23  = 0.043 [0.008 ; 0.210]
+      tous           rejet 154/364 = 0.423 [0.373 ; 0.474]
+      originaux      conservation 351/364 = 0.964 [0.940 ; 0.979]
+   -- phrase NOT ou aveugle IMPLAUSIBLE, llama
+      entity_sub     rejet 127/159 = 0.799 [0.730 ; 0.854]
+      passage_perm   rejet  82/91  = 0.901 [0.823 ; 0.947]
+      relation_sub   rejet  52/91  = 0.571 [0.469 ; 0.668]
+      inversion      rejet  10/23  = 0.435 [0.256 ; 0.632]
+      tous           rejet 271/364 = 0.745 [0.697 ; 0.787]
+      originaux      conservation 275/364 = 0.755 [0.709 ; 0.797]
+   -- phrase NOT ou aveugle IMPLAUSIBLE, mistral
+      entity_sub     rejet  87/159 = 0.547 [0.470 ; 0.623]
+      passage_perm   rejet  61/91  = 0.670 [0.569 ; 0.758]
+      relation_sub   rejet  19/91  = 0.209 [0.138 ; 0.303]
+      inversion      rejet   1/23  = 0.043 [0.008 ; 0.210]
+      tous           rejet 168/364 = 0.462 [0.411 ; 0.513]
+      originaux      conservation 328/364 = 0.901 [0.866 ; 0.928]
+   -- phrase NOT ou aveugle IMPLAUSIBLE, au moins un juge
+      entity_sub     rejet 131/159 = 0.824 [0.757 ; 0.875]
+      passage_perm   rejet  84/91  = 0.923 [0.850 ; 0.962]
+      relation_sub   rejet  54/91  = 0.593 [0.491 ; 0.689]
+      inversion      rejet  10/23  = 0.435 [0.256 ; 0.632]
+      tous           rejet 279/364 = 0.766 [0.720 ; 0.807]
+      originaux      conservation 264/364 = 0.725 [0.677 ; 0.769]
+   -- phrase non SUPPORTED (NOT ou PARTIALLY), les deux juges
+      entity_sub     rejet 144/159 = 0.906 [0.850 ; 0.942]
+      passage_perm   rejet  86/91  = 0.945 [0.878 ; 0.976]
+      relation_sub   rejet  75/91  = 0.824 [0.733 ; 0.889]
+      inversion      rejet  13/23  = 0.565 [0.368 ; 0.744]
+      tous           rejet 318/364 = 0.874 [0.836 ; 0.904]
+      originaux      conservation 171/364 = 0.470 [0.419 ; 0.521]
+   -- aveugle IMPLAUSIBLE, au moins un juge
+      entity_sub     rejet  15/159 = 0.094 [0.058 ; 0.150]
+      passage_perm   rejet  10/91  = 0.110 [0.061 ; 0.191]
+      relation_sub   rejet  12/91  = 0.132 [0.077 ; 0.216]
+      inversion      rejet   1/23  = 0.043 [0.008 ; 0.210]
+      tous           rejet  38/364 = 0.104 [0.077 ; 0.140]
+      originaux      conservation 340/364 = 0.934 [0.904 ; 0.955]
+
+=== 4. Taux par type, sans les cas ambigus (Wilson 95 %) ===
+   -- phrase NOT_SUPPORTED llama
+      entity_sub     rejet 121/144 = 0.840 [0.772 ; 0.891]
+      passage_perm   rejet  82/91  = 0.901 [0.823 ; 0.947]
+      relation_sub   rejet  46/81  = 0.568 [0.459 ; 0.670]
+      inversion      rejet  10/23  = 0.435 [0.256 ; 0.632]
+      tous           rejet 259/339 = 0.764 [0.716 ; 0.806]
+      originaux      conservation 290/364 = 0.797 [0.752 ; 0.835]
+   -- phrase NOT_SUPPORTED mistral
+      entity_sub     rejet  84/144 = 0.583 [0.502 ; 0.661]
+      passage_perm   rejet  60/91  = 0.659 [0.557 ; 0.748]
+      relation_sub   rejet  13/81  = 0.160 [0.096 ; 0.255]
+      inversion      rejet   1/23  = 0.043 [0.008 ; 0.210]
+      tous           rejet 158/339 = 0.466 [0.414 ; 0.519]
+      originaux      conservation 346/364 = 0.951 [0.923 ; 0.968]
+   -- phrase NOT_SUPPORTED, au moins un juge
+      entity_sub     rejet 124/144 = 0.861 [0.795 ; 0.908]
+      passage_perm   rejet  84/91  = 0.923 [0.850 ; 0.962]
+      relation_sub   rejet  47/81  = 0.580 [0.472 ; 0.682]
+      inversion      rejet  10/23  = 0.435 [0.256 ; 0.632]
+      tous           rejet 265/339 = 0.782 [0.735 ; 0.822]
+      originaux      conservation 285/364 = 0.783 [0.738 ; 0.822]
+   -- phrase NOT_SUPPORTED, les deux juges
+      entity_sub     rejet  81/144 = 0.562 [0.481 ; 0.641]
+      passage_perm   rejet  58/91  = 0.637 [0.535 ; 0.729]
+      relation_sub   rejet  12/81  = 0.148 [0.087 ; 0.241]
+      inversion      rejet   1/23  = 0.043 [0.008 ; 0.210]
+      tous           rejet 152/339 = 0.448 [0.396 ; 0.502]
+      originaux      conservation 351/364 = 0.964 [0.940 ; 0.979]
+   -- phrase NOT ou aveugle IMPLAUSIBLE, llama
+      entity_sub     rejet 121/144 = 0.840 [0.772 ; 0.891]
+      passage_perm   rejet  82/91  = 0.901 [0.823 ; 0.947]
+      relation_sub   rejet  49/81  = 0.605 [0.496 ; 0.704]
+      inversion      rejet  10/23  = 0.435 [0.256 ; 0.632]
+      tous           rejet 262/339 = 0.773 [0.725 ; 0.814]
+      originaux      conservation 275/364 = 0.755 [0.709 ; 0.797]
+   -- phrase NOT ou aveugle IMPLAUSIBLE, mistral
+      entity_sub     rejet  85/144 = 0.590 [0.509 ; 0.667]
+      passage_perm   rejet  61/91  = 0.670 [0.569 ; 0.758]
+      relation_sub   rejet  18/81  = 0.222 [0.145 ; 0.324]
+      inversion      rejet   1/23  = 0.043 [0.008 ; 0.210]
+      tous           rejet 165/339 = 0.487 [0.434 ; 0.540]
+      originaux      conservation 328/364 = 0.901 [0.866 ; 0.928]
+   -- phrase NOT ou aveugle IMPLAUSIBLE, au moins un juge
+      entity_sub     rejet 124/144 = 0.861 [0.795 ; 0.908]
+      passage_perm   rejet  84/91  = 0.923 [0.850 ; 0.962]
+      relation_sub   rejet  51/81  = 0.630 [0.521 ; 0.727]
+      inversion      rejet  10/23  = 0.435 [0.256 ; 0.632]
+      tous           rejet 269/339 = 0.794 [0.747 ; 0.833]
+      originaux      conservation 264/364 = 0.725 [0.677 ; 0.769]
+   -- phrase non SUPPORTED (NOT ou PARTIALLY), les deux juges
+      entity_sub     rejet 139/144 = 0.965 [0.921 ; 0.985]
+      passage_perm   rejet  86/91  = 0.945 [0.878 ; 0.976]
+      relation_sub   rejet  68/81  = 0.840 [0.745 ; 0.904]
+      inversion      rejet  13/23  = 0.565 [0.368 ; 0.744]
+      tous           rejet 306/339 = 0.903 [0.866 ; 0.930]
+      originaux      conservation 171/364 = 0.470 [0.419 ; 0.521]
+   -- aveugle IMPLAUSIBLE, au moins un juge
+      entity_sub     rejet  15/144 = 0.104 [0.064 ; 0.165]
+      passage_perm   rejet  10/91  = 0.110 [0.061 ; 0.191]
+      relation_sub   rejet  12/81  = 0.148 [0.087 ; 0.241]
+      inversion      rejet   1/23  = 0.043 [0.008 ; 0.210]
+      tous           rejet  38/339 = 0.112 [0.083 ; 0.150]
+      originaux      conservation 340/364 = 0.934 [0.904 ; 0.955]
+
+=== 5. Originaux du stress test et graphe livre ===
+   originaux joints au graphe par cle de contenu : 362/364 (2 sans correspondance unique)
+   verdicts sur la phrase (llama|mistral), stress test contre graphe livre : {'identique': 362}
+   decision du panel dans le graphe x regle sur l'original :
+      phrase NOT_SUPPORTED llama                              ACCEPT garde 236, UNCERTAIN ecarte 74, UNCERTAIN garde 52
+      phrase NOT_SUPPORTED mistral                            ACCEPT garde 236, UNCERTAIN ecarte 18, UNCERTAIN garde 108
+      phrase NOT_SUPPORTED, au moins un juge                  ACCEPT garde 236, UNCERTAIN ecarte 79, UNCERTAIN garde 47
+      phrase NOT_SUPPORTED, les deux juges                    ACCEPT garde 236, UNCERTAIN ecarte 13, UNCERTAIN garde 113
+      phrase NOT ou aveugle IMPLAUSIBLE, llama                ACCEPT ecarte 4, ACCEPT garde 232, UNCERTAIN ecarte 85, UNCERTAIN garde 41
+      phrase NOT ou aveugle IMPLAUSIBLE, mistral              ACCEPT ecarte 4, ACCEPT garde 232, UNCERTAIN ecarte 32, UNCERTAIN garde 94
+      phrase NOT ou aveugle IMPLAUSIBLE, au moins un juge     ACCEPT ecarte 7, ACCEPT garde 229, UNCERTAIN ecarte 93, UNCERTAIN garde 33
+      phrase non SUPPORTED (NOT ou PARTIALLY), les deux juges ACCEPT ecarte 96, ACCEPT garde 140, UNCERTAIN ecarte 95, UNCERTAIN garde 31
+      aveugle IMPLAUSIBLE, au moins un juge                   ACCEPT ecarte 7, ACCEPT garde 229, UNCERTAIN ecarte 17, UNCERTAIN garde 109

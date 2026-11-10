@@ -1,0 +1,414 @@
+{
+  "inputs": {
+    "extract": "pipeline/02_extract_triples_run18.py",
+    "queries": "configs/descriptor_queries_run18.jsonl",
+    "clean": "pipeline/04_clean_validate_run18.py",
+    "flat": []
+  },
+  "f1_prompt_examples": [
+    [
+      "slump",
+      "hasDescriptor",
+      "folded"
+    ],
+    [
+      "mass transport deposit",
+      "hasDescriptor",
+      "deformed"
+    ],
+    [
+      "mass transport deposit",
+      "hasDescriptor",
+      "irregular"
+    ],
+    [
+      "mass transport deposit",
+      "hasDescriptor",
+      "smooth"
+    ],
+    [
+      "basal shear surface",
+      "hasDescriptor",
+      "parallel"
+    ],
+    [
+      "block",
+      "hasDescriptor",
+      "undeformed"
+    ],
+    [
+      "landslide",
+      "hasDescriptor",
+      "faulted"
+    ],
+    [
+      "halokinesis",
+      "triggers",
+      "mass transport deposit"
+    ],
+    [
+      "storm",
+      "triggers",
+      "submarine landslide"
+    ],
+    [
+      "episodic fluid flow",
+      "triggers",
+      "slope instability"
+    ],
+    [
+      "fault",
+      "causes",
+      "chaotic rearrangement of sediments"
+    ],
+    [
+      "sea level fluctuation",
+      "causes",
+      "mass transport deposit"
+    ],
+    [
+      "topography",
+      "controls",
+      "mass transport deposit distribution"
+    ],
+    [
+      "landslide volume",
+      "controls",
+      "tsunami wave magnitude"
+    ],
+    [
+      "submarine landslide",
+      "occursIn",
+      "active margin"
+    ],
+    [
+      "slump complex",
+      "occursIn",
+      "continental margin"
+    ],
+    [
+      "basal shear zone",
+      "overlies",
+      "undeformed substrate"
+    ],
+    [
+      "post-mtd sediment",
+      "overlies",
+      "mass transport deposit"
+    ],
+    [
+      "cenozoic sedimentary unit",
+      "overlies",
+      "mesozoic igneous basement"
+    ],
+    [
+      "basal shear zone",
+      "partOf",
+      "mass transport deposit"
+    ],
+    [
+      "translational domain",
+      "partOf",
+      "mass transport deposit"
+    ]
+  ],
+  "f2_flagged_query_indexes": [],
+  "f2_families": {
+    "gapfill:": 0,
+    "LB:": 0
+  },
+  "f3": {
+    "imports_LB2019_BENCHMARK_DESCRIPTORS": false,
+    "computes_lb_recall": false,
+    "lb_settings": []
+  },
+  "edges": [
+    {
+      "edge": [
+        "mass transport deposit",
+        "hasDescriptor",
+        "chaotic"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "mass transport deposit",
+        "hasDescriptor",
+        "transparent"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "mass transport deposit",
+        "hasDescriptor",
+        "hummocky"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "mass transport deposit",
+        "hasDescriptor",
+        "blocky"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "mass transport deposit",
+        "hasDescriptor",
+        "discontinuous"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "mass transport deposit",
+        "hasDescriptor",
+        "massive"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "turbidite",
+        "hasDescriptor",
+        "parallel"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "turbidite",
+        "hasDescriptor",
+        "continuous"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "turbidite",
+        "hasDescriptor",
+        "layered"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "turbidite",
+        "hasDescriptor",
+        "high-amplitude"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "debris flow",
+        "hasDescriptor",
+        "chaotic"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "debris flow",
+        "hasDescriptor",
+        "hummocky"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "slide",
+        "hasDescriptor",
+        "blocky"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "slide",
+        "hasDescriptor",
+        "undeformed"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "hemipelagite",
+        "hasDescriptor",
+        "parallel"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "hemipelagite",
+        "hasDescriptor",
+        "continuous"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "hemipelagite",
+        "hasDescriptor",
+        "low-amplitude"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "slope failure",
+        "causes",
+        "mass transport deposit"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "earthquake",
+        "triggers",
+        "slope failure"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "pore pressure",
+        "controls",
+        "slope failure"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "turbidity current",
+        "formedBy",
+        "debris flow"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "mass transport deposit",
+        "occursIn",
+        "continental slope"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "mass transport deposit",
+        "occursIn",
+        "abyssal plain"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "debris flow",
+        "occursIn",
+        "continental slope"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "turbidite",
+        "occursIn",
+        "basin floor"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    },
+    {
+      "edge": [
+        "slide",
+        "overlies",
+        "hemipelagite"
+      ],
+      "in_prompt_examples": 0,
+      "n_queries_targeting": 0,
+      "protected_in_cleaning": false,
+      "seen_by_pipeline": false
+    }
+  ],
+  "leak": false
+}

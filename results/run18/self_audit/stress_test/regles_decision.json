@@ -1,0 +1,110 @@
+{
+  "admission|llama": {
+    "corrupted_flagged": 51,
+    "n_corrupted": 364,
+    "originals_flagged": 20,
+    "n_originals": 364,
+    "per_class": {
+      "entity_sub": 22,
+      "inversion": 2,
+      "passage_perm": 11,
+      "relation_sub": 16
+    }
+  },
+  "admission|mistral": {
+    "corrupted_flagged": 62,
+    "n_corrupted": 364,
+    "originals_flagged": 40,
+    "n_originals": 364,
+    "per_class": {
+      "entity_sub": 29,
+      "inversion": 1,
+      "passage_perm": 18,
+      "relation_sub": 14
+    }
+  },
+  "admission|panel": {
+    "corrupted_flagged": 92,
+    "n_corrupted": 364,
+    "originals_flagged": 52,
+    "n_originals": 364,
+    "per_class": {
+      "entity_sub": 39,
+      "inversion": 3,
+      "passage_perm": 26,
+      "relation_sub": 24
+    }
+  },
+  "phrase|llama": {
+    "corrupted_flagged": 274,
+    "n_corrupted": 364,
+    "originals_flagged": 94,
+    "n_originals": 364,
+    "per_class": {
+      "entity_sub": 128,
+      "inversion": 11,
+      "passage_perm": 82,
+      "relation_sub": 53
+    }
+  },
+  "phrase|mistral": {
+    "corrupted_flagged": 184,
+    "n_corrupted": 364,
+    "originals_flagged": 58,
+    "n_originals": 364,
+    "per_class": {
+      "entity_sub": 93,
+      "inversion": 1,
+      "passage_perm": 65,
+      "relation_sub": 25
+    }
+  },
+  "phrase|panel": {
+    "corrupted_flagged": 284,
+    "n_corrupted": 364,
+    "originals_flagged": 126,
+    "n_originals": 364,
+    "per_class": {
+      "entity_sub": 133,
+      "inversion": 11,
+      "passage_perm": 85,
+      "relation_sub": 55
+    }
+  },
+  "phrase_seule|llama": {
+    "corrupted_flagged": 268,
+    "n_corrupted": 364,
+    "originals_flagged": 74,
+    "n_originals": 364,
+    "per_class": {
+      "entity_sub": 127,
+      "inversion": 10,
+      "passage_perm": 82,
+      "relation_sub": 49
+    }
+  },
+  "phrase_seule|mistral": {
+    "corrupted_flagged": 161,
+    "n_corrupted": 364,
+    "originals_flagged": 18,
+    "n_originals": 364,
+    "per_class": {
+      "entity_sub": 86,
+      "inversion": 1,
+      "passage_perm": 60,
+      "relation_sub": 14
+    }
+  },
+  "phrase_seule|panel": {
+    "corrupted_flagged": 275,
+    "n_corrupted": 364,
+    "originals_flagged": 79,
+    "n_originals": 364,
+    "per_class": {
+      "entity_sub": 131,
+      "inversion": 10,
+      "passage_perm": 84,
+      "relation_sub": 50
+    }
+  }
+}

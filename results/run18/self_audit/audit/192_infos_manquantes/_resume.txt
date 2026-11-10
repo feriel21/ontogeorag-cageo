@@ -1,0 +1,318 @@
+192_infos_manquantes : lecture seule.
+
+=== 1. Controle sur le passage applique aux graphes ===
+regle : signalee si au moins un juge rend NOT_SUPPORTED (m4.evidence_verdict, Llama|Mistral)
+[graphe livre] output/run18/kg_final/flat_run18_enforced_dedup.json : 364 relations, signalees 79 (attendu 79 : OK)
+   relations sans m4.evidence_verdict : 0
+   par tier : 1 0/197, 2 79/167
+   par decision du panel : ACCEPT 0/238, UNCERTAIN 79/126
+   par type de relation : hasDescriptor 43/216, occursIn 10/43, triggers 4/37, causes 3/25, partOf 8/18, overlies 7/11, affects 0/5, controls 3/5, underlies 1/4
+   juge qui signale : Llama 61, Llama+Mistral 13, Mistral 5
+[graphe nettoye 188] output/audit/188_nettoyage_v2/graphe_nettoye.json : 281 relations, signalees 57
+   relations sans m4.evidence_verdict : 0
+   par tier : 1 0/164, 2 57/117
+   par decision du panel : ACCEPT 0/194, UNCERTAIN 57/87
+   par type de relation : hasDescriptor 30/155, triggers 3/35, occursIn 6/31, causes 3/25, partOf 6/14, overlies 7/10, affects 0/4, underlies 1/4, controls 1/3
+   juge qui signale : Llama 47, Llama+Mistral 7, Mistral 3
+
+=== 2. Articles qui contribuent ===
+[graphe avec provenance 187] 364 relations ; articles distincts qui contribuent : 32 ; relations sans source : 0
+[graphe nettoye 188] 281 relations ; articles distincts qui contribuent : 30 ; relations sans source : 0
+
+=== 3. Meta des juges du run ===
+[output/run18/m4/llama/m4_run_meta.json] model=0e9e39f249a16976918f6564b8830bc894c89659, input=tiered_kg_run18.json, n_triples=382, n_no_passage=0, decoding=greedy (do_sample=False), max_evidence_chars=1500, runtime_seconds=2097.5
+[output/run18/m4/mistral/m4_run_meta.json] model=63a8b081895390a26e140280378bc85ec8bce07a, input=tiered_kg_run18.json, n_triples=382, n_no_passage=0, decoding=greedy (do_sample=False), max_evidence_chars=1500, runtime_seconds=2931.5
+
+=== 4. Statistiques des etapes ===
+[output/run18/pass_a/cleaning_stats_v5.json] 23 valeurs
+   input_triples = 939
+   after_verif_filter = 807
+   verif_policy = normal
+   verif_rejected.verif_not_supported = 132
+   after_validation = 289
+   validation_rejected.type_constraint = 135
+   validation_rejected.self_loop = 1
+   validation_rejected.entity_too_long_subject = 16
+   validation_rejected.entity_too_long_object = 17
+   duplicates_pass1 = 349
+   duplicates_pass2 = 7
+   self_loops_removed = 0
+   entities_before = 235
+   entities_after = 219
+   merge_rules = 16
+   output_triples = 282
+   lb_recall = 0/0
+   lb_recall_pct = 0
+   desc_coverage = 33/40
+   final_halluc_rate = 0.0
+   final_strong_support = 206
+   final_supported = 282
+   final_decided = 282
+[output/run18/pass_a/raw_triples_stats.json] 9 valeurs
+   total_triples = 939
+   strategy_descriptor = 608
+   strategy_causal = 72
+   strategy_context = 90
+   strategy_setting = 3
+   strategy_spatial = 4
+   strategy_descriptor_reverse = 162
+   skipped_low_bm25 = 0
+   errors = 0
+[output/run18/pass_a/verification_stats.json] 13 valeurs
+   model = /home/talbi/.cache/huggingface/hub/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a09a35458c702b33eeacc393d103063234e8bc28
+   backend = hf
+   total_triples = 939
+   counts.STRONG_SUPPORT = 626
+   counts.WEAK_SUPPORT = 181
+   counts.NOT_SUPPORTED = 132
+   counts.NO_CHUNK = 0
+   counts.UNPARSEABLE = 0
+   counts.BACKEND_ERROR = 0
+   counts.SKIPPED_RELATION = 0
+   decided_total = 939
+   hallucination_rate_decided = 0.14057507987220447
+   elapsed_seconds = 8693.8
+[output/run18/pass_b/cleaning_stats_v5.json] 22 valeurs
+   input_triples = 879
+   after_verif_filter = 770
+   verif_policy = normal
+   verif_rejected.verif_not_supported = 109
+   after_validation = 270
+   validation_rejected.type_constraint = 131
+   validation_rejected.entity_too_long_subject = 12
+   validation_rejected.entity_too_long_object = 21
+   duplicates_pass1 = 336
+   duplicates_pass2 = 13
+   self_loops_removed = 0
+   entities_before = 232
+   entities_after = 214
+   merge_rules = 18
+   output_triples = 257
+   lb_recall = 0/0
+   lb_recall_pct = 0
+   desc_coverage = 31/40
+   final_halluc_rate = 0.0
+   final_strong_support = 197
+   final_supported = 257
+   final_decided = 257
+[output/run18/pass_b/raw_triples_stats.json] 9 valeurs
+   total_triples = 879
+   strategy_descriptor = 568
+   strategy_causal = 74
+   strategy_context = 77
+   strategy_setting = 3
+   strategy_spatial = 3
+   strategy_descriptor_reverse = 154
+   skipped_low_bm25 = 0
+   errors = 0
+[output/run18/pass_b/verification_stats.json] 13 valeurs
+   model = /home/talbi/.cache/huggingface/hub/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a09a35458c702b33eeacc393d103063234e8bc28
+   backend = hf
+   total_triples = 879
+   counts.STRONG_SUPPORT = 615
+   counts.WEAK_SUPPORT = 155
+   counts.NOT_SUPPORTED = 109
+   counts.NO_CHUNK = 0
+   counts.UNPARSEABLE = 0
+   counts.BACKEND_ERROR = 0
+   counts.SKIPPED_RELATION = 0
+   decided_total = 879
+   hallucination_rate_decided = 0.12400455062571103
+   elapsed_seconds = 8284.5
+[output/run18/index/ingestion_report.json] 0 valeurs
+[output/run18/kg_enforced/enforcement_report.json] 40 valeurs
+   input_kg = /home/talbi/ontogeorag_run18/output/run18/m4_panel/tiered_kg_m4.json
+   n_in = 364
+   n_out = 364
+   types_before.GeologicalSurface = 6
+   types_before.Feature = 2
+   types_before.Process = 103
+   types_before.Property = 10
+   types_before.Condition = 15
+   types_before.Effect = 2
+   types_before.GeologicalObject = 90
+   types_before.SeismicObject = 216
+   types_before.Descriptor = 216
+   types_before.GeologicalSetting = 42
+   types_before.GeologicalFeature = 6
+   types_before.GeologicalProcess = 6
+   types_before.Stratigraphy = 1
+   types_before.StratigraphicUnit = 6
+   types_before.Event = 2
+   types_before.GeologicalLocation = 3
+   types_before.MassTransportDeposit = 1
+   types_before.SeismicReflection = 1
+   types_after.Geological_Object = 334
+   types_after.Process = 111
+   types_after.Environmental_Control = 67
+   types_after.Descriptor = 216
+   n_self_loops = 0
+   n_duplicates = 0
+   n_flag_long = 0
+   n_flag_bad_signature = 2
+   removed_long = False
+   removed_bad_signature = False
+   unknown_types.Effect = 2
+   unknown_types.Stratigraphy = 1
+   unknown_types.StratigraphicUnit = 6
+   unknown_types.GeologicalLocation = 3
+   unknown_types.MassTransportDeposit = 1
+   unknown_types.SeismicReflection = 1
+   descriptor_fallback_type = Environmental_Control
+   default_type = Geological_Object
+   max_words = 6
+[output/run18/m4_panel/m4_panel_report.json] 37 valeurs
+   n_common_triples = 382
+   note_two_judges = with two judges, majority vote reduces to consensus; on disagreement the more cautious decision is taken
+   evidence_distributions.llama.PARTIALLY_SUPPORTED = 204
+   evidence_distributions.llama.SUPPORTED = 89
+   evidence_distributions.llama.NOT_SUPPORTED = 89
+   evidence_distributions.mistral.SUPPORTED = 139
+   evidence_distributions.mistral.PARTIALLY_SUPPORTED = 216
+   evidence_distributions.mistral.NOT_SUPPORTED = 27
+   blind_distributions.llama.PLAUSIBLE = 333
+   blind_distributions.llama.UNCERTAIN = 24
+   blind_distributions.llama.IMPLAUSIBLE = 25
+   blind_distributions.mistral.UNCERTAIN = 46
+   blind_distributions.mistral.PLAUSIBLE = 313
+   blind_distributions.mistral.IMPLAUSIBLE = 23
+   inter_judge.llama_x_mistral.evidence.n = 382
+   inter_judge.llama_x_mistral.evidence.exact_agreement_3class = 0.5366
+   inter_judge.llama_x_mistral.evidence.binary_agreement = 0.7958
+   inter_judge.llama_x_mistral.evidence.kappa_unweighted = 0.2236
+   inter_judge.llama_x_mistral.evidence.kappa_linear = 0.2725
+   inter_judge.llama_x_mistral.blind.n = 382
+   inter_judge.llama_x_mistral.blind.exact_agreement = 0.7932
+   inter_judge.llama_x_mistral.blind.kappa_unweighted = 0.2459
+   inter_judge.llama_x_mistral.blind.kappa_linear = 0.353
+   inter_judge.llama_x_mistral.decisions.exact_agreement = 0.7016
+   inter_judge.llama_x_mistral.decisions.kappa_unweighted = 0.2089
+   inter_judge.llama_x_mistral.decisions.kappa_linear = 0.2439
+   panel_decisions.ACCEPT = 238
+   panel_decisions.UNCERTAIN = 126
+   panel_decisions.REJECT = 18
+   panel_decision_rates.ACCEPT = 0.623
+   panel_decision_rates.UNCERTAIN = 0.3298
+   panel_decision_rates.REJECT = 0.0471
+   disagreement_patterns.ACCEPT_UNCERTAIN = 100
+   disagreement_patterns.ACCEPT_REJECT = 8
+   disagreement_patterns.REJECT_UNCERTAIN = 6
+   consensus_parametric_risk.n = 13
+   consensus_parametric_risk.note = flagged parametric_risk by ALL judges — highest-priority residual set
+[output/run18/m4/llama/m4_decision_summary.json] 16 valeurs
+   n_triples = 382
+   decisions.ACCEPT = 271
+   decisions.UNCERTAIN = 96
+   decisions.REJECT = 15
+   decision_rates.ACCEPT = 0.7094
+   decision_rates.UNCERTAIN = 0.2513
+   decision_rates.REJECT = 0.0393
+   flags.partial_support = 182
+   flags.parametric_risk = 74
+   flags.contested_plausibility = 5
+   matrix_vs_score_agreement.disagree = 256
+   matrix_vs_score_agreement.agree = 126
+   weights.evidence = 0.7
+   weights.blind = 0.3
+   thresholds.accept = 0.7
+   thresholds.reject = 0.3
+[output/run18/m4/mistral/m4_decision_summary.json] 16 valeurs
+   n_triples = 382
+   decisions.ACCEPT = 313
+   decisions.UNCERTAIN = 62
+   decisions.REJECT = 7
+   decision_rates.ACCEPT = 0.8194
+   decision_rates.UNCERTAIN = 0.1623
+   decision_rates.REJECT = 0.0183
+   flags.partial_support = 174
+   flags.parametric_risk = 20
+   flags.contested_plausibility = 8
+   matrix_vs_score_agreement.agree = 188
+   matrix_vs_score_agreement.disagree = 194
+   weights.evidence = 0.7
+   weights.blind = 0.3
+   thresholds.accept = 0.7
+   thresholds.reject = 0.3
+[output/run18/kg_final/article_metrics.json] 69 valeurs
+   summary.tier1_triples = 197
+   summary.tier12_triples = 364
+   summary.total_triples = 364
+   summary.unique_entities = 272
+   descriptor_coverage.tier1.n_found = 11
+   descriptor_coverage.tier1.n_total = 13
+   descriptor_coverage.tier1.coverage = 0.8461538461538461
+   descriptor_coverage.tier12.n_found = 12
+   descriptor_coverage.tier12.n_total = 13
+   descriptor_coverage.tier12.coverage = 0.9230769230769231
+   recall_vs_lb2019.tier1.recall = 0.29411764705882354
+   recall_vs_lb2019.tier1.hits = 10
+   recall_vs_lb2019.tier1.total_reference = 34
+   recall_vs_lb2019.tier1.matcher = substring_normRel (paper headline)
+   recall_vs_lb2019.tier1.lower_bound.recall = 0.23529411764705882
+   recall_vs_lb2019.tier1.lower_bound.hits = 8
+   recall_vs_lb2019.tier1.lower_bound.total_reference = 34
+   recall_vs_lb2019.tier1.lower_bound.matcher = exact_normRel (strict tuple equality + relation normalization)
+   recall_vs_lb2019.tier1.ref_path = configs/lb_reference_edges.json
+   recall_vs_lb2019.tier12.recall = 0.4411764705882353
+   recall_vs_lb2019.tier12.hits = 15
+   recall_vs_lb2019.tier12.total_reference = 34
+   recall_vs_lb2019.tier12.matcher = substring_normRel (paper headline)
+   recall_vs_lb2019.tier12.lower_bound.recall = 0.38235294117647056
+   recall_vs_lb2019.tier12.lower_bound.hits = 13
+   recall_vs_lb2019.tier12.lower_bound.total_reference = 34
+   recall_vs_lb2019.tier12.lower_bound.matcher = exact_normRel (strict tuple equality + relation normalization)
+   recall_vs_lb2019.tier12.ref_path = configs/lb_reference_edges.json
+   recall_vs_lb2019_orig26.tier1.recall = 0.2692307692307692
+   recall_vs_lb2019_orig26.tier1.hits = 7
+   recall_vs_lb2019_orig26.tier1.total_reference = 26
+   recall_vs_lb2019_orig26.tier1.matcher = substring_normRel (paper headline)
+   recall_vs_lb2019_orig26.tier1.lower_bound.recall = 0.23076923076923078
+   recall_vs_lb2019_orig26.tier1.lower_bound.hits = 6
+   recall_vs_lb2019_orig26.tier1.lower_bound.total_reference = 26
+   recall_vs_lb2019_orig26.tier1.lower_bound.matcher = exact_normRel (strict tuple equality + relation normalization)
+   recall_vs_lb2019_orig26.tier1.ref_path = configs/lb_reference_edges_original26.json
+   recall_vs_lb2019_orig26.tier12.recall = 0.38461538461538464
+   recall_vs_lb2019_orig26.tier12.hits = 10
+   recall_vs_lb2019_orig26.tier12.total_reference = 26
+   recall_vs_lb2019_orig26.tier12.matcher = substring_normRel (paper headline)
+   recall_vs_lb2019_orig26.tier12.lower_bound.recall = 0.34615384615384615
+   recall_vs_lb2019_orig26.tier12.lower_bound.hits = 9
+   recall_vs_lb2019_orig26.tier12.lower_bound.total_reference = 26
+   recall_vs_lb2019_orig26.tier12.lower_bound.matcher = exact_normRel (strict tuple equality + relation normalization)
+   recall_vs_lb2019_orig26.tier12.ref_path = configs/lb_reference_edges_original26.json
+   hallucination.strong_support = 266
+   hallucination.weak_support = 98
+   hallucination.not_supported = 0
+   hallucination.total = 364
+   hallucination.hallucination_rate = 0.0
+   relation_distribution_by_tier.1.affects = 4
+   relation_distribution_by_tier.1.causes = 17
+   relation_distribution_by_tier.1.hasDescriptor = 104
+   relation_distribution_by_tier.1.occursIn = 28
+   relation_distribution_by_tier.1.overlies = 2
+   relation_distribution_by_tier.1.partOf = 9
+   relation_distribution_by_tier.1.triggers = 31
+   relation_distribution_by_tier.1.underlies = 2
+   relation_distribution_by_tier.1.controls = 0
+   relation_distribution_by_tier.2.affects = 1
+   relation_distribution_by_tier.2.causes = 8
+   relation_distribution_by_tier.2.controls = 5
+   relation_distribution_by_tier.2.hasDescriptor = 112
+   relation_distribution_by_tier.2.occursIn = 15
+   relation_distribution_by_tier.2.overlies = 9
+   relation_distribution_by_tier.2.partOf = 9
+   relation_distribution_by_tier.2.triggers = 6
+   relation_distribution_by_tier.2.underlies = 2
+
+=== 5. Jobs SLURM ===
+commande : sacct -X --format=JobID,JobName%35,Start,End,Elapsed,AllocTRES%70,NodeList%20,State -S 2026-10-22T00:00:00 -E 2026-10-23T12:00:00
+   JobID                                    JobName               Start                 End    Elapsed                                                              AllocTRES             NodeList      State 
+   ------------ ----------------------------------- ------------------- ------------------- ---------- ---------------------------------------------------------------------- -------------------- ---------- 
+   110120                               interactive 2026-10-22T10:30:40 2026-10-22T15:12:03   04:41:23                 billing=8,cpu=8,gres/gpu:a100_3g.40gb=1,mem=48G,node=1               node07  COMPLETED 
+   110130                          ontogeorag-run18 2026-10-22T11:21:11 2026-10-22T18:17:15   06:56:04                 billing=8,cpu=8,gres/gpu:a100_3g.40gb=1,mem=64G,node=1               node07  COMPLETED 
+   110184                               interactive 2026-10-22T14:30:42 2026-10-22T16:43:48   02:13:06                 billing=8,cpu=8,gres/gpu:a100_3g.40gb=1,mem=48G,node=1               node10  COMPLETED 
+   110194                               interactive                None 2026-10-22T15:30:11   00:00:00                                                                               None assigned CANCELLED+ 
+   110234                               interactive                None 2026-10-22T16:51:24   00:00:00                                                                               None assigned CANCELLED+ 
+   110411                               interactive 2026-10-23T10:42:53 2026-10-23T13:37:44   02:54:51                 billing=8,cpu=8,gres/gpu:a100_3g.40gb=1,mem=48G,node=1               node07  COMPLETED 
+   110415                                  stress18 2026-10-23T11:16:23 2026-10-23T14:03:30   02:47:07                 billing=8,cpu=8,gres/gpu:a100_3g.40gb=1,mem=64G,node=1               node10  COMPLETED 
+Les etapes du manifeste vont de 2026-10-22 11:19 a 18:15 : retenir le ou les jobs qui couvrent cette periode.

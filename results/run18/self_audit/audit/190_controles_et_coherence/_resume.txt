@@ -1,0 +1,475 @@
+190_controles_et_coherence : lecture seule.
+
+=== 1. Coherence des graphes ===
+[avant nettoyage] output/run18/kg_final/flat_run18_enforced_dedup.json : 364 relations (sha caccdca00ff3)
+   tier et etiquette (tier x tier_label) :
+      1                      verified                            197
+      2                      literature-implied                  92
+      2                      verified                            75
+   tier et tier d'origine (tier x tier_original) :
+      1                      1                                   197
+      2                      1                                   75
+      2                      2                                   92
+   tier x verdict x m4.decision :
+      1 | STRONG_SUPPORT | ACCEPT                   194
+      1 | WEAK_SUPPORT | ACCEPT                     3
+      2 | STRONG_SUPPORT | UNCERTAIN                72
+      2 | WEAK_SUPPORT | ACCEPT                     41
+      2 | WEAK_SUPPORT | UNCERTAIN                  54
+   drapeaux et verdict (m4.flags x verdict) :
+      ["contested_plausibility"] STRONG_SUPPORT                      1
+      ["parametric_risk"]    STRONG_SUPPORT                      3
+      ["parametric_risk"]    WEAK_SUPPORT                        10
+      ["partial_support"]    STRONG_SUPPORT                      73
+      ["partial_support"]    WEAK_SUPPORT                        25
+      []                     STRONG_SUPPORT                      189
+      []                     WEAK_SUPPORT                        63
+   cles de contenu en double apres normalisation : 1
+      'slope-attached mass transport deposit' --hasDescriptor--> 'discontinuous' | tier 1 | origin iter_b | decision ACCEPT
+      'slope-attached mass-transport deposit' --hasDescriptor--> 'discontinuous' | tier 1 | origin iter_a | decision ACCEPT
+[apres nettoyage] output/audit/188_nettoyage_v2/graphe_nettoye.json : 281 relations (sha 26b7642a13a8)
+   tier et etiquette (tier x tier_label) :
+      1                      verified                            164
+      2                      literature-implied                  68
+      2                      verified                            49
+   tier et tier d'origine (tier x tier_original) :
+      1                      1                                   164
+      2                      1                                   49
+      2                      2                                   68
+   tier x verdict x m4.decision :
+      1 | STRONG_SUPPORT | ACCEPT                   162
+      1 | WEAK_SUPPORT | ACCEPT                     2
+      2 | STRONG_SUPPORT | UNCERTAIN                46
+      2 | WEAK_SUPPORT | ACCEPT                     30
+      2 | WEAK_SUPPORT | UNCERTAIN                  41
+   drapeaux et verdict (m4.flags x verdict) :
+      ["contested_plausibility"] STRONG_SUPPORT                      1
+      ["parametric_risk"]    STRONG_SUPPORT                      1
+      ["parametric_risk"]    WEAK_SUPPORT                        6
+      ["partial_support"]    STRONG_SUPPORT                      59
+      ["partial_support"]    WEAK_SUPPORT                        19
+      []                     STRONG_SUPPORT                      147
+      []                     WEAK_SUPPORT                        48
+   cles de contenu en double apres normalisation : 1
+      'slope-attached mass transport deposit' --hasDescriptor--> 'discontinuous' | tier 1 | origin iter_b | decision ACCEPT
+      'slope-attached mass-transport deposit' --hasDescriptor--> 'discontinuous' | tier 1 | origin iter_a | decision ACCEPT
+
+=== 2. Inventaire des dossiers de controles ===
+   output/run18/stress_test/_resume.txt | 4219 o | sha d1a7772796dc
+   output/run18/stress_test/controls.jsonl | 292971 o | sha d76842856ae7 | 728 enregistrements | champs : subject, relation, object, supporting_passage, label, corruption_class, orig_index
+   output/run18/stress_test/controls_meta.json | 176 o | sha 30933b091b66 | 0 enregistrements
+   output/run18/stress_test/llama/m4_run_meta.json | 369 o | sha 42e7de4b789f | 0 enregistrements
+   output/run18/stress_test/llama/m4_verdicts.jsonl | 1592715 o | sha a1a1fa9b21ac | 728 enregistrements | champs : m4_index, subject, relation, object, tier, qwen_verdict, blind.verdict, blind.reasoning, blind.raw, evidence.verdict, evidence.quote, evidence.reasoning, evidence.raw, evidence.passage_found, model
+   output/run18/stress_test/llama/negatives_report.json | 2029 o | sha cf1a7db75a78 | 0 enregistrements
+   output/run18/stress_test/mistral/m4_run_meta.json | 371 o | sha 747497bdc88c | 0 enregistrements
+   output/run18/stress_test/mistral/m4_verdicts.jsonl | 1812601 o | sha 7920d4190a0c | 728 enregistrements | champs : m4_index, subject, relation, object, tier, qwen_verdict, blind.verdict, blind.reasoning, blind.raw, evidence.verdict, evidence.quote, evidence.reasoning, evidence.raw, evidence.passage_found, model
+   output/run18/stress_test/mistral/negatives_report.json | 2029 o | sha 01c953104a14 | 0 enregistrements
+   output/run18/stress_test/regles_decision.json | 2327 o | sha a7606a7bc8f6 | 0 enregistrements
+   output/run18/stress_test/regles_decision.txt | 1595 o | sha 92f143989b7c
+   output/audit/181_regles_llama/output/run16E/m4/negatives/controls.jsonl | 292971 o | sha d76842856ae7 | 728 enregistrements | champs : subject, relation, object, supporting_passage, label, corruption_class, orig_index
+   output/audit/181_regles_llama/output/run16E/m4/negatives/m4_verdicts.jsonl | 1592715 o | sha a1a1fa9b21ac | 728 enregistrements | champs : m4_index, subject, relation, object, tier, qwen_verdict, blind.verdict, blind.reasoning, blind.raw, evidence.verdict, evidence.quote, evidence.reasoning, evidence.raw, evidence.passage_found, model
+   output/audit/181_regles_mistral/output/run16E/m4/negatives/controls.jsonl | 292971 o | sha d76842856ae7 | 728 enregistrements | champs : subject, relation, object, supporting_passage, label, corruption_class, orig_index
+   output/audit/181_regles_mistral/output/run16E/m4/negatives/m4_verdicts.jsonl | 1812601 o | sha 7920d4190a0c | 728 enregistrements | champs : m4_index, subject, relation, object, tier, qwen_verdict, blind.verdict, blind.reasoning, blind.raw, evidence.verdict, evidence.quote, evidence.reasoning, evidence.raw, evidence.passage_found, model
+   identite des controls.jsonl : sha d76842856ae7 : 3 fichier(s)
+
+=== 3. Verdicts sur les controles (output/run18/stress_test/controls.jsonl, 728 enr.) ===
+   [resume json] output/run18/stress_test/controls_meta.json
+      seed = 13
+      n_controls = 728
+      class_distribution.none = 364
+      class_distribution.entity_sub = 159
+      class_distribution.passage_perm = 91
+      class_distribution.relation_sub = 91
+      class_distribution.inversion = 23
+   [resume json] output/run18/stress_test/llama/m4_run_meta.json
+      model = /home/talbi/.cache/huggingface/hub/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc89
+      input = /home/talbi/ontogeorag_run18/output/run18/stress_test/controls.jsonl
+      n_triples = 728
+      n_no_passage = 0
+      decoding = greedy (do_sample=False)
+      max_evidence_chars = 1500
+      runtime_seconds = 4094.9
+   [verdicts] output/run18/stress_test/llama/m4_verdicts.jsonl : 728 enr. ; jointure sur champs subject,relation,object : 478/728 uniques, 250 multiples
+      -- blind.verdict
+         entity_sub     n=117  PLAUSIBLE 97, UNCERTAIN 10, IMPLAUSIBLE 10
+         inversion      n=23   PLAUSIBLE 20, UNCERTAIN 3
+         original       n=247  PLAUSIBLE 228, UNCERTAIN 10, IMPLAUSIBLE 9
+         relation_sub   n=91   PLAUSIBLE 73, UNCERTAIN 10, IMPLAUSIBLE 8
+      -- evidence.verdict
+         entity_sub     n=117  NOT_SUPPORTED 100, PARTIALLY_SUPPORTED 16, SUPPORTED 1
+         inversion      n=23   PARTIALLY_SUPPORTED 10, NOT_SUPPORTED 10, SUPPORTED 3
+         original       n=247  PARTIALLY_SUPPORTED 133, SUPPORTED 65, NOT_SUPPORTED 49
+         relation_sub   n=91   NOT_SUPPORTED 49, PARTIALLY_SUPPORTED 36, SUPPORTED 6
+   [resume json] output/run18/stress_test/llama/negatives_report.json
+      n_scored = 728
+      decision_rule = corrupted detected iff evidence verdict == NOT_SUPPORTED
+      overall.sensitivity = 0.7363
+      overall.specificity = 0.7967
+      overall.precision = 0.7836
+      overall.f1 = 0.7592
+      overall.balanced_accuracy = 0.7665
+      overall.tp = 268
+      overall.fp = 74
+      overall.tn = 290
+      overall.fn = 96
+      roc_auc_graded_score = 0.7768
+      per_corruption_class.entity_sub.sensitivity = 0.7987
+      per_corruption_class.entity_sub.specificity = 0.7967
+      per_corruption_class.entity_sub.precision = 0.6318
+      per_corruption_class.entity_sub.f1 = 0.7056
+      per_corruption_class.entity_sub.balanced_accuracy = 0.7977
+      per_corruption_class.entity_sub.tp = 127
+      per_corruption_class.entity_sub.fp = 74
+      per_corruption_class.entity_sub.tn = 290
+      per_corruption_class.entity_sub.fn = 32
+      per_corruption_class.entity_sub.roc_auc = 0.8023
+      per_corruption_class.entity_sub.verdict_distribution.NOT_SUPPORTED = 127
+      per_corruption_class.entity_sub.verdict_distribution.SUPPORTED = 8
+      per_corruption_class.entity_sub.verdict_distribution.PARTIALLY_SUPPORTED = 24
+      per_corruption_class.inversion.sensitivity = 0.4348
+      per_corruption_class.inversion.specificity = 0.7967
+      per_corruption_class.inversion.precision = 0.119
+      per_corruption_class.inversion.f1 = 0.1869
+      per_corruption_class.inversion.balanced_accuracy = 0.6157
+      per_corruption_class.inversion.tp = 10
+      per_corruption_class.inversion.fp = 74
+      per_corruption_class.inversion.tn = 290
+      per_corruption_class.inversion.fn = 13
+      per_corruption_class.inversion.roc_auc = 0.6329
+      per_corruption_class.inversion.verdict_distribution.PARTIALLY_SUPPORTED = 10
+      per_corruption_class.inversion.verdict_distribution.NOT_SUPPORTED = 10
+      per_corruption_class.inversion.verdict_distribution.SUPPORTED = 3
+      per_corruption_class.passage_perm.sensitivity = 0.9011
+      per_corruption_class.passage_perm.specificity = 0.7967
+      per_corruption_class.passage_perm.precision = 0.5256
+      per_corruption_class.passage_perm.f1 = 0.664
+      per_corruption_class.passage_perm.balanced_accuracy = 0.8489
+      per_corruption_class.passage_perm.tp = 82
+      per_corruption_class.passage_perm.fp = 74
+      per_corruption_class.passage_perm.tn = 290
+      per_corruption_class.passage_perm.fn = 9
+      per_corruption_class.passage_perm.roc_auc = 0.8479
+      per_corruption_class.passage_perm.verdict_distribution.PARTIALLY_SUPPORTED = 6
+      per_corruption_class.passage_perm.verdict_distribution.NOT_SUPPORTED = 82
+      per_corruption_class.passage_perm.verdict_distribution.SUPPORTED = 3
+      per_corruption_class.relation_sub.sensitivity = 0.5385
+      per_corruption_class.relation_sub.specificity = 0.7967
+      per_corruption_class.relation_sub.precision = 0.3984
+      per_corruption_class.relation_sub.f1 = 0.4579
+      per_corruption_class.relation_sub.balanced_accuracy = 0.6676
+      per_corruption_class.relation_sub.tp = 49
+      per_corruption_class.relation_sub.fp = 74
+      per_corruption_class.relation_sub.tn = 290
+      per_corruption_class.relation_sub.fn = 42
+      per_corruption_class.relation_sub.roc_auc = 0.6977
+      per_corruption_class.relation_sub.verdict_distribution.NOT_SUPPORTED = 49
+      per_corruption_class.relation_sub.verdict_distribution.SUPPORTED = 6
+      per_corruption_class.relation_sub.verdict_distribution.PARTIALLY_SUPPORTED = 36
+      original_verdict_distribution.PARTIALLY_SUPPORTED = 201
+      original_verdict_distribution.SUPPORTED = 89
+      original_verdict_distribution.NOT_SUPPORTED = 74
+   [resume json] output/run18/stress_test/mistral/m4_run_meta.json
+      model = /home/talbi/.cache/huggingface/hub/models--mistralai--Mistral-7B-Instruct-v0.2/snapshots/63a8b081895390a26e140280378bc85
+      input = /home/talbi/ontogeorag_run18/output/run18/stress_test/controls.jsonl
+      n_triples = 728
+      n_no_passage = 0
+      decoding = greedy (do_sample=False)
+      max_evidence_chars = 1500
+      runtime_seconds = 5734.9
+   [verdicts] output/run18/stress_test/mistral/m4_verdicts.jsonl : 728 enr. ; jointure sur champs subject,relation,object : 478/728 uniques, 250 multiples
+      -- blind.verdict
+         entity_sub     n=117  PLAUSIBLE 93, IMPLAUSIBLE 13, UNCERTAIN 11
+         inversion      n=23   PLAUSIBLE 22, IMPLAUSIBLE 1
+         original       n=247  PLAUSIBLE 208, UNCERTAIN 28, IMPLAUSIBLE 11
+         relation_sub   n=91   PLAUSIBLE 74, UNCERTAIN 11, IMPLAUSIBLE 6
+      -- evidence.verdict
+         entity_sub     n=117  NOT_SUPPORTED 68, PARTIALLY_SUPPORTED 44, SUPPORTED 5
+         inversion      n=23   PARTIALLY_SUPPORTED 14, SUPPORTED 8, NOT_SUPPORTED 1
+         original       n=247  PARTIALLY_SUPPORTED 144, SUPPORTED 91, NOT_SUPPORTED 12
+         relation_sub   n=91   PARTIALLY_SUPPORTED 63, SUPPORTED 14, NOT_SUPPORTED 14
+   [resume json] output/run18/stress_test/mistral/negatives_report.json
+      n_scored = 728
+      decision_rule = corrupted detected iff evidence verdict == NOT_SUPPORTED
+      overall.sensitivity = 0.4423
+      overall.specificity = 0.9505
+      overall.precision = 0.8994
+      overall.f1 = 0.593
+      overall.balanced_accuracy = 0.6964
+      overall.tp = 161
+      overall.fp = 18
+      overall.tn = 346
+      overall.fn = 203
+      roc_auc_graded_score = 0.7525
+      per_corruption_class.entity_sub.sensitivity = 0.5409
+      per_corruption_class.entity_sub.specificity = 0.9505
+      per_corruption_class.entity_sub.precision = 0.8269
+      per_corruption_class.entity_sub.f1 = 0.654
+      per_corruption_class.entity_sub.balanced_accuracy = 0.7457
+      per_corruption_class.entity_sub.tp = 86
+      per_corruption_class.entity_sub.fp = 18
+      per_corruption_class.entity_sub.tn = 346
+      per_corruption_class.entity_sub.fn = 73
+      per_corruption_class.entity_sub.roc_auc = 0.7969
+      per_corruption_class.entity_sub.verdict_distribution.NOT_SUPPORTED = 86
+      per_corruption_class.entity_sub.verdict_distribution.PARTIALLY_SUPPORTED = 61
+      per_corruption_class.entity_sub.verdict_distribution.SUPPORTED = 12
+      per_corruption_class.inversion.sensitivity = 0.0435
+      per_corruption_class.inversion.specificity = 0.9505
+      per_corruption_class.inversion.precision = 0.0526
+      per_corruption_class.inversion.f1 = 0.0476
+      per_corruption_class.inversion.balanced_accuracy = 0.497
+      per_corruption_class.inversion.tp = 1
+      per_corruption_class.inversion.fp = 18
+      per_corruption_class.inversion.tn = 346
+      per_corruption_class.inversion.fn = 22
+      per_corruption_class.inversion.roc_auc = 0.513
+      per_corruption_class.inversion.verdict_distribution.SUPPORTED = 8
+      per_corruption_class.inversion.verdict_distribution.PARTIALLY_SUPPORTED = 14
+      per_corruption_class.inversion.verdict_distribution.NOT_SUPPORTED = 1
+      per_corruption_class.passage_perm.sensitivity = 0.6593
+      per_corruption_class.passage_perm.specificity = 0.9505
+      per_corruption_class.passage_perm.precision = 0.7692
+      per_corruption_class.passage_perm.f1 = 0.7101
+      per_corruption_class.passage_perm.balanced_accuracy = 0.8049
+      per_corruption_class.passage_perm.tp = 60
+      per_corruption_class.passage_perm.fp = 18
+      per_corruption_class.passage_perm.tn = 346
+      per_corruption_class.passage_perm.fn = 31
+      per_corruption_class.passage_perm.roc_auc = 0.8486
+      per_corruption_class.passage_perm.verdict_distribution.PARTIALLY_SUPPORTED = 27
+      per_corruption_class.passage_perm.verdict_distribution.NOT_SUPPORTED = 60
+      per_corruption_class.passage_perm.verdict_distribution.SUPPORTED = 4
+      per_corruption_class.relation_sub.sensitivity = 0.1538
+      per_corruption_class.relation_sub.specificity = 0.9505
+      per_corruption_class.relation_sub.precision = 0.4375
+      per_corruption_class.relation_sub.f1 = 0.2276
+      per_corruption_class.relation_sub.balanced_accuracy = 0.5522
+      per_corruption_class.relation_sub.tp = 14
+      per_corruption_class.relation_sub.fp = 18
+      per_corruption_class.relation_sub.tn = 346
+      per_corruption_class.relation_sub.fn = 77
+      per_corruption_class.relation_sub.roc_auc = 0.6395
+      per_corruption_class.relation_sub.verdict_distribution.PARTIALLY_SUPPORTED = 63
+      per_corruption_class.relation_sub.verdict_distribution.SUPPORTED = 14
+      per_corruption_class.relation_sub.verdict_distribution.NOT_SUPPORTED = 14
+      original_verdict_distribution.PARTIALLY_SUPPORTED = 208
+      original_verdict_distribution.SUPPORTED = 138
+      original_verdict_distribution.NOT_SUPPORTED = 18
+   [resume json] output/run18/stress_test/regles_decision.json
+      admission|llama.corrupted_flagged = 51
+      admission|llama.n_corrupted = 364
+      admission|llama.originals_flagged = 20
+      admission|llama.n_originals = 364
+      admission|llama.per_class.entity_sub = 22
+      admission|llama.per_class.inversion = 2
+      admission|llama.per_class.passage_perm = 11
+      admission|llama.per_class.relation_sub = 16
+      admission|mistral.corrupted_flagged = 62
+      admission|mistral.n_corrupted = 364
+      admission|mistral.originals_flagged = 40
+      admission|mistral.n_originals = 364
+      admission|mistral.per_class.entity_sub = 29
+      admission|mistral.per_class.inversion = 1
+      admission|mistral.per_class.passage_perm = 18
+      admission|mistral.per_class.relation_sub = 14
+      admission|panel.corrupted_flagged = 92
+      admission|panel.n_corrupted = 364
+      admission|panel.originals_flagged = 52
+      admission|panel.n_originals = 364
+      admission|panel.per_class.entity_sub = 39
+      admission|panel.per_class.inversion = 3
+      admission|panel.per_class.passage_perm = 26
+      admission|panel.per_class.relation_sub = 24
+      phrase|llama.corrupted_flagged = 274
+      phrase|llama.n_corrupted = 364
+      phrase|llama.originals_flagged = 94
+      phrase|llama.n_originals = 364
+      phrase|llama.per_class.entity_sub = 128
+      phrase|llama.per_class.inversion = 11
+      phrase|llama.per_class.passage_perm = 82
+      phrase|llama.per_class.relation_sub = 53
+      phrase|mistral.corrupted_flagged = 184
+      phrase|mistral.n_corrupted = 364
+      phrase|mistral.originals_flagged = 58
+      phrase|mistral.n_originals = 364
+      phrase|mistral.per_class.entity_sub = 93
+      phrase|mistral.per_class.inversion = 1
+      phrase|mistral.per_class.passage_perm = 65
+      phrase|mistral.per_class.relation_sub = 25
+      phrase|panel.corrupted_flagged = 284
+      phrase|panel.n_corrupted = 364
+      phrase|panel.originals_flagged = 126
+      phrase|panel.n_originals = 364
+      phrase|panel.per_class.entity_sub = 133
+      phrase|panel.per_class.inversion = 11
+      phrase|panel.per_class.passage_perm = 85
+      phrase|panel.per_class.relation_sub = 55
+      phrase_seule|llama.corrupted_flagged = 268
+      phrase_seule|llama.n_corrupted = 364
+      phrase_seule|llama.originals_flagged = 74
+      phrase_seule|llama.n_originals = 364
+      phrase_seule|llama.per_class.entity_sub = 127
+      phrase_seule|llama.per_class.inversion = 10
+      phrase_seule|llama.per_class.passage_perm = 82
+      phrase_seule|llama.per_class.relation_sub = 49
+      phrase_seule|mistral.corrupted_flagged = 161
+      phrase_seule|mistral.n_corrupted = 364
+      phrase_seule|mistral.originals_flagged = 18
+      phrase_seule|mistral.n_originals = 364
+      phrase_seule|mistral.per_class.entity_sub = 86
+      phrase_seule|mistral.per_class.inversion = 1
+      phrase_seule|mistral.per_class.passage_perm = 60
+      phrase_seule|mistral.per_class.relation_sub = 14
+      phrase_seule|panel.corrupted_flagged = 275
+      phrase_seule|panel.n_corrupted = 364
+      phrase_seule|panel.originals_flagged = 79
+      phrase_seule|panel.n_originals = 364
+      phrase_seule|panel.per_class.entity_sub = 131
+      phrase_seule|panel.per_class.inversion = 10
+      phrase_seule|panel.per_class.passage_perm = 84
+      phrase_seule|panel.per_class.relation_sub = 50
+   [verdicts] output/audit/181_regles_llama/output/run16E/m4/negatives/m4_verdicts.jsonl : 728 enr. ; jointure sur champs subject,relation,object : 478/728 uniques, 250 multiples
+      -- blind.verdict
+         entity_sub     n=117  PLAUSIBLE 97, UNCERTAIN 10, IMPLAUSIBLE 10
+         inversion      n=23   PLAUSIBLE 20, UNCERTAIN 3
+         original       n=247  PLAUSIBLE 228, UNCERTAIN 10, IMPLAUSIBLE 9
+         relation_sub   n=91   PLAUSIBLE 73, UNCERTAIN 10, IMPLAUSIBLE 8
+      -- evidence.verdict
+         entity_sub     n=117  NOT_SUPPORTED 100, PARTIALLY_SUPPORTED 16, SUPPORTED 1
+         inversion      n=23   PARTIALLY_SUPPORTED 10, NOT_SUPPORTED 10, SUPPORTED 3
+         original       n=247  PARTIALLY_SUPPORTED 133, SUPPORTED 65, NOT_SUPPORTED 49
+         relation_sub   n=91   NOT_SUPPORTED 49, PARTIALLY_SUPPORTED 36, SUPPORTED 6
+   [verdicts] output/audit/181_regles_mistral/output/run16E/m4/negatives/m4_verdicts.jsonl : 728 enr. ; jointure sur champs subject,relation,object : 478/728 uniques, 250 multiples
+      -- blind.verdict
+         entity_sub     n=117  PLAUSIBLE 93, IMPLAUSIBLE 13, UNCERTAIN 11
+         inversion      n=23   PLAUSIBLE 22, IMPLAUSIBLE 1
+         original       n=247  PLAUSIBLE 208, UNCERTAIN 28, IMPLAUSIBLE 11
+         relation_sub   n=91   PLAUSIBLE 74, UNCERTAIN 11, IMPLAUSIBLE 6
+      -- evidence.verdict
+         entity_sub     n=117  NOT_SUPPORTED 68, PARTIALLY_SUPPORTED 44, SUPPORTED 5
+         inversion      n=23   PARTIALLY_SUPPORTED 14, SUPPORTED 8, NOT_SUPPORTED 1
+         original       n=247  PARTIALLY_SUPPORTED 144, SUPPORTED 91, NOT_SUPPORTED 12
+         relation_sub   n=91   PARTIALLY_SUPPORTED 63, SUPPORTED 14, NOT_SUPPORTED 14
+
+=== 4. Cas ambigus par type de perturbation ===
+   originaux 364, perturbes 364 ; perturbes sans original retrouve : 0
+   entity_sub     non ambigu 145, ambigu (entite introduite presente dans le passage) 14
+   inversion      a juger (relation orientee ?) 23
+   passage_perm   non ambigu 80, objet seul dans le nouveau passage 9, sujet seul dans le nouveau passage 2
+   relation_sub   non ambigu 81, ambigu (meme famille) 10
+   relation_sub, relation originale -> relation introduite :
+      hasDescriptor -> formedBy : 10
+      hasDescriptor -> occursIn : 9
+      hasDescriptor -> triggers : 6
+      hasDescriptor -> overlies : 5
+      hasDescriptor -> indicates : 5
+      hasDescriptor -> controls : 5
+      hasDescriptor -> affects : 4
+      hasDescriptor -> partOf : 3
+      occursIn -> hasDescriptor : 3
+      hasDescriptor -> causes : 3
+      hasDescriptor -> underlies : 3
+      overlies -> indicates : 2
+      causes -> underlies : 2
+      occursIn -> controls : 2
+      triggers -> affects : 2
+      causes -> controls : 2
+      triggers -> evolvesTo : 2
+      hasDescriptor -> evolvesTo : 2
+      affects -> hasDescriptor : 1
+      controls -> formedBy : 1
+      occursIn -> partOf : 1
+      partOf -> occursIn : 1
+      causes -> formedBy : 1
+      partOf -> evolvesTo : 1
+      triggers -> overlies : 1
+      occursIn -> triggers : 1
+      triggers -> hasDescriptor : 1
+      triggers -> controls : 1
+      occursIn -> underlies : 1
+      overlies -> affects : 1
+      triggers -> indicates : 1
+      causes -> evolvesTo : 1
+      triggers -> occursIn : 1
+      overlies -> hasDescriptor : 1
+      partOf -> triggers : 1
+      partOf -> indicates : 1
+      occursIn -> formedBy : 1
+      occursIn -> affects : 1
+      triggers -> causes : 1
+   inversion, relations inversees : triggers 10, causes 7, overlies 2, affects 2, underlies 1, controls 1
+   relations presentes dans les controles : hasDescriptor 383, occursIn 87, triggers 72, causes 48, partOf 36, overlies 24, controls 19, affects 17, underlies 14, formedBy 13, indicates 9, evolvesTo 6
+   Indicateur lexical (sous-chaine apres normalisation) : relire ambiguites.csv avant de citer.
+
+=== 5. Etapes, durees, materiel ===
+[output/run18/manifest.json] sha 1d8a9cb5623e
+   run = run18
+   git_commit = b0e91f5affadc5ee4cdaccb3190b9370b79057af
+   git_describe = run15-frozen-17-gb0e91f5
+   git_status_clean = True
+   benchmark = configs/benchmark/benchmark_v3.json
+   provenance = chaine de run17 (index de run16E copie, --max-chars 12000, --max-tokens 2048), requetes 175, scripts 02/04 generes par 176, porte 174 passee
+   index_from = /home/talbi/ontogeorag_D/output/run16E/index
+   artifact_sha256..ipynb_checkpoints/provenance_audit-checkpoint.json = 157d1e02caa22c3f
+   artifact_sha256.index/chunks.jsonl = 03db65349faad54b
+   artifact_sha256.index/index_meta.json = cc04fc1085f0638e
+   artifact_sha256.index/ingestion_report.json = 887e50ccad79ede6
+   artifact_sha256.kg/tiered_kg_run18.json = 6cca51cfb62d8baf
+   artifact_sha256.kg_enforced/enforced_triples.jsonl = 26684d53ba053cf0
+   artifact_sha256.kg_enforced/enforcement_report.json = 2d2a0f397993bdbc
+   artifact_sha256.kg_enforced/rejected_triples.jsonl = e3b0c44298fc1c14
+   artifact_sha256.kg_enforced/tiered_kg_enforced.json = 5a12823faf39c17b
+   artifact_sha256.kg_final/article_metrics.json = b4c1ade786678ad0
+   artifact_sha256.kg_final/flat_run18_enforced_dedup.json = caccdca00ff306e0
+   artifact_sha256.m4/llama/m4_decision_summary.json = e4b31e5c1ad83f48
+   artifact_sha256.m4/llama/m4_decisions.jsonl = 03354eed4fd880cc
+   artifact_sha256.m4/llama/m4_run_meta.json = 7ef3c45b3a5c1b32
+   artifact_sha256.m4/llama/m4_verdicts.jsonl = b6100d4cfcd85f08
+   artifact_sha256.m4/mistral/m4_decision_summary.json = ec887ab51a823d77
+   artifact_sha256.m4/mistral/m4_decisions.jsonl = 79ab6cc6f6ed4d94
+   artifact_sha256.m4/mistral/m4_run_meta.json = 1f820e9838e282e9
+   artifact_sha256.m4/mistral/m4_verdicts.jsonl = 02492b1f683b7e88
+   artifact_sha256.m4_panel/m4_panel_decisions.jsonl = d1f6b34911312c56
+   artifact_sha256.m4_panel/m4_panel_report.json = 2e02c3251946c2f4
+   artifact_sha256.m4_panel/m4_quarantine.jsonl = 2efdb7e3140f3fbb
+   artifact_sha256.m4_panel/tiered_kg_m4.json = 3076065324b155ea
+   artifact_sha256.pass_a/canonical_map_v5.json = 85c81138bd80d8c0
+   artifact_sha256.pass_a/canonical_triples_v5.jsonl = c877b040445e05b0
+   artifact_sha256.pass_a/canonical_triples_v5.rulecanon.jsonl = c877b040445e05b0
+   artifact_sha256.pass_a/canonical_triples_v5.rulecanon.lexicon_enforced.jsonl = c877b040445e05b0
+   artifact_sha256.pass_a/canonical_triples_v5.rulecanon.lexicon_rejected.jsonl = e3b0c44298fc1c14
+   artifact_sha256.pass_a/cleaning_stats_v5.json = fdaf1f88e18b44a7
+   artifact_sha256.pass_a/raw_triples.jsonl = 92902a71f0867609
+   artifact_sha256.pass_a/raw_triples_stats.json = 7cdfaf6c8128a763
+   artifact_sha256.pass_a/rejected_triples_v5.jsonl = 7e97b3ccb8b179c9
+   artifact_sha256.pass_a/triples_repaired.jsonl = de56593043eb3619
+   artifact_sha256.pass_a/verification_audit.jsonl = 204e73526902af92
+   artifact_sha256.pass_a/verification_stats.json = 644bcc2082e4b86f
+   artifact_sha256.pass_a/verified_triples.jsonl = be78a5f3dc2050d4
+   artifact_sha256.pass_b/canonical_map_v5.json = c8cb5cdaea35d027
+   artifact_sha256.pass_b/canonical_triples_v5.jsonl = b2dd89422bce023d
+   artifact_sha256.pass_b/canonical_triples_v5.rulecanon.jsonl = b2dd89422bce023d
+   artifact_sha256.pass_b/canonical_triples_v5.rulecanon.lexicon_enforced.jsonl = b2dd89422bce023d
+   etape 0 |            | step=index_copy, script=None, source=/home/talbi/ontogeorag_D/output/run16E/index, chunks_sha256=03db65349faad54bfd10181b305c87f139c44a1fe252f5b9eff20d00d04fd14a, n_chunks=1758
+   etape 1 | 0h22m44s   | step=extract_pass_a, script=pipeline/02_extract_triples_run18.py, sha256=7fdc6cc1a44224a0a85451ce89e2d61bcd313b9e6e7361cec4665e0d27d419df
+   etape 2 | 0h22m09s   | step=extract_pass_b, script=pipeline/02_extract_triples_run18.py, sha256=7fdc6cc1a44224a0a85451ce89e2d61bcd313b9e6e7361cec4665e0d27d419df
+   etape 3 | 0h00m01s   | step=repair_provenance, script=52_repair_provenance.py, sha256=19e0101d3d0df548fa4425069c2f04ace0a806779b3b7cfc72444e25b07a5fca
+   etape 4 | 2h26m01s   | step=verify_pass_a, script=53_verify_repaired.py, sha256=e1fcedb7452ccb8381d23de34c9e1e76b7e358d136c07d1e1c9618cd86f3ce25
+   etape 5 | 2h18m53s   | step=verify_pass_b, script=53_verify_repaired.py, sha256=e1fcedb7452ccb8381d23de34c9e1e76b7e358d136c07d1e1c9618cd86f3ce25
+   etape 6 | 0h00m55s   | step=clean_pass_a, script=pipeline/04_clean_validate_run18.py, sha256=e5a8db171df78204a27325a6f8d185496a23e668c1ad2cb34e879091ec61748a
+   etape 7 | 0h00m00s   | step=rulecanon_pass_a, script=analysis_suite/05a_rule_canonicalize.py, sha256=8f5823443a7153e47adcf3583ee10dfb3f2b1a9eaae532cb7fee12a1e6b6200d
+   etape 8 | 0h00m00s   | step=lexicon_pass_a, script=analysis_suite/04c_lexicon_enforce.py, sha256=7c311aaf90f7f457354b2b646e395b8a41c873edc9ff380d2202b7af795332ed
+   etape 9 | 0h00m10s   | step=clean_pass_b, script=pipeline/04_clean_validate_run18.py, sha256=e5a8db171df78204a27325a6f8d185496a23e668c1ad2cb34e879091ec61748a
+   etape 10 | 0h00m00s   | step=rulecanon_pass_b, script=analysis_suite/05a_rule_canonicalize.py, sha256=8f5823443a7153e47adcf3583ee10dfb3f2b1a9eaae532cb7fee12a1e6b6200d
+   etape 11 | 0h00m00s   | step=lexicon_pass_b, script=analysis_suite/04c_lexicon_enforce.py, sha256=7c311aaf90f7f457354b2b646e395b8a41c873edc9ff380d2202b7af795332ed
+   etape 12 | 0h00m01s   | step=fusion, script=pipeline/06_tiered_fusion.py, sha256=f0c45d490de8d756d56e7e5d078e5cfa93082511d4b2de1a26bcac2a8c9839a9
+   etape 13 | 0h35m09s   | step=m4_verify_llama, script=m4/m4_verify.py, sha256=7350d11274a4a9e39232d5fbf7f898b97d59e7c86d285b20ae1420f06b1a788f
+   etape 14 | 0h00m01s   | step=m4_aggregate_llama, script=m4/m4_aggregate.py, sha256=148d44c135026e510a6a5eae5cfc69c994e825c2afb12937fd66d1345793af71
+   etape 15 | 0h49m47s   | step=m4_verify_mistral, script=m4/m4_verify.py, sha256=7350d11274a4a9e39232d5fbf7f898b97d59e7c86d285b20ae1420f06b1a788f
+   etape 16 | 0h00m00s   | step=m4_aggregate_mistral, script=m4/m4_aggregate.py, sha256=148d44c135026e510a6a5eae5cfc69c994e825c2afb12937fd66d1345793af71
+   etape 17 | 0h00m00s   | step=m4_panel, script=m4/m4_panel.py, sha256=e659b652e99977ffdf5cf4d263a00bbb0b5d9448b0704b3f3744cf034b11c94e
+   etape 18 | 0h00m01s   | step=m4_integrate, script=m4/m4_integrate_tiers.py, sha256=7bc55b09b2addb6e51c2c49d615aacce13607d751d1a9dca9c17ffad8369ae3b
+   etape 19 | 0h00m00s   | step=schema_enforce, script=analysis_suite/04b_schema_enforce.py, sha256=63f294bb4a88a3fb6394b894aa3a68ec265c6dd44be7a73a4ee2a1c812c347f9
+   etape 20 | 0h00m00s   | step=flatten, script=analysis_suite/24_kg_to_flat.py, sha256=26f70b35f60c9b53238dea963d6764f04e6db563916a8774c73426eeb0d92d1f
+   etape 21 | 0h00m00s   | step=metrics, script=pipeline/07_final_metrics.py, sha256=de92306533c7c710be8e854235bf8b576baa91585f863936fa6ff6d915651b49
+   du premier debut a la derniere fin : 6h55m56s

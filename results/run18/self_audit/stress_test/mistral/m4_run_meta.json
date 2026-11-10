@@ -1,0 +1,9 @@
+{
+  "model": "/home/talbi/.cache/huggingface/hub/models--mistralai--Mistral-7B-Instruct-v0.2/snapshots/63a8b081895390a26e140280378bc85ec8bce07a",
+  "input": "/home/talbi/ontogeorag_run18/output/run18/stress_test/controls.jsonl",
+  "n_triples": 728,
+  "n_no_passage": 0,
+  "decoding": "greedy (do_sample=False)",
+  "max_evidence_chars": 1500,
+  "runtime_seconds": 5734.9
+}

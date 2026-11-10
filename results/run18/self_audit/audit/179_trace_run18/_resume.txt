@@ -1,0 +1,31 @@
+=== 179 chemin des relations de comparaison dans run18 ===
+relation                                           phr  pass   lus  exA  exB livA livB  raison
+mass transport deposit --hasDescriptor--> chaotic    76    63    31  174    0    3    0  PRESENTE dans le graphe livre (niveau A)
+mass transport deposit --hasDescriptor--> transparent    12    12     8   66    0    0    0  RETIREE_A_L_ETAPE panel
+mass transport deposit --hasDescriptor--> hummocky     6     6     3   12    0    1    0  PRESENTE dans le graphe livre (niveau A)
+mass transport deposit --hasDescriptor--> blocky    16    15     9    7    0    1    0  PRESENTE dans le graphe livre (niveau A)
+mass transport deposit --hasDescriptor--> discontinuous    11    11     8   51    0    3    0  PRESENTE dans le graphe livre (niveau A)
+mass transport deposit --hasDescriptor--> massive     8     8     4    4    0    1    0  PRESENTE dans le graphe livre (niveau A)
+turbidite --hasDescriptor--> parallel                8     7     3    0    0    0    0  NON_EXTRAITE : passage lu par l'extracteur, aucune relation entre les deux termes
+turbidite --hasDescriptor--> continuous              3     3     3    8    0    1    0  PRESENTE dans le graphe livre (niveau A)
+turbidite --hasDescriptor--> layered                 0     0     0    0    0    0    0  AUCUNE_PHRASE : aucune phrase du corpus ne nomme les deux termes
+turbidite --hasDescriptor--> high-amplitude          6     6     3    4    0    1    0  PRESENTE dans le graphe livre (niveau A)
+debris flow --hasDescriptor--> chaotic               6     6     2    1    0    1    0  PRESENTE dans le graphe livre (niveau A)
+debris flow --hasDescriptor--> hummocky              0     0     0    0    0    0    0  AUCUNE_PHRASE : aucune phrase du corpus ne nomme les deux termes
+slide --hasDescriptor--> blocky                      1     1     1    0    0    0    0  NON_EXTRAITE : passage lu par l'extracteur, aucune relation entre les deux termes
+slide --hasDescriptor--> undeformed                  4     4     1    0    0    0    0  NON_EXTRAITE : passage lu par l'extracteur, aucune relation entre les deux termes
+hemipelagite --hasDescriptor--> parallel             0     0     0    0    0    0    0  AUCUNE_PHRASE : aucune phrase du corpus ne nomme les deux termes
+hemipelagite --hasDescriptor--> continuous           2     2     1    0    0    0    0  NON_EXTRAITE : passage lu par l'extracteur, aucune relation entre les deux termes
+hemipelagite --hasDescriptor--> low-amplitude        0     0     0    0    0    0    0  AUCUNE_PHRASE : aucune phrase du corpus ne nomme les deux termes
+slope failure --causes--> mass transport deposit    37    35    15    0    0    0    0  NON_EXTRAITE : passage lu par l'extracteur, aucune relation entre les deux termes
+earthquake --triggers--> slope failure              20    17     5    6    0    3    0  PRESENTE dans le graphe livre (niveau A)
+pore pressure --controls--> slope failure           14    14     3    0    2    0    1  AUTRE_FORME : extraite seulement avec une autre relation ou dans l'autre sens
+turbidity current --formedBy--> debris flow         19    18     4    0    0    0    0  NON_EXTRAITE : passage lu par l'extracteur, aucune relation entre les deux termes
+mass transport deposit --occursIn--> continental slope    47    43     9    0    0    0    0  NON_EXTRAITE : passage lu par l'extracteur, aucune relation entre les deux termes
+mass transport deposit --occursIn--> abyssal plain     9     6     2    0    0    0    0  NON_EXTRAITE : passage lu par l'extracteur, aucune relation entre les deux termes
+debris flow --occursIn--> continental slope          3     3     1    0    0    0    0  NON_EXTRAITE : passage lu par l'extracteur, aucune relation entre les deux termes
+turbidite --occursIn--> basin floor                  8     8     4    0    0    0    0  NON_EXTRAITE : passage lu par l'extracteur, aucune relation entre les deux termes
+slide --overlies--> hemipelagite                     1     1     0    0    0    0    0  NON_RETROUVEE : les passages qui la contiennent n'ont jamais ete donnes a l'extracteur
+phr = phrases du corpus qui nomment les deux termes ; pass = passages qui les contiennent ;
+lus = ces passages donnes a l'extracteur ; exA/exB = relations extraites niveau A/B ; livA/livB = dans le graphe livre
+fichiers : trace_26.tsv, details.json (phrases, requetes, exemples par etape)

@@ -1,0 +1,160 @@
+== provenance output/audit/187_provenance/graphe_avec_provenance.json : 364 enregistrements
+   subject | 166 valeurs distinctes | ex. basal shear surface
+   relation | 9 valeurs distinctes | ex. affects
+   object | 118 valeurs distinctes | ex. erosion grooves
+   subject_type | 3 valeurs distinctes | ex. Geological_Object
+   object_type | 4 valeurs distinctes | ex. Geological_Object
+   tier | 2 valeurs distinctes | ex. 1
+   tier_label | 2 valeurs distinctes | ex. verified
+   verdict | 2 valeurs distinctes | ex. STRONG_SUPPORT
+   origin | 3 valeurs distinctes | ex. iter_a
+   evidence | 264 valeurs distinctes | ex. "to be indicative of basal erosion (gee et al., 2005), which in this case is con
+   query | 115 valeurs distinctes | ex. What is the relationship between erosion and basal surfaces?
+   strategy | 4 valeurs distinctes | ex. causal
+   model | 1 valeurs distinctes | ex. /home/talbi/.cache/huggingface/hub/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a
+   reasoning | 353 valeurs distinctes | ex. The source text directly links the basal shear surface with the confirmation of 
+   support_count | 1 valeurs distinctes | ex. 0
+   supporting_papers | 1 valeurs distinctes | ex. []
+   tier_original | 2 valeurs distinctes | ex. 1
+   m4.decision | 2 valeurs distinctes | ex. ACCEPT
+   m4.confidence | 19 valeurs distinctes | ex. 0.75
+   m4.blind_verdict | 9 valeurs distinctes | ex. PLAUSIBLE|UNCERTAIN
+   m4.evidence_verdict | 9 valeurs distinctes | ex. PARTIALLY_SUPPORTED|SUPPORTED
+   m4.flags | 4 valeurs distinctes | ex. []
+   provenance.method | 1 valeurs distinctes | ex. 187 : preuve localisee dans l'index (NFKC, minuscules alphanumeriques ; partial 
+   provenance.n_articles | 11 valeurs distinctes | ex. 1
+   provenance.sources | 214 valeurs distinctes | ex. [{"ref_n": 3, "reference": "Bull, S., Cartwright, J. & Huuse, M. (2009) A review
+== avant nettoyage : output/run18/kg_final/flat_run18_enforced_dedup.json : 364 enregistrements
+   subject | 166 valeurs distinctes | ex. basal shear surface
+   relation | 9 valeurs distinctes | ex. affects
+   object | 118 valeurs distinctes | ex. erosion grooves
+   subject_type | 3 valeurs distinctes | ex. Geological_Object
+   object_type | 4 valeurs distinctes | ex. Geological_Object
+   tier | 2 valeurs distinctes | ex. 1
+   tier_label | 2 valeurs distinctes | ex. verified
+   verdict | 2 valeurs distinctes | ex. STRONG_SUPPORT
+   origin | 3 valeurs distinctes | ex. iter_a
+   evidence | 264 valeurs distinctes | ex. "to be indicative of basal erosion (gee et al., 2005), which in this case is con
+   query | 115 valeurs distinctes | ex. What is the relationship between erosion and basal surfaces?
+   strategy | 4 valeurs distinctes | ex. causal
+   model | 1 valeurs distinctes | ex. /home/talbi/.cache/huggingface/hub/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a
+   reasoning | 353 valeurs distinctes | ex. The source text directly links the basal shear surface with the confirmation of 
+   support_count | 1 valeurs distinctes | ex. 0
+   supporting_papers | 1 valeurs distinctes | ex. []
+   tier_original | 2 valeurs distinctes | ex. 1
+   m4.decision | 2 valeurs distinctes | ex. ACCEPT
+   m4.confidence | 19 valeurs distinctes | ex. 0.75
+   m4.blind_verdict | 9 valeurs distinctes | ex. PLAUSIBLE|UNCERTAIN
+   m4.evidence_verdict | 9 valeurs distinctes | ex. PARTIALLY_SUPPORTED|SUPPORTED
+   m4.flags | 4 valeurs distinctes | ex. []
+== sortie 188 : output/audit/188_nettoyage_v2/graphe_nettoye.json : 281 enregistrements
+   subject | 138 valeurs distinctes | ex. basal shear surface
+   relation | 9 valeurs distinctes | ex. affects
+   object | 102 valeurs distinctes | ex. erosion grooves
+   subject_type | 3 valeurs distinctes | ex. Geological_Object
+   object_type | 4 valeurs distinctes | ex. Geological_Object
+   tier | 2 valeurs distinctes | ex. 1
+   tier_label | 2 valeurs distinctes | ex. verified
+   verdict | 2 valeurs distinctes | ex. STRONG_SUPPORT
+   origin | 3 valeurs distinctes | ex. iter_a
+   evidence | 212 valeurs distinctes | ex. "to be indicative of basal erosion (gee et al., 2005), which in this case is con
+   query | 99 valeurs distinctes | ex. What is the relationship between erosion and basal surfaces?
+   strategy | 4 valeurs distinctes | ex. causal
+   model | 1 valeurs distinctes | ex. /home/talbi/.cache/huggingface/hub/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a
+   reasoning | 271 valeurs distinctes | ex. The source text directly links the basal shear surface with the confirmation of 
+   support_count | 1 valeurs distinctes | ex. 0
+   supporting_papers | 1 valeurs distinctes | ex. []
+   tier_original | 2 valeurs distinctes | ex. 1
+   m4.decision | 2 valeurs distinctes | ex. ACCEPT
+   m4.confidence | 18 valeurs distinctes | ex. 0.75
+   m4.blind_verdict | 7 valeurs distinctes | ex. PLAUSIBLE|UNCERTAIN
+   m4.evidence_verdict | 9 valeurs distinctes | ex. PARTIALLY_SUPPORTED|SUPPORTED
+   m4.flags | 4 valeurs distinctes | ex. []
+   provenance.method | 1 valeurs distinctes | ex. 187 : preuve localisee dans l'index (NFKC, minuscules alphanumeriques ; partial 
+   provenance.n_articles | 11 valeurs distinctes | ex. 1
+   provenance.sources | 183 valeurs distinctes | ex. [{"ref_n": 3, "reference": "Bull, S., Cartwright, J. & Huuse, M. (2009) A review
+   famille_sujet | 83 valeurs distinctes | ex. basal surface
+   famille_objet | 71 valeurs distinctes | ex. basal surface
+== sortie 188 : output/audit/188_nettoyage_v2/relations_retirees.tsv : 83 enregistrements
+   sujet | 48 valeurs distinctes | ex. am1
+   relation | 7 valeurs distinctes | ex. hasDescriptor
+   objet | 40 valeurs distinctes | ex. thick
+   tier | 2 valeurs distinctes | ex. 1
+   decision_panel | 2 valeurs distinctes | ex. ACCEPT
+   n_phrases_sources | 2 valeurs distinctes | ex. 1
+   n_articles | 2 valeurs distinctes | ex. 1
+   articles | 24 valeurs distinctes | ex. Reis, A.T., Perovano, R., Silva, C.G., Vendeville, B.C., Ara
+   preuve | 69 valeurs distinctes | ex. "downslope mass-transport deposits are dominated by folded and compressed sedime
+   regles | 21 valeurs distinctes | ex. R2 etiquette (sujet code am1)
+== sortie 188 : output/audit/188_nettoyage_v2/relations_signalees.tsv : 49 enregistrements
+   sujet | 28 valeurs distinctes | ex. pore pressure development
+   relation | 5 valeurs distinctes | ex. causes
+   objet | 32 valeurs distinctes | ex. failure plane generation
+   tier | 2 valeurs distinctes | ex. 1
+   decision_panel | 2 valeurs distinctes | ex. ACCEPT
+   n_phrases_sources | 4 valeurs distinctes | ex. 1
+   n_articles | 4 valeurs distinctes | ex. 1
+   articles | 17 valeurs distinctes | ex. Frey-Martínez, J., Bertoni, C., Gérard, J. & Matías, H. (201
+   preuve | 37 valeurs distinctes | ex. "a failure plane is generated when elevated pore pressures develop along a speci
+   signalements | 18 valeurs distinctes | ex. S3 legende de figure probable
+   retiree | 2 valeurs distinctes | ex. 
+== controles output/audit/181_regles_llama/output/run16E/m4/negatives/controls.jsonl : 728 enregistrements
+   subject | 180 valeurs distinctes | ex. unit a
+   relation | 12 valeurs distinctes | ex. hasDescriptor
+   object | 137 valeurs distinctes | ex. high-amplitude
+   supporting_passage | 264 valeurs distinctes | ex. to the west, they contact with high-amplitude strata with a thickness reaching 2
+   label | 2 valeurs distinctes | ex. original
+   corruption_class | 5 valeurs distinctes | ex. none
+   orig_index | 364 valeurs distinctes | ex. 338
+== controles output/audit/181_regles_mistral/output/run16E/m4/negatives/controls.jsonl : 728 enregistrements
+   subject | 180 valeurs distinctes | ex. unit a
+   relation | 12 valeurs distinctes | ex. hasDescriptor
+   object | 137 valeurs distinctes | ex. high-amplitude
+   supporting_passage | 264 valeurs distinctes | ex. to the west, they contact with high-amplitude strata with a thickness reaching 2
+   label | 2 valeurs distinctes | ex. original
+   corruption_class | 5 valeurs distinctes | ex. none
+   orig_index | 364 valeurs distinctes | ex. 338
+== controles output/m4/negatives/controls.jsonl : 306 enregistrements
+   subject | 96 valeurs distinctes | ex. sea-level lowstands
+   relation | 12 valeurs distinctes | ex. causes
+   object | 109 valeurs distinctes | ex. greatest rates of sedimentation at the outer shelf and upper slope
+   supporting_passage | 108 valeurs distinctes | ex. "During relative lowstands of sea level, marginal marine depocenters shift towar
+   label | 2 valeurs distinctes | ex. original
+   corruption_class | 5 valeurs distinctes | ex. none
+   orig_index | 153 valeurs distinctes | ex. 36
+== controles output/run13/m4/negatives/controls.jsonl : 302 enregistrements
+   subject | 98 valeurs distinctes | ex. mass transport deposit
+   relation | 12 valeurs distinctes | ex. triggers
+   object | 104 valeurs distinctes | ex. layered
+   supporting_passage | 114 valeurs distinctes | ex. "AM2 to AM6 headscarps cut into well stratiﬁed lower slope siliciclastic layers 
+   label | 2 valeurs distinctes | ex. corrupted
+   corruption_class | 5 valeurs distinctes | ex. relation_sub
+   orig_index | 151 valeurs distinctes | ex. 122
+== controles output/run18/stress_test/controls.jsonl : 728 enregistrements
+   subject | 180 valeurs distinctes | ex. unit a
+   relation | 12 valeurs distinctes | ex. hasDescriptor
+   object | 137 valeurs distinctes | ex. high-amplitude
+   supporting_passage | 264 valeurs distinctes | ex. to the west, they contact with high-amplitude strata with a thickness reaching 2
+   label | 2 valeurs distinctes | ex. original
+   corruption_class | 5 valeurs distinctes | ex. none
+   orig_index | 364 valeurs distinctes | ex. 338
+== 186 output/audit/186_portee/marqueurs_par_relation.tsv : 382 enregistrements
+   ensemble | 2 valeurs distinctes | ex. livre
+   sujet | 169 valeurs distinctes | ex. basal shear surface
+   relation | 9 valeurs distinctes | ex. affects
+   objet | 121 valeurs distinctes | ex. erosion grooves
+   tier | 2 valeurs distinctes | ex. 1
+   decision_panel | 3 valeurs distinctes | ex. ACCEPT
+   verdicts_juges | 9 valeurs distinctes | ex. PARTIALLY_SUPPORTED|SUPPORTED
+   juges | 4 valeurs distinctes | ex. mixte
+   longueur_preuve | 151 valeurs distinctes | ex. 140
+   tronquee | 2 valeurs distinctes | ex. 
+   phrase_nuancee | 2 valeurs distinctes | ex. oui
+   modalite | 25 valeurs distinctes | ex. 
+   partiel | 16 valeurs distinctes | ex. 
+   condition | 12 valeurs distinctes | ex. 
+   valeur | 24 valeurs distinctes | ex. 
+   cas | 20 valeurs distinctes | ex. fig.
+   partie | 25 valeurs distinctes | ex. 
+   negation | 5 valeurs distinctes | ex. 
+   preuve | 272 valeurs distinctes | ex. "to be indicative of basal erosion (gee et al., 2005), which in this case is con

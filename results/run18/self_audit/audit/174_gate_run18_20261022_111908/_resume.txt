@@ -1,0 +1,35 @@
+=== 174 fuite du benchmark 26 dans le pipeline ===
+F1 prompt   : 21 exemples, dont 0 nomment une arete ; 0 aretes sur 26 vues dans le prompt
+F2 requetes : 210 requetes ; familles LB: 0, gapfill: 0 ; 0 requetes a retirer ; 0 aretes visees
+F3 nettoyage: descripteurs du benchmark importes False ; lb_settings aucun ; calcul de rappel False ; 0 aretes protegees
+aretes vues par le pipeline (au moins une fuite) : 0 / 26 ; jamais vues : 26
+
+arete                                                prompt  req  prot
+mass transport deposit --hasDescriptor--> chaotic         -    0     -
+mass transport deposit --hasDescriptor--> transparent      -    0     -
+mass transport deposit --hasDescriptor--> hummocky        -    0     -
+mass transport deposit --hasDescriptor--> blocky          -    0     -
+mass transport deposit --hasDescriptor--> discontinuous      -    0     -
+mass transport deposit --hasDescriptor--> massive         -    0     -
+turbidite --hasDescriptor--> parallel                     -    0     -
+turbidite --hasDescriptor--> continuous                   -    0     -
+turbidite --hasDescriptor--> layered                      -    0     -
+turbidite --hasDescriptor--> high-amplitude               -    0     -
+debris flow --hasDescriptor--> chaotic                    -    0     -
+debris flow --hasDescriptor--> hummocky                   -    0     -
+slide --hasDescriptor--> blocky                           -    0     -
+slide --hasDescriptor--> undeformed                       -    0     -
+hemipelagite --hasDescriptor--> parallel                  -    0     -
+hemipelagite --hasDescriptor--> continuous                -    0     -
+hemipelagite --hasDescriptor--> low-amplitude             -    0     -
+slope failure --causes--> mass transport deposit          -    0     -
+earthquake --triggers--> slope failure                    -    0     -
+pore pressure --controls--> slope failure                 -    0     -
+turbidity current --formedBy--> debris flow               -    0     -
+mass transport deposit --occursIn--> continental slope      -    0     -
+mass transport deposit --occursIn--> abyssal plain        -    0     -
+debris flow --occursIn--> continental slope               -    0     -
+turbidite --occursIn--> basin floor                       -    0     -
+slide --overlies--> hemipelagite                          -    0     -
+
+VERDICT : AUCUNE FUITE — le rappel sur 26 est mesurable

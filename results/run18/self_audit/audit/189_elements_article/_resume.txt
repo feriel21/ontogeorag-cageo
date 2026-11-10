@@ -1,0 +1,368 @@
+189_elements_article : lecture seule. Chiffres a verifier contre les sorties citees.
+
+=== B. Graphes ===
+descripteurs LB2019 charges : 13
+[avant nettoyage : output/run18/kg_final/flat_run18_enforced_dedup.json] 364 relations (363 cles de contenu distinctes), 271 entites distinctes (normalisees)
+   champs detectes : sujet=subject relation=relation objet=object
+   types de relations : hasDescriptor 216, occursIn 43, triggers 37, causes 25, partOf 18, overlies 11, affects 5, controls 5, underlies 4
+   subject_type : Geological_Object 291, Process 55, Environmental_Control 18
+   object_type : Descriptor 216, Process 56, Environmental_Control 49, Geological_Object 43
+   tier : 1 197, 2 167
+   tier_label : verified 272, literature-implied 92
+   verdict : STRONG_SUPPORT 266, WEAK_SUPPORT 98
+   origin : both 147, iter_a 122, iter_b 95
+   strategy : descriptor 200, context 75, causal 73, descriptor_reverse 16
+   tier_original : 1 272, 2 92
+   m4.decision : ACCEPT 238, UNCERTAIN 126
+   m4.blind_verdict : PLAUSIBLE|PLAUSIBLE 288, PLAUSIBLE|UNCERTAIN 39, UNCERTAIN|PLAUSIBLE 11, IMPLAUSIBLE|IMPLAUSIBLE 9, IMPLAUSIBLE|PLAUSIBLE 5, PLAUSIBLE|IMPLAUSIBLE 5, UNCERTAIN|IMPLAUSIBLE 4, UNCERTAIN|UNCERTAIN 2, IMPLAUSIBLE|UNCERTAIN 1
+   m4.evidence_verdict : PARTIALLY_SUPPORTED|PARTIALLY_SUPPORTED 130, PARTIALLY_SUPPORTED|SUPPORTED 68, SUPPORTED|SUPPORTED 56, NOT_SUPPORTED|PARTIALLY_SUPPORTED 47, SUPPORTED|PARTIALLY_SUPPORTED 31, NOT_SUPPORTED|SUPPORTED 14, NOT_SUPPORTED|NOT_SUPPORTED 13, PARTIALLY_SUPPORTED|NOT_SUPPORTED 3, SUPPORTED|NOT_SUPPORTED 2
+   m4.flags : [] 252, ["partial_support"] 98, ["parametric_risk"] 13, ["contested_plausibility"] 1
+   couverture des 13 descripteurs LB2019 : 13/13 ; absents : aucun
+   provenance via output/audit/187_provenance/graphe_avec_provenance.json : 364/364 relations jointes par cle de contenu
+      subject_type : Geological_Object 291, Process 55, Environmental_Control 18
+      object_type : Descriptor 216, Process 56, Environmental_Control 49, Geological_Object 43
+      tier : 1 197, 2 167
+      tier_label : verified 272, literature-implied 92
+      verdict : STRONG_SUPPORT 266, WEAK_SUPPORT 98
+      origin : both 147, iter_a 121, iter_b 96
+      strategy : descriptor 200, context 75, causal 73, descriptor_reverse 16
+      tier_original : 1 272, 2 92
+      m4.decision : ACCEPT 238, UNCERTAIN 126
+      m4.blind_verdict : PLAUSIBLE|PLAUSIBLE 288, PLAUSIBLE|UNCERTAIN 39, UNCERTAIN|PLAUSIBLE 11, IMPLAUSIBLE|IMPLAUSIBLE 9, IMPLAUSIBLE|PLAUSIBLE 5, PLAUSIBLE|IMPLAUSIBLE 5, UNCERTAIN|IMPLAUSIBLE 4, UNCERTAIN|UNCERTAIN 2, IMPLAUSIBLE|UNCERTAIN 1
+      m4.evidence_verdict : PARTIALLY_SUPPORTED|PARTIALLY_SUPPORTED 130, PARTIALLY_SUPPORTED|SUPPORTED 68, SUPPORTED|SUPPORTED 56, NOT_SUPPORTED|PARTIALLY_SUPPORTED 47, SUPPORTED|PARTIALLY_SUPPORTED 31, NOT_SUPPORTED|SUPPORTED 14, NOT_SUPPORTED|NOT_SUPPORTED 13, PARTIALLY_SUPPORTED|NOT_SUPPORTED 3, SUPPORTED|NOT_SUPPORTED 2
+      m4.flags : [] 252, ["partial_support"] 98, ["parametric_risk"] 13, ["contested_plausibility"] 1
+      provenance.n_articles : 1 326, 2 17, 3 9, 6 2, 9 2, 7 2, 4 2, 5 1, 8 1, 10 1, 13 1
+[sortie 188 : output/audit/188_nettoyage_v2/graphe_nettoye.json] 281 relations (280 cles de contenu distinctes), 229 entites distinctes (normalisees)
+   champs detectes : sujet=subject relation=relation objet=object
+   types de relations : hasDescriptor 155, triggers 35, occursIn 31, causes 25, partOf 14, overlies 10, affects 4, underlies 4, controls 3
+   subject_type : Geological_Object 217, Process 47, Environmental_Control 17
+   object_type : Descriptor 155, Process 51, Environmental_Control 38, Geological_Object 37
+   tier : 1 164, 2 117
+   tier_label : verified 213, literature-implied 68
+   verdict : STRONG_SUPPORT 208, WEAK_SUPPORT 73
+   origin : both 125, iter_a 85, iter_b 71
+   strategy : descriptor 142, causal 68, context 58, descriptor_reverse 13
+   tier_original : 1 213, 2 68
+   m4.decision : ACCEPT 194, UNCERTAIN 87
+   m4.blind_verdict : PLAUSIBLE|PLAUSIBLE 229, PLAUSIBLE|UNCERTAIN 25, UNCERTAIN|PLAUSIBLE 9, IMPLAUSIBLE|IMPLAUSIBLE 7, IMPLAUSIBLE|PLAUSIBLE 5, PLAUSIBLE|IMPLAUSIBLE 3, UNCERTAIN|IMPLAUSIBLE 3
+   m4.evidence_verdict : PARTIALLY_SUPPORTED|PARTIALLY_SUPPORTED 99, PARTIALLY_SUPPORTED|SUPPORTED 55, SUPPORTED|SUPPORTED 48, NOT_SUPPORTED|PARTIALLY_SUPPORTED 39, SUPPORTED|PARTIALLY_SUPPORTED 22, NOT_SUPPORTED|SUPPORTED 8, NOT_SUPPORTED|NOT_SUPPORTED 7, PARTIALLY_SUPPORTED|NOT_SUPPORTED 2, SUPPORTED|NOT_SUPPORTED 1
+   m4.flags : [] 195, ["partial_support"] 78, ["parametric_risk"] 7, ["contested_plausibility"] 1
+   provenance.n_articles : 1 245, 2 15, 3 9, 6 2, 9 2, 7 2, 4 2, 5 1, 8 1, 10 1, 13 1
+   couverture des 13 descripteurs LB2019 : 13/13 ; absents : aucun
+   provenance via output/audit/187_provenance/graphe_avec_provenance.json : 281/281 relations jointes par cle de contenu
+      subject_type : Geological_Object 217, Process 47, Environmental_Control 17
+      object_type : Descriptor 155, Process 51, Environmental_Control 38, Geological_Object 37
+      tier : 1 164, 2 117
+      tier_label : verified 213, literature-implied 68
+      verdict : STRONG_SUPPORT 208, WEAK_SUPPORT 73
+      origin : both 125, iter_a 84, iter_b 72
+      strategy : descriptor 142, causal 68, context 58, descriptor_reverse 13
+      tier_original : 1 213, 2 68
+      m4.decision : ACCEPT 194, UNCERTAIN 87
+      m4.blind_verdict : PLAUSIBLE|PLAUSIBLE 229, PLAUSIBLE|UNCERTAIN 25, UNCERTAIN|PLAUSIBLE 9, IMPLAUSIBLE|IMPLAUSIBLE 7, IMPLAUSIBLE|PLAUSIBLE 5, PLAUSIBLE|IMPLAUSIBLE 3, UNCERTAIN|IMPLAUSIBLE 3
+      m4.evidence_verdict : PARTIALLY_SUPPORTED|PARTIALLY_SUPPORTED 99, PARTIALLY_SUPPORTED|SUPPORTED 55, SUPPORTED|SUPPORTED 48, NOT_SUPPORTED|PARTIALLY_SUPPORTED 39, SUPPORTED|PARTIALLY_SUPPORTED 22, NOT_SUPPORTED|SUPPORTED 8, NOT_SUPPORTED|NOT_SUPPORTED 7, PARTIALLY_SUPPORTED|NOT_SUPPORTED 2, SUPPORTED|NOT_SUPPORTED 1
+      m4.flags : [] 195, ["partial_support"] 78, ["parametric_risk"] 7, ["contested_plausibility"] 1
+      provenance.n_articles : 1 245, 2 15, 3 9, 6 2, 9 2, 7 2, 4 2, 5 1, 8 1, 10 1, 13 1
+[sortie 188 : output/audit/188_nettoyage_v2/relations_retirees.tsv] 83 relations (49 cles de contenu distinctes), 42 entites distinctes (normalisees)
+   champs detectes : sujet=n_phrases_sources relation=relation objet=objet
+   types de relations : hasDescriptor 61, occursIn 12, partOf 4, triggers 2, controls 2, overlies 1, affects 1
+   tier : 2 50, 1 33
+   decision_panel : ACCEPT 44, UNCERTAIN 39
+   n_phrases_sources : 1 65, 2 18
+   n_articles : 1 81, 2 2
+   couverture des 13 descripteurs LB2019 : 9/13 ; absents : hummocky, undeformed, massive, layered
+   provenance via output/audit/187_provenance/graphe_avec_provenance.json : 0/83 relations jointes par cle de contenu
+[sortie 188 : output/audit/188_nettoyage_v2/relations_signalees.tsv] 49 relations (37 cles de contenu distinctes), 36 entites distinctes (normalisees)
+   champs detectes : sujet=n_phrases_sources relation=relation objet=objet
+   types de relations : hasDescriptor 30, occursIn 14, causes 2, partOf 2, triggers 1
+   tier : 2 28, 1 21
+   decision_panel : ACCEPT 25, UNCERTAIN 24
+   n_phrases_sources : 1 39, 2 8, 14 1, 4 1
+   n_articles : 1 45, 2 2, 9 1, 3 1
+   retiree :  39, oui 10
+   couverture des 13 descripteurs LB2019 : 8/13 ; absents : hummocky, blocky, stratified, massive, layered
+   provenance via output/audit/187_provenance/graphe_avec_provenance.json : 0/49 relations jointes par cle de contenu
+
+=== C et D. Controles perturbes ===
+[output/audit/181_regles_llama/output/run16E/m4/negatives/controls.jsonl] champ type = corruption_class ; originaux 364, perturbes 364 (attendu 364 et 364 : OK)
+   valeurs du champ type : none -> original (364), entity_sub -> entite_remplacee (159), passage_perm -> autre:passage perm (91), relation_sub -> type_change (91), inversion -> inversion (23)
+   champs de verdict detectes : aucun
+   phrase = None ; triplet presente = ('subject', 'relation', 'object') ; triplet original = (None, None, None)
+   cas ambigus par type :
+      autre:passage perm non evalue 91
+      entite_remplacee   indetermine (pas de phrase) 159
+      inversion          non ambigu 23
+      type_change        indetermine (relation originale absente) 91
+[output/audit/181_regles_mistral/output/run16E/m4/negatives/controls.jsonl] champ type = corruption_class ; originaux 364, perturbes 364 (attendu 364 et 364 : OK)
+   valeurs du champ type : none -> original (364), entity_sub -> entite_remplacee (159), passage_perm -> autre:passage perm (91), relation_sub -> type_change (91), inversion -> inversion (23)
+   champs de verdict detectes : aucun
+   phrase = None ; triplet presente = ('subject', 'relation', 'object') ; triplet original = (None, None, None)
+   cas ambigus par type :
+      autre:passage perm non evalue 91
+      entite_remplacee   indetermine (pas de phrase) 159
+      inversion          non ambigu 23
+      type_change        indetermine (relation originale absente) 91
+[output/m4/negatives/controls.jsonl] champ type = corruption_class ; originaux 153, perturbes 153 (attendu 364 et 364 : ECART)
+   valeurs du champ type : none -> original (153), entity_sub -> entite_remplacee (55), relation_sub -> type_change (38), passage_perm -> autre:passage perm (38), inversion -> inversion (22)
+   champs de verdict detectes : aucun
+   phrase = None ; triplet presente = ('subject', 'relation', 'object') ; triplet original = (None, None, None)
+   cas ambigus par type :
+      autre:passage perm non evalue 38
+      entite_remplacee   indetermine (pas de phrase) 55
+      inversion          non ambigu 22
+      type_change        indetermine (relation originale absente) 38
+[output/run13/m4/negatives/controls.jsonl] champ type = corruption_class ; originaux 151, perturbes 151 (attendu 364 et 364 : ECART)
+   valeurs du champ type : none -> original (151), entity_sub -> entite_remplacee (56), relation_sub -> type_change (38), passage_perm -> autre:passage perm (37), inversion -> inversion (20)
+   champs de verdict detectes : aucun
+   phrase = None ; triplet presente = ('subject', 'relation', 'object') ; triplet original = (None, None, None)
+   cas ambigus par type :
+      autre:passage perm non evalue 37
+      entite_remplacee   indetermine (pas de phrase) 56
+      inversion          non ambigu 20
+      type_change        indetermine (relation originale absente) 38
+[output/run18/stress_test/controls.jsonl] champ type = corruption_class ; originaux 364, perturbes 364 (attendu 364 et 364 : OK)
+   valeurs du champ type : none -> original (364), entity_sub -> entite_remplacee (159), passage_perm -> autre:passage perm (91), relation_sub -> type_change (91), inversion -> inversion (23)
+   champs de verdict detectes : aucun
+   phrase = None ; triplet presente = ('subject', 'relation', 'object') ; triplet original = (None, None, None)
+   cas ambigus par type :
+      autre:passage perm non evalue 91
+      entite_remplacee   indetermine (pas de phrase) 159
+      inversion          non ambigu 23
+      type_change        indetermine (relation originale absente) 91
+
+=== E. Nuance (186) et resumes existants ===
+[output/audit/186_portee/marqueurs_par_relation.tsv] 382 enregistrements
+   ensemble : livre 364, quarantaine 18
+   relation : hasDescriptor 232, occursIn 43, triggers 38, causes 25, partOf 19, overlies 11, affects 5, controls 5, underlies 4
+   tier : 1 212, 2 170
+   decision_panel : ACCEPT 238, UNCERTAIN 126, REJECT 18
+   verdicts_juges : PARTIALLY_SUPPORTED|PARTIALLY_SUPPORTED 130, PARTIALLY_SUPPORTED|SUPPORTED 68, SUPPORTED|SUPPORTED 56, NOT_SUPPORTED|PARTIALLY_SUPPORTED 55, SUPPORTED|PARTIALLY_SUPPORTED 31, NOT_SUPPORTED|NOT_SUPPORTED 19, NOT_SUPPORTED|SUPPORTED 15, PARTIALLY_SUPPORTED|NOT_SUPPORTED 6, SUPPORTED|NOT_SUPPORTED 2
+   juges : tous PARTIALLY 130, mixte 116, au moins un NOT/autre 80, tous SUPPORTED 56
+   tronquee :  342, oui 40
+   phrase_nuancee : oui 284,  98
+   condition :  341, during 12, where 11, deeper 4, when;where 3, under 2, only 2, when 2, during;less than 2, deeper;down to;only 1, during;under 1, down to;where 1
+   negation :  367, not 9, absence 2, no 2, never 2
+--- copie de output/audit/186_portee/_resume.txt (80 premieres lignes)
+=== 186 marqueurs de portee dans les phrases de preuve (indicateur lexical) ===
+graphe : output/run18/kg_final/flat_run18_enforced_dedup.json (sha caccdca00ff3)
+quarantaine : output/run18/m4_panel/m4_quarantine.jsonl (sha 2efdb7e3140f)
+
+-- livre : 364 relations --
+phrase nuancee (>= 1 categorie) : 269/364 (74 %)
+  modalite   : 92/364 (25 %)
+  partiel    : 54/364 (15 %)
+  condition  : 40/364 (11 %)
+  valeur     : 35/364 (10 %)
+  cas        : 139/364 (38 %)
+  partie     : 107/364 (29 %)
+  negation   : 13/364 (4 %)
+  phrase tronquee a 400 caracteres : 37/364 (10 %)
+  mots les plus frequents : fig. 95, basal 30, interpreted 27, internal 23, can 20, fill 16, during 15, where 14, some 14, could 13, figure 13, may 12, most 11, several 11, study area 10
+
+  par tier :
+    tier 1 : nuancee 148/197 (75 %)
+    tier 2 : nuancee 121/167 (72 %)
+  par relation :
+    hasDescriptor  : nuancee 167/216 (77 %)
+    occursIn       : nuancee 21/43 (49 %)
+    triggers       : nuancee 28/37 (76 %)
+    causes         : nuancee 18/25 (72 %)
+    partOf         : nuancee 14/18 (78 %)
+    overlies       : nuancee 8/11 (73 %)
+    affects        : nuancee 4/5 (80 %)
+    controls       : nuancee 5/5 (100 %)
+    underlies      : nuancee 4/4 (100 %)
+  verdicts des juges sur la phrase (Llama|Mistral) selon la nuance :
+                   | tous SUPPORTED | mixte | tous PARTIALLY | au moins un NOT/autre | sans verdict
+    nuancee        | 46/269 (17 %) | 81/269 (30 %) | 100/269 (37 %) | 42/269 (16 %) | 0/269 (0 %)
+    sans marqueur  | 10/95 (11 %) | 34/95 (36 %) | 30/95 (32 %) | 21/95 (22 %) | 0/95 (0 %)
+
+-- quarantaine : 18 relations --
+phrase nuancee (>= 1 categorie) : 15/18 (83 %)
+  modalite   : 4/18 (22 %)
+  partiel    : 1/18 (6 %)
+  condition  : 1/18 (6 %)
+  valeur     : 3/18 (17 %)
+  cas        : 5/18 (28 %)
+  partie     : 9/18 (50 %)
+  negation   : 2/18 (11 %)
+  phrase tronquee a 400 caracteres : 3/18 (17 %)
+  mots les plus frequents : internal 3, 300 ms 2, 700 ms 2, can 2, fig. 2, headwall 2, top surface 1, the lubina mass transport deposit 1, flank 1, some 1, fill 1, interpreted 1, suggests 1, basal 1, figure 1
+
+Rappel : indicateur lexical (sur-detection possible, ex. 'where' relatif ; sous-detection des nuances sans mot-cle). Relire les colonnes de marqueurs avant de citer un chiffre.
+--- copie de output/audit/188_nettoyage_v2/_resume.txt (80 premieres lignes)
+=== 188 nettoyage par regles et familles ===
+graphe : output/audit/187_provenance/graphe_avec_provenance.json (sha 979b91fb1df5) ; familles : configs/entity_families_run18.csv (sha 3423afd62509, 120 entites, 21 familles)
+phrases des autres extractions relues : oui ; phrases affichees retrouvees en entier (coupees a 400) : 37
+
+-- retraits --
+relations : 364 -> 281 (retirees 83)
+Tier 1 : 197 -> 164
+entites : 272 -> 230
+par regle (une relation peut en avoir plusieurs) : {'R2 etiquette': 36, 'R3 sujet absent des phrases sources': 48, 'R1 bibliographie': 9}
+retirees par tier et decision du panel : {(1, 'ACCEPT'): 33, (2, 'ACCEPT'): 11, (2, 'UNCERTAIN'): 39}
+
+-- signalements (non retires sauf option) --
+{'S3 legende de figure probable': 15, 'S1 lieu nomme': 26, 'S4 sujet repris par un pronom': 9, 'S2 commentaire du modele': 2}
+
+-- familles (graphe nettoye) --
+relations 281 -> groupes (famille, relation, famille) 206
+groupes avec au moins 2 relations : 44 (119 relations)
+entites hors table (sujets, et objets hors hasDescriptor) : 87
+
+-- groupes les plus fournis --
+    5 rel. (3 T1, 3 art.)  sedimentation rate --causes--> pore pressure / overpressure
+    5 rel. (3 T1, 13 art.)  mass transport deposit --hasDescriptor--> chaotic
+    5 rel. (4 T1, 2 art.)  mass transport deposit --occursIn--> position bathymetrique
+    5 rel. (5 T1, 3 art.)  seismicity --triggers--> slope failure
+    4 rel. (3 T1, 11 art.)  mass transport deposit --hasDescriptor--> discontinuous
+    4 rel. (4 T1, 3 art.)  mass transport deposit --occursIn--> contexte de marge
+    4 rel. (4 T1, 2 art.)  turbidity / turbidite --occursIn--> position bathymetrique
+    4 rel. (4 T1, 4 art.)  pore pressure / overpressure --triggers--> slope failure
+    3 rel. (3 T1, 7 art.)  basal surface --hasDescriptor--> parallel
+    3 rel. (3 T1, 2 art.)  channel --hasDescriptor--> high-amplitude
+    3 rel. (1 T1, 1 art.)  channel --hasDescriptor--> mounded
+    3 rel. (2 T1, 3 art.)  blocks --hasDescriptor--> high-amplitude
+    3 rel. (3 T1, 9 art.)  mass transport deposit --hasDescriptor--> deformed
+    3 rel. (1 T1, 8 art.)  mass transport deposit --hasDescriptor--> thick
+    3 rel. (3 T1, 1 art.)  slope failure --occursIn--> contexte de marge
+
+-- comparaison LB2019 (26 aretes, correspondance exacte) --
+avant : 9/26 ; apres : 9/26 ; perdues : []
+
+R3 et S1 reposent sur des listes ecrites dans ce fichier : relire relations_retirees.tsv avant de citer un chiffre.
+--- copie de output/audit/184_trace_nfkc_v2/_resume.txt (80 premieres lignes)
+=== 184 requetes suspectes, pertes et provenance ===
+requetes suspectes : 16 (classes {'R-reponse': 11, 'R-presuppose': 3, 'R-candidat': 1, 'V-vocabulaire': 1})
+aretes de reference nommees par une requete R-* : 18 / 26
+
+-- controles --
+OK    passe a : verified = raw, ligne a ligne (939)
+OK    passe a : 1 objet(s) ambigu(s), 1 choix lus dans la sortie du run
+OK    passe a : rejets de 04 par raison = cleaning_stats
+OK    passe a : 301 rejets = rejected_triples_v5.jsonl (301)
+OK    passe a : doublons et boucles = cleaning_stats  [rejoue (349, 7, 0) / fichier (349, 7, 0)]
+OK    passe a : sorties de 04 = canonical_triples_v5.jsonl (282)
+OK    passe a : sorties de 04c = lexicon_enforced (282)
+OK    passe a : 05a a fait 0 substitution(s)
+OK    passe b : verified = raw, ligne a ligne (879)
+OK    passe b : 2 objet(s) ambigu(s), 2 choix lus dans la sortie du run
+OK    passe b : rejets de 04 par raison = cleaning_stats
+OK    passe b : 273 rejets = rejected_triples_v5.jsonl (273)
+OK    passe b : doublons et boucles = cleaning_stats  [rejoue (336, 13, 0) / fichier (336, 13, 0)]
+OK    passe b : sorties de 04 = canonical_triples_v5.jsonl (257)
+OK    passe b : sorties de 04c = lexicon_enforced (257)
+OK    passe b : 05a a fait 0 substitution(s)
+OK    cles tier 1-2 rejouees = tiered_kg_run18.json (382 / 382)
+OK    panel : une decision par relation fusionnee (382 / 382)
+OK    graphe livre 364 + quarantaine 18 = fusion 382
+
+-- extractions des requetes suspectes --
+extractions : 144 (passe a 86, passe b 58)
+etape de sortie : {'doublon_04': 85, '04_validation': 10, '04_verdict': 17, 'entre_en_fusion': 32}
+extraction brute = arete de reference : 45 ; apres nettoyage : 43
+
+-- relations fusionnees touchees par une requete suspecte --
+{('uniquement suspectes', 'livre Tier 1'): 10, ('suspectes et non suspectes', 'livre Tier 1'): 16, ('suspectes et non suspectes', 'livre Tier 2'): 6, ('uniquement suspectes', 'livre Tier 2'): 15, ('suspectes et non suspectes', 'quarantaine'): 2, ('uniquement suspectes', 'quarantaine'): 1}
+
+-- sensibilite (graphe livre) --
+livre : 364 relations, Tier 1 197, aretes exactes 9 / 26
+sans les relations obtenues uniquement par des requetes R-* : 342, Tier 1 189, aretes exactes 9 / 26
+aretes perdues : []
+variante, sans les relations obtenues uniquement par les 16 : 339, aretes exactes 9 / 26
+
+-- normalisation des descripteurs dans 04 --
+objets contenant plusieurs descripteurs : 3 (le choix de 04 depend de l'ordre d'un ensemble Python, donc de PYTHONHASHSEED ; choix du run lus dans canonical_triples_v5.jsonl, voir normalisations_ambigues.tsv)
+
+-- pertes (toutes requetes) --
+{'entre_en_fusion': 539, '04_validation': 333, '04_verdict': 241, 'doublon_04': 705}
+relations en Tier 2 a la fusion alors qu'une extraction STRONG a ete absorbee comme doublon : 5
+
+-- provenance --
+preuve de l'extraction dans ses 5 passages : {'partial': 270, 'exact': 1342, 'not_found': 206}
+preuve affichee des relations livrees, dans l'index : {'exact': 316, 'partial': 47, 'not_found': 1}
+articles avec preuve localisee par relation livree : {1: 329, 2: 16, 3: 8, 4: 1, 5: 1, 6: 2, 7: 2, 8: 1, 9: 2, 10: 1, 13: 1}
+
+0 controle(s) en echec
+--- copie de output/audit/187_provenance/_resume.txt (80 premieres lignes)
+=== 187 article, reference et section de chaque relation ===
+graphe : output/run18/kg_final/flat_run18_enforced_dedup.json (sha caccdca00ff3) ; suivi 184 : output/audit/184_trace_nfkc_v2/suivi_extractions.tsv (sha efad8ad08dbd)
+references : pdf_to_ref.tsv c9d661475b5e, lb2019_41_refs.txt d433a2cee75a
+
+relations : 364
+phrase affichee localisee : {'exact': 316, 'partial': 47, 'not_found': 1}
+relations avec au moins un article : 364/364 (100 %)
+articles par relation : {1: 326, 2: 17, 3: 9, 4: 2, 5: 1, 6: 2, 7: 2, 8: 1, 9: 2, 10: 1, 13: 1}
+references non resolues (doc_id sans reference) : 0 []
+
+-- phrase affichee --
+section deduite trouvee : 316/364 (87 %)
+type de titre : {'numerote': 114, 'mot de section': 202, 'aucun': 47, 'non localisee': 1}
+legende de figure probable : 15/364 (4 %)
+apres le titre 'references' : 9/364 (2 %)
+
+-- articles les plus cites (relations dont la preuve y est localisee) --
+   47  Sutton & Mitchum (2011)
+   39  Reis et al. (2016)
+   37  Nelson et al. (2011)
+   34  Alves et al. (2014)
+   33  Frey-Martínez et al. (2011)
+   25  Lee et al. (2007)
+   24  Clark & Cartwright (2009)
+   22  Moscardelli & Wood (2008)
+   22  Ogiesoba & Hammes (2012)
+   20  Bourget et al. (2011)
+   17  Frey-Martínez (2010)
+   15  Reis et al. (2010)
+   14  Wu et al. (2011)
+   14  Leynaud et al. (2009)
+   12  Silva et al. (2010)
+
+Section : deduction a partir du texte extrait des PDF (titres numerotes ou mots de section), a verifier sur l'article avant de la citer.
+
+=== F. Materiel, duree, appels ===
+[output/run18/manifest.json] 43 champs pertinents
+   steps[0].n_chunks = 1758
+   steps[1].started = 2026-10-22T11:19:09+02:00
+   steps[1].ended = 2026-10-22T11:41:53+02:00
+   steps[2].started = 2026-10-22T11:41:54+02:00
+   steps[2].ended = 2026-10-22T12:04:03+02:00
+   steps[3].started = 2026-10-22T12:04:04+02:00
+   steps[3].ended = 2026-10-22T12:04:05+02:00
+   steps[4].started = 2026-10-22T12:04:05+02:00
+   steps[4].ended = 2026-10-22T14:30:06+02:00
+   steps[5].started = 2026-10-22T14:30:06+02:00
+   steps[5].ended = 2026-10-22T16:48:59+02:00
+   steps[6].started = 2026-10-22T16:48:59+02:00
+   steps[6].ended = 2026-10-22T16:49:54+02:00
+   steps[7].started = 2026-10-22T16:49:54+02:00
+   steps[7].ended = 2026-10-22T16:49:54+02:00
+   steps[8].started = 2026-10-22T16:49:54+02:00
+   steps[8].ended = 2026-10-22T16:49:54+02:00
+   steps[9].started = 2026-10-22T16:49:54+02:00
+   steps[9].ended = 2026-10-22T16:50:04+02:00
+   steps[10].started = 2026-10-22T16:50:04+02:00
+   steps[10].ended = 2026-10-22T16:50:04+02:00
+   steps[11].started = 2026-10-22T16:50:04+02:00
+   steps[11].ended = 2026-10-22T16:50:04+02:00
+   steps[12].started = 2026-10-22T16:50:04+02:00
+   steps[12].ended = 2026-10-22T16:50:05+02:00
+   steps[13].started = 2026-10-22T16:50:05+02:00
+   steps[13].ended = 2026-10-22T17:25:14+02:00
+   steps[14].started = 2026-10-22T17:25:15+02:00
+   steps[14].ended = 2026-10-22T17:25:16+02:00
+   steps[15].started = 2026-10-22T17:25:16+02:00
+   steps[15].ended = 2026-10-22T18:15:03+02:00
+   steps[16].started = 2026-10-22T18:15:04+02:00
+   steps[16].ended = 2026-10-22T18:15:04+02:00
+   steps[17].started = 2026-10-22T18:15:04+02:00
+   steps[17].ended = 2026-10-22T18:15:04+02:00
+   steps[18].started = 2026-10-22T18:15:04+02:00
+   steps[18].ended = 2026-10-22T18:15:05+02:00
+   steps[19].started = 2026-10-22T18:15:05+02:00
+   steps[19].ended = 2026-10-22T18:15:05+02:00
+   steps[20].started = 2026-10-22T18:15:05+02:00
+   steps[20].ended = 2026-10-22T18:15:05+02:00
+   steps[21].started = 2026-10-22T18:15:05+02:00
+   steps[21].ended = 2026-10-22T18:15:05+02:00
+Pour la duree exacte et le GPU d'un job : sacct -j <JOBID> --format=JobID,JobName%30,Elapsed,AllocTRES%60,NodeList

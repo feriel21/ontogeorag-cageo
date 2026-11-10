@@ -1,0 +1,5 @@
+entites,nom,relations,type:affects,type:causes,type:controls,type:hasDescriptor,type:occursIn,type:overlies,type:partOf,type:triggers,type:underlies
+271,avant nettoyage : output/run18/kg_final/flat_run18_enforced_dedup.json,364,5,25,5,216,43,11,18,37,4
+229,sortie 188 : output/audit/188_nettoyage_v2/graphe_nettoye.json,281,4,25,3,155,31,10,14,35,4
+42,sortie 188 : output/audit/188_nettoyage_v2/relations_retirees.tsv,83,1,,2,61,12,1,4,2,
+36,sortie 188 : output/audit/188_nettoyage_v2/relations_signalees.tsv,49,,2,,30,14,,2,1,

@@ -1,0 +1,3890 @@
+{
+ "mass transport deposit --hasDescriptor--> chaotic": {
+  "phrases_corpus": 76,
+  "passages_corpus": 63,
+  "passages_donnes_extracteur": 31,
+  "requetes_qui_les_ont_ramenes": [
+   "Are mass transport deposits characterized by blocky seismic facies?",
+   "Are mass transport deposits characterized by chaotic seismic facies?",
+   "Are mass transport deposits characterized by continuous seismic facies?",
+   "Are mass transport deposits characterized by discontinuous seismic facies?",
+   "Are mass transport deposits characterized by high-amplitude seismic facies?",
+   "Are mass transport deposits characterized by hummocky seismic facies?"
+  ],
+  "exemples_phrases": [
+   [
+    "1-s2.0-S0025322713000571-main",
+    "on seismic proﬁles, basal shear surfaces separate chaotic and disrupted strata within mass transport deposits from the much more fig."
+   ],
+   [
+    "1-s2.0-S0025322713000571-main",
+    "promontories at the base of mass transport deposit 2 are characterised by chaotic and rugged topography on the time-dip and coherence maps, implying that the basal shear surface was erosive and possibly associated with the deposition of debrites above (fig."
+   ],
+   [
+    "1-s2.0-S0025322713000571-main",
+    "mass transport deposit comprises rafted blocks and debrites (chaotic reﬂections) d2 and d3 ne of diapir d2."
+   ]
+  ],
+  "etapes": {
+   "extraction_a": {
+    "A": 86,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "chaotic",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "chaotic",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "chaotic",
+      "",
+      ""
+     ]
+    ]
+   },
+   "verif_qwen_a": {
+    "A": 86,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "chaotic",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "chaotic",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "chaotic",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "rejet_nettoyage_a": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "chaotic",
+      "_reject_reason=verif_not_supported",
+      ""
+     ]
+    ]
+   },
+   "apres_nettoyage_a": {
+    "A": 2,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "chaotic",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "chaotic mass transport deposit",
+      "hasDescriptor",
+      "chaotic",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "extraction_b": {
+    "A": 88,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "chaotic",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "chaotic",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "chaotic",
+      "",
+      ""
+     ]
+    ]
+   },
+   "verif_qwen_b": {
+    "A": 88,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "chaotic",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "chaotic",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "chaotic",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 2,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "chaotic",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit 5",
+      "hasDescriptor",
+      "chaotic",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "fusion": {
+    "A": 3,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "chaotic mass transport deposit",
+      "hasDescriptor",
+      "chaotic",
+      "verdict=STRONG_SUPPORT",
+      "\"am3, the smallest megaslide in area (table 1 and fig. 9b), is dominated by chaotic facies and is substantially thicker close to its upslope limit, where traces of previous stratiﬁcation were preserve"
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "chaotic",
+      "verdict=STRONG_SUPPORT",
+      "proximal facies of the mass transport deposits includes rotated blocks and large angular glide blocks. these pass distally into smaller glide blocks and chaotic seismic facies inferred to be debrites."
+     ],
+     [
+      "A",
+      "mass transport deposit 5",
+      "hasDescriptor",
+      "chaotic",
+      "verdict=STRONG_SUPPORT",
+      "\"we can recognize a sharp transition between upslope undisturbed plan-parallel siliciclastic units and the chaotic and/or transparent seismic facies depicting these megaslides downslope (fig. 8).\""
+     ]
+    ]
+   },
+   "panel": {
+    "A": 3,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "chaotic mass transport deposit",
+      "hasDescriptor",
+      "chaotic",
+      "m4.decision=ACCEPT",
+      "\"am3, the smallest megaslide in area (table 1 and fig. 9b), is dominated by chaotic facies and is substantially thicker close to its upslope limit, where traces of previous stratiﬁcation were preserve"
+     ],
+     [
+      "A",
+      "mass transport deposit 5",
+      "hasDescriptor",
+      "chaotic",
+      "m4.decision=ACCEPT",
+      "\"we can recognize a sharp transition between upslope undisturbed plan-parallel siliciclastic units and the chaotic and/or transparent seismic facies depicting these megaslides downslope (fig. 8).\""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "chaotic",
+      "m4.decision=UNCERTAIN",
+      "proximal facies of the mass transport deposits includes rotated blocks and large angular glide blocks. these pass distally into smaller glide blocks and chaotic seismic facies inferred to be debrites."
+     ]
+    ]
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 3,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "chaotic mass transport deposit",
+      "hasDescriptor",
+      "chaotic",
+      "m4.decision=ACCEPT",
+      "\"am3, the smallest megaslide in area (table 1 and fig. 9b), is dominated by chaotic facies and is substantially thicker close to its upslope limit, where traces of previous stratiﬁcation were preserve"
+     ],
+     [
+      "A",
+      "mass transport deposit 5",
+      "hasDescriptor",
+      "chaotic",
+      "m4.decision=ACCEPT",
+      "\"we can recognize a sharp transition between upslope undisturbed plan-parallel siliciclastic units and the chaotic and/or transparent seismic facies depicting these megaslides downslope (fig. 8).\""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "chaotic",
+      "m4.decision=UNCERTAIN",
+      "proximal facies of the mass transport deposits includes rotated blocks and large angular glide blocks. these pass distally into smaller glide blocks and chaotic seismic facies inferred to be debrites."
+     ]
+    ]
+   }
+  },
+  "raison": "PRESENTE dans le graphe livre (niveau A)"
+ },
+ "mass transport deposit --hasDescriptor--> transparent": {
+  "phrases_corpus": 12,
+  "passages_corpus": 12,
+  "passages_donnes_extracteur": 8,
+  "requetes_qui_les_ont_ramenes": [
+   "Are mass transport deposits characterized by blocky seismic facies?",
+   "Are mass transport deposits characterized by chaotic seismic facies?",
+   "Are mass transport deposits characterized by discontinuous seismic facies?",
+   "Are mass transport deposits characterized by hummocky seismic facies?",
+   "Are mass transport deposits characterized by layered seismic facies?",
+   "Are mass transport deposits characterized by low-amplitude seismic facies?"
+  ],
+  "exemples_phrases": [
+   [
+    "9781565762879_ch02",
+    "on seismic data, mass-transport deposits can be recognized by certain geomorphologic as well as stratigraphic distinguishing characteristics: basal linear grooved and scoured surfaces, hummocky relief at the top, and internal chaotic to transparent seismic facies, with internal thrust faulting commo"
+   ],
+   [
+    "9781565762879_ch02",
+    "in transverse view, mass-transport deposits are char- acterized by transparent to chaotic seismic reflections."
+   ],
+   [
+    "9781565762879_ch02",
+    "32 (above and on facing page).—internal seismic stratigraphic expression of mass-transport deposits (as indicated with white arrows) ranging from transparent e) and chaotic a, b, c, and d) to convolute f) as observed in both in transverse view (a, b, c) and plan view (d, e, f)."
+   ]
+  ],
+  "etapes": {
+   "extraction_a": {
+    "A": 33,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "transparent",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "transparent",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "transparent",
+      "",
+      ""
+     ]
+    ]
+   },
+   "verif_qwen_a": {
+    "A": 33,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "transparent",
+      "_verification.verdict=NOT_SUPPORTED",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "transparent",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "transparent",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "rejet_nettoyage_a": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "transparent",
+      "_reject_reason=verif_not_supported",
+      ""
+     ]
+    ]
+   },
+   "apres_nettoyage_a": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "transparent",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "extraction_b": {
+    "A": 33,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "transparent",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "transparent",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "transparent",
+      "",
+      ""
+     ]
+    ]
+   },
+   "verif_qwen_b": {
+    "A": 33,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "transparent",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "transparent",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "transparent",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "transparent",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "fusion": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "transparent",
+      "verdict=STRONG_SUPPORT",
+      "internal chaotic to transparent seismic reflection character (see figs. 32 and 33)"
+     ]
+    ]
+   },
+   "panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "quarantaine_panel": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "transparent",
+      "m4.decision=REJECT",
+      "internal chaotic to transparent seismic reflection character (see figs. 32 and 33)"
+     ]
+    ]
+   },
+   "livre": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   }
+  },
+  "raison": "RETIREE_A_L_ETAPE panel"
+ },
+ "mass transport deposit --hasDescriptor--> hummocky": {
+  "phrases_corpus": 6,
+  "passages_corpus": 6,
+  "passages_donnes_extracteur": 3,
+  "requetes_qui_les_ont_ramenes": [
+   "Are mass transport deposits characterized by hummocky seismic facies?",
+   "Are mass transport deposits characterized by transparent seismic facies?",
+   "How are debris flows characterized seismically — chaotic hummocky facies?",
+   "What are the seismic facies and descriptors of debris flow?",
+   "What deposits or features show hummocky seismic facies?",
+   "What deposits or features show transparent seismic facies?"
+  ],
+  "exemples_phrases": [
+   [
+    "1-s2.0-S0025322712000412-main",
+    "piper keywords: mudﬂow mass transport deposit debris ﬂow experiment geomorphology landslide the ratio of the shear stress to yield strength, deﬁned here as the ﬂow factor, controls a wide spectrum of mass transport processes (slow, retrogressive failure to rapid, lique ﬁed ﬂows) and deposit morpholo"
+   ],
+   [
+    "9781565762879_ch02",
+    "on seismic data, mass-transport deposits can be recognized by certain geomorphologic as well as stratigraphic distinguishing characteristics: basal linear grooved and scoured surfaces, hummocky relief at the top, and internal chaotic to transparent seismic facies, with internal thrust faulting commo"
+   ],
+   [
+    "9781565762879_ch03",
+    "seismic profiles show erosional scarps from sediment failures along the canyon pathway and a hummocky surface from mass transport deposit sheets downstream on the abyssal seafloor (fig."
+   ]
+  ],
+  "etapes": {
+   "extraction_a": {
+    "A": 6,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "hummocky",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "hummocky",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "hummocky",
+      "",
+      ""
+     ]
+    ]
+   },
+   "verif_qwen_a": {
+    "A": 6,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "hummocky",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "hummocky",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "hummocky",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "rejet_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_a": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "hummocky",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "extraction_b": {
+    "A": 6,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "hummocky",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "hummocky",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "hummocky",
+      "",
+      ""
+     ]
+    ]
+   },
+   "verif_qwen_b": {
+    "A": 6,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "hummocky",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "hummocky",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "hummocky",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "hummocky",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "fusion": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "hummocky",
+      "verdict=STRONG_SUPPORT",
+      "\"the slide blocks and hummocky surfaces of the mass transport deposit sheets are evident along the base of the oregon slope in the swath bathymetry (goldfinger et al., 2000) and gloria side-scan im- a"
+     ]
+    ]
+   },
+   "panel": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "hummocky",
+      "m4.decision=ACCEPT",
+      "\"the slide blocks and hummocky surfaces of the mass transport deposit sheets are evident along the base of the oregon slope in the swath bathymetry (goldfinger et al., 2000) and gloria side-scan im- a"
+     ]
+    ]
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "hummocky",
+      "m4.decision=ACCEPT",
+      "\"the slide blocks and hummocky surfaces of the mass transport deposit sheets are evident along the base of the oregon slope in the swath bathymetry (goldfinger et al., 2000) and gloria side-scan im- a"
+     ]
+    ]
+   }
+  },
+  "raison": "PRESENTE dans le graphe livre (niveau A)"
+ },
+ "mass transport deposit --hasDescriptor--> blocky": {
+  "phrases_corpus": 16,
+  "passages_corpus": 15,
+  "passages_donnes_extracteur": 9,
+  "requetes_qui_les_ont_ramenes": [
+   "Describe the seismic character of debris flow deposit including amplitude, continuity, and internal reflections.",
+   "Describe the seismic character of mass transport complex including amplitude, continuity, and internal reflections.",
+   "Describe the seismic character of mass transport deposit including amplitude, continuity, and internal reflections.",
+   "Describe the seismic character of pelagite including amplitude, continuity, and internal reflections.",
+   "Describe the seismic character of slide including amplitude, continuity, and internal reflections.",
+   "Describe the seismic character of slump including amplitude, continuity, and internal reflections."
+  ],
+  "exemples_phrases": [
+   [
+    "1-s2.0-S0025322713000571-main",
+    "these maps were also helpful to recognise any changes in the geometry of mass transport deposits, areas with blocky strata, regions affected by extension, and basal ramps and ﬂats."
+   ],
+   [
+    "1-s2.0-S0025322713000571-main",
+    "these maps were also helpful to recognise any changes in the geometry of mass transport deposits, areas with blocky strata, regions affected by extension, and basal ramps and ﬂats."
+   ],
+   [
+    "1-s2.0-S0025322713000571-main",
+    "mass transport deposit 3 — blocky mass-transport deposit the two drag zones identiﬁed in mass transport deposit 3 were located in areas of low to high amplitude reﬂections across nw–se (n57°w and n51°w) trending ramps (fig."
+   ]
+  ],
+  "etapes": {
+   "extraction_a": {
+    "A": 4,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "blocky",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "blocky",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "blocky",
+      "",
+      ""
+     ]
+    ]
+   },
+   "verif_qwen_a": {
+    "A": 4,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "blocky",
+      "_verification.verdict=WEAK_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "blocky",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "blocky",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "rejet_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_a": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "blocky",
+      "_verification.verdict=WEAK_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "extraction_b": {
+    "A": 3,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "blocky",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "blocky",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "blocky",
+      "",
+      ""
+     ]
+    ]
+   },
+   "verif_qwen_b": {
+    "A": 3,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "blocky",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "blocky",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "blocky",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "blocky",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "fusion": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "blocky",
+      "verdict=WEAK_SUPPORT",
+      "\"proximal facies of the mass transport deposits includes rotated blocks and large angular glide blocks. these pass distally into smaller glide blocks and chaotic seismic facies inferred to be debrites"
+     ]
+    ]
+   },
+   "panel": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "blocky",
+      "m4.decision=ACCEPT",
+      "\"proximal facies of the mass transport deposits includes rotated blocks and large angular glide blocks. these pass distally into smaller glide blocks and chaotic seismic facies inferred to be debrites"
+     ]
+    ]
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "blocky",
+      "m4.decision=ACCEPT",
+      "\"proximal facies of the mass transport deposits includes rotated blocks and large angular glide blocks. these pass distally into smaller glide blocks and chaotic seismic facies inferred to be debrites"
+     ]
+    ]
+   }
+  },
+  "raison": "PRESENTE dans le graphe livre (niveau A)"
+ },
+ "mass transport deposit --hasDescriptor--> discontinuous": {
+  "phrases_corpus": 11,
+  "passages_corpus": 11,
+  "passages_donnes_extracteur": 8,
+  "requetes_qui_les_ont_ramenes": [
+   "Are mass transport deposits characterized by chaotic seismic facies?",
+   "Are mass transport deposits characterized by continuous seismic facies?",
+   "Are mass transport deposits characterized by discontinuous seismic facies?",
+   "Describe the seismic character of mass transport deposit including amplitude, continuity, and internal reflections.",
+   "Describe the seismic character of submarine fan including amplitude, continuity, and internal reflections.",
+   "Is basal surface a structural component of mass transport deposit?"
+  ],
+  "exemples_phrases": [
+   [
+    "845",
+    "our analyses determined that the identified mass transport deposits can be divided into (1) proximal clay-rich and low-permeability rocks characterized by discontinuous, mounded, and chaotic seismic events; (2) near-proximal, clay-poor, and high- permeability rocks characterized by parallel to subpa"
+   ],
+   [
+    "9781565762879_ch05",
+    "the mass transport deposit thickens down dip, and the internal reflection pattern is low-amplitude and discontinuous, indicating disturbed bedding."
+   ],
+   [
+    "9781565762879_ch05",
+    "a transverse seismic section across mass transport deposits 1 and 2 shows the irregular seafloor surface and internal discontinuous reflection patterns, interpreted as large slide blocks in a matrix of smaller blocks (fig."
+   ]
+  ],
+  "etapes": {
+   "extraction_a": {
+    "A": 25,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "mass-transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "",
+      ""
+     ]
+    ]
+   },
+   "verif_qwen_a": {
+    "A": 25,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "_verification.verdict=WEAK_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "_verification.verdict=NOT_SUPPORTED",
+      ""
+     ],
+     [
+      "A",
+      "mass-transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "_verification.verdict=WEAK_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "rejet_nettoyage_a": {
+    "A": 6,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "_reject_reason=verif_not_supported",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "_reject_reason=verif_not_supported",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "_reject_reason=verif_not_supported",
+      ""
+     ]
+    ]
+   },
+   "apres_nettoyage_a": {
+    "A": 2,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "_verification.verdict=WEAK_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "slope-attached mass-transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "extraction_b": {
+    "A": 26,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "mass-transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "",
+      ""
+     ]
+    ]
+   },
+   "verif_qwen_b": {
+    "A": 26,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "_verification.verdict=NOT_SUPPORTED",
+      ""
+     ],
+     [
+      "A",
+      "mass-transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "_verification.verdict=WEAK_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "rejet_nettoyage_b": {
+    "A": 6,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "_reject_reason=verif_not_supported",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "_reject_reason=verif_not_supported",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "_reject_reason=verif_not_supported",
+      ""
+     ]
+    ]
+   },
+   "apres_nettoyage_b": {
+    "A": 2,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "slope-attached mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "fusion": {
+    "A": 3,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "verdict=WEAK_SUPPORT",
+      "\"some mass transport deposits can be initiated by slumping of oversteepened sediment waves in preferred positions on leveed-channel complexes. other mass transport deposits have sheet-like geometries,"
+     ],
+     [
+      "A",
+      "slope-attached mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "verdict=STRONG_SUPPORT",
+      "seismic refections associated with the collapsed materials that are contained in the updip parts of slope-at-attached mtcs tend to be discontinuous and chaotic."
+     ],
+     [
+      "A",
+      "slope-attached mass-transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "verdict=STRONG_SUPPORT",
+      "seismic refections associated with the collapsed materials that are contained in the updip parts of slope-at-attached mtcs tend to be discontinuous and chaotic."
+     ]
+    ]
+   },
+   "panel": {
+    "A": 3,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "m4.decision=ACCEPT",
+      "\"some mass transport deposits can be initiated by slumping of oversteepened sediment waves in preferred positions on leveed-channel complexes. other mass transport deposits have sheet-like geometries,"
+     ],
+     [
+      "A",
+      "slope-attached mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "m4.decision=ACCEPT",
+      "seismic refections associated with the collapsed materials that are contained in the updip parts of slope-at-attached mtcs tend to be discontinuous and chaotic."
+     ],
+     [
+      "A",
+      "slope-attached mass-transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "m4.decision=ACCEPT",
+      "seismic refections associated with the collapsed materials that are contained in the updip parts of slope-at-attached mtcs tend to be discontinuous and chaotic."
+     ]
+    ]
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 3,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "m4.decision=ACCEPT",
+      "\"some mass transport deposits can be initiated by slumping of oversteepened sediment waves in preferred positions on leveed-channel complexes. other mass transport deposits have sheet-like geometries,"
+     ],
+     [
+      "A",
+      "slope-attached mass transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "m4.decision=ACCEPT",
+      "seismic refections associated with the collapsed materials that are contained in the updip parts of slope-at-attached mtcs tend to be discontinuous and chaotic."
+     ],
+     [
+      "A",
+      "slope-attached mass-transport deposit",
+      "hasDescriptor",
+      "discontinuous",
+      "m4.decision=ACCEPT",
+      "seismic refections associated with the collapsed materials that are contained in the updip parts of slope-at-attached mtcs tend to be discontinuous and chaotic."
+     ]
+    ]
+   }
+  },
+  "raison": "PRESENTE dans le graphe livre (niveau A)"
+ },
+ "mass transport deposit --hasDescriptor--> massive": {
+  "phrases_corpus": 8,
+  "passages_corpus": 8,
+  "passages_donnes_extracteur": 4,
+  "requetes_qui_les_ont_ramenes": [
+   "Does mass transport deposit occur in continental margin?",
+   "In what geological setting does turbidite occur?",
+   "What deposits or background sediments are described as stratified in seismic data?",
+   "What seismic objects show both layered and stratified character?",
+   "Where do mass transport deposits occur — continental slope abyssal plain?"
+  ],
+  "exemples_phrases": [
+   [
+    "9781565762879_ch03",
+    "in the antarctic wilkes land margin, global climate cooling caused a late oligocene to middle miocene time of temperate continental ice sheets that resulted in massive deposition of mass transport deposits on the margin, whereas later polar ice sheets favored development of turbidite systems."
+   ],
+   [
+    "9781565762879_ch03",
+    "despite the formation of some channels during pleistocene low- stands, subsequent massive mass transport deposit events apparently destroyed the incipient channel systems (figs."
+   ],
+   [
+    "9781565762879_ch03",
+    "large mid-ocean volcanic islands, such as in the hawaiian and canary islands, also have built up and then become unstable, so that significant portions detach and slide as massive or mul- tiple sediment failures creating mass transport deposit sheets that extend hun- dreds of kilometers across the s"
+   ]
+  ],
+  "etapes": {
+   "extraction_a": {
+    "A": 3,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "massive",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "massive",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "massive",
+      "",
+      ""
+     ]
+    ]
+   },
+   "verif_qwen_a": {
+    "A": 3,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "massive",
+      "_verification.verdict=WEAK_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "massive",
+      "_verification.verdict=NOT_SUPPORTED",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "massive",
+      "_verification.verdict=NOT_SUPPORTED",
+      ""
+     ]
+    ]
+   },
+   "rejet_nettoyage_a": {
+    "A": 2,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "massive",
+      "_reject_reason=verif_not_supported",
+      ""
+     ],
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "massive",
+      "_reject_reason=verif_not_supported",
+      ""
+     ]
+    ]
+   },
+   "apres_nettoyage_a": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "massive",
+      "_verification.verdict=WEAK_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "extraction_b": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "massive",
+      "",
+      ""
+     ]
+    ]
+   },
+   "verif_qwen_b": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "massive",
+      "_verification.verdict=NOT_SUPPORTED",
+      ""
+     ]
+    ]
+   },
+   "rejet_nettoyage_b": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "massive",
+      "_reject_reason=verif_not_supported",
+      ""
+     ]
+    ]
+   },
+   "apres_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "fusion": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "massive",
+      "verdict=WEAK_SUPPORT",
+      "internally, the mass transport deposits are mainly structureless, characterized by chaotic seismic facies and hyperbolic reflections."
+     ]
+    ]
+   },
+   "panel": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "massive",
+      "m4.decision=UNCERTAIN",
+      "internally, the mass transport deposits are mainly structureless, characterized by chaotic seismic facies and hyperbolic reflections."
+     ]
+    ]
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "mass transport deposit",
+      "hasDescriptor",
+      "massive",
+      "m4.decision=UNCERTAIN",
+      "internally, the mass transport deposits are mainly structureless, characterized by chaotic seismic facies and hyperbolic reflections."
+     ]
+    ]
+   }
+  },
+  "raison": "PRESENTE dans le graphe livre (niveau A)"
+ },
+ "turbidite --hasDescriptor--> parallel": {
+  "phrases_corpus": 8,
+  "passages_corpus": 7,
+  "passages_donnes_extracteur": 3,
+  "requetes_qui_les_ont_ramenes": [
+   "Does turbidite occur in continental margin?",
+   "How are turbidites positioned relative to MTDs?",
+   "What are the seismic facies and descriptors of turbidity current?",
+   "What deposits or features show high-amplitude seismic facies?",
+   "What deposits or features show parallel seismic facies?",
+   "What seismic character do hemipelagites show — parallel continuous low amplitude?"
+  ],
+  "exemples_phrases": [
+   [
+    "1-s2.0-S0264817216304585-main",
+    "the parallel high-amplitude seismic re ﬂections in (b) are interpreted as turbidites."
+   ],
+   [
+    "1-s2.0-S0264817216304585-main",
+    "the internal seismic character of sesas in zone b is distinct from that in ensas (free gas) and parallel high-amplitude seismic re- ﬂections (turbidites) in zone a ( figs."
+   ],
+   [
+    "9781565762879_ch03",
+    "in contrast, tectonically active continen- tal margins, like the cascadia subduction zone margin of north- western north america and the north-central california conti- nental margin parallel to the northern san andreas fault, are dominated by channelized turbidite systems (fig."
+   ]
+  ],
+  "etapes": {
+   "extraction_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "extraction_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "fusion": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   }
+  },
+  "raison": "NON_EXTRAITE : passage lu par l'extracteur, aucune relation entre les deux termes"
+ },
+ "turbidite --hasDescriptor--> continuous": {
+  "phrases_corpus": 3,
+  "passages_corpus": 3,
+  "passages_donnes_extracteur": 3,
+  "requetes_qui_les_ont_ramenes": [
+   "Are mass transport deposits characterized by high-amplitude seismic facies?",
+   "Describe the seismic character of mass transport deposit including amplitude, continuity, and internal reflections.",
+   "How are turbidites positioned relative to MTDs?",
+   "How does sedimentation rate control deposit characteristics?",
+   "Is rafted block a structural component of mass transport deposit?",
+   "What objects show low amplitude seismic character?"
+  ],
+  "exemples_phrases": [
+   [
+    "Alves_AAPG_MTDs_14",
+    "these continuous strata in unit ib comprise well-stratified sandy turbidites, some volcaniclastic, interbedded with shales and silts (figure 5a)."
+   ],
+   [
+    "Alves_AAPG_MTDs_14",
+    "808 mass-transport deposits and seismic texture on 3-d seismic data, mass transport deposits 5 and 6 are shown as chaotic, poorly continuous strata of low ampli- tude, whereas turbidites in unit ib are revealed as continuous moderate- to high-amplitude reflec- tions (figures 10, 11a)."
+   ],
+   [
+    "Alves_AAPG_MTDs_14",
+    "this assumption is corroborated by the examples in figure 10, southeast japan, in which turbidites and hemipelagites in unit ib are shown as high-e continuous strata, and reveal a lower degree of dis- aggregation in comparison to failed sediment in mass transport deposit 6 (figure 10)."
+   ]
+  ],
+  "etapes": {
+   "extraction_a": {
+    "A": 4,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "continuous",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "continuous",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "continuous",
+      "",
+      ""
+     ]
+    ]
+   },
+   "verif_qwen_a": {
+    "A": 4,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "continuous",
+      "_verification.verdict=WEAK_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "continuous",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "continuous",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "rejet_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_a": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "continuous",
+      "_verification.verdict=WEAK_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "extraction_b": {
+    "A": 4,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "continuous",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "continuous",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "continuous",
+      "",
+      ""
+     ]
+    ]
+   },
+   "verif_qwen_b": {
+    "A": 4,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "continuous",
+      "_verification.verdict=WEAK_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "continuous",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "continuous",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "continuous",
+      "_verification.verdict=WEAK_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "fusion": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "continuous",
+      "verdict=WEAK_SUPPORT",
+      "the seismic character of this part of the stratigraphic column is marked by high-frequency, continuous, and moderate-amplitude reflections that are locally interbedded with discontinuous to transparen"
+     ]
+    ]
+   },
+   "panel": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "continuous",
+      "m4.decision=UNCERTAIN",
+      "the seismic character of this part of the stratigraphic column is marked by high-frequency, continuous, and moderate-amplitude reflections that are locally interbedded with discontinuous to transparen"
+     ]
+    ]
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "continuous",
+      "m4.decision=UNCERTAIN",
+      "the seismic character of this part of the stratigraphic column is marked by high-frequency, continuous, and moderate-amplitude reflections that are locally interbedded with discontinuous to transparen"
+     ]
+    ]
+   }
+  },
+  "raison": "PRESENTE dans le graphe livre (niveau A)"
+ },
+ "turbidite --hasDescriptor--> layered": {
+  "phrases_corpus": 0,
+  "passages_corpus": 0,
+  "passages_donnes_extracteur": 0,
+  "requetes_qui_les_ont_ramenes": [],
+  "exemples_phrases": [],
+  "etapes": {
+   "extraction_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "extraction_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "fusion": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   }
+  },
+  "raison": "AUCUNE_PHRASE : aucune phrase du corpus ne nomme les deux termes"
+ },
+ "turbidite --hasDescriptor--> high-amplitude": {
+  "phrases_corpus": 6,
+  "passages_corpus": 6,
+  "passages_donnes_extracteur": 3,
+  "requetes_qui_les_ont_ramenes": [
+   "Are mass transport deposits characterized by high-amplitude seismic facies?",
+   "Describe the seismic character of mass transport deposit including amplitude, continuity, and internal reflections.",
+   "How are turbidites positioned relative to MTDs?",
+   "How does rapid sedimentation lead to fluid overpressure?",
+   "What deposits or features show high-amplitude seismic facies?",
+   "What deposits or features show parallel seismic facies?"
+  ],
+  "exemples_phrases": [
+   [
+    "1-s2.0-S0264817216304585-main",
+    "the parallel high-amplitude seismic re ﬂections in (b) are interpreted as turbidites."
+   ],
+   [
+    "1-s2.0-S0264817216304585-main",
+    "the internal seismic character of sesas in zone b is distinct from that in ensas (free gas) and parallel high-amplitude seismic re- ﬂections (turbidites) in zone a ( figs."
+   ],
+   [
+    "9781565762879_ch02",
+    "high-amplitude reflections within basal section of the mass-transport deposit, which are characterized by multiple thrusts, likely comprise turbidite sands incorporated into the mass-transport deposit."
+   ]
+  ],
+  "etapes": {
+   "extraction_a": {
+    "A": 2,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "high-amplitude",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "moderate-to-high-amplitude",
+      "",
+      ""
+     ]
+    ]
+   },
+   "verif_qwen_a": {
+    "A": 2,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "high-amplitude",
+      "_verification.verdict=NOT_SUPPORTED",
+      ""
+     ],
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "moderate-to-high-amplitude",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "rejet_nettoyage_a": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "high-amplitude",
+      "_reject_reason=verif_not_supported",
+      ""
+     ]
+    ]
+   },
+   "apres_nettoyage_a": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "high-amplitude",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "extraction_b": {
+    "A": 2,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "turbidites",
+      "hasDescriptor",
+      "moderate-to-high-amplitude",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "moderate-to-high-amplitude",
+      "",
+      ""
+     ]
+    ]
+   },
+   "verif_qwen_b": {
+    "A": 2,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "turbidites",
+      "hasDescriptor",
+      "moderate-to-high-amplitude",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "moderate-to-high-amplitude",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 2,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "turbidites",
+      "hasDescriptor",
+      "high-amplitude",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "high-amplitude",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "fusion": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "high-amplitude",
+      "verdict=STRONG_SUPPORT",
+      "\"turbidites in unit ib are revealed as continuous moderate- to high-amplitude reflections (figures 10, 11a).\""
+     ]
+    ]
+   },
+   "panel": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "high-amplitude",
+      "m4.decision=ACCEPT",
+      "\"turbidites in unit ib are revealed as continuous moderate- to high-amplitude reflections (figures 10, 11a).\""
+     ]
+    ]
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "turbidite",
+      "hasDescriptor",
+      "high-amplitude",
+      "m4.decision=ACCEPT",
+      "\"turbidites in unit ib are revealed as continuous moderate- to high-amplitude reflections (figures 10, 11a).\""
+     ]
+    ]
+   }
+  },
+  "raison": "PRESENTE dans le graphe livre (niveau A)"
+ },
+ "debris flow --hasDescriptor--> chaotic": {
+  "phrases_corpus": 6,
+  "passages_corpus": 6,
+  "passages_donnes_extracteur": 2,
+  "requetes_qui_les_ont_ramenes": [
+   "How are debris flows characterized seismically — chaotic hummocky facies?",
+   "What are the seismic facies and descriptors of debris flow?",
+   "What deposits or features show hummocky seismic facies?",
+   "What geological objects contain parallel or sub-horizontal reflectors? Consider preserved blocks, slides, and undeformed sediments.",
+   "What objects show hummocky surface seismic character?",
+   "What objects show hummocky topography seismic character?"
+  ],
+  "exemples_phrases": [
+   [
+    "9781565762879_ch03",
+    "5, 6) contain the chaotic deposits of debris flows (goldfinger et al., 2000; nelson et al., 2000)."
+   ],
+   [
+    "9781565762879_ch03",
+    "these individual mass transport deposit beds have a variety of lithologies that vary from clay-clast debris flows to chaotic silt beds."
+   ],
+   [
+    "9781565762879_ch03",
+    "y of lithologies that vary from clay-clast debris flows to chaotic silt beds."
+   ]
+  ],
+  "etapes": {
+   "extraction_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "extraction_b": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "debris flow deposit",
+      "hasDescriptor",
+      "chaotic",
+      "",
+      ""
+     ]
+    ]
+   },
+   "verif_qwen_b": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "debris flow deposit",
+      "hasDescriptor",
+      "chaotic",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "debris flow",
+      "hasDescriptor",
+      "chaotic",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "fusion": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "debris flow",
+      "hasDescriptor",
+      "chaotic",
+      "verdict=STRONG_SUPPORT",
+      "to finer blocks and gradually into a chaotic seismic facies interpreted as debrite."
+     ]
+    ]
+   },
+   "panel": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "debris flow",
+      "hasDescriptor",
+      "chaotic",
+      "m4.decision=ACCEPT",
+      "to finer blocks and gradually into a chaotic seismic facies interpreted as debrite."
+     ]
+    ]
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 1,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "debris flow",
+      "hasDescriptor",
+      "chaotic",
+      "m4.decision=ACCEPT",
+      "to finer blocks and gradually into a chaotic seismic facies interpreted as debrite."
+     ]
+    ]
+   }
+  },
+  "raison": "PRESENTE dans le graphe livre (niveau A)"
+ },
+ "debris flow --hasDescriptor--> hummocky": {
+  "phrases_corpus": 0,
+  "passages_corpus": 0,
+  "passages_donnes_extracteur": 0,
+  "requetes_qui_les_ont_ramenes": [],
+  "exemples_phrases": [],
+  "etapes": {
+   "extraction_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "extraction_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "fusion": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   }
+  },
+  "raison": "AUCUNE_PHRASE : aucune phrase du corpus ne nomme les deux termes"
+ },
+ "slide --hasDescriptor--> blocky": {
+  "phrases_corpus": 1,
+  "passages_corpus": 1,
+  "passages_donnes_extracteur": 1,
+  "requetes_qui_les_ont_ramenes": [
+   "What controls the basal surface morphology of MTDs?",
+   "What controls the thickness of mass transport deposits?"
+  ],
+  "exemples_phrases": [
+   [
+    "RichardsonetalBasinResearch2011-online (1)",
+    "basal shear surfaces containing numerous tightly spaced grooves indicate the physical state of the overlying mass transport deposit; they are created by rigid material incising the slope in semi-lique¢ed, blocky debris £ows, rather than more plastic slides and slumps, and as a result contain far few"
+   ]
+  ],
+  "etapes": {
+   "extraction_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "extraction_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "fusion": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   }
+  },
+  "raison": "NON_EXTRAITE : passage lu par l'extracteur, aucune relation entre les deux termes"
+ },
+ "slide --hasDescriptor--> undeformed": {
+  "phrases_corpus": 4,
+  "passages_corpus": 4,
+  "passages_donnes_extracteur": 1,
+  "requetes_qui_les_ont_ramenes": [
+   "What deposits or features show parallel seismic facies?",
+   "What deposits or features show undeformed seismic facies?"
+  ],
+  "exemples_phrases": [
+   [
+    "9781565762879_ch02",
+    "the central region of the slide can be mostly undeformed."
+   ],
+   [
+    "Bull & Cartwright (2009)",
+    "6 a, b is taken from the southern margin of the storegga slide where material affected by instability in the storegga zone is juxtaposed with undeformed strata to the south."
+   ],
+   [
+    "Bull & Cartwright (2009)",
+    "(b) seismic section through lateral margin of storegga slide material and adjacent undeformed strata (location shown in a)."
+   ]
+  ],
+  "etapes": {
+   "extraction_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "extraction_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "fusion": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   }
+  },
+  "raison": "NON_EXTRAITE : passage lu par l'extracteur, aucune relation entre les deux termes"
+ },
+ "hemipelagite --hasDescriptor--> parallel": {
+  "phrases_corpus": 0,
+  "passages_corpus": 0,
+  "passages_donnes_extracteur": 0,
+  "requetes_qui_les_ont_ramenes": [],
+  "exemples_phrases": [],
+  "etapes": {
+   "extraction_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "extraction_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "fusion": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   }
+  },
+  "raison": "AUCUNE_PHRASE : aucune phrase du corpus ne nomme les deux termes"
+ },
+ "hemipelagite --hasDescriptor--> continuous": {
+  "phrases_corpus": 2,
+  "passages_corpus": 2,
+  "passages_donnes_extracteur": 1,
+  "requetes_qui_les_ont_ramenes": [
+   "How does sedimentation rate control deposit characteristics?",
+   "Is rafted block a structural component of mass transport deposit?"
+  ],
+  "exemples_phrases": [
+   [
+    "Alves_AAPG_MTDs_14",
+    "in this article, we homogenized c and e values using an algorithm that considers the full spectrum of amplitudes within hemipelagites and continuous strata con- fining the mass transport deposits to which the cde method is applied."
+   ],
+   [
+    "Alves_AAPG_MTDs_14",
+    "this assumption is corroborated by the examples in figure 10, southeast japan, in which turbidites and hemipelagites in unit ib are shown as high-e continuous strata, and reveal a lower degree of dis- aggregation in comparison to failed sediment in mass transport deposit 6 (figure 10)."
+   ]
+  ],
+  "etapes": {
+   "extraction_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "extraction_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "fusion": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   }
+  },
+  "raison": "NON_EXTRAITE : passage lu par l'extracteur, aucune relation entre les deux termes"
+ },
+ "hemipelagite --hasDescriptor--> low-amplitude": {
+  "phrases_corpus": 0,
+  "passages_corpus": 0,
+  "passages_donnes_extracteur": 0,
+  "requetes_qui_les_ont_ramenes": [],
+  "exemples_phrases": [],
+  "etapes": {
+   "extraction_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "extraction_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "fusion": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   }
+  },
+  "raison": "AUCUNE_PHRASE : aucune phrase du corpus ne nomme les deux termes"
+ },
+ "slope failure --causes--> mass transport deposit": {
+  "phrases_corpus": 37,
+  "passages_corpus": 35,
+  "passages_donnes_extracteur": 15,
+  "requetes_qui_les_ont_ramenes": [
+   "Are mass transport deposits characterized by discontinuous seismic facies?",
+   "Are mass transport deposits characterized by transparent seismic facies?",
+   "Does submarine landslide occur in continental margin?",
+   "Does submarine landslide occur in continental slope?",
+   "How are debris flows characterized seismically — chaotic hummocky facies?",
+   "How does slope failure generate or produce mass transport deposits?"
+  ],
+  "exemples_phrases": [
+   [
+    "1-s2.0-S0264817216304585-main",
+    "therefore, new slope failures will occur and will share the same basal surface with the previous mass transport deposits."
+   ],
+   [
+    "1-s2.0-S0264817216304585-main",
+    "it potentially triggers multi-stage slope failure and can be responsible for the retrogressive evolution of mass transport deposits on continental margins."
+   ],
+   [
+    "9781565762879_ch03",
+    "cascadia basin—turbidites dominate some tectonically active continental margins (convergent and transform fault) with large slope failures (5 to 88 km width) contain relatively minor encroachment of mass transport deposit sheets onto the abyssal seafloor compared to passive margins (divergent)."
+   ]
+  ],
+  "etapes": {
+   "extraction_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "extraction_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "fusion": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   }
+  },
+  "raison": "NON_EXTRAITE : passage lu par l'extracteur, aucune relation entre les deux termes"
+ },
+ "earthquake --triggers--> slope failure": {
+  "phrases_corpus": 20,
+  "passages_corpus": 17,
+  "passages_donnes_extracteur": 5,
+  "requetes_qui_les_ont_ramenes": [
+   "Does debris flow occur in passive margin?",
+   "Does submarine landslide occur in continental margin?",
+   "Does submarine landslide occur in continental slope?",
+   "Does submarine landslide occur in deep-water environment?",
+   "Does submarine landslide occur in passive margin?",
+   "Does turbidite occur in passive margin?"
+  ],
+  "exemples_phrases": [
+   [
+    "1-s2.0-S0025322712000412-main",
+    "overpressure and earthquake initiated slope failure in the ursa region, northern gulf of mexico."
+   ],
+   [
+    "3-s2.0-B9780128130810007047-main",
+    "much less information exists about their trigger mechanisms, and the most widely used example for a continental slope failure is the 1929 grand banks earthquake."
+   ],
+   [
+    "9781565762879_ch10",
+    "for example, generation of overpres- sures may be the precondition necessary for slope failure, but an earthquake ultimately causes shear failure, which acts as a “trigger” (davies and clark, 2006)."
+   ]
+  ],
+  "etapes": {
+   "extraction_a": {
+    "A": 3,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "earthquake",
+      "triggers",
+      "slope failures",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "earthquake loading",
+      "triggers",
+      "slope failure",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "earthquake",
+      "triggers",
+      "new slope failures",
+      "",
+      ""
+     ]
+    ]
+   },
+   "verif_qwen_a": {
+    "A": 3,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "earthquake",
+      "triggers",
+      "slope failures",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "earthquake loading",
+      "triggers",
+      "slope failure",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "earthquake",
+      "triggers",
+      "new slope failures",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "rejet_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_a": {
+    "A": 3,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "earthquake",
+      "triggers",
+      "slope failure",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "earthquake loading",
+      "triggers",
+      "slope failure",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "earthquake",
+      "triggers",
+      "new slope failures",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "extraction_b": {
+    "A": 3,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "earthquake",
+      "triggers",
+      "slope failure",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "earthquake loading",
+      "triggers",
+      "slope failure",
+      "",
+      ""
+     ],
+     [
+      "A",
+      "earthquake",
+      "triggers",
+      "new slope failures",
+      "",
+      ""
+     ]
+    ]
+   },
+   "verif_qwen_b": {
+    "A": 3,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "earthquake",
+      "triggers",
+      "slope failure",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "earthquake loading",
+      "triggers",
+      "slope failure",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "earthquake",
+      "triggers",
+      "new slope failures",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 3,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "earthquake",
+      "triggers",
+      "slope failure",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "earthquake loading",
+      "triggers",
+      "slope failure",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ],
+     [
+      "A",
+      "earthquake",
+      "triggers",
+      "new slope failures",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "fusion": {
+    "A": 3,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "earthquake",
+      "triggers",
+      "slope failure",
+      "verdict=STRONG_SUPPORT",
+      "\"for the storegga slide, finite element simulation indicates that a strong earthquake (magnitude around 6.5–7.0) is a potential trigger for slope failures down to a subsurface depth of only 30 m and s"
+     ],
+     [
+      "A",
+      "earthquake",
+      "triggers",
+      "new slope failures",
+      "verdict=STRONG_SUPPORT",
+      "\"here, the gas-bearing strata could possibly serve as weak layers and the strata overlying them will fail under certain conditions, such as during regional earthquakes. therefore, new slope failures w"
+     ],
+     [
+      "A",
+      "earthquake loading",
+      "triggers",
+      "slope failure",
+      "verdict=STRONG_SUPPORT",
+      "trigger mechanisms of active mediterranean margins appear to be predominantly earthquakes, but preconditions to failure exist at least for specific events, involving human (nice) or volcanic activity "
+     ]
+    ]
+   },
+   "panel": {
+    "A": 3,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "earthquake",
+      "triggers",
+      "slope failure",
+      "m4.decision=ACCEPT",
+      "\"for the storegga slide, finite element simulation indicates that a strong earthquake (magnitude around 6.5–7.0) is a potential trigger for slope failures down to a subsurface depth of only 30 m and s"
+     ],
+     [
+      "A",
+      "earthquake",
+      "triggers",
+      "new slope failures",
+      "m4.decision=ACCEPT",
+      "\"here, the gas-bearing strata could possibly serve as weak layers and the strata overlying them will fail under certain conditions, such as during regional earthquakes. therefore, new slope failures w"
+     ],
+     [
+      "A",
+      "earthquake loading",
+      "triggers",
+      "slope failure",
+      "m4.decision=ACCEPT",
+      "trigger mechanisms of active mediterranean margins appear to be predominantly earthquakes, but preconditions to failure exist at least for specific events, involving human (nice) or volcanic activity "
+     ]
+    ]
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 3,
+    "B": 0,
+    "exemples": [
+     [
+      "A",
+      "earthquake",
+      "triggers",
+      "slope failure",
+      "m4.decision=ACCEPT",
+      "\"for the storegga slide, finite element simulation indicates that a strong earthquake (magnitude around 6.5–7.0) is a potential trigger for slope failures down to a subsurface depth of only 30 m and s"
+     ],
+     [
+      "A",
+      "earthquake",
+      "triggers",
+      "new slope failures",
+      "m4.decision=ACCEPT",
+      "\"here, the gas-bearing strata could possibly serve as weak layers and the strata overlying them will fail under certain conditions, such as during regional earthquakes. therefore, new slope failures w"
+     ],
+     [
+      "A",
+      "earthquake loading",
+      "triggers",
+      "slope failure",
+      "m4.decision=ACCEPT",
+      "trigger mechanisms of active mediterranean margins appear to be predominantly earthquakes, but preconditions to failure exist at least for specific events, involving human (nice) or volcanic activity "
+     ]
+    ]
+   }
+  },
+  "raison": "PRESENTE dans le graphe livre (niveau A)"
+ },
+ "pore pressure --controls--> slope failure": {
+  "phrases_corpus": 14,
+  "passages_corpus": 14,
+  "passages_donnes_extracteur": 3,
+  "requetes_qui_les_ont_ramenes": [
+   "Does submarine landslide occur in continental margin?",
+   "Does submarine landslide occur in continental slope?",
+   "What is the relationship between pore pressure and slope instability?"
+  ],
+  "exemples_phrases": [
+   [
+    "D. Leynaud",
+    "therefore, the drained shear strength should be considered to ensure whether or not excess pore pressure conditions can result in slope failure."
+   ],
+   [
+    "D. Leynaud",
+    "(4) though the effect of excess pore pressure development on shear strength and subsequently slope failure is still not well understood, it appears that geotechnical properties of contourites play a major role in the instability mechanism on glaciated margins."
+   ],
+   [
+    "Dos-Reis-et-al-2016-MPG",
+    "slope failure processes are generally triggered by a combination of several parameters, such as: oversteepening of the sea-ﬂoor, under-consolidated sediments and rapid sediment accumulation/sedimentary loading, which may generate an excess of pore pressure (e.g., hampton et al., 1996; biscontin and "
+   ]
+  ],
+  "etapes": {
+   "extraction_a": {
+    "A": 0,
+    "B": 1,
+    "exemples": [
+     [
+      "B",
+      "excess pore pressure",
+      "triggers",
+      "slope failure",
+      "",
+      ""
+     ]
+    ]
+   },
+   "verif_qwen_a": {
+    "A": 0,
+    "B": 1,
+    "exemples": [
+     [
+      "B",
+      "excess pore pressure",
+      "triggers",
+      "slope failure",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "rejet_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_a": {
+    "A": 0,
+    "B": 1,
+    "exemples": [
+     [
+      "B",
+      "excess pore pressure",
+      "triggers",
+      "slope failure",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "extraction_b": {
+    "A": 0,
+    "B": 1,
+    "exemples": [
+     [
+      "B",
+      "excess pore pressure",
+      "triggers",
+      "slope failure",
+      "",
+      ""
+     ]
+    ]
+   },
+   "verif_qwen_b": {
+    "A": 0,
+    "B": 1,
+    "exemples": [
+     [
+      "B",
+      "excess pore pressure",
+      "triggers",
+      "slope failure",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 0,
+    "B": 1,
+    "exemples": [
+     [
+      "B",
+      "excess pore pressure",
+      "triggers",
+      "slope failure",
+      "_verification.verdict=STRONG_SUPPORT",
+      ""
+     ]
+    ]
+   },
+   "fusion": {
+    "A": 0,
+    "B": 1,
+    "exemples": [
+     [
+      "B",
+      "excess pore pressure",
+      "triggers",
+      "slope failure",
+      "verdict=STRONG_SUPPORT",
+      "\"overpressure drives fluids along permeability pathways and the resulting fluid flow can lower the effective stress of the sediment thus favouring its failure (canals et al. 2004a; dugan et al. 2003)."
+     ]
+    ]
+   },
+   "panel": {
+    "A": 0,
+    "B": 1,
+    "exemples": [
+     [
+      "B",
+      "excess pore pressure",
+      "triggers",
+      "slope failure",
+      "m4.decision=ACCEPT",
+      "\"overpressure drives fluids along permeability pathways and the resulting fluid flow can lower the effective stress of the sediment thus favouring its failure (canals et al. 2004a; dugan et al. 2003)."
+     ]
+    ]
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 0,
+    "B": 1,
+    "exemples": [
+     [
+      "B",
+      "excess pore pressure",
+      "triggers",
+      "slope failure",
+      "m4.decision=ACCEPT",
+      "\"overpressure drives fluids along permeability pathways and the resulting fluid flow can lower the effective stress of the sediment thus favouring its failure (canals et al. 2004a; dugan et al. 2003)."
+     ]
+    ]
+   }
+  },
+  "raison": "AUTRE_FORME : extraite seulement avec une autre relation ou dans l'autre sens"
+ },
+ "turbidity current --formedBy--> debris flow": {
+  "phrases_corpus": 19,
+  "passages_corpus": 18,
+  "passages_donnes_extracteur": 4,
+  "requetes_qui_les_ont_ramenes": [
+   "Describe the seismic character of debris flow deposit including amplitude, continuity, and internal reflections.",
+   "Describe the seismic character of debris flow including amplitude, continuity, and internal reflections.",
+   "Does debris flow occur in continental margin?",
+   "Does debris flow occur in deep-water environment?",
+   "Does debris flow occur in passive margin?",
+   "Does turbidite occur in continental margin?"
+  ],
+  "exemples_phrases": [
+   [
+    "9781565762879_ch02",
+    "thus, we exclude turbidity currents and by sorbonne universite user on 16 april 2025 9mtd character and genesis from outcrop and seismic data their deposits from mass-transport deposits, although these pro- cesses and deposits can be transitional into mass-transport pro- cesses such as debris flows."
+   ],
+   [
+    "9781565762879_ch02",
+    "there has been considerable debate in recent years regarding the understanding of turbidity-current and debris-flow processes (e.g., hampton, 1972; middleton and hampton, 1973, 1976; shanmugam, 1996; mohrig et al., 1998; mulder and cochonat, 1996; mulder and alexander, 2001; elverhøi et al., 2005)."
+   ],
+   [
+    "9781565762879_ch02",
+    "hampton, m.a., 1972, the role of subaqueous debris flow in generating turbidity currents: journal of sedimentary petrology, v."
+   ]
+  ],
+  "etapes": {
+   "extraction_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "extraction_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "fusion": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   }
+  },
+  "raison": "NON_EXTRAITE : passage lu par l'extracteur, aucune relation entre les deux termes"
+ },
+ "mass transport deposit --occursIn--> continental slope": {
+  "phrases_corpus": 47,
+  "passages_corpus": 43,
+  "passages_donnes_extracteur": 9,
+  "requetes_qui_les_ont_ramenes": [
+   "Does debris flow occur in passive margin?",
+   "Does mass transport deposit occur in continental margin?",
+   "Does mass transport deposit occur in passive margin?",
+   "Does turbidite occur in continental margin?",
+   "Does turbidite occur in continental slope?",
+   "How does slope failure generate or produce mass transport deposits?"
+  ],
+  "exemples_phrases": [
+   [
+    "1-s2.0-S0025322712000412-main",
+    "mass transport deposit geomorphology, us continental slope."
+   ],
+   [
+    "1-s2.0-S0025322713000571-main",
+    "length/width aspect ratios of the mass transport deposits were used to deduce their possible causal mechanisms and con- nection with the continental slope and shelf."
+   ],
+   [
+    "1-s2.0-S0025322713000571-main",
+    "the positions of the imaged mass transport deposits relative to the continental slope are shown in fig."
+   ]
+  ],
+  "etapes": {
+   "extraction_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "extraction_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "fusion": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   }
+  },
+  "raison": "NON_EXTRAITE : passage lu par l'extracteur, aucune relation entre les deux termes"
+ },
+ "mass transport deposit --occursIn--> abyssal plain": {
+  "phrases_corpus": 9,
+  "passages_corpus": 6,
+  "passages_donnes_extracteur": 2,
+  "requetes_qui_les_ont_ramenes": [
+   "Does mass transport deposit occur in passive margin?",
+   "How are turbidites positioned relative to MTDs?",
+   "In what geological settings do mass transport deposits occur — continental slope abyssal plain?",
+   "Where do mass transport deposits occur — continental slope abyssal plain?"
+  ],
+  "exemples_phrases": [
+   [
+    "9781565762879_ch03",
+    "studies of the northern california continental margin also indicate that nearly all of the 30 holocene turbidites are triggered by great earthquakes (goldfinger et al., 2007), and that mass transport deposit sheets have relatively limited run-out lengths across the abyssal plain, compared to passive"
+   ],
+   [
+    "9781565762879_ch03",
+    "south from san francisco, the sur mass transport deposit sheet on monterey fan has the longest run-out distance (80 km) yet detected across an abyssal plain along any active tectonic margin (table 1; normark and gutmacher, 1988; klauke et al., 2004; elverhøi et al., 2005)."
+   ],
+   [
+    "9781565762879_ch03",
+    "the modern fore-arc basins off new zealand contain mass transport deposit sheets with run-out distances of 150–200 km; however, these mass transport deposits are found in elongate confined basins, not on the abyssal plain."
+   ]
+  ],
+  "etapes": {
+   "extraction_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "extraction_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "fusion": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   }
+  },
+  "raison": "NON_EXTRAITE : passage lu par l'extracteur, aucune relation entre les deux termes"
+ },
+ "debris flow --occursIn--> continental slope": {
+  "phrases_corpus": 3,
+  "passages_corpus": 3,
+  "passages_donnes_extracteur": 1,
+  "requetes_qui_les_ont_ramenes": [
+   "Describe the seismic character of debris flow deposit including amplitude, continuity, and internal reflections.",
+   "Describe the seismic character of debris flow including amplitude, continuity, and internal reflections."
+  ],
+  "exemples_phrases": [
+   [
+    "9781565762879_ch02",
+    "nissen, s.e., haskell, n.l., steiner, c.t., and coterill, k.l., 1999, debris flow outrunner blocks, glide tracks, and pressure ridges identified on the nigerian continental slope using 3-d seismic coherency: the leading edge, v."
+   ],
+   [
+    "9781565762879_ch03",
+    "aksu, a.e., and hiscott, r.n., 1989, slides and debris flows on the high- latitude continental slopes of baffin bay: geology, v."
+   ],
+   [
+    "Elverhoi, A., Breien",
+    "js e dr e s6 6 : 4 3–57 nissen se, haskell nl, steiner ct, coterill kl (1999) debris flow outrunner blocks, glide tracks, and pressure ridges indentified on the nigerian continental slope using 3-d seismic coherency."
+   ]
+  ],
+  "etapes": {
+   "extraction_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "extraction_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "fusion": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   }
+  },
+  "raison": "NON_EXTRAITE : passage lu par l'extracteur, aucune relation entre les deux termes"
+ },
+ "turbidite --occursIn--> basin floor": {
+  "phrases_corpus": 8,
+  "passages_corpus": 8,
+  "passages_donnes_extracteur": 4,
+  "requetes_qui_les_ont_ramenes": [
+   "Does turbidite occur in passive margin?",
+   "In what geological setting does mass transport deposit occur?",
+   "In what geological setting does turbidite occur?",
+   "In what geological settings do mass transport deposits occur — continental slope abyssal plain?",
+   "What controls the thickness of mass transport deposits?",
+   "What deposits or features show chaotic seismic facies?"
+  ],
+  "exemples_phrases": [
+   [
+    "9781565762879_ch03",
+    "erosion and breaching of local grabens at the shelf edge of the southern bering sea produce giant, gullied canyons and mass transport deposit sheets that dominate the basin-floor deposition and disrupt development of turbidite systems."
+   ],
+   [
+    "9781565762879_ch03",
+    "our case studies provide the following new insights: (1) mass transport deposits can dominate entire margins, dominate segments of a margin, be equally mixed with turbidites, or dominate a margin during some geologic times and not others; (2) on active tectonic margins with great earthquakes, the ma"
+   ],
+   [
+    "9781565762879_ch03",
+    "second, we use the continental margin of western north america along the cascadia subduction zone to show a margin that is dominated by a variety of turbidite systems, with only minor basin-floor mass transport deposits."
+   ]
+  ],
+  "etapes": {
+   "extraction_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "extraction_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "fusion": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   }
+  },
+  "raison": "NON_EXTRAITE : passage lu par l'extracteur, aucune relation entre les deux termes"
+ },
+ "slide --overlies--> hemipelagite": {
+  "phrases_corpus": 1,
+  "passages_corpus": 1,
+  "passages_donnes_extracteur": 0,
+  "requetes_qui_les_ont_ramenes": [],
+  "exemples_phrases": [
+   [
+    "Wei Li a,⁎, Tiago M. Alves",
+    "comprising the ﬁrst ‘background’ hemipelagites deposited after the slide event."
+   ]
+  ],
+  "etapes": {
+   "extraction_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_a": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "extraction_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "verif_qwen_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "rejet_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "apres_nettoyage_b": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "fusion": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "quarantaine_panel": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   },
+   "livre": {
+    "A": 0,
+    "B": 0,
+    "exemples": []
+   }
+  },
+  "raison": "NON_RETROUVEE : les passages qui la contiennent n'ont jamais ete donnes a l'extracteur"
+ }
+}

@@ -1,0 +1,47 @@
+=== 186 marqueurs de portee dans les phrases de preuve (indicateur lexical) ===
+graphe : output/run18/kg_final/flat_run18_enforced_dedup.json (sha caccdca00ff3)
+quarantaine : output/run18/m4_panel/m4_quarantine.jsonl (sha 2efdb7e3140f)
+
+-- livre : 364 relations --
+phrase nuancee (>= 1 categorie) : 269/364 (74 %)
+  modalite   : 92/364 (25 %)
+  partiel    : 54/364 (15 %)
+  condition  : 40/364 (11 %)
+  valeur     : 35/364 (10 %)
+  cas        : 139/364 (38 %)
+  partie     : 107/364 (29 %)
+  negation   : 13/364 (4 %)
+  phrase tronquee a 400 caracteres : 37/364 (10 %)
+  mots les plus frequents : fig. 95, basal 30, interpreted 27, internal 23, can 20, fill 16, during 15, where 14, some 14, could 13, figure 13, may 12, most 11, several 11, study area 10
+
+  par tier :
+    tier 1 : nuancee 148/197 (75 %)
+    tier 2 : nuancee 121/167 (72 %)
+  par relation :
+    hasDescriptor  : nuancee 167/216 (77 %)
+    occursIn       : nuancee 21/43 (49 %)
+    triggers       : nuancee 28/37 (76 %)
+    causes         : nuancee 18/25 (72 %)
+    partOf         : nuancee 14/18 (78 %)
+    overlies       : nuancee 8/11 (73 %)
+    affects        : nuancee 4/5 (80 %)
+    controls       : nuancee 5/5 (100 %)
+    underlies      : nuancee 4/4 (100 %)
+  verdicts des juges sur la phrase (Llama|Mistral) selon la nuance :
+                   | tous SUPPORTED | mixte | tous PARTIALLY | au moins un NOT/autre | sans verdict
+    nuancee        | 46/269 (17 %) | 81/269 (30 %) | 100/269 (37 %) | 42/269 (16 %) | 0/269 (0 %)
+    sans marqueur  | 10/95 (11 %) | 34/95 (36 %) | 30/95 (32 %) | 21/95 (22 %) | 0/95 (0 %)
+
+-- quarantaine : 18 relations --
+phrase nuancee (>= 1 categorie) : 15/18 (83 %)
+  modalite   : 4/18 (22 %)
+  partiel    : 1/18 (6 %)
+  condition  : 1/18 (6 %)
+  valeur     : 3/18 (17 %)
+  cas        : 5/18 (28 %)
+  partie     : 9/18 (50 %)
+  negation   : 2/18 (11 %)
+  phrase tronquee a 400 caracteres : 3/18 (17 %)
+  mots les plus frequents : internal 3, 300 ms 2, 700 ms 2, can 2, fig. 2, headwall 2, top surface 1, the lubina mass transport deposit 1, flank 1, some 1, fill 1, interpreted 1, suggests 1, basal 1, figure 1
+
+Rappel : indicateur lexical (sur-detection possible, ex. 'where' relatif ; sous-detection des nuances sans mot-cle). Relire les colonnes de marqueurs avant de citer un chiffre.

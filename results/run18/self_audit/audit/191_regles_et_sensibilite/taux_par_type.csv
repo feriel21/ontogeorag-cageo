@@ -1,0 +1,109 @@
+ensemble,regle,classe,n,k,taux,wilson_bas,wilson_haut
+tous les perturbes,phrase NOT_SUPPORTED llama,entity_sub,159,127,0.7987,0.7297,0.8537
+tous les perturbes,phrase NOT_SUPPORTED llama,passage_perm,91,82,0.9011,0.8226,0.9471
+tous les perturbes,phrase NOT_SUPPORTED llama,relation_sub,91,49,0.5385,0.4366,0.6372
+tous les perturbes,phrase NOT_SUPPORTED llama,inversion,23,10,0.4348,0.2563,0.6319
+tous les perturbes,phrase NOT_SUPPORTED llama,tous,364,268,0.7363,0.6887,0.7789
+tous les perturbes,phrase NOT_SUPPORTED llama,originaux_conserves,364,290,0.7967,0.7524,0.8348
+tous les perturbes,phrase NOT_SUPPORTED mistral,entity_sub,159,86,0.5409,0.4634,0.6165
+tous les perturbes,phrase NOT_SUPPORTED mistral,passage_perm,91,60,0.6593,0.5573,0.7485
+tous les perturbes,phrase NOT_SUPPORTED mistral,relation_sub,91,14,0.1538,0.0939,0.2418
+tous les perturbes,phrase NOT_SUPPORTED mistral,inversion,23,1,0.0435,0.0077,0.2099
+tous les perturbes,phrase NOT_SUPPORTED mistral,tous,364,161,0.4423,0.3922,0.4937
+tous les perturbes,phrase NOT_SUPPORTED mistral,originaux_conserves,364,346,0.9505,0.9232,0.9685
+tous les perturbes,"phrase NOT_SUPPORTED, au moins un juge",entity_sub,159,131,0.8239,0.7573,0.8753
+tous les perturbes,"phrase NOT_SUPPORTED, au moins un juge",passage_perm,91,84,0.9231,0.8496,0.9622
+tous les perturbes,"phrase NOT_SUPPORTED, au moins un juge",relation_sub,91,50,0.5495,0.4473,0.6476
+tous les perturbes,"phrase NOT_SUPPORTED, au moins un juge",inversion,23,10,0.4348,0.2563,0.6319
+tous les perturbes,"phrase NOT_SUPPORTED, au moins un juge",tous,364,275,0.7555,0.7088,0.7968
+tous les perturbes,"phrase NOT_SUPPORTED, au moins un juge",originaux_conserves,364,285,0.783,0.7378,0.8222
+tous les perturbes,"phrase NOT_SUPPORTED, les deux juges",entity_sub,159,82,0.5157,0.4386,0.5921
+tous les perturbes,"phrase NOT_SUPPORTED, les deux juges",passage_perm,91,58,0.6374,0.5349,0.7287
+tous les perturbes,"phrase NOT_SUPPORTED, les deux juges",relation_sub,91,13,0.1429,0.0854,0.2292
+tous les perturbes,"phrase NOT_SUPPORTED, les deux juges",inversion,23,1,0.0435,0.0077,0.2099
+tous les perturbes,"phrase NOT_SUPPORTED, les deux juges",tous,364,154,0.4231,0.3734,0.4744
+tous les perturbes,"phrase NOT_SUPPORTED, les deux juges",originaux_conserves,364,351,0.9643,0.9399,0.979
+tous les perturbes,"phrase NOT ou aveugle IMPLAUSIBLE, llama",entity_sub,159,127,0.7987,0.7297,0.8537
+tous les perturbes,"phrase NOT ou aveugle IMPLAUSIBLE, llama",passage_perm,91,82,0.9011,0.8226,0.9471
+tous les perturbes,"phrase NOT ou aveugle IMPLAUSIBLE, llama",relation_sub,91,52,0.5714,0.4689,0.6682
+tous les perturbes,"phrase NOT ou aveugle IMPLAUSIBLE, llama",inversion,23,10,0.4348,0.2563,0.6319
+tous les perturbes,"phrase NOT ou aveugle IMPLAUSIBLE, llama",tous,364,271,0.7445,0.6973,0.7866
+tous les perturbes,"phrase NOT ou aveugle IMPLAUSIBLE, llama",originaux_conserves,364,275,0.7555,0.7088,0.7968
+tous les perturbes,"phrase NOT ou aveugle IMPLAUSIBLE, mistral",entity_sub,159,87,0.5472,0.4696,0.6225
+tous les perturbes,"phrase NOT ou aveugle IMPLAUSIBLE, mistral",passage_perm,91,61,0.6703,0.5686,0.7583
+tous les perturbes,"phrase NOT ou aveugle IMPLAUSIBLE, mistral",relation_sub,91,19,0.2088,0.1379,0.3032
+tous les perturbes,"phrase NOT ou aveugle IMPLAUSIBLE, mistral",inversion,23,1,0.0435,0.0077,0.2099
+tous les perturbes,"phrase NOT ou aveugle IMPLAUSIBLE, mistral",tous,364,168,0.4615,0.411,0.5129
+tous les perturbes,"phrase NOT ou aveugle IMPLAUSIBLE, mistral",originaux_conserves,364,328,0.9011,0.8661,0.9277
+tous les perturbes,"phrase NOT ou aveugle IMPLAUSIBLE, au moins un juge",entity_sub,159,131,0.8239,0.7573,0.8753
+tous les perturbes,"phrase NOT ou aveugle IMPLAUSIBLE, au moins un juge",passage_perm,91,84,0.9231,0.8496,0.9622
+tous les perturbes,"phrase NOT ou aveugle IMPLAUSIBLE, au moins un juge",relation_sub,91,54,0.5934,0.4907,0.6886
+tous les perturbes,"phrase NOT ou aveugle IMPLAUSIBLE, au moins un juge",inversion,23,10,0.4348,0.2563,0.6319
+tous les perturbes,"phrase NOT ou aveugle IMPLAUSIBLE, au moins un juge",tous,364,279,0.7665,0.7204,0.807
+tous les perturbes,"phrase NOT ou aveugle IMPLAUSIBLE, au moins un juge",originaux_conserves,364,264,0.7253,0.6772,0.7686
+tous les perturbes,"phrase non SUPPORTED (NOT ou PARTIALLY), les deux juges",entity_sub,159,144,0.9057,0.8502,0.942
+tous les perturbes,"phrase non SUPPORTED (NOT ou PARTIALLY), les deux juges",passage_perm,91,86,0.9451,0.8778,0.9763
+tous les perturbes,"phrase non SUPPORTED (NOT ou PARTIALLY), les deux juges",relation_sub,91,75,0.8242,0.7333,0.8888
+tous les perturbes,"phrase non SUPPORTED (NOT ou PARTIALLY), les deux juges",inversion,23,13,0.5652,0.3681,0.7437
+tous les perturbes,"phrase non SUPPORTED (NOT ou PARTIALLY), les deux juges",tous,364,318,0.8736,0.8355,0.9039
+tous les perturbes,"phrase non SUPPORTED (NOT ou PARTIALLY), les deux juges",originaux_conserves,364,171,0.4698,0.4191,0.5211
+tous les perturbes,"aveugle IMPLAUSIBLE, au moins un juge",entity_sub,159,15,0.0943,0.058,0.1498
+tous les perturbes,"aveugle IMPLAUSIBLE, au moins un juge",passage_perm,91,10,0.1099,0.0608,0.1906
+tous les perturbes,"aveugle IMPLAUSIBLE, au moins un juge",relation_sub,91,12,0.1319,0.0771,0.2165
+tous les perturbes,"aveugle IMPLAUSIBLE, au moins un juge",inversion,23,1,0.0435,0.0077,0.2099
+tous les perturbes,"aveugle IMPLAUSIBLE, au moins un juge",tous,364,38,0.1044,0.077,0.14
+tous les perturbes,"aveugle IMPLAUSIBLE, au moins un juge",originaux_conserves,364,340,0.9341,0.9038,0.9553
+sans les cas ambigus,phrase NOT_SUPPORTED llama,entity_sub,144,121,0.8403,0.7717,0.8911
+sans les cas ambigus,phrase NOT_SUPPORTED llama,passage_perm,91,82,0.9011,0.8226,0.9471
+sans les cas ambigus,phrase NOT_SUPPORTED llama,relation_sub,81,46,0.5679,0.4594,0.6703
+sans les cas ambigus,phrase NOT_SUPPORTED llama,inversion,23,10,0.4348,0.2563,0.6319
+sans les cas ambigus,phrase NOT_SUPPORTED llama,tous,339,259,0.764,0.716,0.8061
+sans les cas ambigus,phrase NOT_SUPPORTED llama,originaux_conserves,364,290,0.7967,0.7524,0.8348
+sans les cas ambigus,phrase NOT_SUPPORTED mistral,entity_sub,144,84,0.5833,0.5017,0.6607
+sans les cas ambigus,phrase NOT_SUPPORTED mistral,passage_perm,91,60,0.6593,0.5573,0.7485
+sans les cas ambigus,phrase NOT_SUPPORTED mistral,relation_sub,81,13,0.1605,0.0963,0.2555
+sans les cas ambigus,phrase NOT_SUPPORTED mistral,inversion,23,1,0.0435,0.0077,0.2099
+sans les cas ambigus,phrase NOT_SUPPORTED mistral,tous,339,158,0.4661,0.4137,0.5193
+sans les cas ambigus,phrase NOT_SUPPORTED mistral,originaux_conserves,364,346,0.9505,0.9232,0.9685
+sans les cas ambigus,"phrase NOT_SUPPORTED, au moins un juge",entity_sub,144,124,0.8611,0.7952,0.9083
+sans les cas ambigus,"phrase NOT_SUPPORTED, au moins un juge",passage_perm,91,84,0.9231,0.8496,0.9622
+sans les cas ambigus,"phrase NOT_SUPPORTED, au moins un juge",relation_sub,81,47,0.5802,0.4715,0.6817
+sans les cas ambigus,"phrase NOT_SUPPORTED, au moins un juge",inversion,23,10,0.4348,0.2563,0.6319
+sans les cas ambigus,"phrase NOT_SUPPORTED, au moins un juge",tous,339,265,0.7817,0.7347,0.8224
+sans les cas ambigus,"phrase NOT_SUPPORTED, au moins un juge",originaux_conserves,364,285,0.783,0.7378,0.8222
+sans les cas ambigus,"phrase NOT_SUPPORTED, les deux juges",entity_sub,144,81,0.5625,0.4809,0.6409
+sans les cas ambigus,"phrase NOT_SUPPORTED, les deux juges",passage_perm,91,58,0.6374,0.5349,0.7287
+sans les cas ambigus,"phrase NOT_SUPPORTED, les deux juges",relation_sub,81,12,0.1481,0.0868,0.2413
+sans les cas ambigus,"phrase NOT_SUPPORTED, les deux juges",inversion,23,1,0.0435,0.0077,0.2099
+sans les cas ambigus,"phrase NOT_SUPPORTED, les deux juges",tous,339,152,0.4484,0.3963,0.5016
+sans les cas ambigus,"phrase NOT_SUPPORTED, les deux juges",originaux_conserves,364,351,0.9643,0.9399,0.979
+sans les cas ambigus,"phrase NOT ou aveugle IMPLAUSIBLE, llama",entity_sub,144,121,0.8403,0.7717,0.8911
+sans les cas ambigus,"phrase NOT ou aveugle IMPLAUSIBLE, llama",passage_perm,91,82,0.9011,0.8226,0.9471
+sans les cas ambigus,"phrase NOT ou aveugle IMPLAUSIBLE, llama",relation_sub,81,49,0.6049,0.4961,0.7043
+sans les cas ambigus,"phrase NOT ou aveugle IMPLAUSIBLE, llama",inversion,23,10,0.4348,0.2563,0.6319
+sans les cas ambigus,"phrase NOT ou aveugle IMPLAUSIBLE, llama",tous,339,262,0.7729,0.7253,0.8143
+sans les cas ambigus,"phrase NOT ou aveugle IMPLAUSIBLE, llama",originaux_conserves,364,275,0.7555,0.7088,0.7968
+sans les cas ambigus,"phrase NOT ou aveugle IMPLAUSIBLE, mistral",entity_sub,144,85,0.5903,0.5086,0.6672
+sans les cas ambigus,"phrase NOT ou aveugle IMPLAUSIBLE, mistral",passage_perm,91,61,0.6703,0.5686,0.7583
+sans les cas ambigus,"phrase NOT ou aveugle IMPLAUSIBLE, mistral",relation_sub,81,18,0.2222,0.1454,0.3242
+sans les cas ambigus,"phrase NOT ou aveugle IMPLAUSIBLE, mistral",inversion,23,1,0.0435,0.0077,0.2099
+sans les cas ambigus,"phrase NOT ou aveugle IMPLAUSIBLE, mistral",tous,339,165,0.4867,0.434,0.5398
+sans les cas ambigus,"phrase NOT ou aveugle IMPLAUSIBLE, mistral",originaux_conserves,364,328,0.9011,0.8661,0.9277
+sans les cas ambigus,"phrase NOT ou aveugle IMPLAUSIBLE, au moins un juge",entity_sub,144,124,0.8611,0.7952,0.9083
+sans les cas ambigus,"phrase NOT ou aveugle IMPLAUSIBLE, au moins un juge",passage_perm,91,84,0.9231,0.8496,0.9622
+sans les cas ambigus,"phrase NOT ou aveugle IMPLAUSIBLE, au moins un juge",relation_sub,81,51,0.6296,0.5208,0.7267
+sans les cas ambigus,"phrase NOT ou aveugle IMPLAUSIBLE, au moins un juge",inversion,23,10,0.4348,0.2563,0.6319
+sans les cas ambigus,"phrase NOT ou aveugle IMPLAUSIBLE, au moins un juge",tous,339,269,0.7935,0.7472,0.8332
+sans les cas ambigus,"phrase NOT ou aveugle IMPLAUSIBLE, au moins un juge",originaux_conserves,364,264,0.7253,0.6772,0.7686
+sans les cas ambigus,"phrase non SUPPORTED (NOT ou PARTIALLY), les deux juges",entity_sub,144,139,0.9653,0.9213,0.9851
+sans les cas ambigus,"phrase non SUPPORTED (NOT ou PARTIALLY), les deux juges",passage_perm,91,86,0.9451,0.8778,0.9763
+sans les cas ambigus,"phrase non SUPPORTED (NOT ou PARTIALLY), les deux juges",relation_sub,81,68,0.8395,0.7445,0.9037
+sans les cas ambigus,"phrase non SUPPORTED (NOT ou PARTIALLY), les deux juges",inversion,23,13,0.5652,0.3681,0.7437
+sans les cas ambigus,"phrase non SUPPORTED (NOT ou PARTIALLY), les deux juges",tous,339,306,0.9027,0.8664,0.9298
+sans les cas ambigus,"phrase non SUPPORTED (NOT ou PARTIALLY), les deux juges",originaux_conserves,364,171,0.4698,0.4191,0.5211
+sans les cas ambigus,"aveugle IMPLAUSIBLE, au moins un juge",entity_sub,144,15,0.1042,0.0641,0.1648
+sans les cas ambigus,"aveugle IMPLAUSIBLE, au moins un juge",passage_perm,91,10,0.1099,0.0608,0.1906
+sans les cas ambigus,"aveugle IMPLAUSIBLE, au moins un juge",relation_sub,81,12,0.1481,0.0868,0.2413
+sans les cas ambigus,"aveugle IMPLAUSIBLE, au moins un juge",inversion,23,1,0.0435,0.0077,0.2099
+sans les cas ambigus,"aveugle IMPLAUSIBLE, au moins un juge",tous,339,38,0.1121,0.0828,0.1501
+sans les cas ambigus,"aveugle IMPLAUSIBLE, au moins un juge",originaux_conserves,364,340,0.9341,0.9038,0.9553

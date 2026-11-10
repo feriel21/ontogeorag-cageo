@@ -1,0 +1,11 @@
+=== 180 la phrase de preuve est-elle dans le texte montre au panel ? (run18) ===
+relations : 382 ; texte montre au juge : top_chunks[0][:1500]
+position de la phrase : {"vue": 382}
+
+decision du panel selon la position :
+  position                        ?
+  vue                           382
+
+verdicts avec passage (llama|mistral) selon la position :
+  vue                    PARTIALLY_SUPPORTED|PARTIALLY_SUPPORTED 130, PARTIALLY_SUPPORTED|SUPPORTED 68, SUPPORTED|SUPPORTED 56, NOT_SUPPORTED|PARTIALLY_SUPPORTED 55
+fichier : relations.jsonl

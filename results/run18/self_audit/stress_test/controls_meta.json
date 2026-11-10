@@ -1,0 +1,11 @@
+{
+  "seed": 13,
+  "n_controls": 728,
+  "class_distribution": {
+    "none": 364,
+    "entity_sub": 159,
+    "passage_perm": 91,
+    "relation_sub": 91,
+    "inversion": 23
+  }
+}

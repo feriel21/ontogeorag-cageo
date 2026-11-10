@@ -1,0 +1,10 @@
+cause,n_relations,relations,tiers
+fluid overpressure,2,affects:1; triggers:1,1:2
+earthquake,2,triggers:2,1:2
+decreased slope-normal stress,1,triggers:1,1:1
+earthquake loading,1,triggers:1,1:1
+excess pore pressure,1,triggers:1,1:1
+excess pore-water pressures,1,triggers:1,1:1
+external perturbations,1,triggers:1,1:1
+gas hydrate dissociation,1,triggers:1,1:1
+opening-mode fractures propagation,1,triggers:1,1:1

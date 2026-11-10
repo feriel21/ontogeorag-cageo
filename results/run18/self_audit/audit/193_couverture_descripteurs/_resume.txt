@@ -1,0 +1,137 @@
+193_couverture_descripteurs : lecture seule.
+descripteurs LB2019 (13) : 'stratified', 'continuous', 'layered', 'chaotic', 'parallel', 'blocky', 'hummocky', 'transparent', 'undeformed', 'discontinuous', 'low-amplitude', 'massive', 'high-amplitude'
+
+=== graphe livre : output/run18/kg_final/flat_run18_enforced_dedup.json, 364 relations, 216 hasDescriptor ===
+   descripteur       exact  minusc.  normalise   tiers (normalise)   formes trouvees
+   stratified            3        3          3   {'1': 1, '2': 2}    'stratified' 3
+   continuous           16       16         16   {'1': 5, '2': 11}   'continuous' 16
+   layered               1        1          1   {'1': 1}            'layered' 1
+   chaotic              17       17         17   {'1': 12, '2': 5}   'chaotic' 17
+   parallel             15       15         15   {'1': 7, '2': 8}    'parallel' 15
+   blocky                3        3          3   {'1': 2, '2': 1}    'blocky' 3
+   hummocky              2        2          2   {'1': 2}            'hummocky' 2
+   transparent          12       12         12   {'1': 3, '2': 9}    'transparent' 12
+   undeformed            6        6          6   {'1': 1, '2': 5}    'undeformed' 6
+   discontinuous        15       15         15   {'1': 9, '2': 6}    'discontinuous' 15
+   low-amplitude        17       17         17   {'1': 9, '2': 8}    'low-amplitude' 17
+   massive               1        1          1   {'2': 1}            'massive' 1
+   high-amplitude       25       25         25   {'1': 15, '2': 10}  'high-amplitude' 25
+   couverture : exact 13/13, exact tier1 12/13, minuscules 13/13, minuscules tier1 12/13, normalise 13/13, normalise tier1 12/13
+
+=== graphe nettoye 188 : output/audit/188_nettoyage_v2/graphe_nettoye.json, 281 relations, 155 hasDescriptor ===
+   descripteur       exact  minusc.  normalise   tiers (normalise)   formes trouvees
+   stratified            2        2          2   {'1': 1, '2': 1}    'stratified' 2
+   continuous           12       12         12   {'1': 5, '2': 7}    'continuous' 12
+   layered               1        1          1   {'1': 1}            'layered' 1
+   chaotic               8        8          8   {'1': 6, '2': 2}    'chaotic' 8
+   parallel             13       13         13   {'1': 6, '2': 7}    'parallel' 13
+   blocky                2        2          2   {'1': 2}            'blocky' 2
+   hummocky              2        2          2   {'1': 2}            'hummocky' 2
+   transparent           7        7          7   {'1': 2, '2': 5}    'transparent' 7
+   undeformed            6        6          6   {'1': 1, '2': 5}    'undeformed' 6
+   discontinuous        12       12         12   {'1': 8, '2': 4}    'discontinuous' 12
+   low-amplitude         9        9          9   {'1': 6, '2': 3}    'low-amplitude' 9
+   massive               1        1          1   {'2': 1}            'massive' 1
+   high-amplitude       18       18         18   {'1': 11, '2': 7}   'high-amplitude' 18
+   couverture : exact 13/13, exact tier1 12/13, minuscules 13/13, minuscules tier1 12/13, normalise 13/13, normalise tier1 12/13
+
+=== lignes de pipeline/07_final_metrics.py qui parlent des descripteurs ===
+   ...
+       5  WHY
+       6      The manuscript needs a single reproducible source for the headline
+       7      numbers (descriptor coverage, LB2019 recall, hallucination rate,
+       8      expert-validation precision/kappa). This stage computes them all from
+       9      the fused KG (06) so every reported number traces back to one script.
+   ...
+      12      - Fix hallucination: supports SUPPORTED/STRONG_SUPPORT/UNCERTAIN/WEAK_SUPPORT verdicts
+      13      - Fix entities: merges mass-transport deposit / mtd / mass transport deposits variants
+      14      - Descriptor coverage against the 13-term LB2019_BENCHMARK_DESCRIPTORS (imported from
+      15        pipeline.rag.constants — see run13 restructure), counted post-synonym-mapping (norm_desc).
+      16      - Recall against configs/lb_reference_edges.json (34 edges) and, separately,
+   ...
+      29  
+      30  from pipeline.rag.constants import (
+      31      LB2019_BENCHMARK_DESCRIPTORS as LB2019_DESCRIPTORS,
+      32  )
+      33  
+      34  DESCRIPTOR_SYNONYMS = {
+      35      "stratified": "layered",
+      36      "sub-parallel": "parallel",
+   ...
+      47  
+      48  REFERENCE_EDGES = [
+      49      ("mass transport deposit", "hasdescriptor", "chaotic"),
+      50      ("mass transport deposit", "hasdescriptor", "transparent"),
+      51      ("mass transport deposit", "hasdescriptor", "blocky"),
+      52      ("mass transport deposit", "hasdescriptor", "layered"),
+      53      ("mass transport deposit", "hasdescriptor", "parallel"),
+      54      ("mass transport deposit", "hasdescriptor", "continuous"),
+      55      ("mass transport deposit", "hasdescriptor", "discontinuous"),
+      56      ("mass transport deposit", "hasdescriptor", "massive"),
+      57      ("mass transport deposit", "hasdescriptor", "low-amplitude"),
+      58      ("mass transport deposit", "hasdescriptor", "high-amplitude"),
+      59      ("slide", "hasdescriptor", "chaotic"),
+      60      ("slide", "hasdescriptor", "blocky"),
+      61      ("debris flow", "hasdescriptor", "chaotic"),
+      62      ("debris flow", "hasdescriptor", "massive"),
+      63      ("turbidity current", "formedby", "slope failure"),
+      64      ("mass transport deposit", "formedby", "slope failure"),
+   ...
+     118  
+     119  def norm_desc(text):
+     120      """Apply norm() then DESCRIPTOR_SYNONYMS (e.g. stratified->layered) to `text`; returns the canonical descriptor string, no side effects."""
+     121      t = norm(text)
+     122      return DESCRIPTOR_SYNONYMS.get(t, t)
+     123  
+     124  
+   ...
+     133  
+     134  
+     135  def coverage(triples):
+     136      """Compute LB2019 descriptor coverage over `triples`' hasDescriptor objects (post norm_desc); returns found/missing sets, n_found, n_total=13 and coverage fraction, no side effects."""
+     137      found = set()
+     138      for t in triples:
+     139          d = norm_desc(t.get("object", ""))
+     140          if d in LB2019_DESCRIPTORS:
+     141              found.add(d)
+     142      missing = LB2019_DESCRIPTORS - found
+     143      return {
+     144          "found": sorted(found),
+   ...
+     146          "n_found": len(found),
+     147          "n_total": 13,
+     148          "coverage": len(found) / 13,
+     149      }
+     150  
+   ...
+     441  
+     442  def main():
+     443      """CLI entry point: loads --kg, normalizes/dedups triples, computes coverage/recall(34)/recall(orig26)/hallucination, prints the article table, and writes the full metrics JSON to --output."""
+     444      parser = argparse.ArgumentParser()
+     445      parser.add_argument("--kg", required=True)
+   ...
+     486      tier12 = [t for t in deduped if t.get("tier", 3) <= 2]
+     487  
+     488      cov1 = coverage(tier1)
+     489      cov12 = coverage(tier12)
+     490      rec1 = recall(tier1)
+     491      rec12 = recall(tier12)
+   ...
+     522      print(
+     523          "{:<38} {:>7} {:>8}".format(
+     524              "Descriptor coverage (n/13)", cov1["n_found"], cov12["n_found"]
+     525          )
+     526      )
+     527      print(
+     528          "{:<38} {:>6.1f}% {:>7.1f}%".format(
+     529              "Descriptor coverage (%)",
+     530              cov1["coverage"] * 100,
+     531              cov12["coverage"] * 100,
+     532          )
+     533      )
+   ...
+     622              "unique_entities": len(entities),
+     623          },
+     624          "descriptor_coverage": {"tier1": cov1, "tier12": cov12},
+     625          "recall_vs_lb2019": {"tier1": rec1, "tier12": rec12},
+     626          "recall_vs_lb2019_orig26": {

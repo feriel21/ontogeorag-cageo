@@ -1,0 +1,10 @@
+relation,total,tier_1,tier_2
+hasDescriptor,216,104,112
+occursIn,43,28,15
+triggers,37,31,6
+causes,25,17,8
+partOf,18,9,9
+overlies,11,2,9
+affects,5,4,1
+controls,5,0,5
+underlies,4,2,2

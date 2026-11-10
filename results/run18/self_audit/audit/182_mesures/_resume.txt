@@ -1,0 +1,29 @@
+=== 182 familles de noms sur le graphe livre ===
+relations : 364 ; entites : 272 ; entites dans une famille : 125
+composantes du graphe entier : 21 avant regroupement -> 7 apres
+composantes du sous-graphe causal : 20 avant -> 6 apres
+voisinage causal de slope failure : 22 noms distincts -> 15 familles ou noms apres regroupement
+relations Tier 1 « X triggers slope failure » : 20 (table2_triggers_slope_failure.tsv)
+
+Table 1 (familles d'au moins 2 noms) :
+  mass transport deposit               19  am1, am1 megaslide, am2-am6, amapá megaslide complex, chaotic mass transport deposit, initiation of mass transport deposit, main slide mass, mass transport depo
+  slope failure                        12  failure, failure of sedimentary environments, instability, landslide, large failures, massive slope failure, new slope failures, retrogressive failure, slope fa
+  position bathymetrique               10  aleutian basin floor, continental slope, deep-sea environment, deep-water environment, deepwater basin, deepwater setting, open slope, pakistan shelf and contin
+  pore pressure / overpressure          9  excess pore pressure, excess pore pressure build-up, excess pore-pressure generation, excess pore-water pressures, fluid overpressure, overpressure, overpressur
+  blocks                                9  block, extensional block, intact block, internal blocks, rafted block, remnant and rafted blocks, remnant block, rotated block, slide or rotated blocks
+  sedimentation rate                    8  high sedimentation rate, high sedimentation rates, rapid changes in sedimentation rates, rapid sedimentation, sediment accumulation, sedimentation conditions, s
+  channel                               7  channel, channel levee complex, channel-fill, channel-levee complex sets, deep-sea channel, levee, leveed-channel complex
+  turbidity / turbidite                 7  coarse-grained strata (turbidites), turbidite, turbidite sequence, turbidite system, turbiditic and hemipelagic deposition, turbidity current, turbidity flow
+  contexte de marge                     6  bering continental margin, cascadia margin, continental margin, ebro passive continental margin, passive margin, wilkes land continental margin
+  basal surface                         5  basal shear surface, basal surface, discontinuous erosion surfaces, erosion grooves, shear surface
+  effective stress                      4  decreased slope-normal stress, effective stress, increases in the driving stresses, slope-normal stress to decrease
+  headscarp                             4  headscarp, headscarp formation, headscarps, headwall scarp
+  seismicity                            4  earthquake, earthquake loading, earthquakes, seismic activity
+  debris flow                           3  debris flow, debrite, formation of debrites
+  sediment strength                     3  decreases in strength, reduced sediment strength, shear strength degradation
+  oversteepening                        3  major oversteepening of depositional slopes, structural tilting, tilting and oversteepening of sediments
+  systeme sedimentaire                  3  amazon fan, deep-sea fan, mississippi fan
+  sea level                             3  relative sea level change, relative sea level fall, sea-level fall
+  gas hydrate                           2  gas hydrate destabilization, gas hydrate dissociation
+  fracturing                            2  localised fracturing, localized fracturing
+  wave action                           2  sediment wave, storms

@@ -1,0 +1,91 @@
+{
+  "n_scored": 728,
+  "decision_rule": "corrupted detected iff evidence verdict == NOT_SUPPORTED",
+  "overall": {
+    "sensitivity": 0.7363,
+    "specificity": 0.7967,
+    "precision": 0.7836,
+    "f1": 0.7592,
+    "balanced_accuracy": 0.7665,
+    "tp": 268,
+    "fp": 74,
+    "tn": 290,
+    "fn": 96
+  },
+  "roc_auc_graded_score": 0.7768,
+  "per_corruption_class": {
+    "entity_sub": {
+      "sensitivity": 0.7987,
+      "specificity": 0.7967,
+      "precision": 0.6318,
+      "f1": 0.7056,
+      "balanced_accuracy": 0.7977,
+      "tp": 127,
+      "fp": 74,
+      "tn": 290,
+      "fn": 32,
+      "roc_auc": 0.8023,
+      "verdict_distribution": {
+        "NOT_SUPPORTED": 127,
+        "SUPPORTED": 8,
+        "PARTIALLY_SUPPORTED": 24
+      }
+    },
+    "inversion": {
+      "sensitivity": 0.4348,
+      "specificity": 0.7967,
+      "precision": 0.119,
+      "f1": 0.1869,
+      "balanced_accuracy": 0.6157,
+      "tp": 10,
+      "fp": 74,
+      "tn": 290,
+      "fn": 13,
+      "roc_auc": 0.6329,
+      "verdict_distribution": {
+        "PARTIALLY_SUPPORTED": 10,
+        "NOT_SUPPORTED": 10,
+        "SUPPORTED": 3
+      }
+    },
+    "passage_perm": {
+      "sensitivity": 0.9011,
+      "specificity": 0.7967,
+      "precision": 0.5256,
+      "f1": 0.664,
+      "balanced_accuracy": 0.8489,
+      "tp": 82,
+      "fp": 74,
+      "tn": 290,
+      "fn": 9,
+      "roc_auc": 0.8479,
+      "verdict_distribution": {
+        "PARTIALLY_SUPPORTED": 6,
+        "NOT_SUPPORTED": 82,
+        "SUPPORTED": 3
+      }
+    },
+    "relation_sub": {
+      "sensitivity": 0.5385,
+      "specificity": 0.7967,
+      "precision": 0.3984,
+      "f1": 0.4579,
+      "balanced_accuracy": 0.6676,
+      "tp": 49,
+      "fp": 74,
+      "tn": 290,
+      "fn": 42,
+      "roc_auc": 0.6977,
+      "verdict_distribution": {
+        "NOT_SUPPORTED": 49,
+        "SUPPORTED": 6,
+        "PARTIALLY_SUPPORTED": 36
+      }
+    }
+  },
+  "original_verdict_distribution": {
+    "PARTIALLY_SUPPORTED": 201,
+    "SUPPORTED": 89,
+    "NOT_SUPPORTED": 74
+  }
+}
