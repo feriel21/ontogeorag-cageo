@@ -26,7 +26,7 @@ from pathlib import Path
 import run18_style as S
 
 EXPECTED = {"delivered": 364, "cleaned": 281, "removed": 83, "entities_delivered": 272,
-            "entities_cleaned": 230, "papers_delivered": 32, "papers_cleaned": 30, "families_cleaned": 139, "flagged": 79,
+            "entities_cleaned": 230, "families_cleaned": 139, "flagged": 79,
             "tier1": 197, "accepted": 238}
 
 # rule and flag labels of 188 are written in French in its outputs; the page shows them in English
@@ -39,7 +39,6 @@ FLAGS = [("S1 lieu nomme", "S1 named place"),
          ("S4 sujet repris par un pronom", "S4 subject given by a pronoun")]
 WORDS = [("(sujet code ", "(subject code "), ("(objet code ", "(object code "),
          ("(sujet etiquette ", "(subject label "), ("(objet etiquette ", "(object label ")]
-CORPUS_PAPERS = 41  # papers of the corpus (data/corpus_table.md)
 CDN = "https://cdn.jsdelivr.net/npm/vis-network@9.1.9/standalone/umd/vis-network.min.js"
 
 
@@ -118,8 +117,6 @@ def build():
     m = {"delivered": len(relations), "cleaned": len(kept), "removed": sum(1 for r in relations if r["rules"]),
          "entities_delivered": len({x for r in relations for x in (r["s"], r["o"])}),
          "entities_cleaned": len({x for r in kept for x in (r["s"], r["o"])}),
-         "papers_delivered": len({s["reference"] or s["short"] for r in relations for s in r["sources"]}),
-         "papers_cleaned": len({s["reference"] or s["short"] for r in kept for s in r["sources"]}),
          "families_cleaned": len({x for r in kept for x in (r["fs"], r["fo"])}),
          "flagged": sum(r["flagged"] for r in relations),
          "tier1": sum(r["tier"] == 1 for r in relations),
@@ -129,7 +126,6 @@ def build():
     if any(r["kept"] == bool(r["rules"]) for r in relations):
         raise SystemExit("ERROR: a relation is both kept and removed, or neither; nothing written")
     entity_types = {n: {"label": lab, "colour": col} for n, (lab, col) in S.ENTITY_TYPES.items()}
-    m["corpus"] = CORPUS_PAPERS
     return {"relations": relations, "types": types, "entity_types": entity_types,
             "relation_colours": S.RELATION_COLOURS, "counts": m}
 

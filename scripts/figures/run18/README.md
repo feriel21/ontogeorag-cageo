@@ -20,7 +20,7 @@ done
 
 Each script writes a PDF and a PNG.
 
-`graph_page_run18.py` writes the interactive page of the graph, from `graph_page_run18_template.html` and the same inputs. It checks 364 delivered and 281 cleaned relations, 272 and 230 entities, 32 and 30 papers, 139 families, 83 removed and 79 flagged relations, 197 relations in Tier 1 and 238 accepted. With `--vis-js` it embeds a local copy of vis-network 9.1.9, so the page works offline.
+`graph_page_run18.py` writes the interactive page of the graph, from `graph_page_run18_template.html` and the same inputs. It checks 364 delivered and 281 cleaned relations, 272 and 230 entities, 139 families, 83 removed and 79 flagged relations, 197 relations in Tier 1 and 238 accepted. With `--vis-js` it embeds a local copy of vis-network 9.1.9, so the page works offline.
 
 ```
 python scripts/figures/run18/graph_page_run18.py --out docs/graph_run18.html

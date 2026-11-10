@@ -235,10 +235,10 @@ function start() {
     const kept = R.filter(inGraph);
     const ents = new Set(kept.flatMap(r => [r.s, r.o])), fams = new Set(kept.flatMap(r => [r.fs, r.fo]));
     document.getElementById("sub").innerHTML = state.graph === "cleaned"
-      ? C.cleaned + " relations between " + ents.size + " entities (" + fams.size + " families) from " + C.papers_cleaned
-        + " of the " + C.corpus + " papers of the corpus, after the written rules removed " + C.removed + " of the " + C.delivered + " delivered relations."
-      : C.delivered + " delivered relations between " + ents.size + " entities from " + C.papers_delivered + " of the " + C.corpus
-        + " papers of the corpus. The " + C.removed + " relations removed by the written rules are drawn in grey.";
+      ? C.cleaned + " relations between " + ents.size + " entities (" + fams.size + " families), after the written rules removed "
+        + C.removed + " of the " + C.delivered + " delivered relations."
+      : C.delivered + " delivered relations between " + ents.size + " entities. The " + C.removed
+        + " relations removed by the written rules are drawn in grey.";
   }
   function legend() {
     const types = Object.keys(DATA.entity_types);
