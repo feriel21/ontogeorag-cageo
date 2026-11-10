@@ -1,0 +1,142 @@
+{
+  "generated": "2026-09-10T15:32:56+02:00",
+  "protocol": {
+    "fixed_arguments": [
+      "--schema",
+      "/home/talbi/ontogeorag/configs/ontology_schema.json",
+      "--queries",
+      "/home/talbi/ontogeorag/configs/descriptor_queries_v2.jsonl",
+      "--index-dir",
+      "/home/talbi/ontogeorag_D/output/run16E/index",
+      "--backend",
+      "hf",
+      "--top-k",
+      "5",
+      "--bm25-topn",
+      "20",
+      "--min-bm25",
+      "2.0",
+      "--max-chars",
+      "2800",
+      "--temperature",
+      "0.0",
+      "--reranker",
+      "cross-encoder/ms-marco-MiniLM-L-6-v2"
+    ],
+    "varied": [
+      "--model",
+      "--output"
+    ],
+    "passes": 1,
+    "temperature": "0.0",
+    "residual_confound": "instruction template developed with Qwen in the loop"
+  },
+  "determinism": {
+    "delivered": 279,
+    "fresh": 279,
+    "shared": 279
+  },
+  "pairwise": {
+    "Qwen2.5-7B-Instruct | Llama-3.1-8B-Instruct": {
+      "triples_shared": 93,
+      "triples_jaccard": 0.0872,
+      "entities_jaccard": 0.1831
+    },
+    "Qwen2.5-7B-Instruct | Mistral-7B-Instruct-v0.2": {
+      "triples_shared": 60,
+      "triples_jaccard": 0.0871,
+      "entities_jaccard": 0.1642
+    },
+    "Llama-3.1-8B-Instruct | Mistral-7B-Instruct-v0.2": {
+      "triples_shared": 101,
+      "triples_jaccard": 0.0808,
+      "entities_jaccard": 0.1833
+    }
+  },
+  "rows": [
+    {
+      "label": "Qwen2.5-7B-Instruct",
+      "revision": "a09a354",
+      "raw": 548,
+      "distinct": 279,
+      "entities": 294,
+      "descriptors": 71,
+      "descriptors_in_vocab": 34,
+      "vocab_share": 47.9,
+      "malformed_records": 0,
+      "recall26_strict": 16,
+      "recall26_loose": 16,
+      "recall34_strict": 21,
+      "recall34_loose": 22,
+      "relations": {
+        "hasdescriptor": 125,
+        "affects": 23,
+        "occursin": 57,
+        "triggers": 21,
+        "causes": 35,
+        "partof": 4,
+        "overlies": 5,
+        "controls": 8,
+        "underlies": 1
+      },
+      "seconds": null
+    },
+    {
+      "label": "Llama-3.1-8B-Instruct",
+      "revision": "0e9e39f",
+      "raw": 1183,
+      "distinct": 881,
+      "entities": 843,
+      "descriptors": 246,
+      "descriptors_in_vocab": 36,
+      "vocab_share": 14.6,
+      "malformed_records": 0,
+      "recall26_strict": 20,
+      "recall26_loose": 23,
+      "recall34_strict": 26,
+      "recall34_loose": 30,
+      "relations": {
+        "hasdescriptor": 400,
+        "affects": 77,
+        "occursin": 129,
+        "causes": 94,
+        "partof": 32,
+        "triggers": 57,
+        "controls": 35,
+        "overlies": 42,
+        "relatedto": 2,
+        "indicates": 2,
+        "underlies": 11
+      },
+      "seconds": null
+    },
+    {
+      "label": "Mistral-7B-Instruct-v0.2",
+      "revision": "63a8b08",
+      "raw": 785,
+      "distinct": 470,
+      "entities": 493,
+      "descriptors": 163,
+      "descriptors_in_vocab": 37,
+      "vocab_share": 22.7,
+      "malformed_records": 1,
+      "recall26_strict": 21,
+      "recall26_loose": 22,
+      "recall34_strict": 24,
+      "recall34_loose": 25,
+      "relations": {
+        "hasdescriptor": 250,
+        "occursin": 60,
+        "affects": 42,
+        "causes": 32,
+        "controls": 43,
+        "partof": 11,
+        "underlies": 7,
+        "triggers": 22,
+        "overlies": 2,
+        "relatedto": 1
+      },
+      "seconds": null
+    }
+  ]
+}
