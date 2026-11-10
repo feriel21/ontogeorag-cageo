@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OntoGeoRAG knowledge graph (run18)</title>
+<!--VIS-->
+<style>
+  :root { --bg:#fafaf8; --panel:#ffffff; --ink:#1f2328; --muted:#5f6670; --line:#e3e3df; --accent:#1f5f8b; --flag:#c0392b; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; height:100%; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color:var(--ink); background:var(--bg); }
+  #app { display:flex; height:100vh; }
+  #side { width:400px; min-width:320px; border-right:1px solid var(--line); background:var(--panel); display:flex; flex-direction:column; }
+  #side header { padding:14px 16px 10px; border-bottom:1px solid var(--line); }
+  #side h1 { font-size:16px; margin:0 0 4px; }
+  #side .sub { font-size:12px; color:var(--muted); line-height:1.45; }
+  #controls { padding:8px 16px 10px; border-bottom:1px solid var(--line); font-size:13px; overflow-y:auto; max-height:52vh; }
+  #controls label { display:inline-flex; align-items:center; gap:4px; margin:2px 10px 2px 0; cursor:pointer; }
+  #controls input[type=text] { width:100%; padding:6px 8px; border:1px solid var(--line); border-radius:6px; font-size:13px; margin:4px 0 6px; }
+  #controls .row { margin:4px 0; }
+  #controls .title { font-weight:600; font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; margin:9px 0 2px; }
+  #controls button { font-size:12px; padding:5px 9px; border:1px solid var(--line); background:#f3f3f0; border-radius:6px; cursor:pointer; margin:2px 4px 2px 0; }
+  #controls button:hover { background:#e9e9e4; }
+  #controls select { font-size:12px; padding:2px 4px; border:1px solid var(--line); border-radius:5px; background:#fff; }
+  .seg { display:inline-flex; border:1px solid var(--line); border-radius:7px; overflow:hidden; margin:2px 6px 2px 0; }
+  .seg button { border:0 !important; border-radius:0 !important; margin:0 !important; background:#fff !important; color:var(--muted); }
+  .seg button.on { background:var(--accent) !important; color:#fff; }
+  .swatch { display:inline-block; width:14px; height:3px; border-radius:2px; vertical-align:middle; }
+  #legend { padding:8px 16px; border-bottom:1px solid var(--line); font-size:12px; line-height:1.6; }
+  #legend span.dot { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:4px; vertical-align:middle; }
+  #legend .line { display:inline-block; width:26px; vertical-align:middle; margin-right:4px; border-top:2px solid #555; }
+  #details { padding:10px 16px 16px; overflow-y:auto; flex:1; font-size:13px; line-height:1.45; }
+  #details h2 { font-size:14px; margin:4px 0 2px; }
+  #details .rel { border:1px solid var(--line); border-radius:8px; padding:8px 10px; margin:8px 0; background:#fcfcfa; }
+  #details .rel.t2 { border-left:4px solid #b9b9b3; }
+  #details .rel.t1 { border-left:4px solid var(--accent); }
+  #details .rel.removed { background:#f4f4f2; color:#555; }
+  #details .triple { font-weight:600; }
+  #details .meta { color:var(--muted); font-size:12px; margin:3px 0; }
+  #details .ev { font-style:italic; margin:5px 0 3px; }
+  #details .badge { display:inline-block; font-size:11px; padding:0 6px; border-radius:9px; border:1px solid var(--line); margin-right:4px; background:#fff; }
+  #details .badge.no { border-color:var(--flag); color:var(--flag); }
+  #details .badge.rm { border-color:#888; color:#555; background:#ececea; }
+  #details .src { font-size:12px; margin:4px 0 0; padding-top:4px; border-top:1px dashed var(--line); }
+  #details a { color:var(--accent); }
+  #details .rel .head { cursor:pointer; }
+  #net { flex:1; position:relative; background:#ffffff; }
+  #canvas { position:absolute; inset:0; }
+  #status { position:absolute; top:8px; right:12px; font-size:12px; color:var(--muted); background:rgba(255,255,255,.9); padding:3px 8px; border-radius:6px; }
+  #shot { position:fixed; inset:0; background:rgba(20,20,20,.55); display:flex; align-items:center; justify-content:center; z-index:10; }
+  #shot > div { background:#fff; border-radius:10px; padding:10px; max-width:92vw; max-height:92vh; display:flex; flex-direction:column; gap:8px; }
+  #shot .bar { font-size:13px; color:var(--muted); display:flex; justify-content:space-between; align-items:center; gap:12px; }
+  #shot button { font-size:12px; padding:4px 10px; border:1px solid var(--line); background:#f3f3f0; border-radius:6px; cursor:pointer; }
+  #shot img { max-width:88vw; max-height:80vh; object-fit:contain; border:1px solid var(--line); }
+</style>
+</head>
+<body>
+<div id="app">
+  <aside id="side">
+    <header>
+      <h1>OntoGeoRAG knowledge graph (run18)</h1>
+      <div class="sub" id="sub"></div>
+    </header>
+    <div id="controls">
+      <div class="title">Graph</div>
+      <div class="row">
+        <span class="seg" id="graphSeg"><button data-v="cleaned" class="on">cleaned</button><button data-v="delivered">delivered</button></span>
+        <span class="seg" id="viewSeg"><button data-v="entity" class="on">entity names</button><button data-v="family">families</button></span>
+      </div>
+      <input id="search" type="text" list="names" placeholder="Search, e.g. mass transport deposit">
+      <datalist id="names"></datalist>
+      <div class="title">Relation types</div>
+      <div id="relFilters" class="row"></div>
+      <div class="title">Relations shown</div>
+      <div class="row">
+        Tier <select id="tier"><option value="all">1 and 2</option><option value="1">1 only</option><option value="2">2 only</option></select>
+        &nbsp; Panel <select id="panel"><option value="all">all</option><option value="ACCEPT">accepted</option><option value="UNCERTAIN">uncertain</option></select>
+      </div>
+      <div class="row">
+        <label><input type="checkbox" id="flaggedOnly"> flagged by the evidence check</label>
+        <label id="removedWrap" style="display:none"><input type="checkbox" id="removedOnly"> removed by the rules</label>
+      </div>
+      <div class="row">
+        <label><input type="checkbox" id="hideHub"> hide mass transport deposits</label>
+        min. relations <select id="minDeg"><option>1</option><option>2</option><option>3</option><option>5</option></select>
+      </div>
+      <div class="row">
+        <button id="fit">Fit to screen</button>
+        <button id="relayout">Re-arrange</button>
+        <button id="png">Image of the view</button>
+      </div>
+    </div>
+    <div id="legend"></div>
+    <div id="details"></div>
+  </aside>
+  <main id="net"><div id="canvas"></div><div id="status">Arranging the graph...</div></main>
+</div>
+<script>
+const DATA = /*DATA*/null;
+const HUB_ENTITY = "mass transport deposit", HUB_FAMILY = "mass transport deposit";
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+const typeColour = t => (DATA.entity_types[t] || {}).colour || "#9a9a9a";
+const typeLabel = t => (DATA.entity_types[t] || {}).label || t;
+const relColour = r => DATA.relation_colours[r] || "#777";
+const VERDICT = { SUPPORTED: "supported", PARTIALLY_SUPPORTED: "partly supported", NOT_SUPPORTED: "not supported" };
+
+function start() {
+  if (typeof vis === "undefined") {
+    document.getElementById("status").textContent = "The graph library could not be loaded. Check the internet connection and reopen the file.";
+    return;
+  }
+  const R = DATA.relations.map((r, i) => Object.assign({ id: i }, r));
+  const C = DATA.counts;
+  const state = { graph: "cleaned", view: "entity", rels: new Set(Object.keys(DATA.relation_colours)),
+                  tier: "all", panel: "all", flaggedOnly: false, removedOnly: false, hideHub: false, minDeg: 1 };
+
+  // family of an entity, and the entity type that the family takes (most frequent type of its names)
+  const famType = {}, famNames = {};
+  R.forEach(r => [[r.fs, r.s], [r.fo, r.o]].forEach(([f, n]) => {
+    (famNames[f] = famNames[f] || new Set()).add(n);
+  }));
+  Object.keys(famNames).forEach(f => {
+    const cnt = {};
+    famNames[f].forEach(n => { const t = DATA.types[n]; cnt[t] = (cnt[t] || 0) + 1; });
+    famType[f] = Object.keys(cnt).sort((a, b) => cnt[b] - cnt[a])[0];
+  });
+
+  const inGraph = r => state.graph === "delivered" || r.kept;
+  const passes = r => inGraph(r) && state.rels.has(r.r)
+    && (state.tier === "all" || String(r.tier) === state.tier)
+    && (state.panel === "all" || r.panel === state.panel)
+    && (!state.flaggedOnly || r.flagged)
+    && (!state.removedOnly || !r.kept);
+  const ends = r => state.view === "entity" ? [r.s, r.o] : [r.fs, r.fo];
+  const hub = () => state.view === "entity" ? HUB_ENTITY : HUB_FAMILY;
+
+  // one node set per view, built once; positions are kept per graph and view
+  const nodeSets = { entity: new vis.DataSet(), family: new vis.DataSet() };
+  Object.keys(DATA.types).forEach(n => nodeSets.entity.add({ id: n, label: n, kind: DATA.types[n] }));
+  Object.keys(famNames).forEach(f => nodeSets.family.add({ id: f, label: f, kind: famType[f], names: famNames[f].size }));
+  Object.values(nodeSets).forEach(ds => ds.forEach(n => {
+    const c = typeColour(n.kind);
+    ds.update({ id: n.id, color: { background: c, border: "#ffffff", highlight: { background: c, border: "#111" }, hover: { background: c, border: "#111" } } });
+  }));
+  const edges = new vis.DataSet();
+  let visible = new Set();
+  let nodesView = null;
+  const positions = {};
+
+  function edgeItems() {
+    const pass = R.filter(passes).filter(r => !(state.hideHub && ends(r).includes(hub())));
+    if (state.view === "entity") {
+      return pass.map(r => ({
+        id: "r" + r.id, from: r.s, to: r.o, members: [r.id], arrows: "to",
+        dashes: !r.kept ? [2, 5] : (r.tier === 2 ? [6, 4] : false),
+        color: { color: r.kept ? relColour(r.r) : "#c6c6c2", highlight: r.kept ? relColour(r.r) : "#9a9a96", hover: r.kept ? relColour(r.r) : "#9a9a96" },
+        width: r.kept ? 1.4 : 1.1,
+        label: r.flagged ? "✕" : undefined,
+        font: { color: "#c0392b", size: 13, strokeWidth: 3, strokeColor: "#fff", align: "middle" },
+        title: r.s + " → " + r.r + " → " + r.o + (r.kept ? "" : " (removed)")
+      }));
+    }
+    const groups = {};
+    pass.forEach(r => {
+      if (r.fs === r.fo) return;
+      const k = r.fs + "\u0001" + r.r + "\u0001" + r.fo;
+      (groups[k] = groups[k] || []).push(r);
+    });
+    return Object.entries(groups).map(([k, rs]) => {
+      const [fs, rel, fo] = k.split("\u0001");
+      const kept = rs.some(r => r.kept), allT2 = rs.every(r => r.tier === 2), anyFlag = rs.some(r => r.flagged);
+      return {
+        id: "g" + k, from: fs, to: fo, members: rs.map(r => r.id), arrows: "to",
+        dashes: !kept ? [2, 5] : (allT2 ? [6, 4] : false),
+        color: { color: kept ? relColour(rel) : "#c6c6c2", highlight: kept ? relColour(rel) : "#9a9a96", hover: kept ? relColour(rel) : "#9a9a96" },
+        width: 1 + 1.3 * Math.log2(rs.length),
+        label: (rs.length > 1 ? String(rs.length) : "") + (anyFlag ? (rs.length > 1 ? " " : "") + "✕" : "") || undefined,
+        font: { color: anyFlag ? "#c0392b" : "#333", size: 12, strokeWidth: 3, strokeColor: "#fff", align: "middle" },
+        title: fs + " → " + rel + " → " + fo + " (" + rs.length + " relation" + (rs.length > 1 ? "s" : "") + ")"
+      };
+    });
+  }
+
+  const refit = () => { refresh(); network.fit({ animation: true }); };
+  function refresh() {
+    const items = edgeItems();
+    const deg = {};
+    items.forEach(e => { deg[e.from] = (deg[e.from] || 0) + e.members.length; deg[e.to] = (deg[e.to] || 0) + e.members.length; });
+    visible = new Set(Object.keys(deg).filter(id => deg[id] >= state.minDeg));
+    const ds = nodeSets[state.view];
+    ds.update(ds.getIds().map(id => ({ id, value: deg[id] || 1,
+      title: id + " (" + typeLabel(ds.get(id).kind) + ", " + (deg[id] || 0) + " relations"
+        + (state.view === "family" ? ", " + ds.get(id).names + " names" : "") + ")" })));
+    edges.clear();
+    edges.add(items.filter(e => visible.has(e.from) && visible.has(e.to)));
+    nodesView.refresh();
+    document.getElementById("status").textContent = nodesView.length + (state.view === "entity" ? " entities, " : " families, ")
+      + items.filter(e => visible.has(e.from) && visible.has(e.to)).reduce((a, e) => a + e.members.length, 0) + " relations shown";
+  }
+
+  const container = document.getElementById("canvas");
+  const network = new vis.Network(container, {}, {
+    nodes: { shape: "dot", borderWidth: 1.5, scaling: { min: 7, max: 40, label: { enabled: true, min: 11, max: 24, drawThreshold: 6 } },
+             font: { size: 13, face: "Segoe UI, Roboto, Arial", strokeWidth: 3, strokeColor: "#ffffff" } },
+    edges: { smooth: { type: "continuous" }, arrows: { to: { scaleFactor: 0.45 } }, selectionWidth: 2, hoverWidth: 1.5 },
+    physics: { solver: "forceAtlas2Based",
+               forceAtlas2Based: { gravitationalConstant: -70, centralGravity: 0.008, springLength: 130, avoidOverlap: 0.7 },
+               stabilization: { iterations: 500, updateInterval: 50 } },
+    interaction: { hover: true, tooltipDelay: 150, navigationButtons: true, keyboard: true }
+  });
+  const layoutKey = () => state.graph + "/" + state.view;
+  const settle = () => { document.getElementById("status").textContent = "Arranging the graph..."; network.setOptions({ physics: true }); network.stabilize(500); };
+  network.on("stabilizationIterationsDone", () => {
+    network.setOptions({ physics: false }); positions[layoutKey()] = network.getPositions(); network.fit(); refresh();
+  });
+
+  function load() {
+    if (nodesView) positions[layoutKey.prev] = network.getPositions();
+    const ds = nodeSets[state.view];
+    nodesView = new vis.DataView(ds, { filter: n => visible.has(n.id) });
+    refresh();
+    const saved = positions[layoutKey()];
+    network.setData({ nodes: nodesView, edges });
+    if (saved) {
+      network.setOptions({ physics: false });
+      Object.entries(saved).forEach(([id, p]) => { if (ds.get(id)) network.moveNode(id, p.x, p.y); });
+      network.fit();
+    } else settle();
+    layoutKey.prev = layoutKey();
+    fillSearch(); header(); legend(); details.innerHTML = '<div class="meta">Click an arrow to read its evidence sentence and sources; click a node to list its relations.</div>';
+  }
+
+  // ---- header and legend
+  function header() {
+    const kept = R.filter(inGraph);
+    const ents = new Set(kept.flatMap(r => [r.s, r.o])), fams = new Set(kept.flatMap(r => [r.fs, r.fo]));
+    document.getElementById("sub").innerHTML = state.graph === "cleaned"
+      ? C.cleaned + " relations between " + ents.size + " entities (" + fams.size + " families) from " + C.papers_cleaned
+        + " of the " + C.corpus + " papers of the corpus, after the written rules removed " + C.removed + " of the " + C.delivered + " delivered relations."
+      : C.delivered + " delivered relations between " + ents.size + " entities from " + C.papers_delivered + " of the " + C.corpus
+        + " papers of the corpus. The " + C.removed + " relations removed by the written rules are drawn in grey.";
+  }
+  function legend() {
+    const types = Object.keys(DATA.entity_types);
+    document.getElementById("legend").innerHTML =
+      types.map(t => '<span style="white-space:nowrap;margin-right:10px"><span class="dot" style="background:' + typeColour(t) + '"></span>' + esc(typeLabel(t)) + "</span>").join(" ")
+      + '<div><span class="line"></span>Tier 1 &nbsp; <span class="line" style="border-top-style:dashed"></span>Tier 2'
+      + (state.view === "family" ? " only" : "")
+      + (state.graph === "delivered" ? ' &nbsp; <span class="line" style="border-top:2px dotted #b5b5b0"></span>removed' : "")
+      + ' &nbsp; <span style="color:#c0392b">✕</span> flagged by the evidence check</div>'
+      + '<div class="meta">Arrow colour = relation type. Node size = number of relations'
+      + (state.view === "family" ? "; the number on an arrow counts its relations, and relations inside one family are listed on its node." : ".") + "</div>";
+  }
+
+  // ---- relation filters
+  const rf = document.getElementById("relFilters");
+  Object.keys(DATA.relation_colours).forEach(t => {
+    const lab = document.createElement("label");
+    lab.innerHTML = '<input type="checkbox" checked> <span class="swatch" style="background:' + relColour(t) + '"></span> ' + esc(t) + ' <span class="n" data-t="' + esc(t) + '"></span>';
+    lab.querySelector("input").addEventListener("change", ev => { ev.target.checked ? state.rels.add(t) : state.rels.delete(t); refresh(); });
+    rf.appendChild(lab);
+  });
+  function relCounts() {
+    document.querySelectorAll("#relFilters .n").forEach(s => {
+      const n = R.filter(r => inGraph(r) && r.r === s.dataset.t).length;
+      s.textContent = "(" + n + ")"; s.parentElement.style.display = n ? "" : "none";
+    });
+  }
+
+  // ---- details panel
+  const details = document.getElementById("details");
+  const verdict = (who, v) => '<span class="badge' + (v === "NOT_SUPPORTED" ? " no" : "") + '">' + who + ": " + esc(VERDICT[v] || v || "n/a") + "</span>";
+  const source = s => '<div class="src"><b>' + esc(s.short) + "</b>"
+    + (s.section ? " &middot; section " + esc(s.section) + ' <span class="meta">(deduced)</span>' : "")
+    + (s.passage ? " &middot; passage " + esc(s.passage) : "")
+    + " &middot; " + esc(s.match) + " match" + (s.caption ? " &middot; probably a figure caption" : "")
+    + (s.reference ? '<div class="meta">' + esc(s.reference)
+      + (s.doi ? ' <a href="https://doi.org/' + esc(s.doi) + '" target="_blank" rel="noopener">doi</a>' : "") + "</div>" : "") + "</div>";
+  const relCard = r => '<div class="rel ' + (r.kept ? "t" + r.tier : "removed") + '">'
+    + '<div class="triple">' + esc(r.s) + " &rarr; " + esc(r.r) + " &rarr; " + esc(r.o) + "</div>"
+    + '<div class="meta"><span class="badge">Tier ' + r.tier + '</span><span class="badge">panel: ' + (r.panel === "ACCEPT" ? "accepted" : "uncertain") + "</span>"
+    + (r.kept ? "" : '<span class="badge rm">removed</span>') + "</div>"
+    + '<div class="meta">Evidence check: ' + verdict("Llama", r.llama) + verdict("Mistral", r.mistral) + "</div>"
+    + (r.rules ? '<div class="meta">Removed by: ' + esc(r.rules) + "</div>" : "")
+    + (r.flags ? '<div class="meta">Flagged by 188: ' + esc(r.flags) + "</div>" : "")
+    + '<div class="ev">&ldquo;' + esc(r.evidence) + "&rdquo;</div>"
+    + r.sources.map(source).join("") + "</div>";
+  function showRelations(title, sub, ids) {
+    const rs = ids.map(i => R[i]);
+    details.innerHTML = "<h2>" + title + "</h2>" + '<div class="meta">' + sub + "</div>" + rs.map(relCard).join("");
+  }
+  function showNode(id) {
+    const ds = nodeSets[state.view], n = ds.get(id);
+    const rs = R.filter(passes).filter(r => ends(r).includes(id));
+    let sub = esc(typeLabel(n.kind)) + " &middot; " + rs.length + " relation" + (rs.length === 1 ? "" : "s");
+    if (state.view === "family") sub += " &middot; names: " + [...famNames[id]].sort().map(esc).join(", ");
+    showRelations(esc(id), sub, rs.map(r => r.id));
+  }
+  network.on("click", p => {
+    if (p.nodes.length) showNode(p.nodes[0]);
+    else if (p.edges.length) {
+      const e = edges.get(p.edges[0]);
+      showRelations(esc(e.from) + " &rarr; " + esc(R[e.members[0]].r) + " &rarr; " + esc(e.to),
+        e.members.length + " relation" + (e.members.length > 1 ? "s" : ""), e.members);
+    }
+  });
+
+  // ---- search
+  const dl = document.getElementById("names");
+  function fillSearch() {
+    dl.innerHTML = "";
+    nodeSets[state.view].getIds().sort().forEach(id => { const o = document.createElement("option"); o.value = id; dl.appendChild(o); });
+    document.getElementById("search").value = "";
+  }
+  document.getElementById("search").addEventListener("change", ev => {
+    const id = ev.target.value;
+    if (!nodeSets[state.view].get(id)) return;
+    if (!visible.has(id)) {
+      Object.assign(state, { tier: "all", panel: "all", flaggedOnly: false, removedOnly: false, hideHub: false, minDeg: 1 });
+      ["tier", "panel"].forEach(k => document.getElementById(k).value = "all");
+      ["flaggedOnly", "removedOnly", "hideHub"].forEach(k => document.getElementById(k).checked = false);
+      document.getElementById("minDeg").value = "1"; refresh();
+    }
+    if (!visible.has(id)) return;
+    network.selectNodes([id]); network.focus(id, { scale: 1.3, animation: true }); showNode(id);
+  });
+
+  // ---- controls
+  function seg(idName, keyName) {
+    document.querySelectorAll("#" + idName + " button").forEach(b => b.addEventListener("click", () => {
+      if (state[keyName] === b.dataset.v) return;
+      document.querySelectorAll("#" + idName + " button").forEach(x => x.classList.toggle("on", x === b));
+      state[keyName] = b.dataset.v;
+      if (keyName === "graph") {
+        document.getElementById("removedWrap").style.display = state.graph === "delivered" ? "" : "none";
+        if (state.graph === "cleaned") { state.removedOnly = false; document.getElementById("removedOnly").checked = false; }
+        relCounts();
+      }
+      load();
+    }));
+  }
+  seg("graphSeg", "graph"); seg("viewSeg", "view");
+  document.getElementById("tier").addEventListener("change", ev => { state.tier = ev.target.value; refit(); });
+  document.getElementById("panel").addEventListener("change", ev => { state.panel = ev.target.value; refit(); });
+  document.getElementById("flaggedOnly").addEventListener("change", ev => { state.flaggedOnly = ev.target.checked; refit(); });
+  document.getElementById("removedOnly").addEventListener("change", ev => { state.removedOnly = ev.target.checked; refit(); });
+  document.getElementById("hideHub").addEventListener("change", ev => { state.hideHub = ev.target.checked; refresh(); settle(); });
+  document.getElementById("minDeg").addEventListener("change", ev => { state.minDeg = parseInt(ev.target.value, 10); refresh(); settle(); });
+  document.getElementById("fit").addEventListener("click", () => network.fit({ animation: true }));
+  document.getElementById("relayout").addEventListener("click", settle);
+  document.getElementById("png").addEventListener("click", () => {
+    const src = container.querySelector("canvas");
+    const out = document.createElement("canvas");
+    out.width = src.width; out.height = src.height;
+    const ctx = out.getContext("2d");
+    ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, out.width, out.height); ctx.drawImage(src, 0, 0);
+    // shown in an overlay rather than downloaded, because some viewers block downloads started by a page
+    const box = document.createElement("div");
+    box.id = "shot";
+    box.innerHTML = '<div><div class="bar">Right-click the image and choose “Save image as”. '
+      + '<button id="shotClose">Close</button></div><img alt="current view of the graph"></div>';
+    box.querySelector("img").src = out.toDataURL("image/png");
+    document.body.appendChild(box);
+    const close = () => box.remove();
+    box.addEventListener("click", ev => { if (ev.target === box) close(); });
+    document.getElementById("shotClose").addEventListener("click", close);
+  });
+
+  relCounts();
+  load();
+}
+window.addEventListener("load", start);
+</script>
+</body>
+</html>

@@ -5,7 +5,9 @@ This repository contains the code that built the knowledge graph on mass-transpo
 
 Starting from 41 publications, the pipeline builds a BM25 index of text passages and extracts triples with Qwen2.5-7B-Instruct over hybrid retrieval (BM25 then cross-encoder reranking) in two passes, at temperature 0.0 and 0.3. It then repairs the provenance of each triple and verifies it against its source passages. Next come ontology validation, rule-based canonicalisation and lexicon enforcement. The two passes are merged into two tiers. Each relation is then judged by a panel of two models from other families (Llama-3.1-8B-Instruct and Mistral-7B-Instruct-v0.2), which judge the cited evidence sentence. Finally the graph is aligned to the schema (flagging, not rejecting), deduplicated and measured.
 
-The delivered run, **run16E**, indexed 41 documents into 1,758 passages. It produced a graph of **232 relations between 216 entities** (160 in tier 1, 72 in tier 2).
+The run of the manuscript, **run18**, indexed the 41 documents into 1,758 passages and asked 210 questions. It delivered **364 relations between 272 entities** from 32 papers (197 in tier 1). After rule-based cleaning, the graph holds **281 relations between 230 entities** from 30 papers (164 in tier 1). The earlier run, **run16E**, produced 232 relations between 216 entities (160 in tier 1, 72 in tier 2); its files are kept below.
+
+The interactive page `docs/graph_run18.html` shows the run18 graph: https://feriel21.github.io/ontogeorag-cageo/graph_run18.html.
 
 ## What is not distributed
 
@@ -15,7 +17,7 @@ The delivered run, **run16E**, indexed 41 documents into 1,758 passages. It prod
 
 `reference/reference_kg.json` is derived from the supplementary table of Le Bouteiller et al. (2019) and is reused with the permission of its authors.
 
-## Delivered graph and controls
+## run16E: delivered graph and controls (earlier version)
 
 `results/run16E/flat_run16E_enforced_dedup.json` is the delivered graph exactly as the run wrote it; the first 16 characters of its sha256 are recorded in `results/run16E/manifest.json`. `results/run16E/graph_with_located_provenance.json` holds the same 232 relations with, for each, the location of its evidence sentence in the index (`located_provenance`: file names, passage identifiers, and whether the match is exact or partial), and with local paths removed. Each relation carries its evidence sentence (at most 400 characters), the query that retrieved its passages, its tier, the primary verdict and the panel decision. `results/run16E/controls/` holds the metrics of the 464 adversarial controls of the run (`negatives_report.json`) and the re-analysis comparing four decision rules (`metrics_overall.csv`).
 
@@ -26,8 +28,10 @@ These files are released under CC BY 4.0 (`LICENSE-DATA`), except the evidence s
 The branch `main` holds the run18 settings and the tools to rerun and check them; the release `v2.0-run18` freezes this version. run18 is the run reported in the manuscript submitted to *Computers & Geosciences*. run16E, described above, is the earlier version; its files are unchanged.
 
 - **Driver**: `workflows/run_pipeline_run18.sh` (210 queries in `configs/descriptor_queries_run18.jsonl`, full retrieved context, a gate that checks the run18 files and the leak audit `174_audit_fuite_benchmark.py` before any model is loaded). The changes with respect to run16E are listed in `pipeline/RUN18_PATCHES.md`.
-- **Rule-based cleaning**: `workflows/postprocess_run18.sh` chains three read-only CPU scripts on a run output: `184_trace_requetes_et_pertes.py` (follows every extraction and checks the replay against the run's own files), `187_provenance_articles.py` (article, reference and deduced section of every relation) and `188_nettoyage_familles.py` (removes relations by fixed rules R1 bibliography, R2 local label, R3 subject absent from the source sentences; flags S1–S4; groups relations by entity families). Their messages and output columns are in French.
+- **Rule-based cleaning**: `workflows/postprocess_run18.sh` chains three read-only CPU scripts on a run output: `184_trace_requetes_et_pertes.py` (follows every extraction and checks the replay against the run's own files), `187_provenance_articles.py` (article, reference and deduced section of every relation) and `188_nettoyage_familles.py` (removes relations by fixed rules R1 bibliography, R2 local label, R3 subject absent from the source sentences; flags S1–S4; groups relations by entity families). Their messages and output columns are in French; `docs/run18_cleaning_outputs.md` describes them in English.
 - **Recorded outputs**: `results/run18/` holds the delivered graph (`kg_final/`), the metrics, the panel quarantine, both passes (`pass_a/`, `pass_b/`), the manifest, and the cleaning outputs (`postprocess/`). The delivered graph has 364 relations (197 in tier 1); after cleaning, 281 relations (164 in tier 1). The figures and rules are in `results/run18/postprocess/*/_resume.txt`.
+- **Corpus coverage**: all 41 papers are indexed, and retrieval reads five passages per question. The passages read for the 190 questions that returned at least one relation come from 35 papers; the six others report analogue, numerical or granular-flow experiments rather than seismic observations. A paper can be read without supplying a relation, because a relation is attributed to the paper in which its evidence sentence is found. The delivered relations come from 32 papers and the cleaned relations from 30.
+- **Interactive page**: `docs/graph_run18.html`, produced by `scripts/figures/run18/graph_page_run18.py`. It shows the cleaned or the delivered graph, by entity name or by name family; clicking an arrow shows the evidence sentence, the source papers, the tier, the panel decision and the verdict of each verifying-LLM. The page loads the graph library vis-network from a CDN, so it needs an internet connection.
 - **Running on a SLURM cluster**: `docs/INSTALL_cluster.md` (full guide) and `docs/cluster_quickstart.md` (copy-paste version, including clusters without internet access).
 - **Checking a rerun**: `scripts/tools/compare_runs.py --ref results/run18 --new <your output>` compares every stage, the delivered graph, the metrics and the cleaned graph with the recorded run.
 
@@ -48,19 +52,20 @@ These files are released under CC BY 4.0 (`LICENSE-DATA`), with the same excepti
 | `m4/` | two-judge panel, tier integration, direction check, negative controls |
 | `configs/` | ontology schema, extraction queries, benchmark, entity families |
 | `reference/` | reference graph |
-| `results/` | manifests of the runs (run16E is the delivered one); delivered graph and control metrics under `results/run16E/`; recorded run18 outputs and cleaning under `results/run18/` |
+| `results/` | manifests of both runs; run16E delivered graph and control metrics under `results/run16E/`; recorded run18 outputs and cleaning under `results/run18/` |
 | `scripts/analysis/`, `scripts/evaluation/` | analyses and evaluations reported in the manuscript |
 | `scripts/figures/`, `scripts/paper/` | producers of the figures and tables |
-| `scripts/figures/run18/` | producers of the five figures of the run18 manuscript, from the files of `results/run18/` (`scripts/figures/run18/README.md`) |
+| `scripts/figures/run18/` | producers of the five figures of the run18 manuscript and of the interactive page, from the files of `results/run18/` (`scripts/figures/run18/README.md`) |
 | `scripts/tools/` | corpus preflight, benchmark extraction, comparison of a rerun with a recorded run (`compare_runs.py`) |
 | `tools/` | provenance, replay and code-equivalence checks |
 | `workflows/run_pipeline.sh` | public driver of the full pipeline (run16E settings) |
 | `workflows/run_pipeline_run18.sh`, `workflows/postprocess_run18.sh` | run18 driver; rule-based cleaning of a run18 output |
 | `workflows/prefetch_models.sh` | download of the models at the pinned revisions (login node with internet) |
-| `slurm/run16_full.sh` | cluster driver used for the delivered run (kept as run) |
+| `slurm/run16_full.sh` | cluster driver used for run16E (kept as run) |
 | `slurm/run18_clean.sh` | cluster driver used for the recorded run18 (kept as run) |
 | `slurm/run18.sbatch` | SLURM template for the run18 driver on another cluster |
 | `environment/` | pinned requirements (CPU and GPU) |
+| `docs/graph_run18.html` | interactive page of the run18 graph |
 | `docs/provenance.md` | recorded steps, options and checksums |
 | `docs/INSTALL_cluster.md`, `docs/cluster_quickstart.md` | installing and running run18 on a SLURM cluster (full guide; copy-paste version) |
 
@@ -94,7 +99,7 @@ The run18 audit scripts in `scripts/run18/audit/` were translated completely, pr
 
 ## Environment
 
-Python 3.10. Install `environment/requirements-cpu.txt`, plus `environment/requirements-gpu.txt` for the extraction, verification and panel steps. The delivered run used one A100 slice with 40 GB (`a100_3g.40gb`). Extraction and verification of both passes took about 3.5 hours.
+Python 3.10. Install `environment/requirements-cpu.txt`, plus `environment/requirements-gpu.txt` for the extraction, verification and panel steps. run16E and run18 each used one A100 slice with 40 GB (`a100_3g.40gb`). For run16E, extraction and verification of both passes took about 3.5 hours.
 
 `pdfplumber` must not be installed: `49_build_index_v2.py` uses it when present, which changes the extracted text and the index. `accelerate` is required to load the language models. Both are handled by the requirements files.
 
@@ -130,7 +135,7 @@ On a SLURM cluster, follow `docs/cluster_quickstart.md`.
 
 ## Figures and tables
 
-The figures and tables below are those of the run16E version of the manuscript. Scripts are run from the repository root: `PYTHONPATH=. python scripts/<folder>/<script>.py`. Each producer stops without writing if it does not find the values published in the manuscript, except `fig_tradeoff.py`, which plots the values of Table 5 as constants; those values are checked by `table5_ablation.py`.
+The five figures of the run18 manuscript are produced by the scripts of `scripts/figures/run18/` (see its README). The figures and tables below are those of the run16E version of the manuscript. Scripts are run from the repository root: `PYTHONPATH=. python scripts/<folder>/<script>.py`. Each producer stops without writing if it does not find the values published in the manuscript, except `fig_tradeoff.py`, which plots the values of Table 5 as constants; those values are checked by `table5_ablation.py`.
 
 | Manuscript | Producer |
 |---|---|

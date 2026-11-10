@@ -205,7 +205,8 @@ If the full run of step 6 was made with an earlier version of the repository, fi
 ```bash
 cd "$REPO" && pwd
 source "$VENV/bin/activate"
-git pull origin run18
+git fetch origin --tags
+git checkout v2.0-run18
 ls workflows/postprocess_run18.sh scripts/tools/compare_runs.py results/run18/postprocess
 ```
 
@@ -238,6 +239,8 @@ Open:
 - `output/compare_run18/compare_report.txt`: number of records at each stage, pass a, delivered graph (relations, tiers, judges' decisions, relation types, relations in common), `article_metrics.json` value by value, cleaned graph of step 7 (relations kept and removed by rule, flags, family groups, LB2019 before and after), manifests;
 - `output/compare_run18/relations_only_ref.tsv` and `relations_only_new.tsv`: the delivered relations found by one run only, with their evidence sentence;
 - `output/compare_run18/metrics_side_by_side.tsv`: every metric of both runs.
+
+To browse the recorded run18 graph, open `docs/graph_run18.html` in a browser (it needs an internet connection), or https://feriel21.github.io/ontogeorag-cageo/graph_run18.html.
 
 What to expect: counts of the same order on both sides, not identical ones. Pass b samples at temperature 0.3, and greedy decoding (pass a) in bf16 can also differ slightly on another GPU. A large gap at one stage shows where the runs diverge.
 
