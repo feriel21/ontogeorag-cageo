@@ -194,3 +194,5 @@ scripts/figures/run18/graph_page_run18.py	new producer of the interactive page o
 scripts/figures/run18/graph_page_run18_template.html	new template of the interactive page, read by graph_page_run18.py	ff9bd0bc0fada7df6f7b7bba9cde3547a9c9dddb941dda587d73a571b641846c	vis-network 9.1.9 loaded from a CDN
 scripts/figures/run18/graph_page_run18.py	edited from git:60b8bd3:scripts/figures/run18/graph_page_run18.py	657340c68e50d6775dd366323efbbc530cad46bc4ffd6e7895f256b9803f264a	paper counts removed from the checks
 scripts/figures/run18/graph_page_run18_template.html	edited from git:60b8bd3:scripts/figures/run18/graph_page_run18_template.html	411e0428266d1dd79f752528d84a88df9748391666fdcb8caf0a01d3b57bac63	paper counts removed from the header
+slurm/stress18.sh	copied from ~/ontogeorag_run18/slurm/stress18.sh (published version)	918f814a1a8258b64ec42be20014647f3bf1626d4837d7d37ff70f10ea695ca1	driver of the recorded stress test (job 110415), as run
+slurm/stress18.sh	translated from the row above	548fa1c09d2c26404c382ce8dc5a528670a88e05482dff901302e8cf741d1251	comments in English; commands identical once comments are removed

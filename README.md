@@ -1,5 +1,5 @@
 # OntoGeoRAG 
-This repository contains the code that built the knowledge graph on mass-transport deposits (MTDs) reported in the OntoGeoRAG manuscript, the tools that tie this code to the recorded run, and the scripts that produce every table and figure of the manuscript.
+This repository contains the code that built the knowledge graph on mass-transport deposits (MTDs) reported in the OntoGeoRAG manuscript, the tools that tie this code to the recorded run, the scripts that produce the data figures and the numbers of the tables of the manuscript, and the recorded outputs of the run and of its self-audit.
 
 ## What the pipeline does
 
@@ -30,6 +30,7 @@ The branch `main` holds the run18 settings and the tools to rerun and check them
 - **Driver**: `workflows/run_pipeline_run18.sh` (210 queries in `configs/descriptor_queries_run18.jsonl`, full retrieved context, a gate that checks the run18 files and the leak audit `174_audit_fuite_benchmark.py` before any model is loaded). The changes with respect to run16E are listed in `pipeline/RUN18_PATCHES.md`.
 - **Rule-based cleaning**: `workflows/postprocess_run18.sh` chains three read-only CPU scripts on a run output: `184_trace_requetes_et_pertes.py` (follows every extraction and checks the replay against the run's own files), `187_provenance_articles.py` (article, reference and deduced section of every relation) and `188_nettoyage_familles.py` (removes relations by fixed rules R1 bibliography, R2 local label, R3 subject absent from the source sentences; flags S1–S4; groups relations by entity families). Their messages and output columns are in French; `docs/run18_cleaning_outputs.md` describes them in English.
 - **Recorded outputs**: `results/run18/` holds the delivered graph (`kg_final/`), the metrics, the panel quarantine, both passes (`pass_a/`, `pass_b/`), the manifest, and the cleaning outputs (`postprocess/`). The delivered graph has 364 relations (197 in tier 1); after cleaning, 281 relations (164 in tier 1). The figures and rules are in `results/run18/postprocess/*/_resume.txt`.
+- **Self-audit outputs**: `results/run18/self_audit/` holds the recorded stress test (the 728 judged records, the verdicts of each verifying-LLM and the rates under each decision rule), produced by `slurm/stress18.sh`, and the outputs of the audit scripts behind the tables of the manuscript. `results/run18/self_audit/README.md` maps each folder to its script and to the table it supports, and explains why `kg_final/article_metrics.json` reports other descriptor and recall values than the manuscript. These outputs were written before the translation, so their file names are in French.
 - **Interactive page**: `docs/graph_run18.html`, produced by `scripts/figures/run18/graph_page_run18.py`. It shows the cleaned or the delivered graph, by entity name or by name family; clicking an arrow shows the evidence sentence, the source papers, the tier, the panel decision and the verdict of each verifying-LLM. The page loads the graph library vis-network from a CDN, so it needs an internet connection.
 - **Running on a SLURM cluster**: `docs/INSTALL_cluster.md` (full guide) and `docs/cluster_quickstart.md` (copy-paste version, including clusters without internet access).
 - **Checking a rerun**: `scripts/tools/compare_runs.py --ref results/run18 --new <your output>` compares every stage, the delivered graph, the metrics and the cleaned graph with the recorded run.
@@ -62,6 +63,7 @@ These files are released under CC BY 4.0 (`LICENSE-DATA`), with the same excepti
 | `workflows/prefetch_models.sh` | download of the models at the pinned revisions (login node with internet) |
 | `slurm/run16_full.sh` | cluster driver used for run16E (kept as run) |
 | `slurm/run18_clean.sh` | cluster driver used for the recorded run18 (kept as run) |
+| `slurm/stress18.sh` | cluster driver used for the recorded stress test of run18 (comments translated; commands and messages kept as run) |
 | `slurm/run18.sbatch` | SLURM template for the run18 driver on another cluster |
 | `environment/` | pinned requirements (CPU and GPU) |
 | `docs/graph_run18.html` | interactive page of the run18 graph |

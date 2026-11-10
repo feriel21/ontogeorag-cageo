@@ -1,13 +1,13 @@
 #!/bin/bash
 # =====================================================================
-# slurm/stress18.sh — stress test des verificateurs sur le graphe livre de run18
+# slurm/stress18.sh — stress test of the verifiers on the delivered run18 graph
 #
-# Couche 2 du protocole : controles corrompus construits par des regles fixes
-# (m4/m4_negatives.py generate, graine 13 comme pour run16E), puis jugement
-# par les DEUX verificateurs du panel, chacun separement :
-#   Llama-3.1-8B-Instruct  (snapshot 0e9e39f) et Mistral-7B-Instruct-v0.2 (63a8b08).
-# Pour chaque verificateur : sensibilite, specificite, AUC, par type de corruption
-# (m4_negatives.py report). Aucun fichier de run18 n'est modifie.
+# Corrupted copies built by fixed rules (m4/m4_negatives.py generate, seed 13
+# as for run16E), then judged by BOTH verifiers of the panel, each one alone:
+#   Llama-3.1-8B-Instruct (snapshot 0e9e39f) and Mistral-7B-Instruct-v0.2 (63a8b08).
+# For each verifier: sensitivity, specificity and AUC, by type of corruption
+# (m4_negatives.py report). No run18 file is modified.
+# Printed messages are in French and are kept as run.
 #
 #   sbatch --export=ALL,REPO=$HOME/ontogeorag_run18 slurm/stress18.sh
 # =====================================================================
