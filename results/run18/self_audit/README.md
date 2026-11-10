@@ -30,7 +30,7 @@ Each folder is the output of the audit script with the same number in `scripts/r
 | `190_controles_et_coherence` | `190_controls_and_consistency.py` | the 25 ambiguous copies and the replay of the verdicts (362 of 362 identical) |
 | `191_regles_et_sensibilite` | `191_rules_and_sensitivity.py` | rates of `tab:stress` by type of corruption and their sensitivity to the decision rule |
 | `192_infos_manquantes` | `192_missing_information.py` | information that the run files do not record |
-| `192_contenu_slope_failure` | summary tables of 4 November 2026, written by a script that is not in this repository | relations of the cleaned graph by type, and the causes, descriptors and settings of mass transport deposits |
+| `192_contenu_slope_failure` | `192_graph_content.py`, run on the delivered graph with `--terms "slope failure"` | exploratory summary of the 14 delivered relations whose subject or object names slope failure; the counts of the manuscript on slope failure come from the cleaned graph grouped by family |
 | `193_couverture_descripteurs` | `193_descriptor_coverage.py` | coverage of the 13 expert descriptors: 13 of 13, 12 of 13 in Tier 1 |
 
 `results/run18/kg_final/article_metrics.json`, written by `pipeline/07_final_metrics.py` during the run, reports 12 of 13 expert descriptors (11 in Tier 1) and a recall on 34 reference edges. The manuscript uses neither value: `07_final_metrics.py` maps *stratified* to *layered* before counting, whereas the expert graph lists them as two descriptors, and the manuscript compares the graph with 26 expert relations only. `193_couverture_descripteurs/_resume.txt` gives the direct count used in the manuscript.

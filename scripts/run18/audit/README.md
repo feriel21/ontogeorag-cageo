@@ -28,4 +28,5 @@ The output names changed with the translation. A rerun writes the new names, and
 | `190_retrieval_replay_run18.py` | Replay of the run18 retrieval without any LLM: questions dropped by the BM25 threshold, effect of the cross-encoder |
 | `191_rules_and_sensitivity.py` | Decision rules recomputed from the joined verdicts, rates per corruption type, sensitivity without the ambiguous records |
 | `192_missing_information.py` | Evidence check applied to the delivered and cleaned graphs, contributing papers, settings of the verifying-LLMs, counts of each stage |
+| `192_graph_content.py` | Content of a graph about one target found by name substrings (mass transport deposits by default): relations by type, descriptors, causes and triggers, context |
 | `193_descriptor_coverage.py` | Coverage of the 13 expert descriptors under three string-matching rules, and the rule used by `pipeline/07_final_metrics.py` |
