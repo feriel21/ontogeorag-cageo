@@ -35,6 +35,9 @@ identifiers:
   - type: doi
     value: 10.5281/zenodo.24108337
     description: "Zenodo archive of release v2.1-run18 (run18 with the self-audit outputs)"
+  - type: doi
+    value: 10.5281/zenodo.24114737
+    description: "Zenodo archive of release v2.2-run18 (run18 with the self-audit outputs and two further audit scripts, cited by the manuscript)"
 keywords:
   - knowledge graph
   - retrieval-augmented generation
