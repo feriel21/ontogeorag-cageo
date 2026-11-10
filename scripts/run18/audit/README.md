@@ -22,6 +22,7 @@ The output names changed with the translation. A rerun writes the new names, and
 | `183_compare_passes.py` | Distinct relations of a replayed deterministic pass compared with the recorded pass |
 | `185_relation_trace_sheet.py` | Trace sheet of one relation, from the query to the delivered graph, with the origin of each item |
 | `186_scope_markers.py` | Markers of condition, modality and scope in the evidence sentences, crossed with tier and verdicts |
+| `186_marker_list_variants.py` | Qualified evidence sentences under the three marker lists of the manuscript (full, without the words that can be neutral, also without references to figures) and their chi-squared tests against the verdicts; reads the marker table of 186 |
 | `189_manuscript_elements.py` | Delivered and cleaned graphs, rejection and retention rates of the self-audit with Wilson intervals, ambiguous corrupted records |
 | `189_vocabulary_frequency.py` | Number of papers and passages that contain each term of the extraction vocabulary |
 | `190_controls_and_consistency.py` | Consistency of tiers, verdicts and decisions in both graphs; inventory and join of the self-audit files |

@@ -25,7 +25,7 @@ Each folder is the output of the audit script with the same number in `scripts/r
 | `179_trace_run18` | `179_trace_missing_expert_relations.py` | status of the 26 expert relations (`fig:lb2019`) |
 | `180_passage_panel` | `180_passage_seen_by_panel.py` | evidence passage given to the verifying-LLMs |
 | `182_mesures` | `182_name_families_run18.py`, subcommand `measure` | name families and the relations that lead to slope failure |
-| `186_portee` | `186_scope_markers.py` | markers of condition, modality and scope (`tab:markers`) |
+| `186_portee` | `186_scope_markers.py` | markers of condition, modality and scope (`tab:markers`, full list); `186_marker_list_variants.py` recomputes from `marqueurs_par_relation.tsv` the two other lists of `tab:markers` and the three chi-squared tests |
 | `189_elements_article` | `189_manuscript_elements.py` | `tab:graphs` and the counts of the results |
 | `190_controles_et_coherence` | `190_controls_and_consistency.py` | the 25 ambiguous copies and the replay of the verdicts (362 of 362 identical) |
 | `191_regles_et_sensibilite` | `191_rules_and_sensitivity.py` | rates of `tab:stress` by type of corruption and their sensitivity to the decision rule |
