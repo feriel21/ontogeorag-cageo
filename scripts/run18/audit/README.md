@@ -23,6 +23,7 @@ The output names changed with the translation. A rerun writes the new names, and
 | `185_relation_trace_sheet.py` | Trace sheet of one relation, from the query to the delivered graph, with the origin of each item |
 | `186_scope_markers.py` | Markers of condition, modality and scope in the evidence sentences, crossed with tier and verdicts |
 | `186_marker_list_variants.py` | Qualified evidence sentences under the three marker lists of the manuscript (full, without the words that can be neutral, also without references to figures) and their chi-squared tests against the verdicts; reads the marker table of 186 |
+| `186_marker_tests_by_sentence.py` | The same three chi-squared statistics with a permutation test in which the unit is the evidence sentence, because several relations share one sentence; reads the marker table of 186 and the lists of `186_marker_list_variants.py` |
 | `189_manuscript_elements.py` | Delivered and cleaned graphs, rejection and retention rates of the self-audit with Wilson intervals, ambiguous corrupted records |
 | `189_vocabulary_frequency.py` | Number of papers and passages that contain each term of the extraction vocabulary |
 | `190_controls_and_consistency.py` | Consistency of tiers, verdicts and decisions in both graphs; inventory and join of the self-audit files |
@@ -31,3 +32,4 @@ The output names changed with the translation. A rerun writes the new names, and
 | `192_missing_information.py` | Evidence check applied to the delivered and cleaned graphs, contributing papers, settings of the verifying-LLMs, counts of each stage |
 | `192_graph_content.py` | Content of a graph about one target found by name substrings (mass transport deposits by default): relations by type, descriptors, causes and triggers, context |
 | `193_descriptor_coverage.py` | Coverage of the 13 expert descriptors under three string-matching rules, and the rule used by `pipeline/07_final_metrics.py` |
+| `194_verdict_transitions.py` | For each type of corruption, the evidence check on each corrupted copy crossed with the evidence check on its original, and the share of flagged copies among the copies whose original is not flagged |
