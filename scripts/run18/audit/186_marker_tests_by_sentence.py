@@ -19,8 +19,8 @@ chi-squared distribution by a permutation test in which the unit is the evidence
     3. the p-value is the share of permutations whose statistic is at least the observed one,
        counted as (b + 1) / (B + 1).
 Sentences are exchanged within groups of equal size because the marker status is recorded per
-relation: a part-of-object word that belongs to the name of an entity is not counted for that
-relation, so two relations of one sentence can differ.
+relation: a part-of-object word that is already in the subject of a relation is not counted for
+that relation, so two relations of one sentence can differ.
 
 The random generator is seeded (--seed, default 13, the seed of the stress test), so a rerun
 prints the same values. The marker lists are imported from 186_marker_list_variants.py.

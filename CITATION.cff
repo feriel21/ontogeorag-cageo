@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this code, please cite it using the metadata below."
 type: software
 title: "OntoGeoRAG: code accompanying the Computers & Geosciences manuscript"
-version: v2.1-run18
+version: v2.2-run18
 license: Apache-2.0
 repository-code: "https://github.com/feriel21/ontogeorag-cageo"
 authors:
@@ -34,7 +34,7 @@ identifiers:
     description: "Zenodo archive of release v2.0-run18 (run18, without the self-audit outputs)"
   - type: doi
     value: 10.5281/zenodo.24108337
-    description: "Zenodo archive of release v2.1-run18 (run18 with the self-audit outputs, cited by the manuscript)"
+    description: "Zenodo archive of release v2.1-run18 (run18 with the self-audit outputs)"
 keywords:
   - knowledge graph
   - retrieval-augmented generation

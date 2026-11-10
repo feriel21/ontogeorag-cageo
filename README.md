@@ -25,7 +25,7 @@ These files are released under CC BY 4.0 (`LICENSE-DATA`), except the evidence s
 
 ## run18 (current version)
 
-The branch `main` holds the run18 settings and the tools to rerun and check them; the release `v2.1-run18` freezes this version. run18 is the run reported in the manuscript submitted to *Computers & Geosciences*. run16E, described above, is the earlier version; its files are unchanged.
+The branch `main` holds the run18 settings and the tools to rerun and check them; the release `v2.2-run18` freezes this version. run18 is the run reported in the manuscript submitted to *Computers & Geosciences*. run16E, described above, is the earlier version; its files are unchanged.
 
 - **Driver**: `workflows/run_pipeline_run18.sh` (210 queries in `configs/descriptor_queries_run18.jsonl`, full retrieved context, a gate that checks the run18 files and the leak audit `174_audit_fuite_benchmark.py` before any model is loaded). The changes with respect to run16E are listed in `pipeline/RUN18_PATCHES.md`.
 - **Rule-based cleaning**: `workflows/postprocess_run18.sh` chains three read-only CPU scripts on a run output: `184_trace_requetes_et_pertes.py` (follows every extraction and checks the replay against the run's own files), `187_provenance_articles.py` (article, reference and deduced section of every relation) and `188_nettoyage_familles.py` (removes relations by fixed rules R1 bibliography, R2 local label, R3 subject absent from the source sentences; flags S1–S4; groups relations by entity families). Their messages and output columns are in French; `docs/run18_cleaning_outputs.md` describes them in English.
@@ -302,4 +302,4 @@ Check that the repository files are the ones recorded in PROVENANCE.tsv and in t
 
 ## Citation and licence
 
-See `CITATION.cff`. Archived on Zenodo (all versions): https://doi.org/10.5281/zenodo.22827694. Release `v1.0-cageo` holds run16E (https://doi.org/10.5281/zenodo.22827695). Release `v2.1-run18` holds run18, the run of the manuscript, with the outputs of its self-audit (https://doi.org/10.5281/zenodo.24108337); release `v2.0-run18` is the same run without these outputs. Code under the Apache License 2.0 (`LICENSE`); data under CC BY 4.0 (`LICENSE-DATA`).
+See `CITATION.cff`. Archived on Zenodo (all versions): https://doi.org/10.5281/zenodo.22827694. Release `v1.0-cageo` holds run16E (https://doi.org/10.5281/zenodo.22827695). Release `v2.2-run18` holds run18, the run of the manuscript, with the outputs of its self-audit and the audit scripts `194_verdict_transitions.py` and `186_marker_tests_by_sentence.py`; it is the release cited by the manuscript, and its DOI is listed on the Zenodo page of all versions. Release `v2.1-run18` is the same run without these two scripts (https://doi.org/10.5281/zenodo.24108337), and release `v2.0-run18` is the same run without the self-audit outputs. Code under the Apache License 2.0 (`LICENSE`); data under CC BY 4.0 (`LICENSE-DATA`).

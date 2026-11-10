@@ -17,7 +17,7 @@ This guide installs the OntoGeoRAG pipeline (run18 settings) on a new cluster an
 
 ```bash
 git clone https://github.com/feriel21/ontogeorag-cageo.git ~/ontogeorag
-cd ~/ontogeorag && git checkout v2.1-run18     # release of the manuscript; or stay on main
+cd ~/ontogeorag && git checkout v2.2-run18     # release of the manuscript; or stay on main
 python3.10 -m venv ~/ontogeorag_venv
 source ~/ontogeorag_venv/bin/activate
 pip install -r environment/requirements-cpu.txt -r environment/requirements-gpu.txt

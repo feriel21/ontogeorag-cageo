@@ -30,12 +30,12 @@ Check: `env | grep -E "CLUSTER_|^REPO=|^VENV=|PDF_DIR|HF_HOME"` shows no `FILL_M
 
 ---
 
-## 1. Release v2.1-run18
+## 1. Release v2.2-run18
 
 ```bash
 cd "$REPO" && pwd
 git fetch origin --tags
-git checkout v2.1-run18
+git checkout v2.2-run18
 git log -1 --oneline
 ls slurm/run18.sbatch workflows/run_pipeline_run18.sh
 ```
@@ -206,7 +206,7 @@ If the full run of step 6 was made with an earlier version of the repository, fi
 cd "$REPO" && pwd
 source "$VENV/bin/activate"
 git fetch origin --tags
-git checkout v2.1-run18
+git checkout v2.2-run18
 ls workflows/postprocess_run18.sh scripts/tools/compare_runs.py results/run18/postprocess
 ```
 
