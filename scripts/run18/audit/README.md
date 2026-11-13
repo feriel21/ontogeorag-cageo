@@ -33,3 +33,5 @@ The output names changed with the translation. A rerun writes the new names, and
 | `192_graph_content.py` | Content of a graph about one target found by name substrings (mass transport deposits by default): relations by type, descriptors, causes and triggers, context |
 | `193_descriptor_coverage.py` | Coverage of the 13 expert descriptors under three string-matching rules, and the rule used by `pipeline/07_final_metrics.py` |
 | `194_verdict_transitions.py` | For each type of corruption, the evidence check on each corrupted copy crossed with the evidence check on its original, and the share of flagged copies among the copies whose original is not flagged |
+| `195_delivery_rule_on_copies.py` | Delivery rule of the pipeline (accept, uncertain, reject; the panel keeps the more cautious decision) applied to the 728 records of the stress test: decisions on the originals and on the corrupted copies, by type of corruption |
+| `196_cleaning_rules_by_decision.py` | Relations removed by the written cleaning rules among the relations that the panel accepted and those it left uncertain, with Fisher's exact test |
