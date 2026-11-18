@@ -16,6 +16,11 @@
 # The three scripts are the ones used for results/run18/postprocess/ (same files,
 # same options). Their messages and output columns are in French.
 #
+# If 184 reports failed checks, scripts/tools/check_undetermined_choices.py decides
+# whether they are only undetermined descriptor choices of objects that leave the
+# pipeline inside 04 (a case that depends on PYTHONHASHSEED and has no effect on the
+# graph). Only then does the cleaning go on; any other failed check stops it.
+#
 # Usage (from anywhere; CPU, a few minutes, no model):
 #     RUN_DIR=output/run18_rerun bash workflows/postprocess_run18.sh
 # Optional variables:
@@ -69,6 +74,7 @@ LOG="$POST_ABS/postprocess_manifest.txt"
     echo "date: $(date -Iseconds)"
     echo "code: $(git rev-parse --short HEAD 2>/dev/null || echo unknown)"
     for S in 184_trace_requetes_et_pertes.py 187_provenance_articles.py 188_nettoyage_familles.py \
+             scripts/tools/check_undetermined_choices.py \
              configs/entity_families_run18.csv configs/lb_reference_edges_original26.json \
              data/pdf_to_ref.tsv data/lb2019_41_refs.txt; do
         echo "sha256 $(sha256sum "$S" | cut -c1-12)  $S"
@@ -79,8 +85,18 @@ LOG="$POST_ABS/postprocess_manifest.txt"
 } > "$LOG"
 
 echo "=== [184] trace of every extraction, checks against the run's own files"
-python -u 184_trace_requetes_et_pertes.py --repo . --run "$VIEW" --outdir "$POST_ABS/184_trace" --nfkc \
-    || { echo "STOP: a 184 check failed (ECHEC) or 184 stopped; see $POST/184_trace/_resume.txt. Steps 187-188 not run." >&2; exit 3; }
+RC184=0
+python -u 184_trace_requetes_et_pertes.py --repo . --run "$VIEW" --outdir "$POST_ABS/184_trace" --nfkc || RC184=$?
+if [ "$RC184" -eq 3 ]; then
+    echo ""
+    echo "=== 184 reported failed checks (ECHEC): are they only undetermined descriptor choices without effect?"
+    python -u scripts/tools/check_undetermined_choices.py --trace "$POST_ABS/184_trace" \
+        --outdir "$POST_ABS/184_undetermined_check" \
+        || { echo "STOP: a 184 check failed (ECHEC); see $POST/184_trace/_resume.txt and $POST/184_undetermined_check/summary.txt. Steps 187-188 not run." >&2; exit 3; }
+elif [ "$RC184" -ne 0 ]; then
+    echo "STOP: 184 stopped (exit $RC184) before its checks; see the ARRET line above. Steps 187-188 not run." >&2
+    exit 3
+fi
 
 echo ""
 echo "=== [187] article, reference and section of every delivered relation"

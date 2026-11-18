@@ -220,7 +220,8 @@ cat output/run18_rerun/postprocess/188_nettoyage/_resume.txt
 
 If the full run was written to another folder (`OUT=` in step 6), use that folder in `RUN_DIR=` here and in `--new` at step 8.
 
-Check: 184 ends with `0 controle(s) en echec` (if a check fails, the script stops before 187); the last line is `=== postprocess finished ===`.
+Check: the last line is `=== postprocess finished ===`.
+184 normally ends with `0 controle(s) en echec`. On a rerun it can report `1 controle(s) en echec` for an ambiguous descriptor object, `objet(s) ambigu(s) … [1 non determinable(s)]`: the choice made by 04 between two descriptors (for example *chaotic with layered*) depends on `PYTHONHASHSEED`, and it cannot be read when the relation leaves the pipeline inside 04. The driver then runs `scripts/tools/check_undetermined_choices.py`, which goes on only if this is the sole kind of failed check, every other check of 184 passed and each undetermined object leaves the pipeline inside 04; it prints `ACCEPTED` and writes `postprocess/184_undetermined_check/summary.txt`. Any other failed check stops the cleaning before 187.
 Outputs in `output/run18_rerun/postprocess/`: `188_nettoyage/graphe_nettoye.json` (cleaned graph), `relations_retirees.tsv` (each removed relation with its rule), `relations_signalees.tsv`, `relations_par_famille.tsv`, and the summaries `_resume.txt` of each step (in French).
 
 ---
@@ -258,5 +259,6 @@ What to expect: counts of the same order on both sides, not identical ones. Pass
 | `CUDA out of memory` | GPU too small; the recorded run used an A100 slice with 40 GB |
 | `STOP: set PDF_DIR …` | `PDF_DIR` not exported in block 0 |
 | `REJET … ratio alphabetique 0.xx < 0.55` in step 4 | `pdfplumber` installed; uninstall it (step 2) |
-| `STOP: a 184 check failed` in step 7 | a file of the run does not match its replay; read `postprocess/184_trace/_resume.txt` (lines `ECHEC`) |
+| `STOP: a 184 check failed` in step 7 | a file of the run does not match its replay; read `postprocess/184_trace/_resume.txt` (lines `ECHEC`) and `postprocess/184_undetermined_check/summary.txt` |
+| `STOP: … exists, nothing is overwritten` in step 7 | the cleaning was already run on this folder; add `POST=$RUN_DIR/postprocess_2` (or another new name) in front of the command; do not delete the previous folder |
 | `requires accelerate` or `ModuleNotFoundError` when a model loads | environment installed from an older `requirements-gpu.txt`; reinstall it (step 2) |

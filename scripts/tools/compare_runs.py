@@ -26,11 +26,14 @@ Report:
     <out>/metrics_side_by_side.tsv        article_metrics.json side by side
 
 A relation is identified by (subject, relation, object), lower-cased and with
-spaces normalised. Two runs are not expected to be identical: pass b samples
-at temperature 0.3, and greedy decoding in bf16 can differ on another GPU.
+spaces normalised. The raw extractions of pass a store the subject and the
+object in the fields source and target; the graphs use subject and object.
+Two runs are not expected to be identical: pass b samples at temperature 0.3,
+and greedy decoding in bf16 can differ on another GPU.
 """
 import argparse
 import collections
+import csv
 import hashlib
 import json
 import sys
@@ -49,9 +52,9 @@ def norm(x):
 
 
 def key(t):
-    s = t.get("subject", t.get("head", ""))
+    s = t.get("subject", t.get("head", t.get("source", "")))
     r = t.get("relation", t.get("predicate", ""))
-    o = t.get("object", t.get("tail", ""))
+    o = t.get("object", t.get("tail", t.get("target", "")))
     return (norm(s), norm(r), norm(o))
 
 
@@ -296,9 +299,11 @@ def main():
         def read_tsv(p):
             if not p.exists():
                 return []
-            with open(p, encoding="utf-8") as f:
-                head = f.readline().rstrip("\n").split("\t")
-                return [dict(zip(head, line.rstrip("\n").split("\t"))) for line in f if line.strip()]
+            # 188 writes with the csv module: an evidence sentence that holds a line
+            # break is quoted and spans several lines of the file.
+            csv.field_size_limit(sys.maxsize)
+            with open(p, encoding="utf-8", newline="") as f:
+                return list(csv.DictReader(f, delimiter="\t"))
 
         g_ref, g_new = load_clean(c_ref), load_clean(c_new)
         say("  {:<46} {:>12} {:>12}   {}".format("", "ref", "new", "new - ref"))
